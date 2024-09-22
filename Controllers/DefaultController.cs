@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace demoWeb.Controllers
+namespace HoiTroWebsite.Controllers
 {
     public class DefaultController : Controller
     {
