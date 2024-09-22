@@ -329,6 +329,7 @@
     <Content Include="Scripts\js\revolution\js\.DS_Store" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\getMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
