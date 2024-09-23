@@ -5,6 +5,9 @@
 
 # My config git ignore
 Web.config
+bin/HoiTroWebsite.dll
+bin/HoiTroWebsite.dll.config
+bin/HoiTroWebsite.pdb
 
 # User-specific files
 *.rsuser
