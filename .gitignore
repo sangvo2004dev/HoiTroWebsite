@@ -8,6 +8,7 @@ Web.config
 bin/HoiTroWebsite.dll
 bin/HoiTroWebsite.dll.config
 bin/HoiTroWebsite.pdb
+bin/
 
 # User-specific files
 *.rsuser
