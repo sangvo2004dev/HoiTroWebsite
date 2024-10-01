@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# My config git ignore
+Web.config
+bin/HoiTroWebsite.dll
+bin/HoiTroWebsite.dll.config
+bin/HoiTroWebsite.pdb
+sangvovan.txt
+
 # User-specific files
 *.rsuser
 *.suo
