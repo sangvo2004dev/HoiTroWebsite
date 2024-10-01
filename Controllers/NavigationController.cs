@@ -7,17 +7,23 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Controllers
 {
-    public class DefaultController : Controller
+    public class NavigationController : Controller
     {
         // Khai báo
         HoiTroEntities _db = new HoiTroEntities();
-
-        // GET: Default
+        // GET: Navigation
         public ActionResult Index()
         {
             return View();
         }
+        public ActionResult getMenu()
+        {
+            var v = from t in _db.Menus
+                    where t.hide == true
+                    orderby t.order ascending
+                    select t;
 
-
+            return PartialView(v.ToList());
+        }
     }
 }

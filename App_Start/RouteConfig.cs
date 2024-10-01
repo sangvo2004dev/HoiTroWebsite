@@ -13,6 +13,14 @@ namespace HoiTroWebsite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("News", "{type}",
+               new { controller = "News", action = "getNews", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","tin-tuc" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

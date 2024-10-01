@@ -1,6 +1,28 @@
-﻿@model List<HoiTroWebsite.Models.News>
+﻿@{
+    ViewBag.Title = "Tin tuc";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+@model List<HoiTroWebsite.Models.News>
+
 
 <div class="container">
+    Alooooooooooooooooooooooooooooo alibaba
+    @foreach (var i in Model)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="@i.title">
+                    <h2>Tin Tức</h2>
+                    <p>@Html.DisplayFor(modelItem => i.content) </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- blog -->
+@*<div class="blog">
     <div class="row">
         <div class="col-md-12">
             <div class="titlepage">
@@ -47,4 +69,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
+<!-- end blog -->
