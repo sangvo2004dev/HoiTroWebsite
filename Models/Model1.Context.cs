@@ -26,5 +26,10 @@ namespace HoiTroWebsite.Models
         }
     
         public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Detail> Details { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Topic> Topics { get; set; }
     }
 }

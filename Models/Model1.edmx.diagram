@@ -6,6 +6,12 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3e18e4de0d2147ff8b100b3635dd591e" Name="Diagram1">
         <EntityTypeShape EntityType="HoiTroModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoiTroModel.Contact" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="HoiTroModel.Detail" Width="1.5" PointX="6" PointY="1" />
+        <EntityTypeShape EntityType="HoiTroModel.Image" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HoiTroModel.News" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HoiTroModel.Topic" Width="1.5" PointX="3.75" PointY="1.375" />
+        <AssociationConnector Association="HoiTroModel.FK__Detail__topic_id__73BA3083" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
