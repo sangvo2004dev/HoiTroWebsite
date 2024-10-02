@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-@model List<HoiTroWebsite.Models.News>
+@model List<HoiTroWebsite.Models.NewsViewModel>
 
 <div class="blog">
     <div class="row">
@@ -20,12 +20,13 @@
             <div class="col-md-4">
                 <div class="blog_box">
                     <div class="blog_img">
-                        @*<figure><img src="~/Content/images/blog3.jpg" alt="#" /></figure>*@
+                        <p>@i.ImagePath</p>
+                        <figure><img src="@i.ImagePath" alt="#" /></figure>
                     </div>
                     <div class="blog_room">
-                        <h3>@i.title</h3>
-                        <span>@i.author </span>
-                        <p>@Html.DisplayFor(modelItem => i.content)</p>
+                        <h3>@i.Title</h3>
+                        <span>@i.Author </span>
+                        <p>@Html.DisplayFor(modelItem => i.BriefDescription)</p>
                     </div>
                 </div>
             </div>
