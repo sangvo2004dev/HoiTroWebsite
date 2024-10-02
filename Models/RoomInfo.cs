@@ -12,21 +12,27 @@ namespace HoiTroWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Detail
+    public partial class RoomInfo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RoomInfo()
+        {
+            this.RoomImages = new HashSet<RoomImage>();
+        }
+    
         public int id { get; set; }
         public string title { get; set; }
-        public string description { get; set; }
-        public Nullable<decimal> price { get; set; }
+        public string brief_description { get; set; }
+        public string detail_description { get; set; }
+        public Nullable<int> price { get; set; }
         public string location { get; set; }
-        public string image { get; set; }
         public string contactInfo { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public Nullable<int> topic_id { get; set; }
     
-        public virtual Topic Topic { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomImage> RoomImages { get; set; }
     }
 }

@@ -17,10 +17,17 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getNews()
         {
-            var v = from t in _db.News
-                    where t.hide == true
-                    orderby t.datebegin descending
-                    select t;
+            var v = from n in _db.News
+                    join i in _db.NewsImages on n.id equals i.reference_id
+                    where i.hide == true
+                    orderby i.datebegin descending
+                    select new NewsViewModel
+                    {
+                        Title = n.title,
+                        Author = n.author,
+                        BriefDescription = n.brief_description,
+                        ImagePath = i.imagePath
+                    };
             return PartialView(v.ToList());
         }
     }

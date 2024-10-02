@@ -12,15 +12,16 @@ namespace HoiTroWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class NewsImage
     {
         public int id { get; set; }
-        public Nullable<int> referenceId { get; set; }
-        public string referenceType { get; set; }
+        public int reference_id { get; set; }
         public string imagePath { get; set; }
-        public Nullable<System.DateTime> datebegin { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
+        public Nullable<System.DateTime> datebegin { get; set; }
+    
+        public virtual News News { get; set; }
     }
 }
