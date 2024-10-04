@@ -1,0 +1,22 @@
+﻿@model List<HoiTroWebsite.Models.RoomInfoViewModel>
+
+<!-- our_room -->
+
+            @foreach (var i in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div id="serv_hover" class="room">
+                        <div class="room_img">
+                            <figure><img src="@i.ImagePath" alt="#" /></figure>
+                        </div>
+                        <div class="bed_room" style="font-family:'Times New Roman';">
+                            <h2>@i.Title</h2>
+                            <b style="color: orangered; font-size: large;">@i.Price</b>
+                            <span>@i.Acreage</span>
+                            <p>@i.Area</p>
+                            <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+<!-- end our_room -->

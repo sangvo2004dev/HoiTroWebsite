@@ -78,14 +78,28 @@
           <Property Name="brief_description" Type="nvarchar" MaxLength="255" />
           <Property Name="detail_description" Type="nvarchar(max)" />
           <Property Name="price" Type="int" />
+          <Property Name="acreage" Type="float" />
+          <Property Name="area" Type="nvarchar" MaxLength="255" />
           <Property Name="location" Type="nvarchar" MaxLength="255" />
           <Property Name="contactInfo" Type="nvarchar" MaxLength="255" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="roomTypeId" Type="int" />
         </EntityType>
-        <Association Name="FK__NewsImage__refer__2334397B">
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="255" />
+          <Property Name="meta" Type="nvarchar" MaxLength="500" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="FK__NewsImage__refer__27C3E46E">
           <End Role="News" Type="Self.News" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -99,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImage__refer__2610A626">
+        <Association Name="FK__RoomImage__refer__2AA05119">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -113,6 +127,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__RoomInfo__roomTy__2116E6DF">
+          <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomInfo">
+              <PropertyRef Name="roomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HoiTroModelStoreContainer">
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
@@ -120,13 +148,18 @@
           <EntitySet Name="NewsImages" EntityType="Self.NewsImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomImages" EntityType="Self.RoomImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__NewsImage__refer__2334397B" Association="Self.FK__NewsImage__refer__2334397B">
+          <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__NewsImage__refer__27C3E46E" Association="Self.FK__NewsImage__refer__27C3E46E">
             <End Role="News" EntitySet="News" />
             <End Role="NewsImages" EntitySet="NewsImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__2610A626" Association="Self.FK__RoomImage__refer__2610A626">
+          <AssociationSet Name="FK__RoomImage__refer__2AA05119" Association="Self.FK__RoomImage__refer__2AA05119">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomInfo__roomTy__2116E6DF" Association="Self.FK__RoomInfo__roomTy__2116E6DF">
+            <End Role="RoomType" EntitySet="RoomType" />
+            <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -159,6 +192,11 @@
           <AssociationSet Name="FK__RoomImage__refer__2610A626" Association="HoiTroModel.FK__RoomImage__refer__2610A626">
             <End Role="RoomInfo" EntitySet="RoomInfoes" />
             <End Role="RoomImage" EntitySet="RoomImages" />
+          </AssociationSet>
+          <EntitySet Name="RoomTypes" EntityType="HoiTroModel.RoomType" />
+          <AssociationSet Name="FK__RoomInfo__roomTy__10E07F16" Association="HoiTroModel.FK__RoomInfo__roomTy__10E07F16">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contact">
@@ -232,6 +270,10 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
           <NavigationProperty Name="RoomImages" Relationship="HoiTroModel.FK__RoomImage__refer__2610A626" FromRole="RoomInfo" ToRole="RoomImage" />
+          <Property Name="acreage" Type="Double" />
+          <Property Name="area" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="roomTypeId" Type="Int32" />
+          <NavigationProperty Name="RoomType" Relationship="HoiTroModel.FK__RoomInfo__roomTy__10E07F16" FromRole="RoomInfo" ToRole="RoomType" />
         </EntityType>
         <Association Name="FK__NewsImage__refer__2334397B">
           <End Type="HoiTroModel.News" Role="News" Multiplicity="1">
@@ -258,6 +300,32 @@
             </Principal>
             <Dependent Role="RoomImage">
               <PropertyRef Name="reference_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RoomInfoes" Relationship="HoiTroModel.FK__RoomInfo__roomTy__10E07F16" FromRole="RoomType" ToRole="RoomInfo" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__RoomInfo__roomTy__10E07F16">
+          <End Type="HoiTroModel.RoomType" Role="RoomType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomInfo">
+              <PropertyRef Name="roomTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -339,6 +407,9 @@
           <EntitySetMapping Name="RoomInfoes">
             <EntityTypeMapping TypeName="HoiTroModel.RoomInfo">
               <MappingFragment StoreEntitySet="RoomInfo">
+                <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="acreage" ColumnName="acreage" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
@@ -349,6 +420,18 @@
                 <ScalarProperty Name="detail_description" ColumnName="detail_description" />
                 <ScalarProperty Name="brief_description" ColumnName="brief_description" />
                 <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomTypes">
+            <EntityTypeMapping TypeName="HoiTroModel.RoomType">
+              <MappingFragment StoreEntitySet="RoomType">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -20,18 +20,16 @@
             <div class="col-md-4">
                 <div class="blog_box">
                     <div class="blog_img">
-                        <p>@i.ImagePath</p>
                         <figure><img src="@i.ImagePath" alt="#" /></figure>
                     </div>
-                    <div class="blog_room">
-                        <h3>@i.Title</h3>
+                    <div class="blog_room" style="font-family:'Times New Roman';">
+                        <h2>@i.Title</h2>
                         <span>@i.Author </span>
-                        <p>@Html.DisplayFor(modelItem => i.BriefDescription)</p>
+                        <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
                     </div>
                 </div>
             </div>
         }
-
     </div>
 </div>*
 <!-- blog -->

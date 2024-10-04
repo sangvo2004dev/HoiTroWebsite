@@ -128,8 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomePageController .cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\RoomInfoController.cs" />
     <Compile Include="Controllers\NewsController .cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +169,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoomInfo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomInfoViewModel.cs" />
+    <Compile Include="Models\RoomType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -349,6 +355,11 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\News\getNews.cshtml" />
     <Content Include="Views\Navigation\getMenu.cshtml" />
+    <Content Include="Views\RoomInfo\getInfor.cshtml" />
+    <Content Include="Views\HomePage\getNews.cshtml" />
+    <Content Include="Views\HomePage\getInfor.cshtml" />
+    <Content Include="Views\HomePage\getRoomType.cshtml" />
+    <Content Include="Views\HomePage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,6 +13,8 @@
         <EntityTypeShape EntityType="HoiTroModel.RoomInfo" Width="1.5" PointX="7.75" PointY="5.5" />
         <AssociationConnector Association="HoiTroModel.FK__NewsImage__refer__2334397B" />
         <AssociationConnector Association="HoiTroModel.FK__RoomImage__refer__2610A626" />
+        <EntityTypeShape EntityType="HoiTroModel.RoomType" Width="1.5" PointX="5.5" PointY="9.5" />
+        <AssociationConnector Association="HoiTroModel.FK__RoomInfo__roomTy__10E07F16" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

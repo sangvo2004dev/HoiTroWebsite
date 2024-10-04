@@ -7,7 +7,7 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Controllers
 {
-    public class NewsController : Controller
+    public class RoomInfoController : Controller
     {
         // Khai báo
         HoiTroEntities _db = new HoiTroEntities();
@@ -15,17 +15,19 @@ namespace HoiTroWebsite.Controllers
         {
             return View();
         }
-        public ActionResult getNews()
+        public ActionResult getInfor()
         {
-            var v = from n in _db.News
-                    join i in _db.NewsImages on n.id equals i.reference_id
-                    where i.hide == true
-                    orderby i.datebegin descending
-                    select new NewsViewModel
+            var v = from n in _db.RoomInfoes
+                    join i in _db.RoomImages on n.id equals i.reference_id
+                    where n.hide == true
+                    orderby n.datebegin descending
+                    select new RoomInfoViewModel
                     {
                         Title = n.title,
-                        Author = "Tác giả: "+n.author,
+                        Price = n.price +"VNĐ/tháng",
+                        Acreage =  n.acreage+"m^2",
                         BriefDescription = n.brief_description,
+                        Area = n.area,
                         ImagePath = i.imagePath
                     };
             return PartialView(v.ToList());

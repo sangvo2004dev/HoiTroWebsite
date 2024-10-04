@@ -31,5 +31,6 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<NewsImage> NewsImages { get; set; }
         public virtual DbSet<RoomImage> RoomImages { get; set; }
         public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
+        public virtual DbSet<RoomType> RoomTypes { get; set; }
     }
 }

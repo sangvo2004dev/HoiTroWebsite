@@ -21,6 +21,14 @@ namespace HoiTroWebsite
                },
                new[] { "HoiTroWebsite.Controllers" });
 
+            routes.MapRoute("RoomInfo", "{type}",
+               new { controller = "RoomInfo", action = "getInfor", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","chu-de" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
