@@ -1,37 +1,23 @@
-﻿@{
-    ViewBag.Title = "Tin tuc";
-    Layout = "~/Views/Shared/_MyLayout.cshtml";
-}
+﻿@model List<HoiTroWebsite.Models.NewsViewModel>
 
-@model List<HoiTroWebsite.Models.NewsViewModel>
+    @foreach (var i in Model)
+    {
+        <div class="col-md-4">
+            <div class="blog_box">
+                <div class="blog_img">
+                    <figure><img src="@i.ImagePath" alt="#" /></figure>
+                </div>
+                <div class="blog_room" style="font-family:'Times New Roman';">
+                    @*<a href="@Url.Action("Detail", "News", new { id = i.ID, metatitle = i.Meta })">Chi tiết phòng</a>*@
 
-<div class="blog">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="titlepage">
-                <h2>Blog</h2>
-                <p>Lorem Ipsum available, but the majority have suffered </p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        @foreach (var i in Model)
-        {
-            <div class="col-md-4">
-                <div class="blog_box">
-                    <div class="blog_img">
-                        <figure><img src="@i.ImagePath" alt="#" /></figure>
-                    </div>
-                    <div class="blog_room" style="font-family:'Times New Roman';">
-                        <h2>@i.Title</h2>
-                        <span>@i.Author </span>
-                        <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
-                    </div>
+                    <a href="/@ViewBag.meta/@i.Meta/@i.ID">@i.Title</a>
+                    <span>@i.Author </span>
+                    <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
                 </div>
             </div>
-        }
-    </div>
-</div>*
+        </div>
+    }
+
 <!-- blog -->
 @*<div class="blog">
         <div class="row">

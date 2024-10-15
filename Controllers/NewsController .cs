@@ -11,22 +11,51 @@ namespace HoiTroWebsite.Controllers
     {
         // Khai báo
         HoiTroEntities _db = new HoiTroEntities();
-        public ActionResult Index()
+        //xem tất cả tin tức theo 1 loại
+        public ActionResult Index(string meta)
         {
-            return View();
+            var v = from t in _db.NewsTypes
+                    where t.meta == meta
+                    select t;
+            return View(v.FirstOrDefault());
         }
-        public ActionResult getNews()
+        ///chi tiết tin trên HomePage-Menu
+        public ActionResult NewsDetail(long id)
         {
+            var v = from t in _db.News
+                    where t.id == id
+                    select t;
+            return View(v.FirstOrDefault());
+        }
+
+        /// menu-tintuc
+        public ActionResult getNewsType()
+        {
+            @ViewBag.meta = "tin-tuc";
+            var v = from t in _db.NewsTypes
+                    where t.hide == true
+                    orderby t.order ascending
+                    select t;
+            return PartialView(v.ToList());
+        }
+        public ActionResult getNews(long id, string metatitle)
+        {
+            ViewBag.meta = metatitle;
             var v = from n in _db.News
-                    join i in _db.NewsImages on n.id equals i.reference_id
-                    where i.hide == true
-                    orderby i.datebegin descending
+                    join t in _db.NewsTypes on n.newsTypeId equals t.id
+                    where n.hide == true && n.newsTypeId == id
+                    orderby n.datebegin descending
                     select new NewsViewModel
                     {
+                        ID = n.id,
+                        Meta = n.meta,
                         Title = n.title,
                         Author = "Tác giả: "+n.author,
                         BriefDescription = n.brief_description,
-                        ImagePath = i.imagePath
+                        ImagePath = (from i in _db.NewsImages
+                                     where i.reference_id == n.id
+                                     orderby i.datebegin descending
+                                     select i.imagePath).FirstOrDefault()
                     };
             return PartialView(v.ToList());
         }

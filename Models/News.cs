@@ -29,8 +29,10 @@ namespace HoiTroWebsite.Models
         public Nullable<System.DateTime> datebegin { get; set; }
         public string brief_description { get; set; }
         public string detail_description { get; set; }
+        public Nullable<int> newsTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewsImage> NewsImages { get; set; }
+        public virtual NewsType NewsType { get; set; }
     }
 }

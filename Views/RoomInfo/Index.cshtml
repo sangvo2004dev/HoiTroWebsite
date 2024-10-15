@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<div class="our_room">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>@Model.title</h2>
+                    <p>Lorem Ipsum available, but the majority have suffered </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @Html.Action("getInfor", "HomePage", new { id = Model.id, metatitle = "phong-tro" })
+        </div>
+    </div>
+</div>

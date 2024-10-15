@@ -1,22 +1,25 @@
-﻿@model List<HoiTroWebsite.Models.RoomType>
+﻿@model List<HoiTroWebsite.Models.NewsType>
 
-<div class="our_room">
+@{
+    ViewBag.Title = "getNewsType";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<div class="blog">
     <div class="container">
         @foreach (var i in Model)
         {
             <div class="row">
                 <div class="col-md-12">
                     <div class="titlepage">
-                        <h2><a href="@ViewBag.meta/@i.meta">@i.title</a></h2>
+                        <h2>@i.title</h2>
                         <p>Lorem Ipsum available, but the majority have suffered </p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @Html.Action("getInfor", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta })
+                @Html.Action("getNews", "News", new { id = @i.id, metatitle = @ViewBag.meta })
             </div>
         }
-
     </div>
+
 </div>
-<!-- end our_room -->

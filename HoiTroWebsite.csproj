@@ -164,6 +164,9 @@
     <Compile Include="Models\NewsImage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewsType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\RoomImage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -359,7 +362,15 @@
     <Content Include="Views\HomePage\getNews.cshtml" />
     <Content Include="Views\HomePage\getInfor.cshtml" />
     <Content Include="Views\HomePage\getRoomType.cshtml" />
+    <Content Include="Views\RoomInfo\getRoomType.cshtml" />
+    <Content Include="Views\HomePage\RoomDetail.cshtml" />
+    <Content Include="Views\News\getNewsType.cshtml" />
+    <Content Include="Views\HomePage\getNewsType.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\NewsDetail.cshtml" />
+    <Content Include="Views\RoomInfo\RoomDetail.cshtml" />
+    <Content Include="Views\RoomInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,109 @@
+﻿@model HoiTroWebsite.Models.RoomInfo
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/js")
+
+@*Thông tin phòng*@
+<header class="page-header">
+    <h1 class="page-h1">
+        <span class="star star-5" style="float: left;"></span>
+        <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</a>
+    </h1>
+    <div class="clearfix"></div>
+    <address class="post-address">@Model.location</address>
+    <div class="post-attributes">
+        <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price VNĐ/tháng</span></div>
+        <div class="item acreage"><i></i><span> @Model.acreage<sup>2</sup></span></div>
+        <div class="item published"><i></i><span>@Model.datebegin</span></div>
+        <div class="item hashtag"><i></i><span>@Model.id</span></div>
+    </div>
+</header>
+
+@*thông tin mô tả*@
+<section class="section post-main-content">
+    <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
+    <div class="section-content">
+        <p>@Html.DisplayFor(modelItem => Model.detail_description)</p>
+    </div>
+</section>
+@*đặc điểm đăng tin*@
+<section class="section post-overview">
+    <div class="section-header">
+        <h3 class="section-title">Đặc điểm tin đăng</h3>
+    </div>
+    <div class="section-content">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="name">Mã tin:</td>
+                    <td>@Model.title</td>
+                </tr>
+                <tr>
+                    <td class="name">Chuyên mục:</td>
+                    <td>
+                        <a style="text-decoration: underline; " title="" href=""><strong>#####phân khu vực rồi thêm sau</strong></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">Khu vực</td>
+                    <td> @Model.area </td>
+                </tr>
+                <tr>
+                    <td class="name">Loại tin rao:</td>
+                    <td>xử lí chọn titile</td>
+                </tr>
+                <tr>
+                    <td class="name">Đối tượng thuê:</td>
+                    <td>@Model.tenant</td>
+                </tr>
+                <tr>
+                    <td class="name">Ngày đăng:</td>
+                    <td><time title="@Model.datebegin">@Model.datebegin</time></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+@*thông tin liên hệ*@
+<section class="section post-contact">
+    <div class="section-header">
+        <h3 class="section-title">Thông tin liên hệ</h3>
+    </div>
+    <div class="section-content">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="name">Liên hệ:</td>
+                    <td> @Model.nameInfor </td>
+                </tr>
+                <tr>
+                    <td class="name">Điện thoại:</td>
+                    <td> @Model.phoneInfor </td>
+                </tr>
+                <tr>
+                    <td class="name">Zalo</td>
+                    <td> @Model.zaloInfor </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+@*bản đồ*@
+@*<section class="section post-map">
+        <div class="section-header">
+            <h3 class="section-title">Bản đồ</h3>
+            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
+        </div>
+        <div class="section-content">
+            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
+                <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>*@
+

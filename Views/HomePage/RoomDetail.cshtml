@@ -1,0 +1,125 @@
+﻿@model HoiTroWebsite.Models.RoomInfo
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Scripts/js")
+
+@*Thông tin phòng*@
+<header class="page-header">
+    <h1 class="page-h1">
+        <span class="star star-5" style="float: left;"></span>
+        <a style="color: #E13427;" href="https://phongtro123.com/2-5tr-phong-khep-kin-full-do-gan-hoc-vien-tai-chinh-pr666412.html" title="2,5tr phòng khép kín full đồ gần Học Viện Tài Chính">2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</a>
+    </h1>
+    <div class="clearfix"></div>
+    <address class="post-address">@Model.location</address>
+    <div class="post-attributes">
+        <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">2.5 triệu/tháng</span></div>
+        <div class="item acreage"><i>flex</i><span> 25m<sup>2</sup></span></div>
+        <div class="item published"><i>flex</i><span title="Thứ 3, 11:56 08/10/2024">23 giờ trước</span></div>
+        <div class="item hashtag"><i>flex</i><span>666412</span></div>
+    </div>
+</header>
+
+@*thông tin mô tả*@
+<section class="section post-main-content">
+    <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
+    <div class="section-content">
+        <p>2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</p>
+        <p>Hiện tại mình đang có phòng 25m2 khép kín gần HVTC giá 2,5tr</p>
+        <p>- Nội thất trong phòng gồm có:</p>
+        <p>+ Giường, Tủ, Điều Hoà, Nóng Lạnh, Máy giặt...</p>
+        <p>+ Có chỗ để xe tầng 1, ra vào bằng vân tay, có camara giám sát 24/24</p>
+        <p>+ Giờ giấc tự do không chung chủ</p>
+        <p>- Trước cửa nhà chợ nên rất tiện lợi. ô tô đỗ cửa nhà</p>
+        <p>- Nhà đã trang bì đầy đủ hệ thống PCCC an toàn cho các bạn khi thuê trọ</p>
+        <p>- Nhà gần gần các trường đại học lớn như : Mỏ, Học viện cảnh sát, ĐH Công Nghiệp ....</p>
+        <p>Bạn nào quan tâm thì liên hệ với mình qua zalo: 0988, năm tám bốn, 566</p>
+    </div>
+</section>
+@*đặc điểm đăng tin*@
+<section class="section post-overview">
+    <div class="section-header">
+        <h3 class="section-title">Đặc điểm tin đăng</h3>
+    </div>
+    <div class="section-content">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="name">Mã tin:</td>
+                    <td>#666412</td>
+                </tr>
+                <tr>
+                    <td class="name">Chuyên mục:</td>
+                    <td>
+                        <a style="text-decoration: underline; " title="Phòng trọ Quận Bắc Từ Liêm" href="https://phongtro123.com/tinh-thanh/ha-noi/quan-bac-tu-liem"><strong>Cho thuê phòng trọ Quận Bắc Từ Liêm</strong></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">Khu vực</td>
+                    <td> Cho thuê phòng trọ Hà Nội </td>
+                </tr>
+                <tr>
+                    <td class="name">Loại tin rao:</td>
+                    <td>Phòng trọ, nhà trọ</td>
+                </tr>
+                <tr>
+                    <td class="name">Đối tượng thuê:</td>
+                    <td>Tất cả</td>
+                </tr>
+                <tr>
+                    <td class="name">Gói tin:</td>
+                    <td><span style="color: #E13427;">Tin VIP nổi bật</span></td>
+                </tr>
+                <tr>
+                    <td class="name">Ngày đăng:</td>
+                    <td><time title="Thứ 3, 11:56 08/10/2024">Thứ 3, 11:56 08/10/2024</time></td>
+                </tr>
+                <tr>
+                    <td class="name">Ngày hết hạn:</td>
+                    <td><time title="Thứ 6, 11:56 11/10/2024">Thứ 6, 11:56 11/10/2024</time></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+@*thông tin liên hệ*@
+<section class="section post-contact">
+    <div class="section-header">
+        <h3 class="section-title">Thông tin liên hệ</h3>
+    </div>
+    <div class="section-content">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="name">Liên hệ:</td>
+                    <td> Phạm Tuấn Hùng </td>
+                </tr>
+                <tr>
+                    <td class="name">Điện thoại:</td>
+                    <td> 0988584566 </td>
+                </tr>
+                <tr>
+                    <td class="name">Zalo</td>
+                    <td> 0988584566 </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+@*bản đồ*@
+@*<section class="section post-map">
+        <div class="section-header">
+            <h3 class="section-title">Bản đồ</h3>
+            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
+        </div>
+        <div class="section-content">
+            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
+                <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>*@
+

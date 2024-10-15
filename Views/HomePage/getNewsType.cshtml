@@ -1,6 +1,6 @@
-﻿@model List<HoiTroWebsite.Models.RoomType>
+﻿@model List<HoiTroWebsite.Models.NewsType>
 
-<div class="our_room">
+<div class="blog">
     <div class="container">
         @foreach (var i in Model)
         {
@@ -13,10 +13,9 @@
                 </div>
             </div>
             <div class="row">
-                @Html.Action("getInfor", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta })
+                @Html.Action("getNews", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta })
             </div>
         }
-
     </div>
+
 </div>
-<!-- end our_room -->

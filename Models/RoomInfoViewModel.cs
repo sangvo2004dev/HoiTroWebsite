@@ -7,6 +7,8 @@ namespace HoiTroWebsite.Models
 {
     public class RoomInfoViewModel
     {
+        public int ID { get; set; }
+        public string Meta { get; set; }
         public string Title { get; set; }
         public string Price { get; set; }
 
