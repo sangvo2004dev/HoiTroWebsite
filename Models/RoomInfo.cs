@@ -24,19 +24,19 @@ namespace HoiTroWebsite.Models
         public string title { get; set; }
         public string brief_description { get; set; }
         public string detail_description { get; set; }
-        public int price { get; set; }
-        public string location { get; set; }
-        public string meta { get; set; }
-        public Nullable<bool> hide { get; set; }
-        public Nullable<int> order { get; set; }
-        public Nullable<System.DateTime> datebegin { get; set; }
+        public string price { get; set; }
         public Nullable<double> acreage { get; set; }
         public string area { get; set; }
-        public Nullable<int> roomTypeId { get; set; }
+        public string location { get; set; }
         public string tenant { get; set; }
         public string nameInfor { get; set; }
         public string phoneInfor { get; set; }
         public string zaloInfor { get; set; }
+        public string meta { get; set; }
+        public Nullable<bool> hide { get; set; }
+        public Nullable<int> order { get; set; }
+        public Nullable<System.DateTime> datebegin { get; set; }
+        public Nullable<int> roomTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomImage> RoomImages { get; set; }

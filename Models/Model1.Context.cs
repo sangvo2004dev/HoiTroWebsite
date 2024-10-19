@@ -29,9 +29,9 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsImage> NewsImages { get; set; }
+        public virtual DbSet<NewsType> NewsTypes { get; set; }
         public virtual DbSet<RoomImage> RoomImages { get; set; }
         public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<NewsType> NewsTypes { get; set; }
     }
 }

@@ -8,6 +8,28 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/Scripts/js")
 
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/Content/images/room1.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/images/room2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/Content/images/room3.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 @*Thông tin phòng*@
 <header class="page-header">
     <h1 class="page-h1">
@@ -17,7 +39,7 @@
     <div class="clearfix"></div>
     <address class="post-address">@Model.location</address>
     <div class="post-attributes">
-        <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price VNĐ/tháng</span></div>
+        <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price tr VNĐ/tháng</span></div>
         <div class="item acreage"><i></i><span> @Model.acreage<sup>2</sup></span></div>
         <div class="item published"><i></i><span>@Model.datebegin</span></div>
         <div class="item hashtag"><i></i><span>@Model.id</span></div>
@@ -95,15 +117,16 @@
     </div>
 </section>
 @*bản đồ*@
-@*<section class="section post-map">
-        <div class="section-header">
-            <h3 class="section-title">Bản đồ</h3>
-            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
-        </div>
-        <div class="section-content">
-            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
+<section class="section post-map">
+    <div class="section-header">
+        <h3 class="section-title">Bản đồ</h3>
+        <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
+    </div>
+    <div class="section-content">
+        @*<div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
                 <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
-            </div>
-        </div>
-    </section>*@
+            </div>*@
+
+    </div>
+</section>
 

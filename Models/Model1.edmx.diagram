@@ -9,15 +9,15 @@
         <EntityTypeShape EntityType="HoiTroModel.Contact" Width="1.5" PointX="8.25" PointY="1.5" />
         <EntityTypeShape EntityType="HoiTroModel.News" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="HoiTroModel.NewsImage" Width="1.5" PointX="4.125" PointY="6.125" />
-        <EntityTypeShape EntityType="HoiTroModel.RoomImage" Width="1.5" PointX="10.75" PointY="5.625" />
-        <EntityTypeShape EntityType="HoiTroModel.RoomInfo" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="HoiTroModel.FK__NewsImage__refer__2334397B" />
-        <AssociationConnector Association="HoiTroModel.FK__RoomImage__refer__2610A626" />
-        <EntityTypeShape EntityType="HoiTroModel.RoomType" Width="1.5" PointX="5.5" PointY="9.5" />
-        <AssociationConnector Association="HoiTroModel.FK__RoomInfo__roomTy__10E07F16" />
         <EntityTypeShape EntityType="HoiTroModel.NewsType" Width="1.5" PointX="0.75" PointY="2.125" />
         <AssociationConnector Association="HoiTroModel.FK__News__newsTypeId__52AE4273" />
         <AssociationConnector Association="HoiTroModel.FK__News__newsTypeId__5555A4F4" />
+        <EntityTypeShape EntityType="HoiTroModel.RoomImage" Width="1.5" PointX="10.875" PointY="7.125" />
+        <EntityTypeShape EntityType="HoiTroModel.RoomInfo" Width="1.5" PointX="8.625" PointY="6" />
+        <EntityTypeShape EntityType="HoiTroModel.RoomType" Width="1.5" PointX="6.375" PointY="7.25" />
+        <AssociationConnector Association="HoiTroModel.FK__RoomImage__refer__758D6A5C" />
+        <AssociationConnector Association="HoiTroModel.FK__RoomInfo__roomTy__69279377" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
