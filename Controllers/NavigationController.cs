@@ -11,11 +11,13 @@ namespace HoiTroWebsite.Controllers
     {
         // Khai báo
         HoiTroEntities _db = new HoiTroEntities();
+
         // GET: Navigation
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult getMenu()
         {
             var v = from t in _db.Menus

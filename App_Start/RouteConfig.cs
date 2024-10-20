@@ -11,8 +11,7 @@ namespace HoiTroWebsite
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            ///menu-tin tức
+            // menu-tin tức
             routes.MapRoute("News", "{type}",
                new { controller = "News", action = "getNewsType", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -20,7 +19,7 @@ namespace HoiTroWebsite
                     {"type","tin-tuc" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            /////phân loại phòng
+            // phân loại phòng
             routes.MapRoute("News_Thay", "{type}",
                new { controller = "HomePage", action = "getNewsType", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -44,8 +43,8 @@ namespace HoiTroWebsite
                     {"type","tin-tuc" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            /////
-            ///menu-phòng trọ
+            
+            // menu-phòng trọ
             routes.MapRoute("Rooms", "{type}",
                new { controller = "RoomInfo", action = "getRoomType", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -53,7 +52,8 @@ namespace HoiTroWebsite
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///menu-trang chủ
+
+            // menu-trang chủ
             routes.MapRoute("Home", "{type}",
                new { controller = "HomePage", action = "Index", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -62,7 +62,7 @@ namespace HoiTroWebsite
                },
                new[] { "HoiTroWebsite.Controllers" });
 
-            /////phân loại phòng
+            // phân loại phòng
             routes.MapRoute("Rooms_Thay", "{type}",
                new { controller = "HomePage", action = "getRoomType", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -70,7 +70,7 @@ namespace HoiTroWebsite
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///hiển thị tất cả phòng thuộc loại đã chọn
+            // hiển thị tất cả phòng thuộc loại đã chọn
             routes.MapRoute("Rooms_Thay2", "{type}/{meta}",
                new { controller = "RoomInfo", action = "Index", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -78,7 +78,7 @@ namespace HoiTroWebsite
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///chi tiết phòng
+            // chi tiết phòng
             routes.MapRoute("RoomDetail", "{type}/{meta}/{id}",
                new { controller = "RoomInfo", action = "RoomDetail", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -86,7 +86,8 @@ namespace HoiTroWebsite
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///contact-menu
+
+            // contact-menu
             routes.MapRoute("Contact", "{type}",
                new { controller = "Contact", action = "getContact", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -94,7 +95,8 @@ namespace HoiTroWebsite
                     {"type","lien-he" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///đăng ký
+
+            // đăng ký
             routes.MapRoute("Register", "{type}",
                new { controller = "Button", action = "getRegister", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -102,7 +104,8 @@ namespace HoiTroWebsite
                     {"type","dang-ky" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///đăng nhập
+
+            // đăng nhập
             routes.MapRoute("Login", "{type}",
                new { controller = "Button", action = "getLognIn", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -110,7 +113,8 @@ namespace HoiTroWebsite
                     {"type","dang-nhap" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            ///đăng tin cho thuê
+
+            // đăng tin cho thuê
             routes.MapRoute("Post", "{type}",
                new { controller = "Button", action = "getPost", type = UrlParameter.Optional },
                new RouteValueDictionary
@@ -118,7 +122,10 @@ namespace HoiTroWebsite
                     {"type","dang-tin-moi" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            /////HomePage
+
+            //Default
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

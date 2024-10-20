@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\MainPartialController.cs" />
     <Compile Include="Controllers\HomePageController .cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoomInfoController.cs" />
@@ -208,16 +209,19 @@
     <Content Include="Content\css\jquery.fancybox.min.css" />
     <Content Include="Content\css\jquery.mCustomScrollbar.min.css" />
     <Content Include="Content\css\meanmenu.css" />
+    <Content Include="Content\css\hoitro-style.css" />
     <Content Include="Content\css\nice-select.css" />
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slick.css" />
+    <Content Include="Content\css\hoitro-style-config.css" />
     <Content Include="Content\css\style_room.css" />
     <Content Include="Content\css\style_signinsignout.css" />
     <Content Include="Content\css\style_dangtin.css" />
-    <Content Include="Content\css\style.css" />
     <Content Include="Content\images\about.png" />
+    <Content Include="Content\images\acreage-icon.svg" />
+    <Content Include="Content\images\arrow-right.svg" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\banner3.jpg" />
@@ -225,6 +229,7 @@
     <Content Include="Content\images\blog2.jpg" />
     <Content Include="Content\images\blog3.jpg" />
     <Content Include="Content\images\blog_bg.jpg" />
+    <Content Include="Content\images\building-icon.svg" />
     <Content Include="Content\images\date.png" />
     <Content Include="Content\images\gallery1.jpg" />
     <Content Include="Content\images\gallery2.jpg" />
@@ -235,14 +240,17 @@
     <Content Include="Content\images\gallery7.jpg" />
     <Content Include="Content\images\gallery8.jpg" />
     <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\location-icon.svg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\menu_icon.png" />
+    <Content Include="Content\images\price-icon.svg" />
     <Content Include="Content\images\room1.jpg" />
     <Content Include="Content\images\room2.jpg" />
     <Content Include="Content\images\room3.jpg" />
     <Content Include="Content\images\room4.jpg" />
     <Content Include="Content\images\room5.jpg" />
     <Content Include="Content\images\room6.jpg" />
+    <Content Include="Content\images\search-white-icon.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -377,6 +385,9 @@
     <Content Include="Views\Button\getRegister.cshtml" />
     <Content Include="Views\Button\getLognIn.cshtml" />
     <Content Include="Views\News\NewsDetail.cshtml" />
+    <Content Include="Views\Post\getPost.cshtml" />
+    <Content Include="Views\MainPartial\GetMenuBar.cshtml" />
+    <Content Include="Views\MainPartial\GetSearchBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
