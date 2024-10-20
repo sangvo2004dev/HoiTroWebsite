@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="32px" viewBox="0 0 16 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>02</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="02" transform="translate(-12.000000, -4.000000)">
+            <g>
+                <rect id="Rectangle-7" x="0" y="0" width="40" height="40"></rect>
+                <g id="arrow-copy" transform="translate(20.000000, 20.000000) rotate(90.000000) translate(-20.000000, -20.000000) translate(4.000000, 12.000000)" fill="#B2B2B2">
+                    <g id="Layer_1">
+                        <path d="M8.25435897,-6.025 L21.5138462,8 L8.25435897,22.1625 C8.12307692,22.3 7.99179487,22.575 7.99179487,22.85 C7.99179487,23.125 8.12307692,23.4 8.25435897,23.5375 C8.64820513,23.95 9.17333333,23.95 9.56717949,23.5375 L23.4830769,8.6875 C23.614359,8.55 23.614359,8.4125 23.745641,8.275 C23.8769231,7.8625 23.745641,7.45 23.4830769,7.175 L9.56717949,-7.5375 C9.17333333,-7.95 8.64820513,-7.95 8.25435897,-7.5375 C7.99179487,-7.125 7.99179487,-6.4375 8.25435897,-6.025 L8.25435897,-6.025 Z" id="Shape" transform="translate(15.894469, 8.000000) rotate(-90.000000) translate(-15.894469, -8.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
