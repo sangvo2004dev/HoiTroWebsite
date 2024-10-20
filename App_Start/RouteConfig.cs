@@ -61,6 +61,7 @@ namespace HoiTroWebsite
                     {"type","trang-chu" }
                },
                new[] { "HoiTroWebsite.Controllers" });
+
             /////phân loại phòng
             routes.MapRoute("Rooms_Thay", "{type}",
                new { controller = "HomePage", action = "getRoomType", type = UrlParameter.Optional },
