@@ -1,0 +1,421 @@
+:root {
+    --black--color: #070e13;
+    --red-color: #fe0000;
+    --img-vip0-w: 210px;
+    --img-vip0-h: 180px;
+}
+
+/* hover <a> của phần main content */
+.section.section-sublink .list-links a:hover {
+    color: #c3073f;
+}
+
+/*  */
+
+.header {
+    height: 70px;
+}
+
+#menu-bar {
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-top: 3px;
+}
+
+.navigation.navbar-dark .navbar-nav .nav-item:hover,
+.navigation.navbar-dark .navbar-nav .nav-item:focus {
+    background-color: var(--black--color);
+}
+
+.navigation.navbar-dark .navbar-nav>.nav-item.active {
+    background-color: var(--black--color);
+}
+
+.navigation.navbar-dark {
+    background-color: var(--red-color);
+}
+
+/* .navbar-collapse.collapse.show {
+    background-color: #a2a0a0;   
+} */
+
+/* List phòng trọ */
+
+.category-section {
+    padding-top: 20px;
+}
+
+.category-section .category-title {
+    text-transform: uppercase;
+}
+
+.category-section .category-title a::before {
+    position: absolute;
+    left: 2px;
+    content: "";
+    background-color: #ff0909;
+    width: 20px;
+    height: 4px;
+    transform: rotate(-36deg);
+}
+
+.category-section .category-title a::after {
+    position: relative;
+    content: "";
+    background-color: #ff0909;
+    width: 20px;
+    height: 4px;
+    transform: rotate(-36deg);
+    clear: both;
+    display: inline-block;
+}
+
+.post-list .post-item.vipnoibat {
+    z-index: 5;
+    background-color: #fff9f3;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 5px 10px 10px 10px;
+}
+
+.post-list .post-item {
+    display: flex;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    margin: 0px;
+    background-color: #fff;
+    z-index: 0;
+    position: relative;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-item.post-vip .post-thumb {
+    width: var(--img-vip0-w);
+    height: var(--img-vip0-h);
+    margin: 0px;
+}
+
+.post-list .post-item .images-number {
+    position: absolute;
+    line-height: 1;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, .5);
+    padding: 3px;
+    color: #fff;
+    border-radius: 3px;
+    font-size: .7rem;
+}
+
+.post-list .post-item .post-save {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.post-list .post-item .post-meta {
+    margin-left: 15px;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+.post-list .post-item .post-title {
+    font-size: 1rem;
+    /* line-height: 1.5; */
+    font-weight: 700;
+    display: block;
+    white-space: normal;
+    /* margin: 0 0 10px; */
+    margin: 0px 0px 5px 0px;
+}
+
+.post-list .post-item .meta-row {
+    margin-bottom: 10px;
+}
+
+.post-list .post-item .post-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16c784;
+}
+
+.post-list .post-item .post-acreage,
+.post-list .post-item .post-location,
+.post-list .post-item .post-price,
+.post-list .post-item .post-summary,
+.post-list .post-item .post-time {
+    float: left;
+    margin-right: 20px;
+    color: #333;
+    line-height: 19px;
+}
+
+.post-list .post-item .post-time {
+    float: right;
+    margin-right: 0;
+    color: #aaa;
+    line-height: 19px;
+    font-size: .9rem;
+}
+
+.post-list .post-item .post-summary {
+    margin: 10px 0 0;
+    color: #8a8d91;
+    float: none;
+}
+
+.post-list .post-item .meta-row:last-of-type {
+    margin-bottom: 0;
+}
+
+.post-list .post-item .post-author {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    color: #8a8d91;
+}
+
+.post-list .post-item .post-author img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 5px;
+}
+
+.post-list .post-item .btn-quick-zalo {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 5px;
+    border: 1px solid #1266dd;
+    color: #1266dd;
+    cursor: pointer;
+    margin-left: 5px;
+    /* float: right; */
+}
+
+.post-list .post-item .btn-quick-call {
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 5px;
+    border: 1px solid #1266dd;
+    background-color: #1266dd;
+    color: #fff;
+    cursor: pointer;
+    /* float: right; */
+}
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+/* bài viết mới, quan tâm */
+
+.section {
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding: 20px 10px 20px 20px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+}
+
+.section .section-header {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.section .section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.list-links>li::before {
+    display: inline-block;
+    color: var(--red-color);
+    font-size: 10px;
+    content: "\25b6";
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    opacity: .7;
+}
+
+.list-links>li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px dashed #eee;
+}
+
+.list-links>li a {
+    padding: 5px 0px;
+    display: inline-flex;
+    align-items: center;
+    color: #333;
+    width: 100%;
+    line-height: 1.2;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+/* tin tức */
+.blog-listing .article-item>a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.blog-listing .article-item:last-of-type>a {
+    border-bottom: 0;
+}
+
+.blog-listing .article-item figure {
+    width: 140px;
+    height: 140px;
+}
+
+.blog-listing .article-item .article-meta {
+    margin-left: 15px;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+}
+
+.blog-listing .article-item .article-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #055699;
+    padding-right: 10px;
+}
+
+.blog-listing .article-item .article-summary {
+    color: #8a8d91;
+}
+
+.blog-listing.aside .article-item figure {
+    width: 70px;
+    height: 70px;
+}
+
+.blog-listing.aside .article-item .article-title {
+    font-size: 1.1rem;
+}
+
+.the-article {
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border: 1px solid #dedede;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.the-article .article-summary {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.the-article .article-summary p {
+    line-height: 1.8;
+}
+
+.the-article .article-summary *:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.the-article .article-summary *:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.the-article .article-main-content *:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.the-article .article-main-content h4 {
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.the-article .article-main-content h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+.the-article .article-main-content h2 {
+    font-size: 1.7rem;
+    line-height: 1.3;
+}
+
+.the-article .article-main-content img {
+    margin: 0 auto;
+    display: block;
+}
+
+.the-article .article-main-content figure {
+    background: transparent;
+}
+
+.the-article .article-main-content figcaption {
+    margin: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.the-article .article-main-content ul {
+    margin-left: 25px;
+}
+
+.the-article .article-main-content ul li {
+    list-style-type: square;
+}
+
+/* breadcrumb config */
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "\25b6";
+    font-size: 0.7rem;
+    color: #c3073f;
+}

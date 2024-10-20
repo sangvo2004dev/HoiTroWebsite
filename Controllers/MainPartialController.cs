@@ -1,24 +1,24 @@
-﻿using System;
+﻿using HoiTroWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Controllers
 {
-    public class NavigationController : Controller
+    public class MainPartialController : Controller
     {
-        // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
+        // khai báo
+        private HoiTroEntities _db = new HoiTroEntities();
 
-        // GET: Navigation
+        // GET: MainPartial
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult getMenu()
+        public ActionResult GetMenuBar()
         {
             var v = from t in _db.Menus
                     where t.hide == true

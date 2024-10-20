@@ -1,0 +1,22 @@
+﻿@model List<HoiTroWebsite.Models.Menu>
+
+<!-- phần navigation bar -->
+<div id="menu-bar">
+    <nav class="navigation navbar navbar-expand-md navbar-dark w-100">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav mx-auto">
+                @foreach (var i in Model)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@i.meta">@i.name</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- kết thúc navigation bar -->
