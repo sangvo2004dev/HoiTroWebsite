@@ -27,8 +27,6 @@ namespace HoiTroWebsite.Controllers
                     select t;
             return View(v.FirstOrDefault());
         }
-
-        /// menu-tintuc
         public ActionResult getNewsType()
         {
             @ViewBag.meta = "tin-tuc";
@@ -45,19 +43,10 @@ namespace HoiTroWebsite.Controllers
                     join t in _db.NewsTypes on n.newsTypeId equals t.id
                     where n.hide == true && n.newsTypeId == id
                     orderby n.datebegin descending
-                    select new NewsViewModel
-                    {
-                        ID = n.id,
-                        Meta = n.meta,
-                        Title = n.title,
-                        Author = "Tác giả: "+n.author,
-                        BriefDescription = n.brief_description,
-                        ImagePath = (from i in _db.NewsImages
-                                     where i.reference_id == n.id
-                                     orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
-                    };
+                    select n;
             return PartialView(v.ToList());
         }
+
+
     }
 }

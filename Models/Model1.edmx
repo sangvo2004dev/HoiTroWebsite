@@ -37,7 +37,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="255" />
-          <Property Name="brief_description" Type="nvarchar" MaxLength="255" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="brief_description" Type="nvarchar(max)" />
           <Property Name="detail_description" Type="nvarchar(max)" />
           <Property Name="author" Type="nvarchar" MaxLength="255" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
@@ -45,18 +46,6 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="newsTypeId" Type="int" />
-        </EntityType>
-        <EntityType Name="NewsImages">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="reference_id" Type="int" Nullable="false" />
-          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
-          <Property Name="meta" Type="nvarchar" MaxLength="500" />
-          <Property Name="hide" Type="bit" />
-          <Property Name="order" Type="int" />
-          <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="NewsType">
           <Key>
@@ -114,7 +103,7 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
-        <Association Name="FK__News__newsTypeId__6DEC4894">
+        <Association Name="FK__News__newsTypeId__2AF556D4">
           <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -128,21 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NewsImage__refer__72B0FDB1">
-          <End Role="News" Type="Self.News" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="NewsImages" Type="Self.NewsImages" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="NewsImages">
-              <PropertyRef Name="reference_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RoomImage__refer__758D6A5C">
+        <Association Name="FK__RoomImage__refer__2FBA0BF1">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -156,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__roomTy__69279377">
+        <Association Name="FK__RoomInfo__roomTy__2630A1B7">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -174,24 +149,19 @@
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NewsImages" EntityType="Self.NewsImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsType" EntityType="Self.NewsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomImages" EntityType="Self.RoomImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__News__newsTypeId__6DEC4894" Association="Self.FK__News__newsTypeId__6DEC4894">
+          <AssociationSet Name="FK__News__newsTypeId__2AF556D4" Association="Self.FK__News__newsTypeId__2AF556D4">
             <End Role="NewsType" EntitySet="NewsType" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__NewsImage__refer__72B0FDB1" Association="Self.FK__NewsImage__refer__72B0FDB1">
-            <End Role="News" EntitySet="News" />
-            <End Role="NewsImages" EntitySet="NewsImages" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__758D6A5C" Association="Self.FK__RoomImage__refer__758D6A5C">
+          <AssociationSet Name="FK__RoomImage__refer__2FBA0BF1" Association="Self.FK__RoomImage__refer__2FBA0BF1">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__69279377" Association="Self.FK__RoomInfo__roomTy__69279377">
+          <AssociationSet Name="FK__RoomInfo__roomTy__2630A1B7" Association="Self.FK__RoomInfo__roomTy__2630A1B7">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
@@ -216,11 +186,6 @@
           <EntitySet Name="Menus" EntityType="Self.Menu" />
           <EntitySet Name="Contacts" EntityType="HoiTroModel.Contact" />
           <EntitySet Name="News" EntityType="HoiTroModel.News" />
-          <EntitySet Name="NewsImages" EntityType="HoiTroModel.NewsImage" />
-          <AssociationSet Name="FK__NewsImage__refer__2334397B" Association="HoiTroModel.FK__NewsImage__refer__2334397B">
-            <End Role="News" EntitySet="News" />
-            <End Role="NewsImage" EntitySet="NewsImages" />
-          </AssociationSet>
           <EntitySet Name="NewsTypes" EntityType="HoiTroModel.NewsType" />
           <AssociationSet Name="FK__News__newsTypeId__5555A4F4" Association="HoiTroModel.FK__News__newsTypeId__5555A4F4">
             <End Role="NewsType" EntitySet="NewsTypes" />
@@ -263,39 +228,12 @@
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <Property Name="brief_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="brief_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="detail_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NewsImages" Relationship="HoiTroModel.FK__NewsImage__refer__2334397B" FromRole="News" ToRole="NewsImage" />
           <Property Name="newsTypeId" Type="Int32" />
           <NavigationProperty Name="NewsType" Relationship="HoiTroModel.FK__News__newsTypeId__5555A4F4" FromRole="News" ToRole="NewsType" />
-        </EntityType>
-        <EntityType Name="NewsImage">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="reference_id" Type="Int32" Nullable="false" />
           <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="News" Relationship="HoiTroModel.FK__NewsImage__refer__2334397B" FromRole="NewsImage" ToRole="News" />
         </EntityType>
-        <Association Name="FK__NewsImage__refer__2334397B">
-          <End Type="HoiTroModel.News" Role="News" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="HoiTroModel.NewsImage" Role="NewsImage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="News">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="NewsImage">
-              <PropertyRef Name="reference_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="NewsType">
           <Key>
             <PropertyRef Name="id" />
@@ -436,6 +374,7 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="HoiTroModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="newsTypeId" ColumnName="newsTypeId" />
                 <ScalarProperty Name="detail_description" ColumnName="detail_description" />
                 <ScalarProperty Name="brief_description" ColumnName="brief_description" />
@@ -445,19 +384,6 @@
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsImages">
-            <EntityTypeMapping TypeName="HoiTroModel.NewsImage">
-              <MappingFragment StoreEntitySet="NewsImages">
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
-                <ScalarProperty Name="reference_id" ColumnName="reference_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

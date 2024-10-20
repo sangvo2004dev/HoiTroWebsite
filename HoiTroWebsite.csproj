@@ -128,9 +128,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\HomePageController .cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoomInfoController.cs" />
     <Compile Include="Controllers\NewsController .cs" />
@@ -162,13 +162,9 @@
     <Compile Include="Models\News.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewsImage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\NewsType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\RoomImage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -217,6 +213,8 @@
     <Content Include="Content\css\owl.carousel.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slick.css" />
+    <Content Include="Content\css\style_room.css" />
+    <Content Include="Content\css\style_signinsignout.css" />
     <Content Include="Content\css\style_dangtin.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\images\about.png" />
@@ -370,10 +368,15 @@
     <Content Include="Views\HomePage\getNewsType.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\NewsDetail.cshtml" />
     <Content Include="Views\RoomInfo\RoomDetail.cshtml" />
     <Content Include="Views\RoomInfo\Index.cshtml" />
-    <Content Include="Views\Post\getPost.cshtml" />
+    <Content Include="Views\Button\getPost.cshtml" />
+    <Content Include="Views\HomePage\getContact.cshtml" />
+    <Content Include="Views\Contact\getContact.cshtml" />
+    <Content Include="Views\HomePage\getBanner.cshtml" />
+    <Content Include="Views\Button\getRegister.cshtml" />
+    <Content Include="Views\Button\getLognIn.cshtml" />
+    <Content Include="Views\News\NewsDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

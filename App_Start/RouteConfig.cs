@@ -85,7 +85,39 @@ namespace HoiTroWebsite
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-            /////Default
+            ///contact-menu
+            routes.MapRoute("Contact", "{type}",
+               new { controller = "Contact", action = "getContact", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","lien-he" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            ///đăng ký
+            routes.MapRoute("Register", "{type}",
+               new { controller = "Button", action = "getRegister", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","dang-ky" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            ///đăng nhập
+            routes.MapRoute("Login", "{type}",
+               new { controller = "Button", action = "getLognIn", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","dang-nhap" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            ///đăng tin cho thuê
+            routes.MapRoute("Post", "{type}",
+               new { controller = "Button", action = "getPost", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    {"type","dang-tin-moi" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            /////HomePage
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

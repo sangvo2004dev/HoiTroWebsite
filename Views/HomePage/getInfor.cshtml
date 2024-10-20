@@ -15,7 +15,9 @@
                             <b style="color: orangered; font-size: large;">@i.Price</b>
                             <span>@i.Acreage</span>
                             <p>@i.Area</p>
-                            <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
+                            <p style="font-style:italic">
+                                @Html.Raw(i.BriefDescription.Length > 200 ? i.BriefDescription.Substring(0, 200) + "..." : i.BriefDescription)
+                            </p>
                         </div>
                     </div>
                 </div>

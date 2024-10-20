@@ -14,12 +14,6 @@ namespace HoiTroWebsite.Models
     
     public partial class News
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public News()
-        {
-            this.NewsImages = new HashSet<NewsImage>();
-        }
-    
         public int id { get; set; }
         public string title { get; set; }
         public string author { get; set; }
@@ -30,9 +24,8 @@ namespace HoiTroWebsite.Models
         public string brief_description { get; set; }
         public string detail_description { get; set; }
         public Nullable<int> newsTypeId { get; set; }
+        public string imagePath { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NewsImage> NewsImages { get; set; }
         public virtual NewsType NewsType { get; set; }
     }
 }

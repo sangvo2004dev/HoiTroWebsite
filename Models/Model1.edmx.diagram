@@ -8,8 +8,6 @@
         <EntityTypeShape EntityType="HoiTroModel.Menu" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HoiTroModel.Contact" Width="1.5" PointX="8.25" PointY="1.5" />
         <EntityTypeShape EntityType="HoiTroModel.News" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="HoiTroModel.NewsImage" Width="1.5" PointX="4.125" PointY="6.125" />
-        <AssociationConnector Association="HoiTroModel.FK__NewsImage__refer__2334397B" />
         <EntityTypeShape EntityType="HoiTroModel.NewsType" Width="1.5" PointX="0.75" PointY="2.125" />
         <AssociationConnector Association="HoiTroModel.FK__News__newsTypeId__52AE4273" />
         <AssociationConnector Association="HoiTroModel.FK__News__newsTypeId__5555A4F4" />
