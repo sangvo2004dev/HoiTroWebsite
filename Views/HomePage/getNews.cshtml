@@ -1,16 +1,18 @@
-﻿@model List<HoiTroWebsite.Models.NewsViewModel>
+﻿@model List<HoiTroWebsite.Models.News>
 
     @foreach (var i in Model)
     {
         <div class="col-md-4">
             <div class="blog_box">
                 <div class="blog_img">
-                    <figure><img src="@i.ImagePath" alt="#" /></figure>
+                    <figure><img src="@i.imagePath" alt="@i.title" /></figure>
                 </div>
                 <div class="blog_room" style="font-family:'Times New Roman';">
-                    <a href="/@ViewBag.meta/@i.Meta/@i.ID">@i.Title</a>
-                    <span>@i.Author </span>
-                    <p style="font-style:italic">@Html.DisplayFor(modelItem => i.BriefDescription)</p>
+                    <a href="/@ViewBag.meta/@i.meta/@i.id">@i.title</a>
+                    <span>Tác giả: @i.author </span>
+                    <p style="font-style:italic">
+                        @Html.Raw(i.brief_description.Length > 200 ? i.brief_description.Substring(0, 200) + "..." : i.brief_description)
+                    </p>
                 </div>
             </div>
         </div>

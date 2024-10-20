@@ -34,18 +34,7 @@ namespace HoiTroWebsite.Controllers
                     join t in _db.NewsTypes on n.newsTypeId equals t.id
                     where n.hide == true && n.newsTypeId == id
                     orderby n.datebegin descending
-                    select new NewsViewModel
-                    {
-                        ID = n.id,
-                        Meta = n.meta,
-                        Title = n.title,
-                        Author = "Tác giả: " + n.author,
-                        BriefDescription = n.brief_description,
-                        ImagePath = (from i in _db.NewsImages
-                         where i.reference_id == n.id
-                         orderby i.datebegin descending
-                         select i.imagePath).FirstOrDefault()
-                    };
+                    select n;
             return PartialView(v.ToList());
         }
         //phong tro
@@ -81,6 +70,16 @@ namespace HoiTroWebsite.Controllers
                                      select i.imagePath).FirstOrDefault()
                     };
             return PartialView(v.ToList());
+        }
+        //contact
+        public ActionResult getContact()
+        {
+            return PartialView();
+        }
+        //banner
+        public ActionResult getBanner()
+        {
+            return PartialView();
         }
     }
 }

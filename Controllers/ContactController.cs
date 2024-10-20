@@ -7,7 +7,7 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Controllers
 {
-    public class PostController : Controller
+    public class ContactController : Controller
     {
         // Khai báo
         HoiTroEntities _db = new HoiTroEntities();
@@ -17,9 +17,9 @@ namespace HoiTroWebsite.Controllers
         {
             return View();
         }
-        public ActionResult getPost(string name, string phoneNum)
+        public ActionResult getContact()
         {
-            return View();
+            return PartialView();
         }
 
     }
