@@ -135,7 +135,7 @@ figure img {
 }
 
 .post-list .post-item .post-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     /* line-height: 1.5; */
     font-weight: 700;
     display: block;
@@ -149,7 +149,7 @@ figure img {
 }
 
 .post-list .post-item .post-price {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #16c784;
 }
