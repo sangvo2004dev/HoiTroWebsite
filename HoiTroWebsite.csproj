@@ -131,7 +131,6 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\MainPartialController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomePageController .cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoomInfoController.cs" />
