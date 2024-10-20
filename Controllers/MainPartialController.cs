@@ -27,5 +27,11 @@ namespace HoiTroWebsite.Controllers
 
             return PartialView(v.ToList());
         }
+
+        // thanh tìm kiếm
+        public ActionResult GetSearchBar()
+        {
+            return PartialView();
+        }
     }
 }

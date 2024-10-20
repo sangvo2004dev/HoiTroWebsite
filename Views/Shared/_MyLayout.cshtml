@@ -15,7 +15,7 @@
     <!-- bootstrap css -->
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
     <!-- style css -->
-    <link rel="stylesheet" href="~/Content/css/style_config.css">
+    <link rel="stylesheet" href="~/Content/css/style-config.css">
     <link rel="stylesheet" href="~/Content/css/my-css.css" />
     @*<link rel="stylesheet" href="~/Content/css/style_dangtin.css">*@
     <!-- Responsive-->
@@ -48,12 +48,17 @@
         </div>
     </div>
     <!-- end logo và đăng ký, đăng nhập -->
-
     <!-- phần navigation bar -->
     <div id="menu-bar">
         @{ Html.RenderAction("GetMenuBar", "MainPartial"); }
     </div>
     <!-- kết thúc navigation bar -->
+
+    <!-- thanh tìm kiếm -->
+    <div id="search-bar">
+        @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
+    </div>
+    <!-- kết thúcthanh tìm kiếm -->
 
     <div class="content">
         @RenderBody();
