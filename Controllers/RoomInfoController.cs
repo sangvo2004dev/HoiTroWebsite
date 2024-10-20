@@ -47,13 +47,7 @@ namespace HoiTroWebsite.Controllers
                     orderby n.datebegin descending
                     select new RoomInfoViewModel
                     {
-                        ID = n.id,
-                        Meta = n.meta,
-                        Title = n.title,
-                        Price = n.price + "tr VNĐ/tháng",
-                        Acreage = n.acreage + "m^2",
-                        BriefDescription = n.brief_description,
-                        Area = n.area,
+                        RoomInfo = n,
                         ImagePath = (from i in _db.RoomImages
                                      where i.reference_id == n.id
                                      orderby i.datebegin descending

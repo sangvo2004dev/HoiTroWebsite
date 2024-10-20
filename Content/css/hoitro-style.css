@@ -100,6 +100,7 @@ figure img {
     width: var(--img-vip0-w);
     height: var(--img-vip0-h);
     margin: 0px;
+    position: relative;
 }
 
 .post-list .post-item .images-number {

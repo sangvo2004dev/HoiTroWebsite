@@ -33,5 +33,10 @@ namespace HoiTroWebsite.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult GetMiniNews()
+        {
+            return PartialView();
+        }
     }
 }

@@ -388,6 +388,7 @@
     <Content Include="Views\Post\getPost.cshtml" />
     <Content Include="Views\MainPartial\GetMenuBar.cshtml" />
     <Content Include="Views\MainPartial\GetSearchBar.cshtml" />
+    <Content Include="Views\MainPartial\GetMiniNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,36 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
-<div class="our_room">
+
+<div class="container">
+    <div class="row">
+        <!-- danh sách phòng -->
+        <div class="col-8">
+            <!--room information-->
+            <section class="category-section">
+                <div class="category-title h4">
+                    <h2>@Model.title</h2>
+                </div>
+                <ul class="post-list">
+                    @Html.Action("getInfor", "HomePage", new { id = @Model.id, metatitle = "phong-tro" })
+                </ul>
+            </section>
+            <!--end room information-->
+        </div>
+
+        <!-- phần bên phải -->
+        <div class="col-4">
+
+            @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="our_room">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -17,4 +46,4 @@
             @Html.Action("getInfor", "HomePage", new { id = Model.id, metatitle = "phong-tro" })
         </div>
     </div>
-</div>
+</div>*@

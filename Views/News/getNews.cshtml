@@ -2,20 +2,28 @@
 
 @foreach (var i in Model)
 {
-    <div class="col-md-4">
-        <div class="blog_box">
-            <div class="blog_img">
-                <figure><img src="@i.imagePath" alt="#" /></figure>
-            </div>
-            <div class="blog_room" style="font-family:'Times New Roman';">
-                @*<a href="@Url.Action("Detail", "News", new { id = i.ID, metatitle = i.Meta })">Chi tiết phòng</a>*@
-
-                <a href="/@ViewBag.meta/@i.meta/@i.id">@i.title</a>
-                <span>Tác giả: @i.author </span>
-                <p style="font-style:italic">
-                    @Html.Raw(i.brief_description.Length > 200 ? i.brief_description.Substring(0, 200) + "..." : i.brief_description)
-                </p>
-            </div>
-        </div>
-    </div>
+    <section class="section section-aside-tinmoidang">
+        <ul class="blog-listing clearfix">
+            <article class="article-item clearfix">
+                <a href="/@ViewBag.meta/@i.meta/@i.id">
+                    <figure>
+                        <img class="lazy_done"
+                             @*src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/07/11/tien-coc-thue-tro-co-lay-lai-duoc-khong_1720661417.jpg"
+                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/07/11/tien-coc-thue-tro-co-lay-lai-duoc-khong_1720661417.jpg"*@
+                             src="@i.imagePath"
+                             data-loaded="true">
+                    </figure>
+                    <div class="article-meta">
+                        <h6 class="article-title">
+                            @i.title
+                        </h6>
+                        <p class="article-summary">
+                            @Html.Raw(i.brief_description.Length > 200 ? i.brief_description.Substring(0, 200) + "..." : i.brief_description)
+                        </p>
+                    </div>
+                </a>
+            </article>
+        </ul>
+    </section>
 }
+
