@@ -67,7 +67,7 @@
         }
 
             .user-welcome .btn.btn-add-post i {
-                background: url(../images/add-white.png) center no-repeat;
+                background: url(../images/add-white.svg) center no-repeat;
                 background-size: contain;
                 margin-right: 5px;
             }

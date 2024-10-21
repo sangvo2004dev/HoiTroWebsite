@@ -1,17 +1,19 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<div><a href="dang-ky">dang ky</a></div>
-<div><a href="dang-nhap">dang nhap</a></div>
-<div><a href="dang-tin-moi">dang tin moi</a></div>
+<!-- thanh tìm kiếm -->
+<div id="search-bar">
+    @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
+</div>
+<!-- kết thúcthanh tìm kiếm -->
+
 <!-- banner -->
 @{ Html.RenderAction("getBanner", "HomePage"); }
 <!-- end banner -->
 
-<!-- nội dung -->
+<!-- nội dung chính -->
 <div class="container">
     <div class="row">
         <!-- danh sách phòng -->
@@ -104,15 +106,12 @@
     </div>
 </div>
 <!-- kết thúc nội dung -->
-
 <!--room information-->
 @*@{ Html.RenderAction("getRoomType", "HomePage"); }*@
 <!--end room information-->
-
 <!--news-->
 @*@{ Html.RenderAction("getNewsType", "HomePage"); }*@
 <!--end news-->
-
 <!--  contact -->
 @{ Html.RenderAction("getContact", "HomePage"); }
 <!--end contact-->
