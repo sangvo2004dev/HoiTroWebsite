@@ -11,16 +11,19 @@ namespace HoiTroWebsite.Controllers
     public class RoomInfoController : Controller
     {
         // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
-        //xem tất cả phòng theo 1 loại
+        readonly HoiTroEntities _db = new HoiTroEntities();
+
+        // xem tất cả phòng theo 1 loại
         public ActionResult Index(string meta)
         {
             var v = from t in _db.RoomTypes
                     where t.meta == meta
                     select t;
+
             return View(v.FirstOrDefault());
         }
-        ///chi tiết tin trên HomePage-Menu
+
+        // chi tiết tin trên HomePage-Menu
         public ActionResult RoomDetail(long id)
         {
             var v = from t in _db.RoomInfoes
@@ -28,13 +31,15 @@ namespace HoiTroWebsite.Controllers
                     select t;
             return PartialView(v.FirstOrDefault());
         }
+
         public ActionResult getRoomType()
         {
-            @ViewBag.meta = "phong-tro";
+            ViewBag.meta = "phong-tro";
             var v = from t in _db.RoomTypes
                     where t.hide == true
                     orderby t.order ascending
                     select t;
+            
             return PartialView(v.ToList());
         }
 

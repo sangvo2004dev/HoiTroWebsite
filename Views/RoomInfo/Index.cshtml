@@ -1,29 +1,217 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = Model.title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<div class="container">
-    <div class="row">
-        <!-- danh sách phòng -->
-        <div class="col-8">
-            <!--room information-->
-            <section class="category-section">
-                <div class="category-title h4">
-                    <h2>@Model.title</h2>
+<div class="content">
+    <div class="container">
+        <div class="row">
+
+            <!-- danh sách phòng -->
+            <div class="col-8 pr-2">
+                <div class="left-content">
+                    <section class="category-section">
+                        <div class="category-title h4">
+                            <a href="@ViewBag.meta/@Model.meta">@Model.title</a>
+                        </div>
+                        <ul class="post-list">
+                            @{ Html.RenderAction("GetRoomInfo", "HomePage", new { id = @Model.id, metatitle = "phong-tro" }); }
+                        </ul>
+                    </section>
                 </div>
-                <ul class="post-list">
-                    @Html.Action("getInfor", "HomePage", new { id = @Model.id, metatitle = "phong-tro" })
-                </ul>
-            </section>
-            <!--end room information-->
-        </div>
+            </div>
 
-        <!-- phần bên phải -->
-        <div class="col-4">
+            <!-- phần bên phải -->
+            <div class="col-4 pl-2">
+                <div class="right-content">
+                    @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
 
-            @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+                    <section class="section section-aside-tinmoidang">
+                        <div class="section-header"><span class="section-title">Tin mới đăng</span></div>
+                        <ul class="post-listing aside clearfix">
+                            <li class="post-item clearfix normal" post-id="667801">
+                                <a href="/nha-moi-100-day-du-noi-that-dien-tich-lon-ngay-vong-xoay-dan-chu-viettle-tower-pr667801.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="~/Content/images/gallery5d.jpg"
+                                             data-src="~/Content/images/gallery5.jpg"
+                                             alt=""
+                                             height="100" width="100" layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Nhà mới 100% | Đầy đủ nội thát
+                                            | Diện…
+                                        </span><span class="post-price">5.8 triệu/tháng</span><time class="post-time"
+                                                                                                    title="Thứ 2, 23:28 21/10/2024">16 phút trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667800">
+                                <a href="/chung-cu-my-vinh-p6-quan-3-full-noi-that-3pn-110m2-gia-18tr-pr667800.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="~/Content/images/gallery5.jpg"
+                                             data-src="~/Content/images/gallery5.jpg"
+                                             alt="Chung Cư Mỹ Vinh - P6, Quận 3 Full nội thất 3PN 110m2 Giá 18tr." height="100" width="100"
+                                             layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Chung Cư Mỹ Vinh - P6, Quận 3
+                                            Full nội thất 3PN…
+                                        </span><span class="post-price">18 triệu/tháng</span><time class="post-time"
+                                                                                                   title="Thứ 2, 22:56 21/10/2024">48 phút trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667799">
+                                <a href="/can-ho-dich-vu-bancol-noi-that-moi-nam-ngay-trung-tam-binh-thanh-gan-go-vap-thu-duc-pr667799.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="~/Content/images/gallery5.jpg"
+                                             data-src="~/Content/images/gallery5.jpg"
+                                             alt="Căn hộ dịch vụ bancol. nội thất mới nằm ngay trung tâm Bình Thạnh, gần Gò Vấp Thủ Đức"
+                                             height="100" width="100" layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Căn hộ dịch vụ bancol. nội thất
+                                            mới nằm…
+                                        </span><span class="post-price">6.2 triệu/tháng</span><time class="post-time"
+                                                                                                    title="Thứ 2, 22:46 21/10/2024">58 phút trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667798">
+                                <a href="/thue-phong-tro-co-gac-cua-so-troi-ngay-quoc-lo-13-quan-binh-than-pr667798.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5872838031359-ecd1e18b7b8d496ce11913013896fdbf_1729525434.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5872838031359-ecd1e18b7b8d496ce11913013896fdbf_1729525434.jpg"
+                                             alt="Thuê Phòng Trọ có Gác Cửa Sổ Trời Ngay Quốc Lộ 13 Quận Bình Thạn" height="100" width="100"
+                                             layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Thuê Phòng Trọ có Gác Cửa Sổ
+                                            Trời Ngay…
+                                        </span><span class="post-price">4.2 triệu/tháng</span><time class="post-time"
+                                                                                                    title="Thứ 2, 22:44 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667797">
+                                <a href="/chung-cu-nguyen-phuc-nguyen-p10-quan-3-105m2-3p-ngu-2wc-nt-17tr-pr667797.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5954211713194-629fc0629c44272fc808fb66e2c9e4d4_1729525072.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5954211713194-629fc0629c44272fc808fb66e2c9e4d4_1729525072.jpg"
+                                             alt="Chung cư Nguyễn Phúc Nguyên, P10, Quận 3: 105m2, 3p ngủ, 2wc, Nt,17tr." height="100"
+                                             width="100" layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Chung cư Nguyễn Phúc Nguyên,
+                                            P10, Quận 3: 105m2,…
+                                        </span><span class="post-price">17 triệu/tháng</span><time class="post-time" title="Thứ 2, 22:38 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667796">
+                                <a href="/chung-cu-590-cmt8-p11-quan-3-rong-97m2-3p-ngu-2wc-ntcb-16tr-thang-pr667796.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5954137177549-b93058d5b8ce4aa4fa29160f13691b01_1729523969.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/z5954137177549-b93058d5b8ce4aa4fa29160f13691b01_1729523969.jpg"
+                                             alt="Chung cư 590, CMT8,P11, Quận 3: Rộng 97m2, 3p ngủ, 2wc, NTCB, 16tr/tháng" height="100"
+                                             width="100" layout="responsive" data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Chung cư 590, CMT8,P11, Quận 3:
+                                            Rộng 97m2, 3p…
+                                        </span><span class="post-price">16 triệu/tháng</span><time class="post-time"
+                                                                                                   title="Thứ 2, 22:19 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667795">
+                                <a href="/phong-tro-ngay-gtvt-nguyen-tat-thanh-gia-re-pr667795.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/1d4f6c7f4d643c2484034d350ae408a9_1729523860.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/1d4f6c7f4d643c2484034d350ae408a9_1729523860.jpg"
+                                             alt="Phòng Trọ Ngay GTVT, Nguyễn Tất Thành Giá Rẻ" height="100" width="100" layout="responsive"
+                                             data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Phòng Trọ Ngay GTVT, Nguyễn Tất
+                                            Thành Giá Rẻ
+                                        </span><span class="post-price">3 triệu/tháng</span><time class="post-time"
+                                                                                                  title="Thứ 2, 22:17 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667794">
+                                <a href="/cho-thue-phong-co-gac-noi-that-co-ban-pr667794.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/img-0598_1729523580.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/img-0598_1729523580.jpg"
+                                             alt="Cho Thuê Phòng, Có Gác, Nội Thất Cơ Bản" height="100" width="100" layout="responsive"
+                                             data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Cho Thuê Phòng, Có Gác, Nội
+                                            Thất Cơ Bản
+                                        </span><span class="post-price">3 triệu/tháng</span><time class="post-time"
+                                                                                                  title="Thứ 2, 22:13 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667793">
+                                <a href="/phong-tro-ban-cong-ngay-san-bay-o-lam-son-pr667793.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/8da51d565e8c8dfd853e02c6e1b0ad3d_1729523408.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/8da51d565e8c8dfd853e02c6e1b0ad3d_1729523408.jpg"
+                                             alt="Phòng Trọ Ban Công Ngay Sân Bay Ở Lam Sơn" height="100" width="100" layout="responsive"
+                                             data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Phòng Trọ Ban Công Ngay Sân Bay
+                                            Ở Lam Sơn
+                                        </span><span class="post-price">5.2 triệu/tháng</span><time class="post-time"
+                                                                                                    title="Thứ 2, 22:10 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="post-item clearfix normal" post-id="667792">
+                                <a href="/phong-tro-28m2-tan-phu-gan-dai-hoc-van-hien-pr667792.html">
+                                    <figure>
+                                        <img class="lazy_done"
+                                             src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/img-4509_1729523052.jpg"
+                                             data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/10/21/img-4509_1729523052.jpg"
+                                             alt="Phòng Trọ 28m2 Tân Phú Gần Đại Học Văn Hiến" height="100" width="100" layout="responsive"
+                                             data-loaded="true">
+                                    </figure>
+                                    <div class="post-meta">
+                                        <span class="post-title" style="color: #055699;">
+                                            Phòng Trọ 28m2 Tân Phú Gần Đại
+                                            Học Văn Hiến
+                                        </span><span class="post-price">3.3 triệu/tháng</span><time class="post-time"
+                                                                                                    title="Thứ 2, 22:04 21/10/2024">1 giờ trước</time>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -33,17 +221,17 @@
 
 
 @*<div class="our_room">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="titlepage">
-                    <h2>@Model.title</h2>
-                    <p>Lorem Ipsum available, but the majority have suffered </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>@Model.title</h2>
+                        <p>Lorem Ipsum available, but the majority have suffered </p>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                @Html.Action("getInfor", "HomePage", new { id = Model.id, metatitle = "phong-tro" })
+            </div>
         </div>
-        <div class="row">
-            @Html.Action("getInfor", "HomePage", new { id = Model.id, metatitle = "phong-tro" })
-        </div>
-    </div>
-</div>*@
+    </div>*@

@@ -67,20 +67,17 @@ namespace HoiTroWebsite
 
             // phân loại phòng
             routes.MapRoute("Rooms_Thay", "{type}",
-               new { controller = "HomePage", action = "getRoomType", type = UrlParameter.Optional },
+               new { controller = "HomePage", action = "GetRoomType", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
-                    {"type","phong-tro" }
+                    { "type", "phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
 
             // hiển thị tất cả phòng thuộc loại đã chọn
             routes.MapRoute("Rooms_Thay2", "{type}/{meta}",
                new { controller = "RoomInfo", action = "Index", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","phong-tro" }
-               },
+               constraints: new {type = @"^(phong-tro|ky-tuc-xa|nha-cho-thue)$" },
                new[] { "HoiTroWebsite.Controllers" });
 
             // chi tiết phòng

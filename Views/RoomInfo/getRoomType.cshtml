@@ -9,7 +9,7 @@
 {
     <section class="category-section">
         <div class="category-title h4">
-            <a href="@ViewBag.meta/@i.meta">@i.title"</a>
+            <a href="@ViewBag.meta/@i.meta">@i.title</a>
         </div>
         <ul class="post-list">
             @Html.Action("getInfor", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta })

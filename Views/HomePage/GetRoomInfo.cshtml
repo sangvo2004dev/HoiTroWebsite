@@ -2,16 +2,65 @@
 
 @foreach (var i in Model)
 {
-    <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427" post-id="649687">
+<li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
+    post-id="649687">
+    <figure class="post-thumb">
+        <a class="clearfix"
+           href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
+            <img class="img-thumb"
+                 src="@i.ImagePath"
+                 data-src="@i.ImagePath"
+                 alt="@i.RoomInfo.title">
+        </a>
+        <span class="images-number">14 ảnh</span>
+        <span class="has-video"></span>
+        <span class="chothuenhanh-label"></span>
+        <span class="post-save js-btn-save" data-post-id="649687"><i></i></span>
+    </figure>
+    <div class="post-meta">
+        <h3 class="post-title">
+            <a style="color: #e13427"
+               href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
+                @i.RoomInfo.title
+            </a>
+        </h3>
+        <div class="meta-row clearfix">
+            <span class="post-price">@i.RoomInfo.price triệu/tháng</span><span class="post-acreage">@i.RoomInfo.acreage.ToString()m²</span>
+            <span class="post-location">
+                <a href="Cho thuê">
+                    @i.RoomInfo.area
+                </a>
+            </span>
+            <time class="post-time" title="Thứ 7, 15:21 05/10/2024">1 ngày trước</time>
+        </div>
+        <div class="meta-row clearfix">
+            <p class="post-summary">
+                @Html.Raw(i.RoomInfo.brief_description.Length > 200 ? i.RoomInfo.brief_description.Substring(0, 200) + "..." : i.RoomInfo.brief_description)
+            </p>
+        </div>
+        <div class="meta-row clearfix">
+            <div class="post-author">
+                <img src="" alt="@i.RoomInfo.nameInfor">
+                <span class="author-name">@i.RoomInfo.nameInfor</span>
+            </div>
+            <a rel="nofollow" target="_blank" href="https://zalo.me/@i.RoomInfo.zaloInfor"
+               class="btn-quick-zalo">Nhắn Zalo</a>
+            <a rel="nofollow" target="_blank" href="tel:@i.RoomInfo.phoneInfor" class="btn-quick-call">
+                Gọi @i.RoomInfo.phoneInfor
+            </a>
+        </div>
+    </div>
+</li>
+}
+
+@* template
+        <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427" post-id="649687">
         <figure class="post-thumb">
             <a class="clearfix"
-               @*href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">*@
-               href="javascript:void(0);">
+               href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
                 <img class="img-thumb"
-                     @*src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"
-                     data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"*@
-                     src="@i.ImagePath"
-                     data-src="@i.ImagePath"
+                     src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"
+                     data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"
                      alt="GẦN TRƯỜNG GTVT, NGOẠI THƯƠNG, HUTECH, HỒNG BÀNG, UEF - AN NINH, TIỆN NGHI - TT Q.BÌNH THẠNH ĐƯỜNG UNG VĂN KHIÊM" />
             </a>
             <span class="images-number">14 ảnh</span>
@@ -23,28 +72,26 @@
             <h3 class="post-title">
                 <a style="color: #e13427"
                    href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
-                    @i.Title
+                   GẦN TRƯỜNG GTVT, NGOẠI THƯƠNG, HUTECH, HỒNG BÀNG, UEF - AN NINH, TIỆN NGHI - TT Q.BÌNH THẠNH ĐƯỜNG UNG VĂN KHIÊM
                 </a>
             </h3>
             <div class="meta-row clearfix">
-                <span class="post-price">@i.Price triệu/tháng</span><span class="post-acreage">@i.Area.ToString()m²</span>
+                <span class="post-price">4.5 triệu/tháng</span><span class="post-acreage">30m²</span>
 
                 <span class="post-location">
-                    <a 
-                       @*href="https://phongtro123.com/tinh-thanh/ho-chi-minh/quan-binh-thanh"*@
-                       href="javascript:void(0);"
+                    <a
+                       href="https://phongtro123.com/tinh-thanh/ho-chi-minh/quan-binh-thanh"
                        title="Cho thuê phòng trọ Quận Bình Thạnh, Hồ Chí Minh">
-                        @*Quận Bình Thạnh, Hồ Chí Minh*@
+                        Quận Bình Thạnh, Hồ Chí Minh
                     </a>
                 </span>
                 <time class="post-time" title="Thứ 7, 15:21 05/10/2024">1 ngày trước</time>
             </div>
             <div class="meta-row clearfix">
                 <p class="post-summary">
-                    @*- Để đảm bảo an ninh cho Sinh Viên ở Ngõ Sen giờ hoạt động
+                    - Để đảm bảo an ninh cho Sinh Viên ở Ngõ Sen giờ hoạt động
                     từ 6h - 24h (không có giờ tự do), ra vào cổng bằng khóa
-                    vân tay.- Đ/c: Ngõ Sen 97/15, Ung Văn…*@
-                    @i.BriefDescription
+                    vân tay.- Đ/c: Ngõ Sen 97/15, Ung Văn…
                 </p>
             </div>
             <div class="meta-row clearfix">
@@ -55,10 +102,9 @@
                 <a rel="nofollow" target="_blank" href="https://zalo.me/0909814679"
                    class="btn-quick-zalo">Nhắn Zalo</a>
                 <a rel="nofollow" target="_blank" href="tel:0909814679" class="btn-quick-call">
-                    Gọi
-                    0909814679
+                    Gọi 0909814679
                 </a>
             </div>
         </div>
     </li>
-}
+*@

@@ -7,7 +7,7 @@
 <div id="search-bar">
     @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
 </div>
-<!-- kết thúcthanh tìm kiếm -->
+<!-- kết thúc thanh tìm kiếm -->
 
 <!-- banner -->
 @{ Html.RenderAction("getBanner", "HomePage"); }
@@ -16,19 +16,23 @@
 <!-- nội dung chính -->
 <div class="container">
     <div class="row">
+
         <!-- danh sách phòng -->
-        <div class="col-8">
-            <!--room information-->
-            @{ Html.RenderAction("getRoomType", "HomePage"); }
-            <!--end room information-->
+        <div class="col-8 pr-2">
+            <div class="left-content">
+                <!--room information-->
+                @{ Html.RenderAction("GetRoomType", "HomePage"); }
+                <!--end room information-->
+            </div>            
         </div>
 
         <!-- phần bên phải -->
-        <div class="col-4">
-
-            @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
-
+        <div class="col-4 pl-2">
+            <div class="right-content">
+                @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+            </div>            
         </div>
+
     </div>
 </div>
 <!-- kết thúc nội dung -->

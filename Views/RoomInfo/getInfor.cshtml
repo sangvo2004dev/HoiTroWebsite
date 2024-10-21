@@ -1,7 +1,5 @@
 ﻿@model List<HoiTroWebsite.Models.RoomInfoViewModel>
 
-<!-- our_room -->
-
 @foreach (var i in Model)
 {
     <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
@@ -11,8 +9,8 @@
                href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
                 <img class="img-thumb"
                      src="@i.ImagePath"
-                     @*data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"*@
-                     alt="@i.RoomInfo.title" />
+                     data-src="@i.ImagePath"
+                     alt="@i.RoomInfo.title">
             </a>
             <span class="images-number">14 ảnh</span>
             <span class="has-video"></span>
@@ -48,11 +46,9 @@
                 <a rel="nofollow" target="_blank" href="https://zalo.me/@i.RoomInfo.zaloInfor"
                    class="btn-quick-zalo">Nhắn Zalo</a>
                 <a rel="nofollow" target="_blank" href="tel:@i.RoomInfo.phoneInfor" class="btn-quick-call">
-                    Gọi
-                    @i.RoomInfo.phoneInfor
+                    Gọi @i.RoomInfo.phoneInfor
                 </a>
             </div>
         </div>
     </li>
 }
-<!-- end our_room -->
