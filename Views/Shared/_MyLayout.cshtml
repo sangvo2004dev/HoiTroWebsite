@@ -38,31 +38,28 @@
 
     <!-- logo và đăng ký, đăng nhập -->
     <div class="container header">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                <div class="full">
-                    <div class="center-desk">
-                        <div class="logo">
-                            <a href="index.html"><img src="~/Content/images/logo.png" alt="#" /></a>
-                        </div>
+        <div class="logo_section" style="float: left">
+            <div class="full">
+                <div class="center-desk">
+                    <div class="logo">
+                        <a href="index.html"><img src="~/Content/images/logo.png" alt="#" /></a>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="user-welcome clearfix js-reload-html-header" style="float: right">
+            <a rel="nofollow" class="btn" href="javascript:void(0)"><i class="icon heart size-18"></i> Yêu thích <span class="number-count js-save-post-total hidden" style="display: none;">1</span></a>
+            <a rel="nofollow" class="btn" href="dang-nhap"><i class="icon register"></i> Đăng nhập</a>
+            <a rel="nofollow" class="btn" href="dang-ky"><i class="icon login"></i> Đăng ký</a>
+            <a rel="nofollow" class="btn btn-add-post" href="dang-tin-moi"><i></i>Đăng tin miễn phí</a>
+        </div>
     </div>
     <!-- end logo và đăng ký, đăng nhập -->
-
     <!-- phần navigation bar -->
     <div id="menu-bar">
         @{ Html.RenderAction("GetMenuBar", "MainPartial"); }
     </div>
     <!-- kết thúc navigation bar -->
-
-    <!-- thanh tìm kiếm -->
-    <div id="search-bar">
-        @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
-    </div>
-    <!-- kết thúcthanh tìm kiếm -->
 
     <div class="content">
         @RenderBody();

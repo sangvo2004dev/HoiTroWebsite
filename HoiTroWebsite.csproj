@@ -368,8 +368,7 @@
     <Content Include="Views\Navigation\getMenu.cshtml" />
     <Content Include="Views\RoomInfo\getInfor.cshtml" />
     <Content Include="Views\HomePage\getNews.cshtml" />
-    <Content Include="Views\HomePage\getInfor.cshtml" />
-    <Content Include="Views\HomePage\getRoomType.cshtml" />
+    <Content Include="Views\HomePage\GetRoomInfo.cshtml" />
     <Content Include="Views\RoomInfo\getRoomType.cshtml" />
     <Content Include="Views\HomePage\RoomDetail.cshtml" />
     <Content Include="Views\News\getNewsType.cshtml" />
@@ -388,7 +387,7 @@
     <Content Include="Views\Post\getPost.cshtml" />
     <Content Include="Views\MainPartial\GetMenuBar.cshtml" />
     <Content Include="Views\MainPartial\GetSearchBar.cshtml" />
-    <Content Include="Views\MainPartial\GetMiniNews.cshtml" />
+    <Content Include="Views\HomePage\GetRoomType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

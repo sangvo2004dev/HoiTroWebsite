@@ -37,8 +37,9 @@ namespace HoiTroWebsite.Controllers
                     select n;
             return PartialView(v.ToList());
         }
+
         //phong tro
-        public ActionResult getRoomType()
+        public ActionResult GetRoomType()
         {
             @ViewBag.meta = "phong-tro";
             var v = from t in _db.RoomTypes
@@ -48,7 +49,8 @@ namespace HoiTroWebsite.Controllers
             return PartialView(v.ToList());
         }
 
-        public ActionResult getInfor(long id, string metatitle)
+        // lấy thông tin phòng trọ
+        public ActionResult GetRoomInfo(long id, string metatitle)
         {
             ViewBag.meta = metatitle;
             var v = from n in _db.RoomInfoes
@@ -65,6 +67,7 @@ namespace HoiTroWebsite.Controllers
                     };
             return PartialView(v.ToList());
         }
+
         //contact
         public ActionResult getContact()
         {

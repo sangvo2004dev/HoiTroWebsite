@@ -5,6 +5,257 @@
     --img-vip0-h: 180px;
 }
 
+/* đăng nhập, đăng ký, đăng tin */
+.user-welcome {
+    float: right;
+    margin-top: 12px;
+    display: inline-block;
+    align-items: center;
+}
+
+    .user-welcome .welcome-text,
+    .user-welcome .dropdown {
+        display: inline-block;
+    }
+
+        .user-welcome .dropdown .dropdown-menu {
+            top: 40px;
+        }
+
+    .user-welcome .welcome-text {
+        margin-right: 50px;
+        display: inline-flex;
+        align-items: center;
+        color: #333;
+    }
+
+    .user-welcome .btn {
+        background-color: transparent;
+        margin-right: 5px;
+        border: 0;
+        color: #333;
+        font-weight: normal;
+        cursor: pointer;
+        position: relative;
+    }
+
+        .user-welcome .btn .number-count {
+            position: absolute;
+            left: 18px;
+            top: 0;
+            padding: 0 4px;
+            height: 16px;
+            background-color: #e4012b;
+            color: #fff;
+            font-size: .7rem;
+            border-radius: 22px;
+            line-height: 16px;
+        }
+
+        .user-welcome .btn .arrow-down {
+            width: 10px;
+            height: 10px;
+        }
+
+        .user-welcome .btn.btn-add-post {
+            width: auto;
+            background: #070e13;
+            /*            border: 2px solid #febb02;*/
+            color: #fff;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+            .user-welcome .btn.btn-add-post i {
+                background: url(../images/add-white.svg) center no-repeat;
+                background-size: contain;
+                margin-right: 5px;
+            }
+
+    .user-welcome .dropdown-menu {
+        min-width: 200px;
+    }
+
+        .user-welcome .dropdown-menu .dropdown-menu-item {
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-welcome .dropdown-menu > li:last-of-type .dropdown-menu-item {
+            border-bottom: 0;
+        }
+
+        .user-welcome .dropdown-menu .dropdown-menu-item:hover {
+            color: #f60;
+        }
+
+    .user-welcome .dropdown-menu-item i {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+
+    .user-welcome .dropdown-menu-item.dang-tin i {
+        background: url(../images/dashboard-add-post.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.quan-ly-tin-dang i {
+        background: url(../images/dashboard-manage-post.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.nap-tien i {
+        background: url(../images/dashboard-payment.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.lich-su-nap-tien i {
+        background: url(../images/dashboard-payment-history.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.thong-tin-ca-nhan i {
+        background: url(../images/dashboard-user.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.tin-da-luu i {
+        background: url(../images/dashboard-post-saved.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.thoat i {
+        background: url(../images/dashboard-logout.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .user-welcome .dropdown-menu-item.quay-lai i {
+        background: url(../images/dashboard-logout.svg) center no-repeat;
+        background-size: contain;
+    }
+
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  box-shadow: 0 0 20px rgb(75 75 75 / 30%);
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 9;
+}
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+.dropdown .dropdown-menu a {
+  display: flex;
+  width: 100%;
+  white-space: nowrap;
+  align-items: center;
+  padding: 5px;
+}
+.btn {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #3961fb;
+  background: #3961fb;
+  font-weight: bold;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 10px;
+  margin: 0;
+}
+    .btn:hover {
+        text-decoration: underline !important;
+/*        color: #070e13;*/
+    }
+.btn.complete {
+  background: #16c784;
+  border-color: #16c784;
+}
+.btn.back {
+  background: #f1f1f1;
+  border-color: #f1f1f1;
+  color: #333;
+}
+.btn.red {
+  background: #f73859;
+  border-color: #f73859;
+}
+.btn.btn-outline {
+  background: #fff;
+  border-color: #007aff;
+  color: #007aff;
+}
+.btn i {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+.btn.next i {
+  background: url(../images/right-arrow-white.svg) center no-repeat;
+  background-size: contain;
+  margin-left: 5px;
+}
+.btn.complete i {
+  background: url(../images/check-mark-white.svg) center no-repeat;
+  background-size: contain;
+  margin-left: 6px;
+}
+.btn.btn-report i {
+  background: url(../images/mobile/report-flag.svg) center no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.btn .arrow-down {
+  background: url(../images/down-arrow-white.svg) center no-repeat;
+  background-size: contain;
+  margin-left: 5px;
+}
+.btn.btn-block {
+    width: 100% !important;
+}
+.icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 5px;
+}
+.icon.size-18 {
+    width: 18px !important;
+    height: 18px !important;
+}
+.icon.discount {
+    background: url(../images/discount.svg) center no-repeat;
+    background-size: contain;
+}
+.icon.heart {
+    background: url(../images/uicon-heart.svg) center no-repeat;
+    background-size: contain;
+}
+.icon.register {
+    background: url(../images/uicon-user-add.svg) center no-repeat;
+    background-size: contain;
+}
+.icon.login {
+    background: url(../images/uicon-sign-in-alt.svg) center no-repeat;
+    background-size: contain;
+}
+.icon.dashboard {
+    background: url(../images/uicon-dashboard.svg) center no-repeat;
+    background-size: contain;
+}
+
 /* hover <a> của phần main content */
 .section.section-sublink .list-links a:hover {
     color: #c3073f;
@@ -106,8 +357,8 @@ figure img {
 .post-list .post-item .images-number {
     position: absolute;
     line-height: 1;
-    bottom: 20px;
-    left: 20px;
+    bottom: 10px;
+    left: 10px;
     background: rgba(0, 0, 0, .5);
     padding: 3px;
     color: #fff;

@@ -21,10 +21,12 @@ namespace HoiTroWebsite.Controllers
         {
             return View();
         }
+
         public ActionResult getRegister()
         {
             return PartialView();
         }
+
         public ActionResult getLognIn()
         {
             return PartialView();

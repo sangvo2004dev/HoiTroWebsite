@@ -12,6 +12,17 @@
     </section>
 }
 <!-- end our_room -->
+@foreach (var i in Model)
+{
+    <section class="category-section">
+        <div class="category-title h4">
+            <a href="javascript:void(0)">@i.title</a>
+        </div>
+        <ul class="post-list">
+            @{ Html.RenderAction("GetRoomInfo", "HomePage", new { id = @i.id, metatitle = ViewBag.meta }); }
+        </ul>
+    </section>
+}
 
 @*<section class="category-section">
     <div class="category-title h4">
