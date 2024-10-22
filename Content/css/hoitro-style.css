@@ -14,11 +14,11 @@
 }
 
     .user-welcome .welcome-text,
-    .user-welcome .dropdown {
+    .user-welcome .config-dropdown {
         display: inline-block;
     }
 
-        .user-welcome .dropdown .dropdown-menu {
+        .user-welcome .config-dropdown .config-dropdown-menu {
             top: 40px;
         }
 
@@ -72,75 +72,75 @@
                 margin-right: 5px;
             }
 
-    .user-welcome .dropdown-menu {
+    .user-welcome .config-dropdown-menu {
         min-width: 200px;
     }
 
-        .user-welcome .dropdown-menu .dropdown-menu-item {
+        .user-welcome .config-dropdown-menu .config-dropdown-menu-item {
             text-decoration: none;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
 
-        .user-welcome .dropdown-menu > li:last-of-type .dropdown-menu-item {
+        .user-welcome .config-dropdown-menu > li:last-of-type .config-dropdown-menu-item {
             border-bottom: 0;
         }
 
-        .user-welcome .dropdown-menu .dropdown-menu-item:hover {
+        .user-welcome .config-dropdown-menu .config-dropdown-menu-item:hover {
             color: #f60;
         }
 
-    .user-welcome .dropdown-menu-item i {
+    .user-welcome .config-dropdown-menu-item i {
         width: 16px;
         height: 16px;
         margin-right: 10px;
     }
 
-    .user-welcome .dropdown-menu-item.dang-tin i {
+    .user-welcome .config-dropdown-menu-item.dang-tin i {
         background: url(../images/dashboard-add-post.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.quan-ly-tin-dang i {
+    .user-welcome .config-dropdown-menu-item.quan-ly-tin-dang i {
         background: url(../images/dashboard-manage-post.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.nap-tien i {
+    .user-welcome .config-dropdown-menu-item.nap-tien i {
         background: url(../images/dashboard-payment.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.lich-su-nap-tien i {
+    .user-welcome .config-dropdown-menu-item.lich-su-nap-tien i {
         background: url(../images/dashboard-payment-history.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.thong-tin-ca-nhan i {
+    .user-welcome .config-dropdown-menu-item.thong-tin-ca-nhan i {
         background: url(../images/dashboard-user.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.tin-da-luu i {
+    .user-welcome .config-dropdown-menu-item.tin-da-luu i {
         background: url(../images/dashboard-post-saved.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.thoat i {
+    .user-welcome .config-dropdown-menu-item.thoat i {
         background: url(../images/dashboard-logout.svg) center no-repeat;
         background-size: contain;
     }
 
-    .user-welcome .dropdown-menu-item.quay-lai i {
+    .user-welcome .config-dropdown-menu-item.quay-lai i {
         background: url(../images/dashboard-logout.svg) center no-repeat;
         background-size: contain;
     }
 
-    .dropdown {
+    .config-dropdown {
   position: relative;
   display: inline-block;
 }
-.dropdown .dropdown-menu {
+.config-dropdown .config-dropdown-menu {
   display: none;
   position: absolute;
   left: 0;
@@ -150,10 +150,10 @@
   border-radius: 5px;
   z-index: 9;
 }
-.dropdown.open .dropdown-menu {
+.config-dropdown.open .config-dropdown-menu {
   display: block;
 }
-.dropdown .dropdown-menu a {
+.config-dropdown .config-dropdown-menu a {
   display: flex;
   width: 100%;
   white-space: nowrap;
@@ -268,11 +268,12 @@
 }
 
 #menu-bar {
-    height: 60px;
+    height: 54px;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 10;
     margin-top: 3px;
+    overflow: visible;
 }
 
 .navigation.navbar-dark .navbar-nav .nav-item:hover,
@@ -291,6 +292,36 @@
 /* .navbar-collapse.collapse.show {
     background-color: #a2a0a0;   
 } */
+
+.my-dropdown {
+    overflow: hidden;
+}
+
+.my-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(255, 9, 9, 0.2);
+}
+
+.my-dropdown-content a {
+    display: block;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #fe0000;
+    text-transform: uppercase;
+}
+
+.my-dropdown-content a:hover {
+    background-color: var(--black--color);
+    color: #fff;
+    outline: 1px solid var(--black--color);
+}
+
+.my-dropdown:hover .my-dropdown-content {
+    display: block;
+}
 
 /* List phòng trọ */
 
@@ -798,6 +829,7 @@ figure img {
     border-radius: 8px;
     width: 1080px;
     margin: 10px auto;
+    z-index: -1;
 }
 
 #filter-top .filter-body {

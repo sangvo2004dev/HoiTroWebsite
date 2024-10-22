@@ -9,10 +9,22 @@
         <ul class="navbar-nav mx-auto">
             @foreach (var i in Model)
             {
-                <li class="nav-item">
-                    <a class="nav-link" href="/@i.meta">@i.name</a>
-                </li>
+                if (i.hasSubMenu == false)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/@i.meta">@i.name</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item my-dropdown">
+                        <span class="nav-link my-dropdown-button">Dropdown</span>
+                        <div class="my-dropdown-content">
+                            @{ Html.RenderAction("GetSubMenu", "MainPartial"); }
+                        </div>
+                    </li>
+                }
             }
-        </ul>
+        </ul>        
     </div>
 </nav>

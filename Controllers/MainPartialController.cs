@@ -28,6 +28,16 @@ namespace HoiTroWebsite.Controllers
             return PartialView(v.ToList());
         }
 
+        public ActionResult GetSubMenu(int menuItemID)
+        {
+            var v = from t in _db.SubMenus
+                    where (t.hide == true) && (t.menuId == menuItemID)
+                    orderby t.order ascending
+                    select t;
+
+            return PartialView(v.ToList());
+        }
+
         // thanh tìm kiếm
         public ActionResult GetSearchBar()
         {
