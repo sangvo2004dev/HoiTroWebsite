@@ -31,5 +31,11 @@ namespace HoiTroWebsite.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult manageAccount(long id)
+        {
+            
+            return PartialView();
+        }
     }
 }

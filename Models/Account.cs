@@ -12,33 +12,28 @@ namespace HoiTroWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RoomInfo
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RoomInfo()
+        public Account()
         {
-            this.RoomImages = new HashSet<RoomImage>();
+            this.RoomInfoes = new HashSet<RoomInfo>();
         }
     
         public int id { get; set; }
-        public string title { get; set; }
-        public string brief_description { get; set; }
-        public string detail_description { get; set; }
-        public string price { get; set; }
-        public Nullable<double> acreage { get; set; }
-        public string area { get; set; }
-        public string location { get; set; }
-        public string tenant { get; set; }
+        public string name { get; set; }
+        public string phoneNum { get; set; }
+        public string email { get; set; }
+        public string zaloNum { get; set; }
+        public string FBlink { get; set; }
+        public string avtImage { get; set; }
+        public string password { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public Nullable<int> roomTypeId { get; set; }
-        public Nullable<int> accountId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomImage> RoomImages { get; set; }
-        public virtual RoomType RoomType { get; set; }
-        public virtual Account Account { get; set; }
+        public virtual ICollection<RoomInfo> RoomInfoes { get; set; }
     }
 }
