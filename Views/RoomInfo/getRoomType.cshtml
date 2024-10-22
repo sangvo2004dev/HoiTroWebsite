@@ -12,7 +12,7 @@
             <a href="@ViewBag.meta/@i.meta">@i.title</a>
         </div>
         <ul class="post-list">
-            @Html.Action("getInfor", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta })
+            @Html.Action("getInfor", "RoomInfo", new { id = @i.id, metatitle = @ViewBag.meta })
         </ul>
     </section>
 }

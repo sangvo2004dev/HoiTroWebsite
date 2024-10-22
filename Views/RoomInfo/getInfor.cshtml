@@ -31,7 +31,7 @@
                         @i.RoomInfo.area
                     </a>
                 </span>
-                <time class="post-time" title="Thứ 7, 15:21 05/10/2024">1 ngày trước</time>
+                <time class="post-time" title="@i.RoomInfo.datebegin">thời gian đến hiện t</time>
             </div>
             <div class="meta-row clearfix">
                 <p class="post-summary">
@@ -40,13 +40,13 @@
             </div>
             <div class="meta-row clearfix">
                 <div class="post-author">
-                    <img src="" />
-                    <span class="author-name">@i.RoomInfo.nameInfor</span>
+                    <img src="@i.Account.avtImage" alt="@i.Account.name">
+                    <span class="author-name">@i.Account.name</span>
                 </div>
-                <a rel="nofollow" target="_blank" href="https://zalo.me/@i.RoomInfo.zaloInfor"
+                <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"
                    class="btn-quick-zalo">Nhắn Zalo</a>
-                <a rel="nofollow" target="_blank" href="tel:@i.RoomInfo.phoneInfor" class="btn-quick-call">
-                    Gọi @i.RoomInfo.phoneInfor
+                <a rel="nofollow" target="_blank" href="tel:@i.Account.phoneNum" class="btn-quick-call">
+                    Gọi @i.Account.phoneNum
                 </a>
             </div>
         </div>

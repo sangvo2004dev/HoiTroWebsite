@@ -48,11 +48,13 @@ namespace HoiTroWebsite.Controllers
             ViewBag.meta = metatitle;
             var v = from n in _db.RoomInfoes
                     join t in _db.RoomTypes on n.roomTypeId equals t.id
+                    join r in _db.Accounts on n.accountId equals r.id
                     where n.hide == true && n.roomTypeId == id
                     orderby n.datebegin descending
                     select new RoomInfoViewModel
                     {
                         RoomInfo = n,
+                        Account = r,
                         ImagePath = (from i in _db.RoomImages
                                      where i.reference_id == n.id
                                      orderby i.datebegin descending

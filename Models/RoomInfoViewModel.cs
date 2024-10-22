@@ -9,5 +9,6 @@ namespace HoiTroWebsite.Models
     {
         public RoomInfo RoomInfo { get; set; }
         public string ImagePath { get; set; }  // Path to the image
+        public Account Account { get; set; }
     }
 }

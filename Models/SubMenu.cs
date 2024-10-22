@@ -12,14 +12,8 @@ namespace HoiTroWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Menu
+    public partial class SubMenu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Menu()
-        {
-            this.SubMenus = new HashSet<SubMenu>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public string link { get; set; }
@@ -27,9 +21,8 @@ namespace HoiTroWebsite.Models
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public Nullable<bool> hasSubMenu { get; set; }
+        public Nullable<int> menuId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubMenu> SubMenus { get; set; }
+        public virtual Menu Menu { get; set; }
     }
 }
