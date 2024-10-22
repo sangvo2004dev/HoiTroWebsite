@@ -305,12 +305,11 @@
     box-shadow: 0px 8px 16px 0px rgba(255, 9, 9, 0.2);
 }
 
-.my-dropdown-content a {
+.my-dropdown-content .my-dropdown-item {
     display: block;
     text-align: left;
     padding: 10px;
-    border-bottom: 1px solid #fe0000;
-    text-transform: uppercase;
+    border-bottom: 2px solid #fe0000;
 }
 
 .my-dropdown-content a:hover {

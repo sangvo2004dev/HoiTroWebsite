@@ -28,10 +28,10 @@ namespace HoiTroWebsite.Controllers
             return PartialView(v.ToList());
         }
 
-        public ActionResult GetSubMenu(int menuItemID)
+        public ActionResult GetSubMenu(int mainMenuID)
         {
             var v = from t in _db.SubMenus
-                    where (t.hide == true) && (t.menuId == menuItemID)
+                    where (t.hide == true) && (t.menuId == mainMenuID)
                     orderby t.order ascending
                     select t;
 

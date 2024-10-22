@@ -135,7 +135,7 @@
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="menuId" Type="int" />
         </EntityType>
-        <Association Name="FK__News__newsTypeId__7EACC042">
+        <Association Name="FK__News__newsTypeId__114A936A">
           <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -149,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImage__refer__0371755F">
+        <Association Name="FK__RoomImage__refer__160F4887">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -163,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__accoun__79E80B25">
+        <Association Name="FK__RoomInfo__accoun__0C85DE4D">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -177,7 +177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__roomTy__78F3E6EC">
+        <Association Name="FK__RoomInfo__roomTy__0B91BA14">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -191,7 +191,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubMenu__menuId__7246E95D">
+        <Association Name="FK__SubMenu__menuId__04E4BC85">
           <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -215,23 +215,23 @@
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__News__newsTypeId__7EACC042" Association="Self.FK__News__newsTypeId__7EACC042">
+          <AssociationSet Name="FK__News__newsTypeId__114A936A" Association="Self.FK__News__newsTypeId__114A936A">
             <End Role="NewsType" EntitySet="NewsType" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__0371755F" Association="Self.FK__RoomImage__refer__0371755F">
+          <AssociationSet Name="FK__RoomImage__refer__160F4887" Association="Self.FK__RoomImage__refer__160F4887">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__accoun__79E80B25" Association="Self.FK__RoomInfo__accoun__79E80B25">
+          <AssociationSet Name="FK__RoomInfo__accoun__0C85DE4D" Association="Self.FK__RoomInfo__accoun__0C85DE4D">
             <End Role="Account" EntitySet="Account" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__78F3E6EC" Association="Self.FK__RoomInfo__roomTy__78F3E6EC">
+          <AssociationSet Name="FK__RoomInfo__roomTy__0B91BA14" Association="Self.FK__RoomInfo__roomTy__0B91BA14">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubMenu__menuId__7246E95D" Association="Self.FK__SubMenu__menuId__7246E95D">
+          <AssociationSet Name="FK__SubMenu__menuId__04E4BC85" Association="Self.FK__SubMenu__menuId__04E4BC85">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="SubMenu" EntitySet="SubMenu" />
           </AssociationSet>
