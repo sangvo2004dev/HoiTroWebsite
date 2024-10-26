@@ -10,7 +10,7 @@ namespace HoiTroWebsite.Controllers
     public class MainPartialController : Controller
     {
         // khai báo
-        private HoiTroEntities _db = new HoiTroEntities();
+        private readonly HoiTroEntities _db = new HoiTroEntities();
 
         // GET: MainPartial
         public ActionResult Index()
@@ -28,8 +28,9 @@ namespace HoiTroWebsite.Controllers
             return PartialView(v.ToList());
         }
 
-        public ActionResult GetSubMenu(int mainMenuID)
+        public ActionResult GetSubMenu(int mainMenuID, string mainMenuMeta)
         {
+            ViewBag.mainMenuMeta = mainMenuMeta;
             var v = from t in _db.SubMenus
                     where (t.hide == true) && (t.menuId == mainMenuID)
                     orderby t.order ascending
@@ -45,6 +46,12 @@ namespace HoiTroWebsite.Controllers
         }
 
         public ActionResult GetMiniNews()
+        {
+            return PartialView();
+        }
+
+        // lấy các bài viết phòng mới đăng
+        public ActionResult GetLatestRoomList()
         {
             return PartialView();
         }

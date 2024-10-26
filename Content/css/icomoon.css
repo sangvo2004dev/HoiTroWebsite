@@ -1,6 +1,8 @@
 body {
-    background: #fffef7;
+    /*    background: #fffef7;*/
+    background: #f4f5f7;
 }
+
 @font-face {
     font-family: 'IcoMoon-Free';
     src: url('../fonts/IcoMoon-Free.ttf') format('truetype');

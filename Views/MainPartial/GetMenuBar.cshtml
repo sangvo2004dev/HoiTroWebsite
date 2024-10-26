@@ -18,9 +18,9 @@
                 else
                 {
                     <li class="nav-item my-dropdown">
-                        <span class="nav-link my-dropdown-button">@i.name</span>
+                        <a class="nav-link my-dropdown-button" href="/@i.meta">@i.name</a>
                         <div class="my-dropdown-content">
-                            @{ Html.RenderAction("GetSubMenu", "MainPartial", new {mainMenuID = i.id}); }
+                            @{ Html.RenderAction("GetSubMenu", "MainPartial", new { mainMenuID = i.id, mainMenuMeta = i.meta }); }
                         </div>
                     </li>
                 }

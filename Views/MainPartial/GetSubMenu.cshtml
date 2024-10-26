@@ -2,5 +2,5 @@
 
 @foreach (var i in Model)
 {
-    <a class="my-dropdown-item" href="/@i.meta">@i.name</a>
+    <a class="my-dropdown-item" href="/@ViewBag.mainMenuMeta/@i.meta">@i.name</a>
 }

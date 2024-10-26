@@ -1,7 +1,7 @@
 ﻿@model List<HoiTroWebsite.Models.News>
 
 @{
-    ViewBag.Title = "Tin tức";
+    ViewBag.Title = ViewBag.title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
@@ -10,12 +10,13 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+            <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.title</li>
         </ol>
     </nav>
 
     <div class="blog-header">
-        Tin tức thị trường, chia sẻ kinh nghiệm, bất động sản
+        @ViewBag.title
     </div>
 
     <div class="row">
@@ -48,6 +49,9 @@
                     </ul>
                 </section>
             </div>
+            @*<div class="titlepage">
+                    <h2>@Model.title</h2>
+                </div>*@
         </div>
 
         <div class="col-4">
@@ -57,28 +61,5 @@
         </div>
 
     </div>
-</div>
 
-@*
-    template tin tức trong trang
-        <li class="article-item clearfix">
-        <a href="/tien-dat-coc-thue-phong-tro-co-lay-lai-duoc-khong.html">
-            <figure>
-                <img class="lazy_done"
-                     src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/07/11/tien-coc-thue-tro-co-lay-lai-duoc-khong_1720661417.jpg"
-                     data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/07/11/tien-coc-thue-tro-co-lay-lai-duoc-khong_1720661417.jpg"
-                     data-loaded="true">
-            </figure>
-            <div class="article-meta">
-                <h6 class="article-title">
-                    Tiền đặt cọc thuê phòng trọ có lấy lại được không?
-                </h6>
-                <p class="article-summary">
-                    Tiền cọc thuê trọ có lấy lại được không?Team tư
-                    vấn/CSKH Phongtro123 trả lời:Chào Hà Vy, cảm ơn bạn đã tin tưởng và gửi yêu
-                    cầu tư vấn đến…
-                </p>
-            </div>
-        </a>
-    </li>
-*@
+</div>

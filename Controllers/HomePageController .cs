@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,25 +18,43 @@ namespace HoiTroWebsite.Controllers
         {
             return View();
         }
+
         //tin tuc
         public ActionResult getNewsType()
         {
-            @ViewBag.meta = "tin-tuc";
+            ViewBag.meta = "tin-tuc";
             var v = from t in _db.NewsTypes
                     where t.hide == true
                     orderby t.order ascending
                     select t;
+
             return PartialView(v.ToList());
         }
-        public ActionResult getNews(long id, string metatitle)
+
+        public ActionResult GetNews(long? id, string metatitle)
         {
-            ViewBag.meta = metatitle;
-            var v = from n in _db.News
-                    join t in _db.NewsTypes on n.newsTypeId equals t.id
-                    where n.hide == true && n.newsTypeId == id
-                    orderby n.datebegin descending
-                    select n;
-            return PartialView(v.ToList());
+            if ((id == null) && (metatitle == null))
+            {
+                ViewBag.meta = "tin-tuc";
+                var _7TinTuc = from t in _db.News
+                        where t.hide == true
+                        orderby t.order
+                        orderby t.datebegin
+                        select t;
+
+                return PartialView(_7TinTuc.Take(7).ToList());
+            }
+            else
+            {
+                ViewBag.meta = metatitle;
+                var v = from n in _db.News
+                        join t in _db.NewsTypes on n.newsTypeId equals t.id
+                        where n.hide == true && n.newsTypeId == id
+                        orderby n.datebegin descending
+                        select n;
+
+                return PartialView(v.ToList());
+            }            
         }
 
         //phong tro

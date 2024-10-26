@@ -12,12 +12,19 @@ namespace HoiTroWebsite
         public static void RegisterRoutes(RouteCollection routes)
         {
             // menu-tin tức
-            routes.MapRoute("News", "{type}",
-               new { controller = "News", action = "getNewsType", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","tin-tuc" }
-               },
+            routes.MapRoute("News", "tin-tuc",
+               new { controller = "News", action = "Index" },
+
+               new[] { "HoiTroWebsite.Controllers" });
+
+            // tin tức theo loại
+            routes.MapRoute("NewsType", "tin-tuc/{meta}",
+                new { controller = "News", action = "GetNewsFollowType", meta = UrlParameter.Optional },
+                new[] { "HoiTroWebsite.Controllers" });
+
+            // chi tiết tin
+            routes.MapRoute("NewsDetail", "tin-tuc/{meta}/{id}",
+               new { controller = "News", action = "NewsDetail", meta = UrlParameter.Optional, id = UrlParameter.Optional },
                new[] { "HoiTroWebsite.Controllers" });
 
             // phân loại phòng
@@ -37,16 +44,7 @@ namespace HoiTroWebsite
                     {"type","tin-tuc" }
                },
                new[] { "HoiTroWebsite.Controllers" });
-
-            // chi tiết tin
-            routes.MapRoute("NewsDetail", "{type}/{meta}/{id}",
-               new { controller = "News", action = "NewsDetail", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","tin-tuc" }
-               },
-               new[] { "HoiTroWebsite.Controllers" });
-            
+                                    
             // menu-phòng trọ
             routes.MapRoute("Rooms", "{type}",
                new { controller = "RoomInfo", action = "getRoomType", type = UrlParameter.Optional },

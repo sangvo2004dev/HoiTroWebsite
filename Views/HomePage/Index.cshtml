@@ -35,27 +35,27 @@
 
     </div>
 </div>
-<!-- kết thúc nội dung -->
+<!-- kết thúc nội dung chính -->
 
+<!-- phần tin tức -->
 <div class="blog">
     <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
-        </nav>
-        <div class="row">
-            <!-- phần bên trái -->
-            <div class="col-8">
-                <!--news-->
-                @{ Html.RenderAction("getNewsType", "HomePage"); }
-                <!--end news-->
-            </div>
+        <div class="titlepage">
+            <a href="/tin-tuc"><h2>Góc tin tức</h2></a>
+            <p>Hãy luôn xem các tin tức để biết thêm về thị trường</p>
         </div>
+        <div class="blog-content">
+            
+            @{ Html.RenderAction("GetNews", "HomePage", new RouteValueDictionary { { "id", null }, { "metatitle", null } }); }
+
+        </div>
+
+        @*@{ Html.RenderAction("getNewsType", "HomePage"); }*@
+
     </div>
 </div>
+<!-- kết thúc phần tin tức -->
 
 <!--  contact -->
 @{ Html.RenderAction("getContact", "HomePage"); }
-<!--end contact-->
+<!-- end contact-->
