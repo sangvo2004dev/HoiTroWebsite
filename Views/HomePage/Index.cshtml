@@ -8,7 +8,6 @@
     @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
 </div>
 <!-- kết thúc thanh tìm kiếm -->
-
 <!-- banner -->
 @{ Html.RenderAction("getBanner", "HomePage"); }
 <!-- end banner -->
@@ -23,14 +22,14 @@
                 <!--room information-->
                 @{ Html.RenderAction("GetRoomType", "HomePage"); }
                 <!--end room information-->
-            </div>            
+            </div>
         </div>
 
         <!-- phần bên phải -->
         <div class="col-4 pl-2">
             <div class="right-content">
                 @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
-            </div>            
+            </div>
         </div>
 
     </div>

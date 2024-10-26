@@ -125,6 +125,34 @@ namespace HoiTroWebsite
                },
                new[] { "HoiTroWebsite.Controllers" });
 
+
+
+
+            // quản lí tài khoản cá nhân-Index
+            routes.MapRoute("QLTK", "{type}/{id}",
+               new { controller = "ManageAccount", action = "Index", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "quan-ly-tai-khoan" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // quản lí tài khoản cá nhân
+            routes.MapRoute("MNA", "{type}/{id}",
+               new { controller = "ManageAccount", action = "editInfor", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "account" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // quản lý tin đăng
+            routes.MapRoute("MNP", "{type}/{id}",
+               new { controller = "ManageAccount", action = "managePosted", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "posted" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
             //Default
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 

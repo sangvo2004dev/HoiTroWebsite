@@ -17,8 +17,9 @@ namespace HoiTroWebsite.Controllers
         {
             return View();
         }
-        public ActionResult getPost(string name, string phoneNum)
+        public ActionResult getPost()
         {
+            
             return View();
         }
 
@@ -29,12 +30,6 @@ namespace HoiTroWebsite.Controllers
 
         public ActionResult getLognIn()
         {
-            return PartialView();
-        }
-
-        public ActionResult manageAccount(long id)
-        {
-            
             return PartialView();
         }
     }
