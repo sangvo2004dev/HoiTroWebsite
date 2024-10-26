@@ -55,5 +55,15 @@ namespace HoiTroWebsite.Controllers
         {
             return PartialView();
         }
+        
+        // hỗ trợ người dùng
+        public ActionResult GetSupport()
+        {
+            var v = from t in _db.Mentors
+                    where t.hide == true
+                    orderby t.order ascending
+                    select t;
+            return PartialView(v.ToList());
+        }
     }
 }

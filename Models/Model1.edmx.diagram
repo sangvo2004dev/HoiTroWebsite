@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e18e4de0d2147ff8b100b3635dd591e" Name="Diagram1" ZoomLevel="95">
+      <Diagram DiagramId="3e18e4de0d2147ff8b100b3635dd591e" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="HoiTroModel.Menu" Width="1.5" PointX="12.625" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HoiTroModel.Contact" Width="1.5" PointX="6.625" PointY="0.75" />
+        <EntityTypeShape EntityType="HoiTroModel.Contact" Width="1.5" PointX="9.125" PointY="0.75" />
         <EntityTypeShape EntityType="HoiTroModel.News" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="HoiTroModel.NewsType" Width="1.5" PointX="0.75" PointY="2.125" />
         <AssociationConnector Association="HoiTroModel.FK__News__newsTypeId__52AE4273" />
@@ -20,6 +20,7 @@
         <AssociationConnector Association="HoiTroModel.FK__SubMenu__menuId__74643BF9" />
         <EntityTypeShape EntityType="HoiTroModel.Account" Width="1.5" PointX="6.5" PointY="10.125" />
         <AssociationConnector Association="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" />
+        <EntityTypeShape EntityType="HoiTroModel.Mentor" Width="1.5" PointX="4" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

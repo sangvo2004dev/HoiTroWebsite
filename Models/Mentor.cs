@@ -12,16 +12,19 @@ namespace HoiTroWebsite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Contact
+    public partial class Mentor
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string avtImage { get; set; }
         public string email { get; set; }
-        public string message { get; set; }
-        public Nullable<System.DateTime> datebegin { get; set; }
+        public string phoneNum { get; set; }
+        public string FBlink { get; set; }
+        public string zaloNum { get; set; }
+        public string supportTask { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
-        public string phoneNum { get; set; }
+        public Nullable<System.DateTime> datebegin { get; set; }
     }
 }
