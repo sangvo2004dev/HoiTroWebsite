@@ -123,6 +123,41 @@ namespace HoiTroWebsite
                },
                new[] { "HoiTroWebsite.Controllers" });
 
+            // quản lí tài khoản cá nhân
+            routes.MapRoute("MNA", "{type}/{id}",
+               new { controller = "Button", action = "editInfor", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "quan-ly-thong-tin-tai-khoan" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
+            // thay đổi số điện thoai
+            routes.MapRoute("ALTSDT", "{type}/{id}",
+               new { controller = "Button", action = "altPhoneNum", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "thay-doi-so-dien-thoai" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
+            // thay đổi mật khẩu
+            routes.MapRoute("ALTPW", "{type}/{id}",
+               new { controller = "Button", action = "altPassword", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "thay-doi-mat-khau" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
+            // quản lý tin đăng
+            routes.MapRoute("MNP", "{type}/{id}",
+               new { controller = "Button", action = "managePosted", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "quan-ly-tin-dang" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
             //Default
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 

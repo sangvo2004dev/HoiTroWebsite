@@ -225,6 +225,7 @@
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slick.css" />
     <Content Include="Content\css\hoitro-style-config.css" />
+    <Content Include="Content\css\style_manaAcc.css" />
     <Content Include="Content\css\style_room.css" />
     <Content Include="Content\css\style_signinsignout.css" />
     <Content Include="Content\css\style_dangtin.css" />
@@ -244,6 +245,7 @@
     <Content Include="Content\images\blog_bg.jpg" />
     <Content Include="Content\images\building-icon.svg" />
     <Content Include="Content\images\date.png" />
+    <Content Include="Content\images\default-user.jpg" />
     <Content Include="Content\images\gallery1.jpg" />
     <Content Include="Content\images\gallery2.jpg" />
     <Content Include="Content\images\gallery3.jpg" />
@@ -406,6 +408,11 @@
     <Content Include="Views\News\GetNewsFollowType.cshtml" />
     <Content Include="Views\MainPartial\GetLatestRoomList.cshtml" />
     <Content Include="Views\MainPartial\GetSupport.cshtml" />
+    <Content Include="Views\Button\editInfor.cshtml" />
+    <Content Include="Views\Button\managePosted.cshtml" />
+    <Content Include="Views\Button\listPosted.cshtml" />
+    <Content Include="Views\Button\altPhoneNum.cshtml" />
+    <Content Include="Views\Button\altPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
