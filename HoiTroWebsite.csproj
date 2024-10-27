@@ -386,7 +386,6 @@
     <Content Include="Views\HomePage\GetNews.cshtml" />
     <Content Include="Views\HomePage\GetRoomInfo.cshtml" />
     <Content Include="Views\RoomInfo\getRoomType.cshtml" />
-    <Content Include="Views\HomePage\RoomDetail.cshtml" />
     <Content Include="Views\News\getNewsType.cshtml" />
     <Content Include="Views\HomePage\getNewsType.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
@@ -400,7 +399,6 @@
     <Content Include="Views\Button\getRegister.cshtml" />
     <Content Include="Views\Button\getLognIn.cshtml" />
     <Content Include="Views\News\NewsDetail.cshtml" />
-    <Content Include="Views\Post\getPost.cshtml" />
     <Content Include="Views\MainPartial\GetMenuBar.cshtml" />
     <Content Include="Views\MainPartial\GetSearchBar.cshtml" />
     <Content Include="Views\HomePage\GetRoomType.cshtml" />

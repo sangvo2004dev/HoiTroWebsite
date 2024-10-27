@@ -57,7 +57,7 @@ namespace HoiTroWebsite.Controllers
             }            
         }
 
-        //phong tro
+        // loại phòng trọ
         public ActionResult GetRoomType()
         {
             @ViewBag.meta = "phong-tro";
