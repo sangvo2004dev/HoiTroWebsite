@@ -19,18 +19,6 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
-        //tin tuc
-        public ActionResult getNewsType()
-        {
-            ViewBag.meta = "tin-tuc";
-            var v = from t in _db.NewsTypes
-                    where t.hide == true
-                    orderby t.order ascending
-                    select t;
-
-            return PartialView(v.ToList());
-        }
-
         public ActionResult GetNews(long? id, string metatitle)
         {
             if ((id == null) && (metatitle == null))

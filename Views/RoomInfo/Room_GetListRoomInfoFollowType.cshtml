@@ -16,7 +16,7 @@
                         <a href="javascript:void(0);">@Model.title</a>
                     </div>
                     <ul class="post-list">
-                        @{ Html.RenderAction("RoomGetListRoomInfo", "RoomInfo", new { roomTypeID = Model.id, metaTitle = Model.meta }); }
+                        @{ Html.RenderAction("GetListRoomInfo", "RoomInfo", new { roomTypeID = Model.id, metaTitle = Model.meta }); }
                     </ul>
                 </section>
             </div>

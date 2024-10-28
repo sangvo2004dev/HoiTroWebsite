@@ -58,28 +58,5 @@ namespace HoiTroWebsite.Controllers
             return View(models.newModel);
         }
 
-        public ActionResult getNewsType()
-        {
-            @ViewBag.meta = "tin-tuc";
-            var v = from t in _db.NewsTypes
-                    where t.hide == true
-                    orderby t.order ascending
-                    select t;
-            return PartialView(v.ToList());
-        }
-
-        // 
-        public ActionResult GetNews(long? id, string metatitle)
-        {
-            ViewBag.meta = metatitle;
-            var v = from n in _db.News
-                    join t in _db.NewsTypes on n.newsTypeId equals t.id
-                    where n.hide == true && n.newsTypeId == id
-                    orderby n.datebegin descending
-                    select n;
-
-            return PartialView(v.ToList());
-        }
-
     }
 }

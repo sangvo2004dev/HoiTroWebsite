@@ -35,23 +35,12 @@ namespace HoiTroWebsite.Controllers
         }
 
         // chi tiết tin trên HomePage-Menu
-        public ActionResult RoomDetail(long id)
+        public ActionResult RoomDetail(long roomID)
         {
             var v = from t in _db.RoomInfoes
-                    where t.id == id
+                    where t.id == roomID
                     select t;
             return PartialView(v.FirstOrDefault());
-        }
-
-        public ActionResult getRoomType()
-        {
-            ViewBag.meta = "phong-tro";
-            var v = from t in _db.RoomTypes
-                    where t.hide == true
-                    orderby t.order ascending
-                    select t;
-            
-            return PartialView(v.ToList());
         }
 
         // lấy thông tin danh sách phòng theo loại
@@ -65,7 +54,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         // list thông tin dánh sách phòng
-        public ActionResult RoomGetListRoomInfo(long roomTypeID, string metaTitle) 
+        public ActionResult GetListRoomInfo(long roomTypeID, string metaTitle) 
         {
             ViewBag.meta = metaTitle;
 

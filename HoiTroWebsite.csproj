@@ -380,14 +380,10 @@
     <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="Scripts\js\revolution\js\.DS_Store" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
-    <Content Include="Views\News\getNews.cshtml" />
     <Content Include="Views\Navigation\getMenu.cshtml" />
     <Content Include="Views\RoomInfo\GetListRoomInfo.cshtml" />
     <Content Include="Views\HomePage\GetNews.cshtml" />
     <Content Include="Views\HomePage\HomePageGetRoomInfo.cshtml" />
-    <Content Include="Views\RoomInfo\getRoomType.cshtml" />
-    <Content Include="Views\News\getNewsType.cshtml" />
-    <Content Include="Views\HomePage\getNewsType.cshtml" />
     <Content Include="Views\HomePage\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\RoomInfo\RoomDetail.cshtml" />
