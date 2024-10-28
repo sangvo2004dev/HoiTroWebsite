@@ -32,10 +32,58 @@ namespace HoiTroWebsite.Controllers
             return PartialView();
         }
 
-        public ActionResult manageAccount(long id)
+        public ActionResult editInfor(long id)
         {
-            
-            return PartialView();
+            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(account);
+        }
+        public ActionResult managePosted(long id)
+        {
+            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(account);
+        }
+        public ActionResult listPosted(long id)
+        {
+            var v = from n in _db.RoomInfoes
+                    join r in _db.Accounts on n.accountId equals r.id
+                    where n.hide == true && r.id == id
+                    orderby n.datebegin descending
+                    select n;
+            return PartialView(v.ToList());
+        }
+        public ActionResult altPhoneNum(long id)
+        {
+            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(account);
+        }
+        public ActionResult altPassword(long id)
+        {
+            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView(account);
         }
     }
 }
