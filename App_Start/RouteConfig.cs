@@ -28,31 +28,51 @@ namespace HoiTroWebsite
                new[] { "HoiTroWebsite.Controllers" });
 
             // phân loại phòng
-            routes.MapRoute("News_Thay", "{type}",
-               new { controller = "HomePage", action = "getNewsType", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","tin-tuc" }
-               },
-               new[] { "HoiTroWebsite.Controllers" });
+            //routes.MapRoute("News_Thay", "{type}",
+            //   new { controller = "HomePage", action = "getNewsType", type = UrlParameter.Optional },
+            //   new RouteValueDictionary
+            //   {
+            //        {"type","tin-tuc" }
+            //   },
+            //   new[] { "HoiTroWebsite.Controllers" });
 
             // hiển thị tất cả phòng thuộc loại đã chọn
-            routes.MapRoute("News_Thay2", "{type}/{meta}",
-               new { controller = "News", action = "Index", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","tin-tuc" }
-               },
+            //routes.MapRoute("News_Thay2", "{type}/{meta}",
+            //   new { controller = "News", action = "Index", type = UrlParameter.Optional },
+            //   new RouteValueDictionary
+            //   {
+            //        {"type","tin-tuc" }
+            //   },
+            //   new[] { "HoiTroWebsite.Controllers" });
+
+            // hiển thị tất cả phòng khi vào trang chủ cho thuê
+            routes.MapRoute("ListRoom", "phong-tro",
+                new { controller = "RoomInfo", action = "Index" },
+                new[] { "HoiTroWebsite.Controllers" });
+
+            // hiển thị tất cả phòng thuộc loại đã chọn
+            routes.MapRoute("ListRoomFollowType", "{type}/{roomTypeMeta}",
+               new { controller = "RoomInfo", action = "Room_GetListRoomInfoFollowType", roomTypeMeta = UrlParameter.Optional },
+               constraints: new { type = @"^(phong-tro|ky-tuc-xa|nha-cho-thue)$" },
                new[] { "HoiTroWebsite.Controllers" });
-                                    
-            // menu-phòng trọ
-            routes.MapRoute("Rooms", "{type}",
-               new { controller = "RoomInfo", action = "getRoomType", type = UrlParameter.Optional },
+
+            // chi tiết phòng
+            routes.MapRoute("RoomDetail", "{type}/{meta}/{id}",
+               new { controller = "RoomInfo", action = "RoomDetail", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
                     {"type","phong-tro" }
                },
                new[] { "HoiTroWebsite.Controllers" });
+
+            // menu-phòng trọ
+            //routes.MapRoute("Rooms", "{type}",
+            //   new { controller = "RoomInfo", action = "getRoomType", type = UrlParameter.Optional },
+            //   new RouteValueDictionary
+            //   {
+            //        {"type","phong-tro" }
+            //   },
+            //   new[] { "HoiTroWebsite.Controllers" });
 
             // menu-trang chủ
             routes.MapRoute("Home", "{type}",
@@ -64,28 +84,13 @@ namespace HoiTroWebsite
                new[] { "HoiTroWebsite.Controllers" });
 
             // phân loại phòng
-            routes.MapRoute("Rooms_Thay", "{type}",
-               new { controller = "HomePage", action = "GetRoomType", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    { "type", "phong-tro" }
-               },
-               new[] { "HoiTroWebsite.Controllers" });
-
-            // hiển thị tất cả phòng thuộc loại đã chọn
-            routes.MapRoute("Rooms_Thay2", "{type}/{meta}",
-               new { controller = "RoomInfo", action = "Index", type = UrlParameter.Optional },
-               constraints: new {type = @"^(phong-tro|ky-tuc-xa|nha-cho-thue)$" },
-               new[] { "HoiTroWebsite.Controllers" });
-
-            // chi tiết phòng
-            routes.MapRoute("RoomDetail", "{type}/{meta}/{id}",
-               new { controller = "RoomInfo", action = "RoomDetail", type = UrlParameter.Optional },
-               new RouteValueDictionary
-               {
-                    {"type","phong-tro" }
-               },
-               new[] { "HoiTroWebsite.Controllers" });
+            //routes.MapRoute("Rooms_Thay", "{type}",
+            //   new { controller = "HomePage", action = "GetRoomType", type = UrlParameter.Optional },
+            //   new RouteValueDictionary
+            //   {
+            //        { "type", "phong-tro" }
+            //   },
+            //   new[] { "HoiTroWebsite.Controllers" });
 
             // contact-menu
             routes.MapRoute("Contact", "{type}",

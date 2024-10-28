@@ -7,7 +7,7 @@
             <a href="@ViewBag.meta/@i.meta">@i.title</a>
         </div>
         <ul class="post-list">
-            @{ Html.RenderAction("GetRoomInfo", "HomePage", new { id = @i.id, metatitle = @ViewBag.meta }); }
+            @{ Html.RenderAction("HomePageGetRoomInfo", "HomePage", new { roomTypeID = @i.id, metatitle = @ViewBag.meta }); }
         </ul>
     </section>
 }

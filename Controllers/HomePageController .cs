@@ -60,22 +60,23 @@ namespace HoiTroWebsite.Controllers
         //phong tro
         public ActionResult GetRoomType()
         {
-            @ViewBag.meta = "phong-tro";
+            ViewBag.meta = "phong-tro";
             var v = from t in _db.RoomTypes
                     where t.hide == true
                     orderby t.order ascending
                     select t;
+
             return PartialView(v.ToList());
         }
 
         // lấy thông tin phòng trọ
-        public ActionResult GetRoomInfo(long id, string metatitle)
+        public ActionResult HomePageGetRoomInfo(long roomTypeID, string metatitle)
         {
             ViewBag.meta = metatitle;
             var v = from n in _db.RoomInfoes
                     join t in _db.RoomTypes on n.roomTypeId equals t.id
                     join r in _db.Accounts on n.accountId equals r.id
-                    where n.hide == true && n.roomTypeId == id
+                    where n.hide == true && n.roomTypeId == roomTypeID
                     orderby n.datebegin descending
                     select new RoomInfoViewModel
                     {

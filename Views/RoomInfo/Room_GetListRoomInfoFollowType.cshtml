@@ -1,0 +1,35 @@
+﻿@model HoiTroWebsite.Models.RoomType
+
+@{
+    ViewBag.Title = Model.title;
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+
+        <!-- danh sách phòng -->
+        <div class="col-8 pr-2">
+            <div class="left-content">
+                <section class="category-section">
+                    <div class="category-title h4">
+                        <a href="javascript:void(0);">@Model.title</a>
+                    </div>
+                    <ul class="post-list">
+                        @{ Html.RenderAction("RoomGetListRoomInfo", "RoomInfo", new { roomTypeID = Model.id, metaTitle = Model.meta }); }
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <!-- phần bên phải -->
+        <div class="col-4 pl-2">
+            <div class="right-content">
+
+                @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+
+            </div>
+        </div>
+
+    </div>
+</div>

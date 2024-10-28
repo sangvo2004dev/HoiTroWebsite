@@ -380,9 +380,9 @@
     <Content Include="Views\Shared\_MyLayout.cshtml" />
     <Content Include="Views\News\getNews.cshtml" />
     <Content Include="Views\Navigation\getMenu.cshtml" />
-    <Content Include="Views\RoomInfo\getInfor.cshtml" />
+    <Content Include="Views\RoomInfo\GetListRoomInfo.cshtml" />
     <Content Include="Views\HomePage\GetNews.cshtml" />
-    <Content Include="Views\HomePage\GetRoomInfo.cshtml" />
+    <Content Include="Views\HomePage\HomePageGetRoomInfo.cshtml" />
     <Content Include="Views\RoomInfo\getRoomType.cshtml" />
     <Content Include="Views\HomePage\RoomDetail.cshtml" />
     <Content Include="Views\News\getNewsType.cshtml" />
@@ -406,6 +406,7 @@
     <Content Include="Views\News\GetNewsFollowType.cshtml" />
     <Content Include="Views\MainPartial\GetLatestRoomList.cshtml" />
     <Content Include="Views\MainPartial\GetSupport.cshtml" />
+    <Content Include="Views\RoomInfo\Room_GetListRoomInfoFollowType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

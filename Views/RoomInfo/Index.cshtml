@@ -1,36 +1,36 @@
 ﻿@{
-    ViewBag.Title = Model.title;
+    ViewBag.Title = "Cho thuê, tìm người ở ghép";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<div class="content">
-    <div class="container">
-        <div class="row">
+@model List<HoiTroWebsite.Models.RoomInfoViewModel>
 
-            <!-- danh sách phòng -->
-            <div class="col-8 pr-2">
-                <div class="left-content">
-                    <section class="category-section">
-                        <div class="category-title h4">
-                            <a href="@ViewBag.meta/@Model.meta">@Model.title</a>
-                        </div>
-                        <ul class="post-list">
-                            @{ Html.RenderAction("GetRoomInfo", "HomePage", new { id = @Model.id, metatitle = "phong-tro" }); }
-                        </ul>
-                    </section>
-                </div>
+<div class="container">
+    <div class="row">
+
+        <!-- danh sách phòng -->
+        <div class="col-8 pr-2">
+            <div class="left-content">
+                <section class="category-section">
+                    <div class="category-title h4">
+                        <a href="javascript:void(0);">Tổng @Model.Count kết quả</a>
+                    </div>
+                    <ul class="post-list">
+                        @{ Html.RenderPartial("GetListRoomInfo", Model); }
+                    </ul>
+                </section>
             </div>
-
-            <!-- phần bên phải -->
-            <div class="col-4 pl-2">
-                <div class="right-content">
-                    @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
-
-                    
-                </div>
-            </div>
-
         </div>
+
+        <!-- phần bên phải -->
+        <div class="col-4 pl-2">
+            <div class="right-content">
+
+                @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+
+            </div>
+        </div>
+
     </div>
 </div>
 

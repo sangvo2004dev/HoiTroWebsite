@@ -6,7 +6,7 @@
         post-id="649687">
         <figure class="post-thumb">
             <a class="clearfix"
-               href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
+               href="@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
                 <img class="img-thumb"
                      src="@i.ImagePath"
                      data-src="@i.ImagePath"
@@ -25,9 +25,9 @@
                 </a>
             </h3>
             <div class="meta-row clearfix">
-                <span class="post-price">@i.RoomInfo.price tr VNĐ/tháng</span><span class="post-acreage">@i.RoomInfo.acreage m²</span>
+                <span class="post-price">@i.RoomInfo.price triệu/tháng</span><span class="post-acreage">@i.RoomInfo.acreage.ToString()m²</span>
                 <span class="post-location">
-                    <a href="">
+                    <a href="Cho thuê">
                         @i.RoomInfo.area
                     </a>
                 </span>

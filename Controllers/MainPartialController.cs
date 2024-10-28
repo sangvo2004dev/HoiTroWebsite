@@ -63,6 +63,7 @@ namespace HoiTroWebsite.Controllers
                     where t.hide == true
                     orderby t.order ascending
                     select t;
+
             return PartialView(v.ToList());
         }
     }

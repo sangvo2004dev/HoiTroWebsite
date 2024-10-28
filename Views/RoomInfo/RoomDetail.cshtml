@@ -5,125 +5,159 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/Scripts/js")
+@*@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/js")*@
 
- @*style="transform: translate3d(-5824px, 0px, 0px); transition-duration: 0ms;"*@
 <div class="container">
-    @*nháp*@
-    <div class="post-images">
-        <div class="images-swiper-container swiper-container-horizontal">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
-                     style="width: 728px;">
-                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
-                         src="~/Content/images/room1.jpg">
-                </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
-                     style="width: 728px;">
-                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
-                         src="~/Content/images/room2.jpg">
-                </div>
+    <div class="row">
+
+        <div class="col-8">
+            <div class="left-content">
+                <article class="the-post">
+                    <div class="post-images">
+                        <div class="images-swiper-container swiper-container-horizontal">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
+                                     style="width: 728px;">
+                                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
+                                         src="~/Content/images/room1.jpg">
+                                </div>
+                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
+                                     style="width: 728px;">
+                                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
+                                         src="~/Content/images/room2.jpg">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-fraction">
+                                <span class="swiper-pagination-current">8</span> /
+                                <span class="swiper-pagination-total">8</span>
+                            </div>
+                            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+                            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div>
+                    </div>
+
+                    @*nháp*@
+
+                    @*Thông tin phòng*@
+                    <header class="page-header">
+                        <h1 class="page-h1">
+                            <span class="star star-5" style="float: left;"></span>
+                            <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</a>
+                        </h1>
+                        <div class="clearfix"></div>
+                        <address class="post-address">@Model.location</address>
+                        <div class="post-attributes">
+                            <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price tr VNĐ/tháng</span></div>
+                            <div class="item acreage"><i></i><span> @Model.acreage<sup>2</sup></span></div>
+                            <div class="item published"><i></i><span>@Model.datebegin</span></div>
+                            <div class="item hashtag"><i></i><span>@Model.id</span></div>
+                        </div>
+                    </header>
+
+                    @*thông tin mô tả*@
+                    <section class="section post-main-content">
+                        <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
+                        <div class="section-content">
+                            <p>@Html.DisplayFor(modelItem => Model.detail_description)</p>
+                        </div>
+                    </section>
+                    @*đặc điểm đăng tin*@
+                    <section class="section post-overview">
+                        <div class="section-header">
+                            <h3 class="section-title">Đặc điểm tin đăng</h3>
+                        </div>
+                        <div class="section-content">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="name">Mã tin:</td>
+                                        <td>@Model.id</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Khu vực</td>
+                                        <td> @Model.area </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Đối tượng thuê:</td>
+                                        <td>@Model.tenant</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Ngày đăng:</td>
+                                        <td><time title="@Model.datebegin">@Model.datebegin</time></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    @*thông tin liên hệ*@
+                    <section class="section post-contact">
+                        <div class="section-header">
+                            <h3 class="section-title">Thông tin liên hệ</h3>
+                        </div>
+                        <div class="section-content">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="name">Liên hệ:</td>
+                                        <td> @Model.Account.name </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Điện thoại:</td>
+                                        <td> @Model.Account.phoneNum </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="name">Zalo</td>
+                                        <td> @Model.Account.zaloNum </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    @*bản đồ*@
+                    <section class="section post-map">
+                        <div class="section-header">
+                            <h3 class="section-title">Bản đồ</h3>
+                            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
+                        </div>
+                        <div class="section-content">
+                            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
+                                <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </article>
+
             </div>
-            <div class="swiper-pagination swiper-pagination-fraction">
-                <span class="swiper-pagination-current">8</span> /
-                <span class="swiper-pagination-total">8</span>
-            </div>
-            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
-            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
+
+        <div class="col-4">
+            <div class="right-content">
+
+                <div class="author-aside">
+                    <figure class="author-avatar"><img src="https://phongtro123.com/images/default-user.png"></figure><span class="author-name">Pearl</span>
+                    <div style="min-height: 16px; margin-bottom: 10px;">
+                        <div class="js-author-online-status author-online-status offline" author_id="146225">
+                            <i></i><span>
+                                Hoạt động vài
+                                giờ trước
+                            </span>
+                        </div>
+                    </div><a class="btn author-phone" rel="nofollow" href="tel:0914398413"><i></i> 0914398413</a><a class="btn author-zalo" target="_blank" rel="nofollow" href="https://zalo.me/0914398413">
+                        <i></i> Nhắn
+                        Zalo
+                    </a><span class="btn post-save js-btn-save" data-post-id="668196"><i></i> Yêu thích</span>
+                </div>
+
+                @{
+                    Html.RenderAction("GetMiniNews", "MainPartial");
+                    Html.RenderAction("GetLatestRoomList", "MainPartial");
+                }
+            </div>
+        </div>
+
     </div>
-
-    @*nháp*@
-    
-    @*Thông tin phòng*@
-    <header class="page-header">
-        <h1 class="page-h1">
-            <span class="star star-5" style="float: left;"></span>
-            <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</a>
-        </h1>
-        <div class="clearfix"></div>
-        <address class="post-address">@Model.location</address>
-        <div class="post-attributes">
-            <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price tr VNĐ/tháng</span></div>
-            <div class="item acreage"><i></i><span> @Model.acreage<sup>2</sup></span></div>
-            <div class="item published"><i></i><span>@Model.datebegin</span></div>
-            <div class="item hashtag"><i></i><span>@Model.id</span></div>
-        </div>
-    </header>
-
-    @*thông tin mô tả*@
-    <section class="section post-main-content">
-        <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
-        <div class="section-content">
-            <p>@Html.DisplayFor(modelItem => Model.detail_description)</p>
-        </div>
-    </section>
-    @*đặc điểm đăng tin*@
-    <section class="section post-overview">
-        <div class="section-header">
-            <h3 class="section-title">Đặc điểm tin đăng</h3>
-        </div>
-        <div class="section-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td class="name">Mã tin:</td>
-                        <td>@Model.id</td>
-                    </tr>
-                    <tr>
-                        <td class="name">Khu vực</td>
-                        <td> @Model.area </td>
-                    </tr>
-                    <tr>
-                        <td class="name">Đối tượng thuê:</td>
-                        <td>@Model.tenant</td>
-                    </tr>
-                    <tr>
-                        <td class="name">Ngày đăng:</td>
-                        <td><time title="@Model.datebegin">@Model.datebegin</time></td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </section>
-    @*thông tin liên hệ*@
-    <section class="section post-contact">
-        <div class="section-header">
-            <h3 class="section-title">Thông tin liên hệ</h3>
-        </div>
-        <div class="section-content">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td class="name">Liên hệ:</td>
-                        <td> @Model.Account.name </td>
-                    </tr>
-                    <tr>
-                        <td class="name">Điện thoại:</td>
-                        <td> @Model.Account.phoneNum </td>
-                    </tr>
-                    <tr>
-                        <td class="name">Zalo</td>
-                        <td> @Model.Account.zaloNum </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    @*bản đồ*@
-    <section class="section post-map">
-        <div class="section-header">
-            <h3 class="section-title">Bản đồ</h3>
-            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
-        </div>
-        <div class="section-content">
-            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
-                </div>
-
-        </div>
-    </section>
-
 </div>
