@@ -1,12 +1,19 @@
 ﻿@model List<HoiTroWebsite.Models.RoomInfoViewModel>
 
+@{ 
+    if (ViewBag.meta is null)
+    {
+        ViewBag.meta = "cho-thue";
+    }
+}
+
 @foreach (var i in Model)
 {
     <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
         post-id="649687">
         <figure class="post-thumb">
            <a class="clearfix"
-               href="@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
+               href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
                 <img class="img-thumb"
                      src="@i.ImagePath"
                      data-src="@i.ImagePath"
