@@ -44,7 +44,6 @@ namespace HoiTroWebsite.Controllers
                 return PartialView(v.ToList());
             }            
         }
-
         // loại phòng trọ
         public ActionResult GetRoomType()
         {
@@ -56,7 +55,6 @@ namespace HoiTroWebsite.Controllers
 
             return PartialView(v.ToList());
         }
-
         // lấy thông tin phòng trọ
         public ActionResult HomePageGetRoomInfo(long roomTypeID, string metatitle)
         {
@@ -77,7 +75,6 @@ namespace HoiTroWebsite.Controllers
                     };
             return PartialView(v.ToList());
         }
-
         //contact
         public ActionResult getContact()
         {
