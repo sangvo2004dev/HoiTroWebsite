@@ -15,10 +15,28 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         private HoiTroEntities db = new HoiTroEntities();
 
         // GET: Admin/RoomInfoes
-        public ActionResult Index()
+        public ActionResult Index(long? id = null)
         {
-            var roomInfoes = db.RoomInfoes.Include(r => r.RoomType).Include(r => r.Account);
-            return View(roomInfoes.ToList());
+            //var roomInfoes = db.RoomInfoes.Include(r => r.RoomType).Include(r => r.Account);
+            //return View(roomInfoes.ToList());
+            getRoomType(id);
+            return View();
+        }
+
+        public void getRoomType(long? selectedId = null)
+        {
+            ViewBag.RoomType = new SelectList(db.RoomTypes.Where(x => x.hide == true).OrderBy(x => x.order), "id", "title", selectedId);
+        }
+
+        public ActionResult getRoom(long? id)
+        {
+            if (id == null)
+            {
+                var v = db.RoomInfoes.OrderBy(x => x.order).ToList();
+                return PartialView(v);
+            }
+            var m = db.RoomInfoes.Where(x => x.roomTypeId == id).OrderBy(x => x.order).ToList();
+            return PartialView(m);
         }
 
         // GET: Admin/RoomInfoes/Details/5

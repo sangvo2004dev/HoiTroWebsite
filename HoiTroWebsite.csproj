@@ -149,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Help\Funtions.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1594,6 +1595,7 @@
     <Content Include="Areas\Admin\Views\RoomInfoes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomInfoes\getRoomInfo.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
