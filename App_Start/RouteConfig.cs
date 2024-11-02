@@ -63,7 +63,7 @@ namespace HoiTroWebsite
 
             // đăng ký
             routes.MapRoute("Register", "{type}",
-               new { controller = "Button", action = "getRegister", type = UrlParameter.Optional },
+               new { controller = "User", action = "Register", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
                     {"type","dang-ky" }
