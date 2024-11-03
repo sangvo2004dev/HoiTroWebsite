@@ -72,7 +72,7 @@ namespace HoiTroWebsite
 
             // đăng nhập
             routes.MapRoute("Login", "{type}",
-               new { controller = "Button", action = "getLognIn", type = UrlParameter.Optional },
+               new { controller = "User", action = "Login", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
                     {"type","dang-nhap" }

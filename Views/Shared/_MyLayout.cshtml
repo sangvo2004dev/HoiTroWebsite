@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using HoiTroWebsite.Models
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- basic -->
@@ -20,7 +22,7 @@
     @*<link rel="stylesheet" href="~/Content/css/style_manaAcc.css">*@
     @*<link rel="stylesheet" href="~/Content/css/style_room.css">*@
     @*<link rel="stylesheet" href="~/Content/css/style_dangtin.css">*@
-    <link rel="stylesheet" href="~/Content/css/style_signinsignout.css" />
+    @*<link rel="stylesheet" href="~/Content/css/style_signinsignout.css" />*@
     <!-- Responsive-->
     <link rel="stylesheet" href="~/Content/css/responsive.css" />
     <!-- fevicon -->
@@ -29,6 +31,10 @@
     <link rel="stylesheet" href="~/Content/css/jquery.mCustomScrollbar.min.css" />
     <!-- font-awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- jquery -->
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <!-- body -->
 <body class="main-layout">
@@ -50,12 +56,23 @@
             </div>
         </div>
         <div class="user-welcome clearfix js-reload-html-header mr-5" style="float: right">
-            <a rel="nofollow" class="btn" href="javascript:void(0)"><i class="icon heart size-18"></i> Yêu thích <span class="number-count js-save-post-total hidden" style="display: none;">1</span></a>
-            <a rel="nofollow" class="btn" href="/dang-nhap"><i class="icon register"></i> Đăng nhập</a>
-            <a rel="nofollow" class="btn" href="/dang-ky"><i class="icon login"></i> Đăng ký</a>
-            @*<a rel="nofollow" class="btn" href="/quan-ly-tin-dang/1"><i class="icon login"></i>Tài khoản người dùng</a>*@
-            <!-- chưa xử lí đăng nhập nên để id account mặc định là 1 -->
-            <a rel="nofollow" class="btn btn-add-post" href="dang-tin-moi"><i></i>Đăng tin miễn phí</a>
+            @{
+                if (Session["User"] != null)
+                {
+                    Account user = (Account)Session["User"];
+                    <span>Xin chào @user.name</span>
+                    <a rel="nofollow" class="btn" href="javascript:void(0)"><i class="icon heart size-18"></i> Yêu thích <span class="number-count js-save-post-total hidden" style="display: none;">1</span></a>
+                    <a rel="nofollow" class="btn" href="/quan-ly-tin-dang/1"><i class="icon login"></i>Tài khoản người dùng</a>
+                    <!-- chưa xử lí đăng nhập nên để id account mặc định là 1 -->
+                    <a rel="nofollow" class="btn btn-add-post" href="dang-tin-moi"><i></i>Đăng tin miễn phí</a>
+                }
+                else
+                {
+                    <a rel="nofollow" class="btn" href="/dang-nhap"><i class="icon register"></i> Đăng nhập</a>
+                    <a rel="nofollow" class="btn" href="/dang-ky"><i class="icon login"></i> Đăng ký</a>
+                    <a rel="nofollow" class="btn btn-add-post" href="dang-tin-moi"><i></i>Đăng tin miễn phí</a>
+                }
+            }
         </div>
     </div>
     <!-- end logo và đăng ký, đăng nhập -->
@@ -66,7 +83,7 @@
     <!-- kết thúc navigation bar -->
 
     <div class="content">
-        @RenderBody();
+        @RenderBody()
     </div>
 
     <!-- phần hỗ trợ -->
