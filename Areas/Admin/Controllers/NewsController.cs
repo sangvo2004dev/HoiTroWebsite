@@ -69,7 +69,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     }
                     else
                     {
-                        news.imagePath = "logo.png";
+                        news.imagePath = "~/Content/images/logo.png";
                     }
                     news.datebegin =  Convert.ToDateTime(DateTime.Now.ToShortDateString());
                     //news.meta = Functions.ConvertTopUpSign(news.title);

@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayName("Tiêu đề")
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.brief_description)
+            @Html.DisplayName("Mô tả")
         </dt>
 
         <dd>
@@ -28,15 +28,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.detail_description)
+            @Html.DisplayName("Chi tiết")
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.detail_description)
+            @Html.Raw(Model.detail_description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.price)
+            @Html.DisplayName("Giá phòng")
         </dt>
 
         <dd>
@@ -44,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.acreage)
+            @Html.DisplayName("Diện tích")
         </dt>
 
         <dd>
@@ -52,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.area)
+            @Html.DisplayName("Khu vực")
         </dt>
 
         <dd>
@@ -60,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.location)
+            @Html.DisplayName("Địa chỉ")
         </dt>
 
         <dd>
@@ -68,7 +69,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tenant)
+            @Html.DisplayName("Đối tượng cho thuê")
         </dt>
 
         <dd>
@@ -84,7 +85,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hide)
+            @Html.DisplayName("Hiển thị")
         </dt>
 
         <dd>
@@ -92,7 +93,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.order)
+            @Html.DisplayName("Sắp xếp")
         </dt>
 
         <dd>
@@ -100,7 +101,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.datebegin)
+            @Html.DisplayName("Ngày đăng")
         </dt>
 
         <dd>
@@ -108,7 +109,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RoomType.title)
+            @Html.DisplayName("Loại phòng")
         </dt>
 
         <dd>
@@ -116,7 +117,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Account.name)
+            @Html.DisplayName("Người đăng")
         </dt>
 
         <dd>

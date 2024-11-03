@@ -1595,7 +1595,7 @@
     <Content Include="Areas\Admin\Views\RoomInfoes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\RoomInfoes\getRoomInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomInfoes\getRoom.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

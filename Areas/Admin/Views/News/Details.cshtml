@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayName("Tiêu đề")
         </dt>
 
         <dd>
@@ -20,15 +20,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.imagePath)
+            @Html.DisplayName("Ảnh đại diện")
         </dt>
 
         <dd>
-            <img src="@Model.imagePath" width="100px" />
+            <div class="col-md-4">
+                <img src="@Model.imagePath" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
+            </div>
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.author)
+            @Html.DisplayName("Tác giả")
         </dt>
 
         <dd>
@@ -44,7 +46,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hide)
+            @Html.DisplayName("Hiển thị")
         </dt>
 
         <dd>
@@ -52,7 +54,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.order)
+            @Html.DisplayName("Sắp xếp")
         </dt>
 
         <dd>
@@ -60,7 +62,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.datebegin)
+            @Html.DisplayName("Ngày đăng")
         </dt>
 
         <dd>
@@ -68,7 +70,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.brief_description)
+            @Html.DisplayName("Mô tả")
         </dt>
 
         <dd>
@@ -76,7 +78,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.detail_description)
+            @Html.DisplayName("Chi tiết")
         </dt>
 
         <dd>
@@ -84,7 +86,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NewsType.title)
+            @Html.DisplayName("Loại tin tức")
         </dt>
 
         <dd>

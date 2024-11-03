@@ -8,16 +8,16 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>RoomInfo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tiêu đề", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.brief_description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.brief_description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.brief_description, "", new { @class = "text-danger" })
@@ -33,15 +33,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.detail_description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Chi tiết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.detail_description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.detail_description)
                 @Html.ValidationMessageFor(model => model.detail_description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Giá phòng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.acreage, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Diện tích", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.acreage, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.acreage, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.area, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Khu vực", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.area, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.location, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Địa chỉ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tenant, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Đối tượng cho thuê", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tenant, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tenant, "", new { @class = "text-danger" })
@@ -89,17 +89,20 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.hide, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.hide)
+                    @{
+                        bool hide = true;
+                    }
+                    @Html.CheckBoxFor(model => hide, new { style = "margin:-1px 5px" })
                     @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.order, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
@@ -107,25 +110,25 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.datebegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.roomTypeId, "roomTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Loại phòng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("roomTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.roomTypeId, (SelectList)ViewBag.RoomType,new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.roomTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.accountId, "accountId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Người đăng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("accountId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.accountId, (SelectList)ViewBag.Account, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.accountId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -142,6 +145,40 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+@section _Footer
+{
+    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        var editor = CKEDITOR.replace("detail_description");
+        var editor = CKEDITOR.replace("detail_description", { height: '600px' });
+        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
+    </script>
+    <script>
+        $(function () {
+            $("#title").keyup(function () {
+                var text = $.trim($(this).val().toLowerCase());
+                var text_create;
+
+                // Thay thế tất cả các ký tự có dấu thành không dấu
+                text_create = text
+                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
+                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
+                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
+                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
+                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
+                    .replace(/đ/g, "d")
+                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
+                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
+                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
+
+                $('#meta').val(text_create);
+            }).keyup();
+        });
+    </script>
 }
