@@ -1,0 +1,115 @@
+﻿@model HoiTroWebsite.Models.Account
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên người dùng")
+        </dt>
+
+        <dt>
+            @Html.DisplayName("Ảnh đại diện")
+        </dt>
+
+        <dd>
+            <div class="col-md-4">
+                <img src="@Model.avtImage" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
+            </div>
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Số điện thoại")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Thư điện tử")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Số zalo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zaloNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Liên kết FaceBook")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FBlink)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayName("Mật khẩu")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.meta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hiển thị")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hide)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sắp xếp")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày tạo tài khoản")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
