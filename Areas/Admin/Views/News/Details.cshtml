@@ -1,0 +1,99 @@
+﻿@model HoiTroWebsite.Models.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.meta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hide)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datebegin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.brief_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.brief_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.detail_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.detail_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsType.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewsType.title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

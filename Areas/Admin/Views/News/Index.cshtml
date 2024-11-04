@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HoiTroWebsite.Models.News>
+@using HoiTroWebsite.Models
+
+@{
+    ViewBag.Title = "Tin tức";
+}
+
+<h2>Quản lý tin tức</h2>
+
+@*@Html.DropDownList("testName", new SelectList( new[] { new NewsType { id = 1, title = "sang" }, new NewsType { id = 2, title = "sang-ba" } }, "id", "title", 0), "-- Tat ca ---")*@
+@Html.DropDownList("NewTypesID", null, "-- Tất cả --")
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.meta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hide)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datebegin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brief_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detail_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsType.title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.meta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hide)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datebegin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.brief_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detail_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsType.title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>*@
