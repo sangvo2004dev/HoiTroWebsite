@@ -158,9 +158,10 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                         <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p>
-                        <div class="form-group">
-                            <div for="browse_photos" class="browse_photos js-dropzone dz-clickable"><i class="icon-upload-image"></i><span class="js-btn-chon-anh">Thêm Ảnh</span></div>
-                        </div>
+                        
+                        <input type="file" id="photos-dropzone" multiple/>
+                        <img src="" id="photo-preview"/>
+
                         <div class="list_photos row dropzone-previews" id="list-photos-dropzone-previews"></div>
                         <div id="tpl" style="display:none">
                             <div class="photo_item col-md-2 col-3 js-photo-manual">
@@ -173,7 +174,6 @@
                                 <input name="" value="" type="hidden">
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="form-group row mt-5">

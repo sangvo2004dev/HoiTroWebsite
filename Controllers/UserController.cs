@@ -79,5 +79,10 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
+        public ActionResult PostRoom()
+        {
+            return View();
+        }
+
     }
 }
