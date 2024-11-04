@@ -35,5 +35,6 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<SubMenu> SubMenus { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Mentor> Mentors { get; set; }
+        public virtual DbSet<RoomImg> RoomImgs { get; set; }
     }
 }

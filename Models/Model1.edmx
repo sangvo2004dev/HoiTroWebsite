@@ -105,6 +105,20 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="RoomImgs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postRoomId" Type="int" Nullable="false" />
+          <Property Name="fileName" Type="varchar" MaxLength="100" />
+          <Property Name="folder" Type="varchar" MaxLength="100" />
+          <Property Name="serverFolder" Type="varchar" MaxLength="100" />
+          <Property Name="meta" Type="varchar" MaxLength="255" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
         <EntityType Name="RoomInfo">
           <Key>
             <PropertyRef Name="id" />
@@ -152,7 +166,7 @@
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="menuId" Type="int" />
         </EntityType>
-        <Association Name="FK__News__newsTypeId__3CA9F2BB">
+        <Association Name="FK__News__newsTypeId__37703C52">
           <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -166,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImage__refer__4356F04A">
+        <Association Name="FK__RoomImage__refer__3E1D39E1">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -180,7 +194,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__accoun__37E53D9E">
+        <Association Name="FK__RoomImgs__datebe__531856C7">
+          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1" />
+          <End Role="RoomImgs" Type="Self.RoomImgs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomImgs">
+              <PropertyRef Name="postRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomInfo__accoun__32AB8735">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -194,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__roomTy__36F11965">
+        <Association Name="FK__RoomInfo__roomTy__31B762FC">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -208,7 +234,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubMenu__menuId__30441BD6">
+        <Association Name="FK__SubMenu__menuId__2B0A656D">
           <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -230,26 +256,31 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsType" EntityType="Self.NewsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomImages" EntityType="Self.RoomImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomImgs" EntityType="Self.RoomImgs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__News__newsTypeId__3CA9F2BB" Association="Self.FK__News__newsTypeId__3CA9F2BB">
+          <AssociationSet Name="FK__News__newsTypeId__37703C52" Association="Self.FK__News__newsTypeId__37703C52">
             <End Role="NewsType" EntitySet="NewsType" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__4356F04A" Association="Self.FK__RoomImage__refer__4356F04A">
+          <AssociationSet Name="FK__RoomImage__refer__3E1D39E1" Association="Self.FK__RoomImage__refer__3E1D39E1">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__accoun__37E53D9E" Association="Self.FK__RoomInfo__accoun__37E53D9E">
+          <AssociationSet Name="FK__RoomImgs__datebe__531856C7" Association="Self.FK__RoomImgs__datebe__531856C7">
+            <End Role="RoomInfo" EntitySet="RoomInfo" />
+            <End Role="RoomImgs" EntitySet="RoomImgs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomInfo__accoun__32AB8735" Association="Self.FK__RoomInfo__accoun__32AB8735">
             <End Role="Account" EntitySet="Account" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__36F11965" Association="Self.FK__RoomInfo__roomTy__36F11965">
+          <AssociationSet Name="FK__RoomInfo__roomTy__31B762FC" Association="Self.FK__RoomInfo__roomTy__31B762FC">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubMenu__menuId__30441BD6" Association="Self.FK__SubMenu__menuId__30441BD6">
+          <AssociationSet Name="FK__SubMenu__menuId__2B0A656D" Association="Self.FK__SubMenu__menuId__2B0A656D">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="SubMenu" EntitySet="SubMenu" />
           </AssociationSet>
@@ -303,6 +334,11 @@
             <End Role="RoomInfo" EntitySet="RoomInfoes" />
           </AssociationSet>
           <EntitySet Name="Mentors" EntityType="HoiTroModel.Mentor" />
+          <EntitySet Name="RoomImgs" EntityType="HoiTroModel.RoomImg" />
+          <AssociationSet Name="FK__RoomImgs__datebe__531856C7" Association="HoiTroModel.FK__RoomImgs__datebe__531856C7">
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
+            <End Role="RoomImg" EntitySet="RoomImgs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contact">
           <Key>
@@ -396,6 +432,7 @@
           <NavigationProperty Name="RoomType" Relationship="HoiTroModel.FK__RoomInfo__roomTy__69279377" FromRole="RoomInfo" ToRole="RoomType" />
           <Property Name="accountId" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" FromRole="RoomInfo" ToRole="Account" />
+          <NavigationProperty Name="RoomImgs" Relationship="HoiTroModel.FK__RoomImgs__datebe__531856C7" FromRole="RoomInfo" ToRole="RoomImg" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -514,6 +551,33 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="RoomImg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postRoomId" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="folder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="serverFolder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="meta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RoomInfo" Relationship="HoiTroModel.FK__RoomImgs__datebe__531856C7" FromRole="RoomImg" ToRole="RoomInfo" />
+        </EntityType>
+        <Association Name="FK__RoomImgs__datebe__531856C7">
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="1" />
+          <End Type="HoiTroModel.RoomImg" Role="RoomImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomImg">
+              <PropertyRef Name="postRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -670,6 +734,21 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="avtImage" ColumnName="avtImage" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomImgs">
+            <EntityTypeMapping TypeName="HoiTroModel.RoomImg">
+              <MappingFragment StoreEntitySet="RoomImgs">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="serverFolder" ColumnName="serverFolder" />
+                <ScalarProperty Name="folder" ColumnName="folder" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="postRoomId" ColumnName="postRoomId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

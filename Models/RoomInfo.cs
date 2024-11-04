@@ -18,6 +18,7 @@ namespace HoiTroWebsite.Models
         public RoomInfo()
         {
             this.RoomImages = new HashSet<RoomImage>();
+            this.RoomImgs = new HashSet<RoomImg>();
         }
     
         public int id { get; set; }
@@ -40,5 +41,7 @@ namespace HoiTroWebsite.Models
         public virtual ICollection<RoomImage> RoomImages { get; set; }
         public virtual RoomType RoomType { get; set; }
         public virtual Account Account { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomImg> RoomImgs { get; set; }
     }
 }
