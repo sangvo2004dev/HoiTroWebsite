@@ -63,6 +63,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     {
                         //file =  Guid = Guid.newGuid().toString() + img.FileName;
                         filename = img.FileName;
+                        
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                         img.SaveAs(path);
                         news.imagePath = filename; //Lưu ý
@@ -115,8 +116,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 if (img != null)
                 {
                     // filename = Guid.NewGuid().ToString() + img.FileName;
-                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
-                    path = Path.Combine(Server.MapPath("~Content/images"), filename);
+                    //filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
+                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                    path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
                     temp.imagePath = filename; // Lưu ý
                 }

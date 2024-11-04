@@ -107,7 +107,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if(img != null)
                 {
-                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
+                    //filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
+                    filename = Path.GetFileName(img.FileName);
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
                     temp.avtImage = filename;
