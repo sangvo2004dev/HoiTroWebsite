@@ -42,26 +42,27 @@ function loadWard(district_code) {
 }
 
 // sự kiện chọn tỉnh
-province_select.addEventListener('change', function(e) {
+province_select.addEventListener('change', function (e) {
+    district_select.options.length = 1; // xóa danh sách value
+    ward_select.options.length = 1;
     if (this.selectedIndex == 0) {
-        district_select.options.length = 1 // xóa danh sách value
+        return;
     }
     else {
         let selected_option = this.options[this.selectedIndex];
         // console.log(selected_option.getAttribute('code'));
-        district_select.options.length = 1 // xóa danh sách value
         loadDistric(selected_option.getAttribute('code'));
     }
 });
 
 // sự kiện chọn quận
-district_select.addEventListener('change', function(e) {
+district_select.addEventListener('change', function (e) {
+    ward_select.options.length = 1; // xóa danh sách value
     if (this.selectedIndex == 0) {
-        ward_select.options.length = 1 // xóa danh sách value
+        return;
     }
     else {
         let selected_option = this.options[this.selectedIndex];
-        ward_select.options.length = 1 // xóa danh sách value
         loadWard(selected_option.getAttribute('code'));
     }
 });

@@ -195,6 +195,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModels\LoginVM.cs" />
+    <Compile Include="UserModels\PostRoomVM.cs" />
     <Compile Include="UserModels\PostVM.cs" />
     <Compile Include="UserModels\RegisterVM.cs" />
   </ItemGroup>
@@ -580,9 +581,10 @@
     <Content Include="Views\User\PostRoom.cshtml" />
     <Content Include="Views\User\EditPostRoom.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\ListImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\user\10\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Data\10\" />
   </ItemGroup>

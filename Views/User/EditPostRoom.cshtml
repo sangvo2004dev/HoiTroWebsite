@@ -1,39 +1,207 @@
 ﻿@model HoiTroWebsite.Models.RoomInfo
 
-@using (Html.BeginForm())
+@section header
+{
+    <!-- jquery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+}
+
+@using (Html.BeginForm("EditPostRoom", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Bai Post</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Bai Post</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.detail_description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.detail_description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="file" id="img-files-drop" multiple />
+        <input type="file" id="imgFiles" name="imgFiles" hidden multiple />
+        <input type="file" id="testa" name="testa" />
+        <input type="text" id="titlea" name="titlea" />
+        <div id="list-photos-dropzone-previews">
+            @{
+                Html.RenderPartial("ListImg", Model.RoomImgs);
+            }
+        </div>
+
+        @*@foreach (var img in Model.RoomImgs)
+            {
+                <img src="@img.serverFolder@img.folder@img.fileName" />
+            }*@
+
+        @*<img src="~/Content/images/about.png" />*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
+}
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.detail_description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.detail_description, "", new { @class = "text-danger" })
-        </div>
-    </div>
+@section footer
+{
+    <script>
+        const listPhotoPreview = document.getElementById('list-photos-dropzone-previews');
+        const imgFilesDrop = document.getElementById('img-files-drop');
+        const dictImg = {} // ảnh và file
 
-    @foreach (var img in Model.RoomImgs)
-    {
-        <img src="@img.serverFolder@img.folder@img.fileName" />
-    }
-    <img src="~/Data/10/"
+        // hàm tạo elemnt
+        const createElement = function (type, props) {
+            const $e = document.createElement(type);
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+            for (var prop in props) {
+                $e.setAttribute(prop, props[prop]);
+            }
+
+            return $e;
+        }
+
+        function createPhotoItem(srcEncoded, fileName, file) {
+            const photoItem = $('<div class="photo_item col-md-2 col-3">');
+
+            // Create the photo element with the encoded source
+            const photo = $('<div class="photo">').append($('<img src="' + srcEncoded + '">'));
+
+            // Create the progress bar element (assuming you don't need to modify it)
+            const progress = $('<div class="dz-progress"><span class="dz-upload"></span></div>');
+
+            // Create the bottom section with delete button and hidden input
+            const bottom = $('<div class="bottom clearfix">');
+            const deleteButton = $('<span class="photo_delete" data-dz-remove="">')
+                .append($(`<svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                </path>
+                                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                            </svg>`)) // SVG code for trash icon
+                .append(' Xóa'); // Text for delete button
+            const hiddenInput = createElement('input', { value: fileName, type: 'hidden', 'data-order': file.lastModified });
+            hiddenInput.files = new DataTransfer().items.add(file).files;
+
+            // Append all elements to the photo item
+            photoItem.append(photo);
+            photoItem.append(progress);
+            bottom.append(deleteButton);
+            bottom.append(hiddenInput);
+            photoItem.append(bottom);
+
+            // You can now use the photoItem element as needed
+            // (e.g., append it to a container)
+
+            return photoItem;
+        }
+
+        // sự kiện khi chon file
+        imgFilesDrop.addEventListener('change', function () {
+            const files = this.files;
+            // console.log(this.files);
+
+            Array.from(files).forEach((file) => {
+
+                const fileName = file.name;
+                const type = file.type;
+
+                if (!file) return;
+
+                console.log(file);
+                dictImg[file.lastModified] = file;
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                reader.onload = function (event) {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = event.target.result;
+                    // console.log(event.target);
+
+                    imgElement.onload = function (e) {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        // console.log(e.target);
+
+                        // giảm kích thước ảnh thành 120 x 120
+                        ctx.drawImage(e.target, 0, 0, 120, 120);
+
+                        // chuyển thành base64 và giảm chất lượng con 0.3
+                        const srcEncoded = ctx.canvas.toDataURL(type, 0.5);
+
+                        $(listPhotoPreview).append(createPhotoItem(srcEncoded, fileName, file));
+                    };
+                };
+            });
+        });
+
+        // Láy thứ tự ảnh
+        let imgOrder = () => {
+            let order = []
+            listPhotoPreview.querySelectorAll('input').forEach(i => {
+                order.push(i.getAttribute('data-order'));
+            });
+
+            return order;
+        }
+
+        // drag and drop
+        const dropZone = document.getElementById('test-drop-zone');
+        $(document).re
+        $('#list-photos-dropzone-previews').sortable({
+            helper: 'original',
+            cursor: 'move',
+        });
+
+        // tạo Đối tượng File từ ảnh đã load từ server
+        const imgOrderTemp = imgOrder();
+        listPhotoPreview.querySelectorAll('img').forEach((img, i = 0) => {
+            fetch(img.src)
+                .then(response => response.blob())
+                .then(blob => {
+                    // Tạo đối tượng File từ blob
+                    const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+
+                    // Sử dụng file như bình thường
+                    dictImg[imgOrderTemp[i]] = file;
+                    i++;
+                    console.log(file);
+                });
+        });
+
+        // trước khi post cho server
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault(); // ngăn post lên server
+
+            // tao list file để gán vào imgFiles.files
+            const dataT = new DataTransfer();
+            imgOrder().forEach((i) => {
+                dataT.items.add(dictImg[i]);
+            });
+
+            //console.log(dataT);
+            document.querySelector('#imgFiles').files = dataT.files;
+
+            //document.querySelector('#imgFiles').files = dataT.files;
+
+            e.target.submit();
+        });
+    </script>
 }
