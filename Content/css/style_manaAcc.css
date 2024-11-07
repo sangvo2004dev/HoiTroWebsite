@@ -85,36 +85,7 @@
         text-overflow: ellipsis;
         overflow: hidden;
     }
-.nav {
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
-.nav-sidebar {
-    margin-right: -21px;
-    margin-bottom: 15px;
-    margin-left: -20px;
-    padding: 0 10px;
-}
-.nav-item {
-    margin-bottom: -$nav-tabs-border-width;
-}
-.nav-item {
-    flex-basis: 0;
-    flex-grow: 1;
-    text-align: center;
-}
-.nav-link {
-    display: block;
-    padding: .5rem 1rem;
-}
-.navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0.75rem;
-    padding-right: 1rem;
-    color: #fff;
-}
+
 .feather {
     width: 16px;
     height: 16px;
@@ -579,4 +550,29 @@ button {
     margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.mb-2, .my-2 {
+    margin-bottom: .5rem !important;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-group-lg > .btn, .btn-lg {
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 }

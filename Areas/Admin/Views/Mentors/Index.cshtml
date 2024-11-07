@@ -1,6 +1,5 @@
 ﻿@using HoiTroWebsite.Help
-
-@model IEnumerable<HoiTroWebsite.Models.News>
+@model IEnumerable<HoiTroWebsite.Models.Mentor>
 
 @{
     ViewBag.Title = "Index";
@@ -19,12 +18,12 @@
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Quản lý Tin tức
+            Quản lý Mentors
         </div>
         <div class="panel-body">
             <div class="bs-example" style="text-align:right; padding-bottom:10px;">
                 <div class="btn-group">
-                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create New", "Create", "News", new { }, new { @class = "btn btn-primary" })
+                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create New", "Create", "Mentors", new { }, new { @class = "btn btn-primary" })
                 </div>
                 <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
@@ -57,34 +56,37 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.title)
+                                        @Html.DisplayName("Tên người hướng dẫn")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.author)
+                                        @Html.DisplayName("Ảnh đại diện")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Thư điện tử")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Số điện thoại")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Liên kết FaceBook")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Số zalo")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Vai trò hỗ trợ")
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.meta)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.hide)
+                                        @Html.DisplayName("Hiển thị")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.order)
+                                        @Html.DisplayName("Sắp xếp")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.datebegin)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.brief_description)
-                                    </th>
-                                    @*<th>
-                                    @Html.DisplayNameFor(model => model.detail_description)
-                                </th>*@
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.imagePath)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.NewsType.title)
+                                        @Html.DisplayName("Ngày đăng")
                                     </th>
                                     <th></th>
                                 </tr>
@@ -93,10 +95,25 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.title)
+                                            @Html.DisplayFor(modelItem => item.name)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.author)
+                                            @Html.DisplayFor(modelItem => item.avtImage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.phoneNum)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FBlink)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.zaloNum)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.supportTask)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.meta)
@@ -109,18 +126,6 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.datebegin)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.brief_description)
-                                        </td>
-                                        @*<td>
-                                        @Html.Raw(item.detail_description)
-                                    </td>*@
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.imagePath)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NewsType.title)
                                         </td>
                                         <td>
                                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

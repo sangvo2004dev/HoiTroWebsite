@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Core.Common.EntitySql;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,46 +11,44 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
-    public class NewsController : Controller
+    public class MentorsController : Controller
     {
         private HoiTroEntities db = new HoiTroEntities();
 
-        // GET: Admin/News
+        // GET: Admin/Mentors
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.NewsType);
-            return View(news.ToList());
+            return View(db.Mentors.ToList());
         }
 
-        // GET: Admin/News/Details/5
+        // GET: Admin/Mentors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Mentor mentor = db.Mentors.Find(id);
+            if (mentor == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(mentor);
         }
 
-        // GET: Admin/News/Create
+        // GET: Admin/Mentors/Create
         public ActionResult Create()
         {
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title");
             return View();
         }
 
-        // POST: Admin/News/Create
+        // POST: Admin/Mentors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "id,name,avtImage,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {
@@ -66,50 +63,47 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                         img.SaveAs(path);
-                        news.imagePath = filename; //Lưu ý
+                        mentor.avtImage = filename; //Lưu ý
                     }
                     else
                     {
-                        news.imagePath = "logo.png";
+                        mentor.avtImage = "logo.png";
                     }
-                    news.datebegin =  Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                    //news.meta = Functions.ConvertTopUpSign(news.title);
-                    db.News.Add(news);
+                    db.Mentors.Add(mentor);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-            return View(news);
+
+            return View(mentor);
         }
 
-        // GET: Admin/News/Edit/5
+        // GET: Admin/Mentors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Mentor mentor = db.Mentors.Find(id);
+            if (mentor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-            return View(news);
+            return View(mentor);
         }
 
-        // POST: Admin/News/Edit/5
+        // POST: Admin/Mentors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,name,avtImage,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
-            News temp = getById(news.id);
+            Mentor temp = getById(mentor.id);
 
             if (ModelState.IsValid)
             {
@@ -120,49 +114,51 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.imagePath = filename; // Lưu ý
+                    temp.avtImage = filename; // Lưu ý
                 }
-                // tem.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                temp.title = news.title;
-                temp.brief_description = news.brief_description;
-                temp.detail_description = news.detail_description;
-                temp.meta = news.meta;
-                temp.hide = news.hide;
-                temp.order = news.order;
+                temp.name = mentor.name;
+                temp.email = mentor.email;
+                temp.phoneNum = mentor.phoneNum;
+                temp.FBlink = mentor.FBlink;
+                temp.zaloNum = mentor.zaloNum;
+                temp.supportTask = mentor.supportTask;
+                temp.meta = mentor.meta;
+                temp.hide = mentor.hide;
+                temp.order = mentor.order;
+                
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-            return View(news);
+            return View(mentor);
         }
-        public News getById(long id)
+        public Mentor getById(long id)
         {
-            return db.News.Where(x => x.id == id).FirstOrDefault();
+            return db.Mentors.Where(x => x.id == id).FirstOrDefault();
         }
 
-        // GET: Admin/News/Delete/5
+        // GET: Admin/Mentors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Mentor mentor = db.Mentors.Find(id);
+            if (mentor == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(mentor);
         }
 
-        // POST: Admin/News/Delete/5
+        // POST: Admin/Mentors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            Mentor mentor = db.Mentors.Find(id);
+            db.Mentors.Remove(mentor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

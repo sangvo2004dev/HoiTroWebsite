@@ -1,4 +1,4 @@
-﻿@model HoiTroWebsite.Models.Menu
+﻿@model HoiTroWebsite.Models.Mentor
 
 @{
     ViewBag.Title = "Create";
@@ -7,16 +7,17 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm(Html.BeginForm("Create", "Mentors", FormMethod.Post, new { enctype = "multipart/form-data" }))) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Menu</h4>
+        <h4>Mentor</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tên người hướng dẫn", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -24,10 +25,50 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Liên kết", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Hình đại diện", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                <input type="file" name="img" id="img" accept=".jpg, .png, .gif, .jpeg, .bmp" />
+                @Html.ValidationMessageFor(model => model.avtImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Thư điện tử", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phoneNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phoneNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Liên kết FaceBook", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FBlink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FBlink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số zalo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.zaloNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.zaloNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Vai trò hỗ trợ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.supportTask, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.supportTask, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -46,7 +87,7 @@
                     @{
                         bool hide = true;
                     }
-                    @Html.CheckBoxFor(model => hide, new { style = "margin:-1px 5px" })
+                    @Html.EditorFor(model => model.hide, new { style = "margin:-1px 5px" })
                     @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -61,22 +102,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.datebegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
             </div>
         </div>*@
-
-        <div class="form-group">
-            @Html.Label("Có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.hasSubMenu)
-                    @Html.ValidationMessageFor(model => model.hasSubMenu, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -89,7 +120,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-@section _Footer{
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@section _Footer
+{
     <script>
         $(function () {
             $("#name").keyup(function () {

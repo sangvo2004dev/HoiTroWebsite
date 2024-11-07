@@ -12,61 +12,71 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayName("Tên")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(modelItem => Model.name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.link)
+            @Html.DisplayName("Liên kết")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.link)
+            @Html.DisplayFor(modelItem => Model.link)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.meta)
+            @Html.DisplayName("meta")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.meta)
+            @Html.DisplayFor(modelItem => Model.meta)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hide)
+            @Html.DisplayName("Hiển thị")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.hide)
+            @Html.DisplayFor(modelItem => Model.hide)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.order)
+            @Html.DisplayName("Sắp xếp")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.order)
+            @Html.DisplayFor(modelItem => Model.order)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.datebegin)
+            @Html.DisplayName("Ngày tạo")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.datebegin)
+            @Html.DisplayFor(modelItem => Model.datebegin)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.hasSubMenu)
+            @Html.DisplayName("Có menu con")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.hasSubMenu)
+            @Html.DisplayFor(modelItem => Model.hasSubMenu)
         </dd>
 
+        <dt>
+            @Html.DisplayName("Menu con")
+        </dt>
+
+        @foreach (var s in Model.SubMenus)
+        {
+        <dd>
+            @Html.DisplayFor(models => s.name)
+        </dd>
+        }
     </dl>
 </div>
 <p>

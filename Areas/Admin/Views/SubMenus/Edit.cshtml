@@ -1,0 +1,117 @@
+﻿@model HoiTroWebsite.Models.SubMenu
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>SubMenu</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group">
+        @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Liên kết", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.meta, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
+            }
+            @Html.CheckBoxFor(model => hide)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Menu cha", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("menuId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.menuId, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("returnUrl", Request.UrlReferrer?.ToString());
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@section _Footer{
+    <script>
+        $(function () {
+            $("#name").keyup(function () {
+                var text = $.trim($(this).val().toLowerCase());
+                var text_create;
+
+                // Thay thế tất cả các ký tự có dấu thành không dấu
+                text_create = text
+                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
+                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
+                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
+                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
+                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
+                    .replace(/đ/g, "d")
+                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
+                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
+                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
+
+                $('#meta').val(text_create);
+            }).keyup();
+        });
+    </script>
+}

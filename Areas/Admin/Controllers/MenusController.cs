@@ -17,7 +17,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Menus
         public ActionResult Index()
         {
-            return View(db.Menus.ToList());
+            var menus = db.Menus.ToList();
+            foreach (var menu in menus)
+            {
+                db.Entry(menu).Collection(i => i.SubMenus).Load();
+                menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
+            }
+
+            return View(menus);
         }
 
         // GET: Admin/Menus/Details/5
@@ -27,7 +34,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Menu menu = db.Menus.Find(id);
+            var menu = db.Menus.Include(m => m.SubMenus)
+                               .FirstOrDefault(s => s.hide == true && s.id == id);
             if (menu == null)
             {
                 return HttpNotFound();
@@ -57,6 +65,18 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
             return View(menu);
         }
+        // Edit xóa menucon
+        public JsonResult DeleteSubMenu(long id)
+        {
+            var subMenu = db.SubMenus.Find(id);
+            if (subMenu != null)
+            {
+                db.SubMenus.Remove(subMenu);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
 
         // GET: Admin/Menus/Edit/5
         public ActionResult Edit(int? id)
@@ -65,13 +85,18 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Menu menu = db.Menus.Find(id);
+
+            var menu = db.Menus.Include(m => m.SubMenus)
+                               .FirstOrDefault(s => s.hide == true && s.id == id);
+
             if (menu == null)
             {
                 return HttpNotFound();
             }
+
             return View(menu);
         }
+
 
         // POST: Admin/Menus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -80,13 +105,50 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,name,link,meta,hide,order,datebegin,hasSubMenu")] Menu menu)
         {
-            if (ModelState.IsValid)
+            Menu temp = getById(menu.id);
+
+            if (ModelState.IsValid && temp != null)
             {
-                db.Entry(menu).State = EntityState.Modified;
+                temp.name = menu.name;
+                temp.link = menu.link;
+                temp.meta = menu.meta;
+                temp.hasSubMenu = menu.hasSubMenu;
+                temp.hide = menu.hide;
+                temp.order = menu.order;
+                temp.datebegin = menu.datebegin;
+
+                // Thêm lại các SubMenus mới
+                if (menu.SubMenus != null)
+                {
+                    foreach (var subMenu in menu.SubMenus)
+                    {
+                        // Thêm SubMenu vào temp và đặt trạng thái là Added
+                        temp.SubMenus.Add(subMenu);
+                        db.Entry(subMenu).State = EntityState.Added;
+                    }
+                }
+
+                db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.menuId = new SelectList(db.Menus, "id", "name", menu.id);
             return View(menu);
+        }
+
+        public Menu getById(long id)
+        {
+            var menu = db.Menus.Include(m => m.SubMenus) // Load SubMenus khi truy vấn menu
+                .Where(m => m.id == id && m.hide == true)
+                .FirstOrDefault();
+
+            // Sắp xếp lại SubMenus
+            if (menu != null)
+            {
+                menu.SubMenus = menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
+            }
+            return menu;
         }
 
         // GET: Admin/Menus/Delete/5
@@ -96,7 +158,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Menu menu = db.Menus.Find(id);
+            var menu = db.Menus.Include(m => m.SubMenus)
+                               .FirstOrDefault(s => s.hide == true && s.id == id);
             if (menu == null)
             {
                 return HttpNotFound();

@@ -1,4 +1,4 @@
-﻿@model HoiTroWebsite.Models.Menu
+﻿@model HoiTroWebsite.Models.SubMenu
 
 @{
     ViewBag.Title = "Create";
@@ -7,12 +7,13 @@
 
 <h2>Create</h2>
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Menu</h4>
+        <h4>SubMenu</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -60,35 +61,22 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.datebegin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @Html.Label("Có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.hasSubMenu)
-                    @Html.ValidationMessageFor(model => model.hasSubMenu, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @using (Html.BeginForm())
+                {
+                    @Html.Hidden("returnUrl", Request.UrlReferrer?.ToString())
+                    <!-- Các input khác trong form -->
+                    <input type="submit" value="Create" class="btn btn-default" />
+                }
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 @section _Footer{
     <script>
         $(function () {
