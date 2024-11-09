@@ -132,6 +132,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\MenusController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\MainPartialController.cs" />
