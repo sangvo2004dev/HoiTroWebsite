@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -71,16 +74,30 @@ namespace HoiTroWebsite.Controllers
             }
         }
 
+        /// <summary>
+        /// window.sendBaecon thì ở server phải nhận bằng StreamReader, mới xử lý được
+        /// </summary>
+        /// <returns></returns>
         // POST:
         [Route("api/delete-multiple")]
         [HttpPost]
-        public ActionResult DeleteImgFiles(List<string> fileNameList)
+        public ActionResult DeleteImgFiles()
         {
             try
             {
-                var list = new List<string>();
-                fileNameList.ForEach(fileName =>
+                string jsonString;
+                using (var reader = new StreamReader(Request.InputStream))
                 {
+                    jsonString = reader.ReadToEnd();
+                }
+
+                // Parse JSON string to JObject
+                JObject jsonObject = JObject.Parse(jsonString);
+
+                // Get the array from the "list_file_delete" key
+                string[] fileNames = jsonObject["list_file_delete"].ToObject<string[]>();
+
+                fileNames.ForEach(fileName => {
                     string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
                     var f = new FileInfo(path);
                     if (f.Exists)
@@ -88,6 +105,7 @@ namespace HoiTroWebsite.Controllers
                         f.Delete();
                     }
                 });
+
                 var responseData = new { success = true };
 
                 Response.StatusCode = 200; // Mã trạng thái HTTP

@@ -132,14 +132,14 @@ manage_post = {
     },
     deleteIempImages: function () {
         $(window).on('beforeunload', function (e) {
-            e.preventDefault();
+            //e.preventDefault();
             let list_file_delete = [];
             $('#list-photos-dropzone-previews').find('.js-photo-preview-temp').each(function (i, element) {
                 list_file_delete.push($(element).val());
             });
             console.log(list_file_delete);
-            navigator.sendBeacon('/api/delete-multiple', JSON.stringify({ fileNameList: list_file_delete }));
-            e.returnValue = "Bạn có chắc chắn muốn rời khỏi trang?";
+            navigator.sendBeacon('/api/delete-multiple', JSON.stringify({ list_file_delete }));
+            //e.returnValue = "Bạn có chắc chắn muốn rời khỏi trang?";
         });
     },
 
