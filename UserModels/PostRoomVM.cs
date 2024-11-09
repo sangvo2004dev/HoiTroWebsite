@@ -8,7 +8,7 @@ namespace HoiTroWebsite.UserModels
 {
     public class PostRoomVM
     {
-        [Required(ErrorMessage = "Chưa chọn khu vực đăng tin")]
+        //[Required(ErrorMessage = "Chưa chọn khu vực đăng tin")]
         public string dia_chi { get; set; }
 
         [Required(ErrorMessage = "Chưa chọn loại chuyên mục")]

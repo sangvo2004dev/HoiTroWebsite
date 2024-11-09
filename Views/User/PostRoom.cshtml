@@ -16,14 +16,29 @@
 
 @section header
 {
-    <!-- jquery UI -->
+    @*jquery UI*@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+
+    @*jquery slect2*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/libs/vn-num2words/src/index.js"></script>
+
+    <!-- CSS của Dropzone -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
+
+    <!-- JavaScript của Dropzone -->
+    <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>
+
+    <!-- Thêm CDN cho SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 }
 
-@using (Html.BeginForm("PostRoom", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("PostRoom", "User", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
 {
-    <input type="submit" value="Test submit"/>
+    <input type="submit" value="Test submit" />
     @Html.AntiForgeryToken()
 
     <div class="row">
@@ -37,34 +52,36 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="province_id" class="control-label">Tỉnh/Thành phố</label>
-                        <select id="province_id" name="province_id" class="form-control js-select-tinhthanhpho select2-hidden-accessible" @*required=""*@ data-msg-required="Chưa chọn Tỉnh/TP" tabindex="-1" aria-hidden="true">
-                            @* có api render tỉnh thành*@
-                            <option value="">Chưa chọn tỉnh/thành phố</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-province_id-container"><span class="select2-selection__rendered" id="select2-province_id-container" title="-- Chọn Tỉnh/TP --">-- Chọn Tỉnh/TP --</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper"></span></span>
+                        <select id="province_id" name="province_id" class="form-control" tabindex="-1">
+                            <option value="">-- Chưa chọn tỉnh/thành phố --</option>
+                        </select>
+                        @*<span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-province_id-container"><span class="select2-selection__rendered" id="select2-province_id-container" title="-- Chọn Tỉnh/TP --">-- Chọn Tỉnh/TP --</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper"></span></span>*@
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label" for="district_id">Quận/Huyện</label>
-                        <select name="district_id" id="district_id" class="form-control js-select-quanhuyen select2-hidden-accessible" @*required=""*@ data-msg-required="Chưa chọn Quận/Huyện" tabindex="-1" aria-hidden="true">
-                            <option value="">chọn quận huyện</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-district_id-container"><span class="select2-selection__rendered" id="select2-district_id-container" title="chọn quận huyện">chọn quận huyện</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper"></span></span>
+                        <label class="form-label control-label" for="district_id">Quận/Huyện</label>
+                        <select name="district_id" id="district_id" class="form-control" tabindex="-1" aria-hidden="true">
+                            <option value="">Chọn quận huyện</option>
+                        </select>
+                        @*<span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-district_id-container"><span class="select2-selection__rendered" id="select2-district_id-container" title="chọn quận huyện">chọn quận huyện</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper"></span></span>*@
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label" for="phuongxa">Phường/Xã</label>
-                        <select class="form-control js-select-phuongxa select2-hidden-accessible" name="phuongxa" id="phuongxa" tabindex="-1" aria-hidden="true">
-                            <option value="">chọn phường xã</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-phuongxa-container"><span class="select2-selection__rendered" id="select2-phuongxa-container" title="chọn phường xã">chọn phường xã</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        <select class="form-control" name="phuongxa" id="phuongxa" tabindex="-1">
+                            <option value="">Chọn phường xã</option>
+                        </select>
+                        @*<span class="select2 select2-container select2-container--default" dir="ltr" style="width: 171.1px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-phuongxa-container"><span class="select2-selection__rendered" id="select2-phuongxa-container" title="chọn phường xã">chọn phường xã</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>*@
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="street_number" class="control-label">Số nhà, đường</label>
-                        <input type="text" class="form-control js-input-street-number" name="street_number" id="street_number" value="">
+                        <label for="sonha_duong" class="control-label">Số nhà, đường</label>
+                        <input type="text" class="form-control" name="sonha_duong" id="sonha_duong" value="">
                     </div>
                 </div>
             </div>
@@ -72,7 +89,8 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         @Html.LabelFor(model => model.dia_chi, "Địa chỉ chính xác", new { @class = "control-label" })
-                        <input type="text" readonly="" class="form-control" name="dia_chi" id="diachi" @*required=""*@>
+                        <!--<input type="text" readonly="" class="form-control" name="dia_chi" id="diachi"--> @*required=""*@<!-->-->
+                        @Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control", @readonly = "" })
                     </div>
                 </div>
             </div>
@@ -84,8 +102,10 @@
             <div class="form-group row mt-3">
                 <label for="post_cat" class="col-md-12 control-label">Loại chuyên mục</label>
                 <div class="col-md-6">
-                    @Html.DropDownList("loai_chuyen_muc", null, "-- Chọn loại chuyên mục --" ,new { @class = "form-control", @id = "post_cat", @required = "" })
-                    <!--<select class="form-control" id="post_cat" name="loai_chuyen_muc"--> @*required=""*@ <!--data-msg-required="">
+                    @Html.DropDownListFor(model => model.loai_chuyen_muc, null, "-- Chọn loại chuyên mục --", new { @class = "form-control", @id = "post_cat", @required = "" })
+                    @Html.ValidationMessageFor(model => model.loai_chuyen_muc)
+                    <!--<select class="form-control" id="post_cat" name="loai_chuyen_muc"-->
+                    <!--data-msg-required="">
                         <option value="">-- Chọn loại chuyên mục --</option>
                         <option value="1">Phòng trọ cho thuê</option>
                         <option value="2">Nhà cho thuê</option>
@@ -97,7 +117,7 @@
             <div class="form-group row">
                 <label for="post_title" class="col-md-12 control-label">Tiêu đề</label>
                 <div class="col-md-12">
-                    <input type="text" class="form-control js-title" name="tieu_de" id="post_title" value="" minlength="30" maxlength="120" @*required=""*@ data-msg-required="Tiêu đề không được để trống" data-msg-minlength="Tiêu đề quá ngắn" data-msg-maxlength="Tiêu đề quá dài">
+                    <input type="text" class="form-control js-title" name="tieu_de" id="post_title" value="" minlength="30" maxlength="120" data-msg-required="Tiêu đề không được để trống" data-msg-minlength="Tiêu đề quá ngắn" data-msg-maxlength="Tiêu đề quá dài">
                     <input type="hidden" name="tieu_de_meta" meta-content />
                 </div>
             </div>
@@ -112,7 +132,7 @@
                 @Html.LabelFor(model => model.ten_lien_he, "Thông tin liên hệ", new { @class = "col-md-12 control-label" })
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(model => model.ten_lien_he, new { @class = "form-control", @readonly = "readonly", @required = "", @value = ten_lien_he })
+                        @Html.TextBoxFor(model => model.ten_lien_he, new { @class = "form-control", @readonly = "readonly", @value = ten_lien_he })
                     </div>
                 </div>
             </div>
@@ -120,7 +140,7 @@
                 @Html.LabelFor(model => model.ten_lien_he, "Thông tin liên hệ", new { @class = "col-md-12 control-label" })
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(model => model.phone, new { @class = "form-control", @readonly = "readonly", @required = "", @value = phone })
+                        @Html.TextBoxFor(model => model.phone, new { @class = "form-control", @readonly = "readonly", @value = phone })
                     </div>
                 </div>
             </div>
@@ -167,8 +187,21 @@
                 <div class="col-md-12">
                     <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p>
 
-                    <input type="file" id="photos-dropzone" multiple />
-                    <img src="" id="photo-preview" />
+                    @* đặt attribute name trùng thì cũng gửi lên server luôn *@
+                    <div class="js-dropzone" style="width: 100%; height: 300px; border: 2px solid #333"></div>
+                    <div class="list_photos row dropzone-previews" id="list-photos-dropzone-previews">
+                    </div>
+                    <div id="tpl" style="display:none">
+                        <div class="photo_item col-md-2 col-3 js-photo-manual">
+                            <div class="photo"><img data-dz-thumbnail=""></div>
+                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                            <div class="bottom clearfix">
+                                <span class="photo_name" data-dz-name=""></span>
+                                <span class="photo_delete" data-dz-remove=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Xóa</span>
+                            </div>
+                            <!-- <input name="" value="" type="hidden"> -->
+                        </div>
+                    </div>
 
                     <div class="list_photos row dropzone-previews" id="list-photos-dropzone-previews"></div>
                     <div id="tpl" style="display:none">
@@ -219,7 +252,9 @@
 
 @section footer
 {
-    <script src="~/Scripts/js/tinh-thanh.js"></script>
+    <script type="module" src="~/Scripts/js/tinh-thanh.js"></script>
+    @*<script src="~/Scripts/js/manage-main.js"></script>*@
+    <script src="~/Scripts/js/my-js/hoitro.post.js"></script>
     @*<script>
             const listPhotoPreview = document.getElementById('list-photos-dropzone-previews');
 

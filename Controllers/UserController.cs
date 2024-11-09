@@ -89,97 +89,94 @@ namespace HoiTroWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostRoom(PostRoomVM postRoomVM, List<HttpPostedFileBase> imgFiles)
+        public ActionResult PostRoom(PostRoomVM postRoomVM, List<string> file_name_list)
         {
             if (ModelState.IsValid)
             {
                 RoomInfo roomInfo = new RoomInfo
                 {
                     title = postRoomVM.tieu_de,
+                    roomTypeId = postRoomVM.loai_chuyen_muc,
                     brief_description = "a",
-                    price = "a",
-                    detail_description = "a",
+                    price = postRoomVM.gia,
+                    location = postRoomVM.dia_chi,
+                    detail_description = postRoomVM.noi_dung,
+                    datebegin = DateTime.Now,
                     hide = false
                 };
                 try
                 {
                     db.RoomInfoes.Add(roomInfo);
                     db.SaveChanges();
-                    SaveFileToServer(imgFiles, roomInfo);
+                    SaveFileUrl(file_name_list, roomInfo.id);
                 }
                 catch (Exception e)
                 {
                     ViewBag.Message = e.ToString();
                 }
 
+                return RedirectToAction("Index", "HomePage");
             }
 
             return View();
         }
 
-        // edit bài đăng từ trang user
         // GET 
         [HttpGet]
+        // edit bài đăng từ của user
         public ActionResult EditPostRoom(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
+
+            RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
             db.Entry(room).Collection(r => r.RoomImgs).Load();
+
             // sắp xếp lại roomImgs theo order
             room.RoomImgs = room.RoomImgs.OrderBy(i => i.order).ToList();
-            return View(room);
+
+            PostRoomVM postRoomVM = new PostRoomVM()
+            {
+                dia_chi = room.location,
+                tieu_de = room.title,
+                noi_dung = room.detail_description,
+                gia = room.price,
+                dien_tich = Convert.ToInt32(room.area),
+                loai_chuyen_muc = room.roomTypeId,
+            };
+
+            ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
+
+            return View(postRoomVM);
         }
 
         [HttpPost]
-        public ActionResult EditPostRoom(string titlea, List<HttpPostedFileBase> imgFiles, HttpPostedFileBase testa)
+        public ActionResult EditPostRoom(string titlea, List<string> file_name_list)
         {
-            SaveFileToServer(imgFiles);
+            SaveFileUrl(file_name_list, 0);
             return View();
         }
 
         // lưu file lên thư mục ở server
-        private bool SaveFileToServer(List<HttpPostedFileBase> imgFiles, RoomInfo roomInfo = null)
+        private void SaveFileUrl(List<string> file_name_list, int roomInfoId)
         {
-            try
+            int count = 0;
+            foreach (var file_name in file_name_list)
             {
-                // các biến temp
-                //var roomInfo.meta = "lam-toi-chet";
-
-                //int roomId = roomInfo.id; // lấy id của post vừa mới đăng
-                int roomId = 5;
-                //long userId = (Session["User"] as Account).id
-                int userId = 10;
-                int count = 0;
-                foreach (var file in imgFiles)
+                // thêm đường dẫn file vào database
+                db.RoomImgs.Add(new RoomImg
                 {
-                    var severFolder = "/Data/";
-                    var folder = string.Concat("user/", userId, "/");
-                    var fileName = string.Join("_", roomId, roomInfo.meta, count) + Path.GetExtension(file.FileName);
-                    count++;
-                    var path = Path.Combine(Server.MapPath(severFolder + folder), fileName);
-                    file.SaveAs(path);
-
-                    // thêm đường dẫn file vào database
-                    db.RoomImgs.Add(new RoomImg
-                    {
-                        postRoomId = roomId,
-                        serverFolder = severFolder,
-                        folder = folder,
-                        fileName = fileName,
-                        hide = true,
-                        order = count                       
-                    });
-                }
-                db.SaveChanges();
-                return true;
+                    postRoomId = roomInfoId,
+                    folder = "/Data/user",
+                    fileName = file_name,
+                    hide = true,
+                    order = count
+                });
+                count++;
             }
-            catch
-            {
-                return false;
-            }
+            db.SaveChanges();
         }
     }
 }

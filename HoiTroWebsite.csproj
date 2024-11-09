@@ -488,6 +488,10 @@
     <Content Include="Scripts\js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\js\jquery.min.js" />
     <Content Include="Scripts\js\jquery.validate.js" />
+    <Content Include="Scripts\js\libs\vn-num2words\html\index.html" />
+    <Content Include="Scripts\js\libs\vn-num2words\html\index.m.html" />
+    <Content Include="Scripts\js\libs\vn-num2words\src\index.js" />
+    <Content Include="Scripts\js\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
     <Content Include="Scripts\js\plugin.js" />
     <Content Include="Scripts\js\popper.min.js" />
@@ -582,6 +586,8 @@
     <Content Include="Views\User\EditPostRoom.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ListImg.cshtml" />
+    <Content Include="Scripts\js\libs\vn-num2words\package.json" />
+    <Content Include="Scripts\js\libs\vn-num2words\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\user\10\" />

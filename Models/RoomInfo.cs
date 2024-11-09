@@ -34,7 +34,7 @@ namespace HoiTroWebsite.Models
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public Nullable<int> roomTypeId { get; set; }
+        public int roomTypeId { get; set; }
         public Nullable<int> accountId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

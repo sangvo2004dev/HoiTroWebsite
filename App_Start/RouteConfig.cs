@@ -11,6 +11,8 @@ namespace HoiTroWebsite
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapMvcAttributeRoutes();
+
             // menu-tin tức
             routes.MapRoute("News", "tin-tuc",
                new { controller = "News", action = "Index" },
