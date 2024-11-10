@@ -29,10 +29,10 @@
         <div class="form-group">
             @Html.Label("Hình đại diện", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6">
-                <input type="file" name="img" id="img" accept=".jpg, .png, .jpeg, .bmp" />
+                <input type="file" name="img" id="img" accept=".jpg, .png, .jpeg, .bmp" onchange="previewImage(event)"/>
             </div>
             <div class="col-md-4">
-                <img src="~/Content/images/@Model.avtImage" width="100px" />
+                <img id="preview" src="~/Content/images/@Model.avtImage" width="100px" />
             </div>
         </div>
 
@@ -104,13 +104,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -126,6 +126,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 }
 @section _Footer
 {

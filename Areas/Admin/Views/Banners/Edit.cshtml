@@ -19,7 +19,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -27,14 +27,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.img, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="col-md-6">
-                    <input type="file" name="img" id="img" accept=".jpg, .png, .gif, .jpeg, .bmp" />
-                </div>
-                <div class="col-md-4">
-                    <img src="~/Content/images/@Model.img" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
-                </div>
+            @Html.Label("Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <input type="file" name="img" id="img" accept=".jpg, .png, .gif, .jpeg, .bmp" onchange="previewImage(event)" />
+            </div>
+            <div class="col-md-4">
+                <img id="preview" src="~/Content/images/@Model.img" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
             </div>
         </div>
 
@@ -47,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.hide, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @{
@@ -59,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.order, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
@@ -88,6 +86,16 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 }
 @section _Footer
 {

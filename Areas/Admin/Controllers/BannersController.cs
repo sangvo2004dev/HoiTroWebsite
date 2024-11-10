@@ -67,6 +67,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     banner.img = "logo.png";
                 }
+                banner.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.Banners.Add(banner);
                 db.SaveChanges();
                 return RedirectToAction("Index");

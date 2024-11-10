@@ -10,104 +10,120 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Menu</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id)
+    <div class="form-horizontal">
+        <h4>Menu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
 
-    <div class="form-group">
-        @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(modelItem => Model.name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(modelItem => Model.name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Liên kết", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(modelItem => Model.link, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(modelItem => Model.link, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("meta", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(modelItem => Model.meta, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(modelItem => Model.meta, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @{
-                bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
-            }
-            @Html.CheckBoxFor(modelItem => hide)
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(modelItem => Model.order, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(modelItem => Model.order, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-        @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(modelItem => Model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(modelItem => Model.datebegin, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-    <div class="form-group">
-        @Html.Label("có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @{
-                bool hasSubMenu = (Model.hasSubMenu.GetValueOrDefault(false) ? true : false);
-            }
-            @Html.CheckBoxFor(modelItem => hasSubMenu)
-        </div>
-    </div>
-
-    @foreach (var s in Model.SubMenus)
-    {
-        <div id="submenu-@s.id" class="form-group">
-            @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(models => s.name)
-                @Html.ValidationMessageFor(models => s.name, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-danger" onclick="deleteSubMenu(@s.id)">Xóa</button>
-                <button type="button" class="btn" onclick="window.location.href='@Url.Action("Edit", "SubMenus", new { id = s.id})'">Sửa</button>
+                @Html.EditorFor(modelItem => Model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(modelItem => Model.name, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
-    <div class="form-group">
-        @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.ActionLink("Thêm menu con", "Create", "Submenus" , new { menuId = Model.id }, new { @class = "btn" })
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group">
+            @Html.Label("Liên kết", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(modelItem => Model.link, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(modelItem => Model.link, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("meta", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(modelItem => Model.meta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(modelItem => Model.meta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
+                }
+                @Html.CheckBoxFor(modelItem => hide)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(modelItem => Model.order, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(modelItem => Model.order, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(modelItem => Model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(modelItem => Model.datebegin, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.Label("có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    bool hasSubMenu = (Model.hasSubMenu.GetValueOrDefault(false) ? true : false);
+                }
+                @Html.CheckBoxFor(modelItem => hasSubMenu, new { @id = "hasSubMenuCheckbox" })
+            </div>
+        </div>
+
+        @foreach (var s in Model.SubMenus)
+        {
+            <div id="submenu-@s.id" class="form-group">
+                @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(models => s.name)
+                    @Html.ValidationMessageFor(models => s.name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-danger" onclick="deleteSubMenu(@s.id)">Xóa</button>
+                    <button type="button" class="btn" onclick="window.location.href='@Url.Action("Edit", "SubMenus", new { id = s.id})'">Sửa</button>
+                </div>
+            </div>
+        }
+        <div id="subMenuSection" class="form-group" style="display: @(Model.hasSubMenu == true ? "block" : "none")">
+            @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.ActionLink("Thêm menu con", "Create", "Submenus", new { menuId = Model.id }, new { @class = "btn" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script>
+
+@section Scripts {
+    <script src="~/Areas/Admin/Content/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Sự kiện khi checkbox được thay đổi
+            $('#hasSubMenuCheckbox').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#subMenuSection').show();
+                } else {
+                    $('#subMenuSection').hide();
+                }
+            });
+        });
+    </script>
+
+    <script>
     function deleteSubMenu(subMenuId) {
         if (confirm("Bạn có chắc muốn xóa menu con này không?")) {
             $.ajax({
@@ -127,7 +143,9 @@
             });
         }
     }
-</script>
+    </script>
+}
+
 @section _Footer{
     <script>
         $(function () {

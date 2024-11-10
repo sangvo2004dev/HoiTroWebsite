@@ -73,6 +73,9 @@
         </div>
     </div>
 }
+<div>
+    @Html.ActionLink("Back to List", "Back", null, new { href = Request.UrlReferrer?.ToString(), @class = "btn" })
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

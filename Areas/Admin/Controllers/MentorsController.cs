@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -69,6 +70,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     {
                         mentor.avtImage = "logo.png";
                     }
+                    mentor.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                     db.Mentors.Add(mentor);
                     db.SaveChanges();
                     return RedirectToAction("Index");

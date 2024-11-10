@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -65,6 +66,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     account.avtImage = "~/Content/images/logo.png";
                 }
+                account.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");

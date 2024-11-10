@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -58,11 +59,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                menu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.Menus.Add(menu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(menu);
         }
         // Edit xóa menucon

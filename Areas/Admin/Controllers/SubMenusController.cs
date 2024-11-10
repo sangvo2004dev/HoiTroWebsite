@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -31,6 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                subMenu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.SubMenus.Add(subMenu);
                 db.SaveChanges();
                 return Redirect(returnUrl);
@@ -84,6 +86,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             return db.SubMenus.Where(x => x.id == id).FirstOrDefault();
         }
 
+        public ActionResult Back(string returnUrl)
+        {
+            return Redirect(returnUrl);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
