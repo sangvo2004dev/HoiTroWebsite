@@ -1,4 +1,70 @@
-﻿<section class="banner_main">
+﻿@model IEnumerable<HoiTroWebsite.Models.Banner>
+
+@*@Styles.Render("~/Content/css")
+@Scripts.Render("~/Scripts/js")*@
+<section class="banner_main">
+    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
+        @{int j = 0; }
+        <ol class="carousel-indicators">
+            @foreach (var i in Model)
+            {
+                <li data-target="#myCarousel" data-slide-to=@j class="@(j == 0 ? "active" : "")"></li>
+                j = j + 1;
+            }
+
+        </ol>
+        @{ j = 0;}
+        <div class="carousel-inner">
+            @foreach (var i in Model)
+            {
+                <div class="carousel-item @(j == 0 ? "active" : "")">
+                    <img class="first-slide" src="~/Content/images/@i.img" alt="First slide">
+                </div>
+                j = j + 1;
+            }
+        </div>
+
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="booking_ocline">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="book_room">
+                        <h1>Book a Room Online</h1>
+                        <form class="book_now">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span>Arrival</span>
+                                    <img class="date_cua" src="~/Content/images/date.png">
+                                    <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                </div>
+                                <div class="col-md-12">
+                                    <span>Departure</span>
+                                    <img class="date_cua" src="~/Content/images/date.png">
+                                    <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="book_btn">Book Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<section class="banner_main">
     <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -55,4 +121,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@

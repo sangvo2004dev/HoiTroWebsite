@@ -83,7 +83,11 @@ namespace HoiTroWebsite.Controllers
         //banner
         public ActionResult getBanner()
         {
-            return PartialView();
+            var v = from i in _db.Banners
+                    where i.hide == true
+                    orderby i.order ascending
+                    select i;
+            return PartialView(v.ToList());
         }
     }
 }

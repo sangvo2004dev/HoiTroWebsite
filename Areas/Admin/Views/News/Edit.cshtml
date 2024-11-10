@@ -54,12 +54,10 @@
     <div class="form-group">
         @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox">
-                @{
-                    bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
-                }
-                @Html.CheckBoxFor(model => hide)
-            </div>
+            @{
+                bool hide = (Model.hide.GetValueOrDefault(false) ? true : false);
+            }
+            @Html.CheckBoxFor(model => hide)
         </div>
     </div>
 

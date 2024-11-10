@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="HoiTroModel.Account" Width="1.5" PointX="6.5" PointY="10.125" />
         <AssociationConnector Association="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" />
         <EntityTypeShape EntityType="HoiTroModel.Mentor" Width="1.5" PointX="4" PointY="0.625" />
+        <EntityTypeShape EntityType="HoiTroModel.Banner" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
