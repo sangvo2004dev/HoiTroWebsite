@@ -494,6 +494,8 @@
     <Content Include="Scripts\js\libs\vn-num2words\src\index.js" />
     <Content Include="Scripts\js\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
+    <Content Include="Scripts\js\my-js\hoitro.post.js" />
+    <Content Include="Scripts\js\my-js\newFile.js" />
     <Content Include="Scripts\js\plugin.js" />
     <Content Include="Scripts\js\popper.min.js" />
     <Content Include="Scripts\js\revolution\assets\coloredbg.png" />

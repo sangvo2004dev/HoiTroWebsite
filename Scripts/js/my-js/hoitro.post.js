@@ -1,7 +1,7 @@
 ﻿let manage_post;
 manage_post = manage_post || {};
 manage_post = {
-    from: '',
+    form: (function () { return $('form'); })(),
     url_upload_image: '/api/upload',
 
     uploadImage: function () {
@@ -45,34 +45,46 @@ manage_post = {
         $('#list-photos-dropzone-previews').sortable();
         // Bind manual remove
         $('#list-photos-dropzone-previews').on(_action, '.js-photo-manual .photo_delete', function (event) {
+            event.preventDefault();
+
             let _self = $(this);
             console.log(myDropzone.options.dictRemoveFileConfirmation);
             if (myDropzone.options.dictRemoveFileConfirmation) {
+                return Dropzone.confirm(myDropzone.options.dictRemoveFileConfirmation, function () {
+                    _self.closest('.js-photo-manual').remove();
+                });
             } else {
                 $(this).closest('.js-photo-manual').remove();
             }
         });
 
-        let removeCallback = undefined;
         Dropzone.confirm = function (question, fnAccepted, fnRejected) {
-            //console.dir(this);
+            console.dir(this);
 
             // lấy val của obj có thuộc tính động
             let jquery_prop = Object.keys(this.instances[0].previewsContainer)[0];
-            let jquery_obj = this.instances[0].previewsContainer[jquery_prop]
-            let file_name = $(jquery_obj.uiSortable.currentItem).find('input').val();
+            let jquery_obj = this.instances[0].previewsContainer[jquery_prop];
+            let preview_element = $(jquery_obj.uiSortable.currentItem);
+            let file_name = preview_element.find('input').val();
             //console.log(file_name);
             let result = window.confirm(myDropzone.options.dictRemoveFileConfirmation);
             if (result) {
+                const input_delete = $(`<input type="hidden" name="file_delete_list" value="${file_name}">`);
+
+                if (preview_element.find('input').hasClass('js-not-temp')) {
+                    $(preview_element).remove();
+                    $('#list-photos-dropzone-previews').append(input_delete);
+                    return;
+                };
+
                 $.ajax({
                     url: '/api/delete',
                     type: 'POST',
                     data: { fileName: file_name },
                     success: function (response, status) {
                         //console.log(status, response);
-                        const input_delete = $(`<input type="hidden" name="file_delete_list" value="${response.file_name}">`);
-                        $('#list-photos-dropzone-previews').append(input_delete);
-                        console.log(input_delete);
+                        //$('#list-photos-dropzone-previews').append(input_delete);
+                        //console.log(input_delete);
                         if (typeof fnAccepted === 'function') {
                             fnAccepted();
                         }
@@ -130,22 +142,47 @@ manage_post = {
             btn_chon_anh.html(btn_chon_anh_text);
         });
     },
-    deleteIempImages: function () {
-        $(window).on('beforeunload', function (e) {
-            //e.preventDefault();
+    deleteTempImages: function () {
+        $(window).on('beforeunload', function (e) {            
+
             let list_file_delete = [];
             $('#list-photos-dropzone-previews').find('.js-photo-preview-temp').each(function (i, element) {
                 list_file_delete.push($(element).val());
             });
             console.log(list_file_delete);
-            navigator.sendBeacon('/api/delete-multiple', JSON.stringify({ list_file_delete }));
+            if (list_file_delete.length > 0) {
+                navigator.sendBeacon('/api/delete-multiple', JSON.stringify({ list_file_delete }));
+            }
             //e.returnValue = "Bạn có chắc chắn muốn rời khỏi trang?";
+        });
+    },
+
+    dangTin: function () {
+        let self = this;
+        $(this.form).submit(() => {
+            // xóa sự kiện beforereunload
+            $(window).off('beforeunload');
+
+            //phần editpost
+            let file_delete_list = [];
+            $('#list-photos-dropzone-previews').find('input[name="file_delete_list"]').each(function (i, element) {
+                file_delete_list.push($(element).val());
+            });
+
+            console.log(file_delete_list);
+            if (file_delete_list.length > 0 && $(self.form).valid()) {
+                navigator.sendBeacon('/api/delete-multiple', JSON.stringify({ file_delete_list }));
+            }
+
+            // đặt lại sự kiện
+            setTimeout(() => { self.deleteTempImages(); }, 500);
         });
     },
 
     init: function () {
         this.uploadImage();
-        this.deleteIempImages();
+        this.deleteTempImages();
+        this.dangTin();
     }
 }
 

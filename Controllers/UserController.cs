@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using HoiTroWebsite.Models;
 using HoiTroWebsite.UserModels;
+using Microsoft.Ajax.Utilities;
 
 namespace HoiTroWebsite.Controllers
 {
@@ -89,7 +91,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostRoom(PostRoomVM postRoomVM, List<string> file_name_list)
+        public ActionResult PostRoom(PostRoomVM postRoomVM, string[] file_name_list)
         {
             if (ModelState.IsValid)
             {
@@ -124,7 +126,7 @@ namespace HoiTroWebsite.Controllers
         // GET 
         [HttpGet]
         // edit bài đăng từ của user
-        public ActionResult EditPostRoom(int? id)
+        public ActionResult EditPostRoom(int? id) // id bài post
         {
             if (id == null)
             {
@@ -148,34 +150,79 @@ namespace HoiTroWebsite.Controllers
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
+            TempData["id"] = room.id;
+            ViewBag.RoomImgs = room.RoomImgs;
 
             return View(postRoomVM);
         }
 
         [HttpPost]
-        public ActionResult EditPostRoom(string titlea, List<string> file_name_list)
+        public ActionResult EditPostRoom(PostRoomVM postRoomVM, string[] file_name_list, string[] file_delete_list)
         {
-            SaveFileUrl(file_name_list, 0);
-            return View();
+            int id = int.Parse((TempData["id"]).ToString());
+            var room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
+
+            if (room != null)
+            {
+                room.title = postRoomVM.tieu_de;
+                room.brief_description = "a";
+                room.price = postRoomVM.gia;
+                room.area = postRoomVM.dien_tich.ToString();
+                room.location = postRoomVM.dia_chi;
+                room.detail_description = postRoomVM.noi_dung;
+                room.datebegin = DateTime.Now;
+                db.SaveChanges();
+            }
+
+            SaveFileUrl(file_name_list, id);
+            DeleteFileUrl(file_delete_list, id);
+
+            return RedirectToAction("Index", "HomePage");
         }
 
-        // lưu file lên thư mục ở server
-        private void SaveFileUrl(List<string> file_name_list, int roomInfoId)
+        // lưu tên file và đường dẫn lên database
+        private void SaveFileUrl(string[] file_name_list, int roomInfoId)
         {
+            if (file_name_list == null) { return; }
             int count = 0;
             foreach (var file_name in file_name_list)
             {
-                // thêm đường dẫn file vào database
-                db.RoomImgs.Add(new RoomImg
+                var f = db.RoomImgs.SingleOrDefault(ri => ri.fileName == file_name);
+                if (f == null)
                 {
-                    postRoomId = roomInfoId,
-                    folder = "/Data/user",
-                    fileName = file_name,
-                    hide = true,
-                    order = count
-                });
+                    // thêm đường dẫn file vào database
+                    db.RoomImgs.Add(new RoomImg
+                    {
+                        postRoomId = roomInfoId,
+                        folder = "/Data/user/",
+                        fileName = file_name,
+                        hide = true,
+                        order = count,
+                        datebegin = DateTime.Now,
+                    });
+                }
+                else
+                {
+                    f.order = count;
+                }
                 count++;
             }
+            db.SaveChanges();
+        }
+
+        // xóa đường dẫn file trên database
+        private void DeleteFileUrl(string[] file_delete_list, int roomInfoId)
+        {
+            if (file_delete_list == null) { return; }
+
+            file_delete_list.ForEach(f =>
+            {
+                var roomImg = db.RoomImgs.SingleOrDefault(ri => ri.postRoomId == roomInfoId && ri.fileName == f);
+                if (roomImg != null)
+                {
+                    db.RoomImgs.Remove(roomImg);
+                }
+            });
             db.SaveChanges();
         }
     }

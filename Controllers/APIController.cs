@@ -95,16 +95,18 @@ namespace HoiTroWebsite.Controllers
                 JObject jsonObject = JObject.Parse(jsonString);
 
                 // Get the array from the "list_file_delete" key
-                string[] fileNames = jsonObject["list_file_delete"].ToObject<string[]>();
-
-                fileNames.ForEach(fileName => {
-                    string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
-                    var f = new FileInfo(path);
-                    if (f.Exists)
-                    {
-                        f.Delete();
-                    }
-                });
+                string[] fileNames = jsonObject.Properties().First().Value.ToObject<string[]>();
+                if (fileNames != null && fileNames.Length > 0)
+                {
+                    fileNames.ForEach(fileName => {
+                        string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
+                        var f = new FileInfo(path);
+                        if (f.Exists)
+                        {
+                            f.Delete();
+                        }
+                    });
+                }                
 
                 var responseData = new { success = true };
 
