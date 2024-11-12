@@ -48,6 +48,30 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="Footer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="255" />
+          <Property Name="companyInfo" Type="nvarchar(max)" />
+          <Property Name="contactAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="contactEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="contactPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="socialFacebook" Type="nvarchar" MaxLength="255" />
+          <Property Name="socialTwitter" Type="nvarchar" MaxLength="255" />
+          <Property Name="socialLinkedIn" Type="nvarchar" MaxLength="255" />
+          <Property Name="socialYoutube" Type="nvarchar" MaxLength="255" />
+          <Property Name="copyrightInfo" Type="nvarchar" MaxLength="255" />
+          <Property Name="privacyPolicyLink" Type="nvarchar(max)" />
+          <Property Name="termsOfServiceLink" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar" MaxLength="500" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="TermsOfUseLink" Type="nvarchar(max)" />
+          <Property Name="TermsOfPostingLink" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Mentor">
           <Key>
             <PropertyRef Name="id" />
@@ -238,6 +262,7 @@
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Footer" EntityType="Self.Footer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mentor" EntityType="Self.Mentor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
@@ -317,6 +342,7 @@
           </AssociationSet>
           <EntitySet Name="Mentors" EntityType="HoiTroModel.Mentor" />
           <EntitySet Name="Banners" EntityType="HoiTroModel.Banner" />
+          <EntitySet Name="Footers" EntityType="HoiTroModel.Footer" />
         </EntityContainer>
         <EntityType Name="Contact">
           <Key>
@@ -540,6 +566,30 @@
           <Property Name="datebegin" Type="DateTime" Precision="0" />
           <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Footer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="companyInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contactAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="contactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contactPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="socialFacebook" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="socialTwitter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="socialLinkedIn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="socialYoutube" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="copyrightInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="privacyPolicyLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="termsOfServiceLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TermsOfUseLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TermsOfPostingLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -709,6 +759,31 @@
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Footers">
+            <EntityTypeMapping TypeName="HoiTroModel.Footer">
+              <MappingFragment StoreEntitySet="Footer">
+                <ScalarProperty Name="TermsOfPostingLink" ColumnName="TermsOfPostingLink" />
+                <ScalarProperty Name="TermsOfUseLink" ColumnName="TermsOfUseLink" />
+                <ScalarProperty Name="socialLinkedIn" ColumnName="socialLinkedIn" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="socialYoutube" ColumnName="socialYoutube" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="termsOfServiceLink" ColumnName="termsOfServiceLink" />
+                <ScalarProperty Name="privacyPolicyLink" ColumnName="privacyPolicyLink" />
+                <ScalarProperty Name="copyrightInfo" ColumnName="copyrightInfo" />
+                <ScalarProperty Name="socialTwitter" ColumnName="socialTwitter" />
+                <ScalarProperty Name="socialFacebook" ColumnName="socialFacebook" />
+                <ScalarProperty Name="contactPhone" ColumnName="contactPhone" />
+                <ScalarProperty Name="contactEmail" ColumnName="contactEmail" />
+                <ScalarProperty Name="contactAddress" ColumnName="contactAddress" />
+                <ScalarProperty Name="companyInfo" ColumnName="companyInfo" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

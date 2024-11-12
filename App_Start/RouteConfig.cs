@@ -123,6 +123,48 @@ namespace HoiTroWebsite
                     { "type", "quan-ly-tin-dang" }
                },
                new[] { "HoiTroWebsite.Controllers" });
+
+            // thông tin công ty
+            routes.MapRoute("CompanyInfo", "{type}",
+               new { controller = "Footer", action = "getCompanyInfo", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "gioi-thieu-cong-ty" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // chính sách bảo mật
+            routes.MapRoute("privacyPolicy", "{type}",
+               new { controller = "Footer", action = "getPrivacyPolicyLink", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "chinh-sach-bao-mat" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // chính sách bảo mật
+            routes.MapRoute("TermsOfService", "{type}",
+               new { controller = "Footer", action = "getTermsOfServiceLink", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "dieu-khoan-dich-vu" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // quy định sử dụng
+            routes.MapRoute("TermsOfUse", "{type}",
+               new { controller = "Footer", action = "getTermsOfUseLink", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "quy-dinh-su-dung" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+            // quy định đăng tin
+            routes.MapRoute("TermsOfPosting", "{type}",
+               new { controller = "Footer", action = "getTermsOfPostingLink", type = UrlParameter.Optional },
+               new RouteValueDictionary
+               {
+                    { "type", "quy-dinh-dang-tin" }
+               },
+               new[] { "HoiTroWebsite.Controllers" });
+
             //Default
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 

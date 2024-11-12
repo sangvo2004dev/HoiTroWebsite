@@ -36,5 +36,6 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Mentor> Mentors { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<Footer> Footers { get; set; }
     }
 }

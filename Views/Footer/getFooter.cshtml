@@ -1,0 +1,58 @@
+﻿@model HoiTroWebsite.Models.Footer
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <h3>Về chúng tôi</h3>
+            <ul class="footer-menu-list">
+                <li><a href="/gioi-thieu-cong-ty">Giới thiệu về chúng tôi</a></li>
+                <li><a href="/chinh-sach-bao-mat">Chính sách bảo mật</a></li>
+                <li><a href="/dieu-khoan-dich-vu">Điều khoản dịch vụ</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <h3>Menu link</h3>
+            <ul class="footer-menu-list">
+                <li class="active"><a href="/trang-chu">Trang chủ</a></li>
+                <li><a href="/phong-tro">Cho thuê</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <h3>Về khách hàng</h3>
+            <ul class="footer-menu-list">
+                <li><a href="/quy-dinh-su-dung">Quy định sử dụng</a></li>
+                <li><a href="/quy-dinh-dang-tin">Quy định đăng tin</a></li>
+                <li><a href="#">CSKH: @Model.contactPhone</a></li>
+                <li><a href="mailto: @Model.contactEmail">Email: @Model.contactEmail</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <h3>Kết nối với HoiTro</h3>
+            <ul class="social_icon">
+                <li><a href="@Model.socialFacebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="@Model.socialTwitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="@Model.socialLinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li><a href="@Model.socialYoutube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <p>
+                    @*Copyright © 2024 - 2025 Ton Duc Thang Student project*@
+                    @Html.Raw(Model.copyrightInfo)
+                </p>
+            </div>
+        </div>
+    </div>
+    <ul class="footer-company-info">
+        <li>
+            <p><span>Địa chỉ:</span> @Model.contactAddress</p>
+        </li>
+    </ul>
+</div>

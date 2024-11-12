@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FootersController.cs" />
     <Compile Include="Areas\Admin\Controllers\MentorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenusController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
+    <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\MainPartialController.cs" />
     <Compile Include="Controllers\HomePageController .cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -161,6 +163,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Contact.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Footer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Mentor.cs">
@@ -1621,6 +1626,11 @@
     <Content Include="Areas\Admin\Views\Banners\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Footers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Footers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Footers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Footers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Footers\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1735,6 +1745,12 @@
     <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.ttf" />
     <Content Include="Scripts\js\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="Scripts\js\revolution\js\.DS_Store" />
+    <Content Include="Views\Footer\getFooter.cshtml" />
+    <Content Include="Views\Footer\getCompanyInfo.cshtml" />
+    <Content Include="Views\Footer\getPrivacyPolicyLink.cshtml" />
+    <Content Include="Views\Footer\getTermsOfServiceLink.cshtml" />
+    <Content Include="Views\Footer\getTermsOfUseLink.cshtml" />
+    <Content Include="Views\Footer\getTermsOfPostingLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

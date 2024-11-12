@@ -75,12 +75,12 @@ namespace HoiTroWebsite.Controllers
                     };
             return PartialView(v.ToList());
         }
-        //contact
+        // contact
         public ActionResult getContact()
         {
             return PartialView();
         }
-        //banner
+        // banner
         public ActionResult getBanner()
         {
             var v = from i in _db.Banners

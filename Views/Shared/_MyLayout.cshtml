@@ -75,65 +75,7 @@
 
     <footer>
         <div class="footer">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                        <h3>Về chúng tôi</h3>
-                        <ul class="footer-menu-list">
-                            <li><a href="#">Giới thiệu về Hỏi Trọ</a></li>
-                            <li><a href="#">Chính sách bảo mật</a></li>
-                            <li><a href="#">Chính sách thanh toán</a></li>
-                            <li><a href="#">Quy chế hoạt động</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                        <h3>Menu link</h3>
-                        <ul class="footer-menu-list">
-                            <li class="active"><a href="/trang-chu">Trang chủ</a></li>
-                            <li><a href="/phong-tro">Chu thuê</a></li>
-                            <li><a href="/tin-tuc">Tin tức</a></li>
-                            <li><a href="/lien-he">Liên hệ</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                        <h3>Về khách hàng</h3>
-                        <ul class="footer-menu-list">
-                            <li><a href="#">Giới thiệu về Hỏi Trọ</a></li>
-                            <li><a href="#">Chính sách bảo mật</a></li>
-                            <li><a href="#">Chính sách thanh toán</a></li>
-                            <li><a href="#">Quy chế hoạt động</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
-                        <h3>Kết nối với HoiTro</h3>
-                        <ul class="social_icon">
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1">
-                            <p>
-                                Copyright © 2024 - 2025 Ton Duc Thang Student project
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <ul class="footer-company-info">
-                    <li>
-                        <p><span>Địa chỉ:</span> bla bla bla</p>
-                    </li>
-                    <li>
-                        <p><span>Email:</span> bla bla bla</p>
-                    </li>
-                </ul>
-            </div>
+            @{ Html.RenderAction("getFooter", "Footer"); }
         </div>
     </footer>
     <!-- end footer -->

@@ -1,0 +1,28 @@
+﻿@model HoiTroWebsite.Models.Footer
+
+@{
+    ViewBag.Title = "Điều khoản dịch vụ";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="left-content">
+                <div class="container">
+                    @Html.Raw(Model.termsOfServiceLink)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="right-content">
+                @{
+                    Html.RenderAction("GetMiniNews", "MainPartial");
+                    Html.RenderAction("GetLatestRoomList", "MainPartial");
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
