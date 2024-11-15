@@ -2,13 +2,10 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
 <h2>Edit</h2>
-
-
-@using (Html.BeginForm("Edit", "Banners", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Banners", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-edit" }))
 {
     @Html.AntiForgeryToken()
 
@@ -80,11 +77,11 @@
     </div>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script>
     function previewImage(event) {
@@ -129,4 +126,4 @@
             }).keyup();
         });
     </script>
-}
+}*@

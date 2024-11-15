@@ -20,6 +20,13 @@ namespace HoiTroWebsite.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { controller = "Default", action = "AdminIndex" , id = UrlParameter.Optional }
             );
+
+            // Menu
+            context.MapRoute(
+                "Menu",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Menus", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

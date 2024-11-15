@@ -176,23 +176,60 @@
             </div>
         </div>
     </div>
+    <!-- Nút để kích hoạt modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Mở Popup
+    </button>
 
-@section _Footer
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tiêu đề Popup</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Đây là nội dung của popup. Bạn có thể thêm bất kỳ nội dung HTML nào ở đây.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section _Footer
 {
-    <!-- DataTables JavaScript -->
-    <script src="~/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="~/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="~/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="~/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Areas/Admin/Content/dist/js/sb-admin-2.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/Areas/Admin/Content/dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
             });
-        });
-    </script>
-}
+
+            $('td').on('click', function (e) {
+                $.ajax({
+                    url: '/admin/menus/edit',
+                    type: "GET",
+                    data: { id: 4 },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            });
+        </script>
+    }

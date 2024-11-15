@@ -95,6 +95,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
+            //Response.StatusCode = 200; // 200
+            //return Json( new { data = "test json"}, JsonRequestBehavior.AllowGet);
             return View(menu);
         }
 
@@ -116,7 +118,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.hasSubMenu = menu.hasSubMenu;
                 temp.hide = menu.hide;
                 temp.order = menu.order;
-                temp.datebegin = menu.datebegin;
 
                 // Thêm lại các SubMenus mới
                 if (menu.SubMenus != null)

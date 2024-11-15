@@ -18,7 +18,31 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Banners
         public ActionResult Index()
         {
-            return View(db.Banners.ToList());
+            Response.StatusCode = 200;
+            return View();
+        }
+        [HttpGet]
+        public JsonResult getBanner()
+        {
+            try
+            {
+                var banner = (from t in db.Banners.Where(x => x.hide != false)
+                              select new
+                              {
+                                  Id = t.id,
+                                  Img = t.img,
+                                  Name = t.name,
+                                  Meta = t.meta,
+                                  Hide = t.hide,
+                                  Order = t.order,
+                                  DateBegin = t.datebegin
+                              }).ToList();
+                return Json(new { code = 200, banner = banner, msg = "Lấy Banner thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy Banner thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/Banners/Details/5
@@ -48,33 +72,42 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,name,imgData,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
+        public JsonResult Create([Bind(Include = "id,name,imgData,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
         {
-            var path = "";
-            var filename = "";
-            if (ModelState.IsValid)
+            try
             {
-                if (img != null)
-                {
-                    //file =  Guid = Guid.newGuid().toString() + img.FileName;
-                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                var path = "";
+                var filename = "";
 
-                    path = Path.Combine(Server.MapPath("~/Content/images"), filename);
-                    img.SaveAs(path);
-                    banner.img = filename; //Lưu ý
-                }
-                else
+                if (ModelState.IsValid)
                 {
-                    banner.img = "logo.png";
+                    if (img != null)
+                    {
+                        filename = Path.GetFileName(img.FileName);
+                        path = Path.Combine(Server.MapPath("~/Content/images"), filename);
+                        img.SaveAs(path);
+                        banner.img = filename;
+                    }
+                    else
+                    {
+                        banner.img = "logo.png";
+                    }
+
+                    banner.datebegin = DateTime.Now;
+                    db.Banners.Add(banner);
+                    db.SaveChanges();
+
+                    return Json(new { code = 200, msg = "Banner created successfully" }, JsonRequestBehavior.AllowGet);
                 }
-                banner.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                db.Banners.Add(banner);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
-
-            return View(banner);
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
+
 
         // GET: Admin/Banners/Edit/5
         public ActionResult Edit(int? id)
@@ -97,11 +130,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,name,imgData,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,name,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
             Banner temp = getById(banner.id);
+
             if (ModelState.IsValid)
             {
                 if (img != null)
@@ -109,7 +143,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.img = filename; // Lưu ý
+                    temp.img = filename; // Cập nhật tên ảnh mới
                 }
                 temp.name = banner.name;
                 temp.meta = banner.meta;
@@ -118,10 +152,13 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
-            return View(banner);
+
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
+
         public Banner getById(long id)
         {
             return db.Banners.Where(x => x.id == id).FirstOrDefault();
@@ -142,16 +179,29 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             return View(banner);
         }
 
-        // POST: Admin/Banners/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Admin/Banners/DeleteConfirmed
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Banner banner = db.Banners.Find(id);
-            db.Banners.Remove(banner);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var banner = db.Banners.Find(id);
+            if (banner == null)
+            {
+                return Json(new { code = 404, msg = "Banner không tồn tại" });
+            }
+
+            try
+            {
+                db.Banners.Remove(banner);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa banner thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa banner: " + ex.Message });
+            }
         }
+
 
         protected override void Dispose(bool disposing)
         {

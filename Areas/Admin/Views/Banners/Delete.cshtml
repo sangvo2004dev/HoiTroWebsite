@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+    //Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
 <h2>Delete</h2>
@@ -63,13 +63,13 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("DeleteConfirmed", "Banners", FormMethod.Post, new { id = "form-delete" }))
+    {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id) <!-- Ẩn trường id để lấy id -->
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
         </div>
     }
 </div>

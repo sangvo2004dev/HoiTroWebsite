@@ -70,7 +70,7 @@
             @Html.Label("có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @{
-                    bool hasSubMenu = (Model.hasSubMenu.GetValueOrDefault(false) ? true : false);
+                    bool hasSubMenu = Model.SubMenus.Any();
                 }
                 @Html.CheckBoxFor(modelItem => hasSubMenu, new { @id = "hasSubMenuCheckbox" })
             </div>
@@ -112,7 +112,7 @@
     <script src="~/Areas/Admin/Content/js/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Sự kiện khi checkbox được thay đổi
+            // Hiển thị #subMenuSection khi checkbox hasSubMenu được chọn
             $('#hasSubMenuCheckbox').change(function () {
                 if ($(this).is(':checked')) {
                     $('#subMenuSection').show();
@@ -121,28 +121,33 @@
                 }
             });
         });
-    </script>
 
-    <script>
-    function deleteSubMenu(subMenuId) {
-        if (confirm("Bạn có chắc muốn xóa menu con này không?")) {
-            $.ajax({
-                url: '@Url.Action("DeleteSubMenu", "Menus")',
-                type: 'POST',
-                data: { id: subMenuId },
-                success: function (result) {
-                    if (result.success) {
-                        $("#submenu-" + subMenuId).remove(); // Remove submenu from DOM
-                    } else {
-                        alert("Không thể xóa menu con.");
+        function deleteSubMenu(subMenuId) {
+            if (confirm("Bạn có chắc muốn xóa menu con này không?")) {
+                $.ajax({
+                    url: '@Url.Action("DeleteSubMenu", "Menus")',
+                    type: 'POST',
+                    data: { id: subMenuId },
+                    success: function (result) {
+                        if (result.success) {
+                            $("#submenu-" + subMenuId).remove(); // Remove submenu from DOM
+
+                            // Kiểm tra xem có còn SubMenu nào không
+                            if ($('.form-group[id^="submenu-"]').length === 0) {
+                                // Nếu không còn, bỏ chọn hasSubMenu và ẩn vùng #subMenuSection
+                                $('#hasSubMenuCheckbox').prop('checked', false);
+                                $('#subMenuSection').hide();
+                            }
+                        } else {
+                            alert("Không thể xóa menu con.");
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi. Vui lòng thử lại sau.");
                     }
-                },
-                error: function () {
-                    alert("Đã xảy ra lỗi. Vui lòng thử lại sau.");
-                }
-            });
+                });
+            }
         }
-    }
     </script>
 }
 
