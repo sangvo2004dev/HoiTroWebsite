@@ -1,0 +1,79 @@
+﻿@using HoiTroWebsite.Help
+@model HoiTroWebsite.Models.Menu
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Quản lý Tin đăng cho thuê phòng
+        </div>
+        <div class="panel-body">
+            <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                <div class="btn-group">
+                    @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Menu, " --- Tất cả Menu --- ",
+                        new { @class = "form-control", @id = "Menu" })
+                </div>
+                <div class="btn-group">
+                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create New", "Create", "SubMenus", new { }, new { @class = "btn btn-primary" })
+                </div>
+                <div id="getSubMenu"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /.table-responsive -->
+    <div class="well">
+        <h4>DataTables Usage Information</h4>
+        <p>
+            DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized
+            version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome
+            icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.
+        </p>
+        <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">
+            View DataTables
+            Documentation
+        </a>
+    </div>
+</div>
+@section _Footer
+{
+    <!-- DataTables JavaScript -->
+    <script src="~/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Areas/Admin/Content/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            function getSubMenu() {
+                var menuId = $('#Menu').val();
+                $.ajax({
+                    url: '@Url.Action("getSubMenu", "SubMenus")',
+                    type: "GET",
+                    data: { id: menuId },
+                    success: function (data) {
+                        $("#getSubMenu").html(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            }
+            getSubMenu();
+            $("#Menu").change(function () {
+                getSubMenu();
+            })
+        });
+
+        // test ajax
+        
+    </script>
+}

@@ -45,6 +45,18 @@ namespace HoiTroWebsite.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { controller = "Footers", action = "Index", id = UrlParameter.Optional }
             );
+            // Mentor
+            context.MapRoute(
+                "Mentor",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Mentors", action = "Index", id = UrlParameter.Optional }
+            );
+            // SubMenu
+            context.MapRoute(
+                "SubMenu",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "SubMenus", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

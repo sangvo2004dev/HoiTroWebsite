@@ -1,10 +1,5 @@
 ﻿@model HoiTroWebsite.Models.Menu
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Details</h2>
 
 <div>
@@ -67,19 +62,5 @@
             @Html.DisplayFor(modelItem => Model.hasSubMenu)
         </dd>
 
-        <dt>
-            @Html.DisplayName("Menu con")
-        </dt>
-
-        @foreach (var s in Model.SubMenus)
-        {
-        <dd>
-            @Html.DisplayFor(models => s.name)
-        </dd>
-        }
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

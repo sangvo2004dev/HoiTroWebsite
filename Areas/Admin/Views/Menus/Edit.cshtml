@@ -1,12 +1,8 @@
 ﻿@model HoiTroWebsite.Models.Menu
-@{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Menus", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-edit" }))
 {
     @Html.AntiForgeryToken()
 
@@ -58,41 +54,14 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(modelItem => Model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(modelItem => Model.datebegin, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             @Html.Label("có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @{
-                    bool hasSubMenu = Model.SubMenus.Any();
+                    bool hasSubMenu = (Model.hide.GetValueOrDefault(false) ? true : false);
                 }
-                @Html.CheckBoxFor(modelItem => hasSubMenu, new { @id = "hasSubMenuCheckbox" })
+                @Html.CheckBoxFor(modelItem => hasSubMenu)
             </div>
-        </div>
-
-        @foreach (var s in Model.SubMenus)
-        {
-            <div id="submenu-@s.id" class="form-group">
-                @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(models => s.name)
-                    @Html.ValidationMessageFor(models => s.name, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-danger" onclick="deleteSubMenu(@s.id)">Xóa</button>
-                    <button type="button" class="btn" onclick="window.location.href='@Url.Action("Edit", "SubMenus", new { id = s.id})'">Sửa</button>
-                </div>
-            </div>
-        }
-        <div id="subMenuSection" class="form-group" style="display: @(Model.hasSubMenu == true ? "block" : "none")">
-            @Html.Label("Menu con", htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.ActionLink("Thêm menu con", "Create", "Submenus", new { menuId = Model.id }, new { @class = "btn" })
         </div>
 
         <div class="form-group">
@@ -101,78 +70,4 @@
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
-@section Scripts {
-    <script src="~/Areas/Admin/Content/js/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Hiển thị #subMenuSection khi checkbox hasSubMenu được chọn
-            $('#hasSubMenuCheckbox').change(function () {
-                if ($(this).is(':checked')) {
-                    $('#subMenuSection').show();
-                } else {
-                    $('#subMenuSection').hide();
-                }
-            });
-        });
-
-        function deleteSubMenu(subMenuId) {
-            if (confirm("Bạn có chắc muốn xóa menu con này không?")) {
-                $.ajax({
-                    url: '@Url.Action("DeleteSubMenu", "Menus")',
-                    type: 'POST',
-                    data: { id: subMenuId },
-                    success: function (result) {
-                        if (result.success) {
-                            $("#submenu-" + subMenuId).remove(); // Remove submenu from DOM
-
-                            // Kiểm tra xem có còn SubMenu nào không
-                            if ($('.form-group[id^="submenu-"]').length === 0) {
-                                // Nếu không còn, bỏ chọn hasSubMenu và ẩn vùng #subMenuSection
-                                $('#hasSubMenuCheckbox').prop('checked', false);
-                                $('#subMenuSection').hide();
-                            }
-                        } else {
-                            alert("Không thể xóa menu con.");
-                        }
-                    },
-                    error: function () {
-                        alert("Đã xảy ra lỗi. Vui lòng thử lại sau.");
-                    }
-                });
-            }
-        }
-    </script>
-}
-
-@section _Footer{
-    <script>
-        $(function () {
-            $("#name").keyup(function () {
-                var text = $.trim($(this).val().toLowerCase());
-                var text_create;
-
-                // Thay thế tất cả các ký tự có dấu thành không dấu
-                text_create = text
-                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                    .replace(/đ/g, "d")
-                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-                $('#meta').val(text_create);
-            }).keyup();
-        });
-    </script>
 }

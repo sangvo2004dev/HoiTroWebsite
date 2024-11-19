@@ -1,13 +1,8 @@
 ﻿@model HoiTroWebsite.Models.Menu
 
-@{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Menus", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-create" }))
 {
     @Html.AntiForgeryToken()
 
@@ -60,14 +55,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.datebegin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.Label("Có menu con", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -84,33 +71,4 @@
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-@section _Footer{
-    <script>
-        $(function () {
-            $("#name").keyup(function () {
-                var text = $.trim($(this).val().toLowerCase());
-                var text_create;
-
-                // Thay thế tất cả các ký tự có dấu thành không dấu
-                text_create = text
-                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                    .replace(/đ/g, "d")
-                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-                $('#meta').val(text_create);
-            }).keyup();
-        });
-    </script>
 }

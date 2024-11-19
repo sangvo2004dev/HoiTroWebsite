@@ -18,14 +18,38 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Menus
         public ActionResult Index()
         {
-            var menus = db.Menus.ToList();
-            foreach (var menu in menus)
-            {
-                db.Entry(menu).Collection(i => i.SubMenus).Load();
-                menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
-            }
-
+            Response.StatusCode = 200;
             return View();
+        }
+        [HttpGet]
+        public JsonResult getMenu()
+        {
+            try
+            {
+                var menus = db.Menus.ToList();
+                foreach (var menu in menus)
+                {
+                    db.Entry(menu).Collection(i => i.SubMenus).Load();
+                    menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
+                }
+                var mn = (from t in menus
+                              select new
+                              {
+                                  Id = t.id,
+                                  Name = t.name,
+                                  Link = t.link,
+                                  HasSubMenu = t.hasSubMenu,
+                                  Meta = t.meta,
+                                  Hide = t.hide,
+                                  Order = t.order,
+                                  DateBegin = t.datebegin
+                              }).ToList();
+                return Json(new { code = 200, menu = mn, msg = "Lấy Menu thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy Menu thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/Menus/Details/5
@@ -35,8 +59,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var menu = db.Menus.Include(m => m.SubMenus)
-                               .FirstOrDefault(s => s.hide == true && s.id == id);
+            Menu menu = db.Menus.Find(id);
             if (menu == null)
             {
                 return HttpNotFound();
@@ -57,27 +80,24 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,name,link,meta,hide,order,datebegin,hasSubMenu")] Menu menu)
         {
-            if (ModelState.IsValid)
+            try
             {
-                menu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                db.Menus.Add(menu);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    menu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    db.Menus.Add(menu);
+                    db.SaveChanges();
+                    return Json(new { code = 200, msg = "Menu created successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
-            return View(menu);
-        }
-        // Edit xóa menucon
-        public JsonResult DeleteSubMenu(long id)
-        {
-            var subMenu = db.SubMenus.Find(id);
-            if (subMenu != null)
+            catch (Exception ex) 
             {
-                db.SubMenus.Remove(subMenu);
-                db.SaveChanges();
-                return Json(new { success = true });
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+
             }
-            return Json(new { success = false });
         }
+
 
         // GET: Admin/Menus/Edit/5
         public ActionResult Edit(int? id)
@@ -87,16 +107,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var menu = db.Menus.Include(m => m.SubMenus)
-                               .FirstOrDefault(s => s.hide == true && s.id == id);
+            Menu menu = db.Menus.Find(id);
 
             if (menu == null)
             {
                 return HttpNotFound();
             }
-
-            //Response.StatusCode = 200; // 200
-            //return Json( new { data = "test json"}, JsonRequestBehavior.AllowGet);
             return View(menu);
         }
 
@@ -119,38 +135,16 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.hide = menu.hide;
                 temp.order = menu.order;
 
-                // Thêm lại các SubMenus mới
-                if (menu.SubMenus != null)
-                {
-                    foreach (var subMenu in menu.SubMenus)
-                    {
-                        // Thêm SubMenu vào temp và đặt trạng thái là Added
-                        temp.SubMenus.Add(subMenu);
-                        db.Entry(subMenu).State = EntityState.Added;
-                    }
-                }
-
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
-
-            ViewBag.menuId = new SelectList(db.Menus, "id", "name", menu.id);
-            return View(menu);
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
 
         public Menu getById(long id)
         {
-            var menu = db.Menus.Include(m => m.SubMenus) // Load SubMenus khi truy vấn menu
-                .Where(m => m.id == id && m.hide == true)
-                .FirstOrDefault();
-
-            // Sắp xếp lại SubMenus
-            if (menu != null)
-            {
-                menu.SubMenus = menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
-            }
-            return menu;
+            return db.Menus.Where(x => x.id == id).FirstOrDefault();
         }
 
         // GET: Admin/Menus/Delete/5
@@ -160,8 +154,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var menu = db.Menus.Include(m => m.SubMenus)
-                               .FirstOrDefault(s => s.hide == true && s.id == id);
+            Menu menu = db.Menus.Find(id);
             if (menu == null)
             {
                 return HttpNotFound();
@@ -170,14 +163,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/Menus/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Menu menu = db.Menus.Find(id);
-            db.Menus.Remove(menu);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var menu = db.Menus.Find(id);
+            if (menu == null)
+            {
+                return Json(new { code = 404, msg = "Menu không tồn tại" });
+            }
+
+            try
+            {
+                db.Menus.Remove(menu);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa Menu thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa Menu: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

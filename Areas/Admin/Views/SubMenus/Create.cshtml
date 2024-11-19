@@ -1,23 +1,18 @@
 ﻿@model HoiTroWebsite.Models.SubMenu
 
-@{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "SubMenus", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-create" })) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>SubMenu</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label("Tên", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -25,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Liên kết", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
@@ -41,20 +36,17 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.hide, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @{
-                        bool hide = true;
-                    }
-                    @Html.CheckBoxFor(model => hide, new { style = "margin:-1px 5px" })
+                    @Html.EditorFor(model => model.hide)
                     @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.order, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
@@ -62,46 +54,25 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.datebegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.menuId, "menuId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("menuId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.menuId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @using (Html.BeginForm())
-                {
-                    @Html.Hidden("returnUrl", Request.UrlReferrer?.ToString())
-                    <!-- Các input khác trong form -->
-                    <input type="submit" value="Create" class="btn btn-default" />
-                }
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
-<div>
-    @Html.ActionLink("Back to List", "Back", null, new { href = Request.UrlReferrer?.ToString(), @class = "btn" })
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-@section _Footer{
-    <script>
-        $(function () {
-            $("#name").keyup(function () {
-                var text = $.trim($(this).val().toLowerCase());
-                var text_create;
-
-                // Thay thế tất cả các ký tự có dấu thành không dấu
-                text_create = text
-                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                    .replace(/đ/g, "d")
-                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-                $('#meta').val(text_create);
-            }).keyup();
-        });
-    </script>
 }
