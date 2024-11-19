@@ -1,10 +1,5 @@
 ﻿@model HoiTroWebsite.Models.Account
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Details</h2>
 
 <div>
@@ -15,6 +10,10 @@
             @Html.DisplayName("Tên người dùng")
         </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
         <dt>
             @Html.DisplayName("Ảnh đại diện")
         </dt>
@@ -23,10 +22,6 @@
             <div class="col-md-4">
                 <img src="~/Content/images/@Model.avtImage" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
             </div>
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.name)
         </dd>
 
         <dt>
@@ -60,14 +55,6 @@
         <dd>
             @Html.DisplayFor(model => model.FBlink)
         </dd>
-
-        @*<dt>
-            @Html.DisplayName("Mật khẩu")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.meta)
@@ -103,7 +90,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

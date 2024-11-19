@@ -19,9 +19,33 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Accounts
         public ActionResult Index()
         {
-            return View(db.Accounts.ToList());
+            Response.StatusCode = 200;
+            return View();
         }
-
+        [HttpGet]
+        public JsonResult getAccount()
+        {
+            try
+            {
+                var account = (from t in db.Accounts
+                              select new
+                              {
+                                  Id = t.id,
+                                  Name = t.name,
+                                  Img = t.avtImage,
+                                  PhoneNum = t.phoneNum,
+                                  Meta = t.meta,
+                                  Hide = t.hide,
+                                  Order = t.order,
+                                  DateBegin = t.datebegin
+                              }).ToList();
+                return Json(new { code = 200, account = account, msg = "Lấy Accpunt thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy Account thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         // GET: Admin/Accounts/Details/5
         public ActionResult Details(int? id)
         {
@@ -51,10 +75,16 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,avtImage,password,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
         {
-            var path = "";
-            var filename = "";
-            if (ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    Response.StatusCode = 400;
+                    return View(); // Trả lại View cùng với lỗi xác thực
+                }
+
+                var path = "";
+                var filename = "";
                 if (img != null)
                 {
                     filename = img.FileName;
@@ -64,15 +94,18 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 }
                 else
                 {
-                    account.avtImage = "~/Content/images/logo.png";
+                    account.avtImage = "default-user.jpg";
                 }
-                account.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+
+                account.datebegin = DateTime.Now.Date;
                 db.Accounts.Add(account);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Account created successfully" }, JsonRequestBehavior.AllowGet);
             }
-
-            return View(account);
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public Account getById(long id)
@@ -127,9 +160,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.order = account.order;
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Cập nhật thành công" });
             }
-            return View(account);
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
 
         // GET: Admin/Accounts/Delete/5
@@ -148,14 +181,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/Accounts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Account account = db.Accounts.Find(id);
-            db.Accounts.Remove(account);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var account = db.Accounts.Find(id);
+            if (account == null)
+            {
+                return Json(new { code = 404, msg = "Account không tồn tại" });
+            }
+
+            try
+            {
+                db.Accounts.Remove(account);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa account thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa account: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

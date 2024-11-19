@@ -27,6 +27,24 @@ namespace HoiTroWebsite.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { controller = "Menus", action = "Index", id = UrlParameter.Optional }
             );
+            // Banner
+            context.MapRoute(
+                "Banner",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Banners", action = "Index", id = UrlParameter.Optional }
+            );
+            // Account
+            context.MapRoute(
+                "Account",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Accounts", action = "Index", id = UrlParameter.Optional }
+            );
+            // Footer
+            context.MapRoute(
+                "Footer",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "Footers", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

@@ -19,7 +19,31 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Mentors
         public ActionResult Index()
         {
-            return View(db.Mentors.ToList());
+            Response.StatusCode = 200;
+            return View();
+        }
+        [HttpGet]
+        public JsonResult getMentor()
+        {
+            try
+            {
+                var mentor = (from t in db.Mentors
+                              select new
+                              {
+                                  Id = t.id,
+                                  Img = t.avtImage,
+                                  Name = t.name,
+                                  Meta = t.meta,
+                                  Hide = t.hide,
+                                  Order = t.order,
+                                  DateBegin = t.datebegin
+                              }).ToList();
+                return Json(new { code = 200, mentor, msg = "Lấy mentor thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy mentor thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/Mentors/Details/5
@@ -51,34 +75,38 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id,name,avtImage,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
-            if (ModelState.IsValid)
-            {
-                var path = "";
-                var filename = "";
-                if (ModelState.IsValid)
-                {
-                    if (img != null)
-                    {
-                        //file =  Guid = Guid.newGuid().toString() + img.FileName;
-                        filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
 
-                        path = Path.Combine(Server.MapPath("~/Content/images"), filename);
-                        img.SaveAs(path);
-                        mentor.avtImage = filename; //Lưu ý
-                    }
-                    else
+                try
+                {
+                    var path = "";
+                    var filename = "";
+                    if (ModelState.IsValid)
                     {
-                        mentor.avtImage = "logo.png";
+                        if (img != null)
+                        {
+                            //file =  Guid = Guid.newGuid().toString() + img.FileName;
+                            filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+
+                            path = Path.Combine(Server.MapPath("~/Content/images"), filename);
+                            img.SaveAs(path);
+                            mentor.avtImage = filename; //Lưu ý
+                        }
+                        else
+                        {
+                            mentor.avtImage = "default-user.jpg";
+                        }
+                        mentor.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                        db.Mentors.Add(mentor);
+                        db.SaveChanges();
+                        return Json(new { code = 200, msg = "Banner created successfully" }, JsonRequestBehavior.AllowGet);
                     }
-                    mentor.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                    db.Mentors.Add(mentor);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
+                }
+                catch(Exception ex)
+                {
+                    return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
                 }
             }
-
-            return View(mentor);
-        }
 
         // GET: Admin/Mentors/Edit/5
         public ActionResult Edit(int? id)
@@ -130,9 +158,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Mentor created successfully" }, JsonRequestBehavior.AllowGet);
             }
-            return View(mentor);
+            return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
         }
         public Mentor getById(long id)
         {
@@ -155,14 +183,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/Mentors/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Mentor mentor = db.Mentors.Find(id);
-            db.Mentors.Remove(mentor);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var mentor = db.Mentors.Find(id);
+            if (mentor == null)
+            {
+                return Json(new { code = 404, msg = "Mentor không tồn tại" });
+            }
+
+            try
+            {
+                db.Mentors.Remove(mentor);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa Mentor thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa Mentor: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

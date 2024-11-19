@@ -18,6 +18,9 @@
             <thead>
                 <tr>
                     <th>
+                        @Html.DisplayName("STT")
+                    </th>
+                    <th>
                         @Html.DisplayName("Tên")
                     </th>
                     <th>
@@ -133,12 +136,13 @@
                     if (data.code == 200) {
                         $('#tbbanner').empty();
                         $.each(data.banner, function (k, v) {
-                            console.log(data.banner)
-                            const dateBegin = formatDate(v.DateBegin);
+                            //console.log(data.banner)
+                            const dateBegin = v.DateBegin === null ? '' : formatDate(v.DateBegin);
 
                             let tr = '<tr id="' + v.Id + '">'
+                            tr += '<td>' + (k + 1) + '</td>';
                             tr += '<td>' + v.Name + '</td>';
-                            tr += '<td>' + v.Img + '</td>';
+                            tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px"/></td>';
                             tr += '<td>' + v.Meta + '</td>';
                             tr += '<td>' + v.Hide + '</td>';
                             tr += '<td>' + v.Order + '</td>';
@@ -155,9 +159,9 @@
                         if ($.fn.dataTable.isDataTable('#dataTables-example')) {
                             // Nếu đã khởi tạo, clear và redraw lại
                             var table = $('#dataTables-example').DataTable();
-                            table.clear(); // Xóa dữ liệu cũ
+                            table.clear();
                             table.rows.add($('#tbbanner').find('tr')); // Thêm các dòng mới từ tbody
-                            table.draw(); // Vẽ lại bảng và cập nhật phân trang
+                            table.draw();
                         } else {
                             // Nếu chưa khởi tạo DataTable, thì khởi tạo
                             $('#dataTables-example').DataTable({
@@ -190,20 +194,25 @@
             return `${day}/${month}/${year}`;
         }
 
-        // Submet create
+        // Submit create
         $(document).on('submit', '#form-create', function (e) {
             e.preventDefault();
-            const form_data = $(this).serializeArray();
-            console.log(form_data);
+
+            // Sử dụng FormData để xử lý file
+            const formData = new FormData(this);
+
             $.ajax({
                 url: '/Admin/Banners/Create',
                 type: 'POST',
-                data: form_data,
+                data: formData,
+                contentType: false, // Quan trọng để gửi file
+                processData: false, // Quan trọng để gửi file
                 success: function (response) {
-                    console.log(response)
                     if (response.code == 200) {
                         $('#modalBanner').find('.close').click();
                         LoadBanner();
+                    } else {
+                        console.error('Lỗi:', response.msg);
                     }
                 },
                 error: function (xhr, status, error) {
@@ -211,6 +220,7 @@
                 }
             });
         });
+
         // Submit edit
         $(document).on('submit', '#form-edit', function (e) {
             e.preventDefault();
@@ -225,7 +235,7 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code === 200) {
                         $('#modalBanner').find('.close').click();
                         LoadBanner();
@@ -252,7 +262,7 @@
                 type: 'POST',
                 data: { id: id, __RequestVerificationToken: token },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code == 200) {
                         $('#modalBanner').find('.close').click();
                         LoadBanner();

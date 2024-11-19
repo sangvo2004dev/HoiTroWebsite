@@ -1,10 +1,5 @@
 ﻿@model HoiTroWebsite.Models.Mentor
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Details</h2>
 
 <div>
@@ -94,7 +89,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Ngày đăng")
+            @Html.DisplayName("Ngày tạo")
         </dt>
 
         <dd>
@@ -103,7 +98,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

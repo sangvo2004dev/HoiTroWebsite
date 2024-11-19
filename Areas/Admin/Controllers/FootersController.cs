@@ -17,11 +17,37 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         // GET: Admin/Footers
         public ActionResult Index()
         {
-            return View(db.Footers.ToList());
+            Response.StatusCode = 200;
+            return View();
+        }
+        [HttpGet]
+        public JsonResult getFooter()
+        {
+            try
+            {
+                var footer = (from t in db.Footers
+                              select new
+                              {
+                                  Id = t.id,
+                                  Name = t.title,
+                                  Address = t.contactAddress,
+                                  Email = t.contactEmail,
+                                  Phone = t.contactPhone,
+                                  Meta = t.meta,
+                                  Hide = t.hide,
+                                  Order = t.order,
+                                  DateBegin = t.datebegin
+                              }).ToList();
+                return Json(new { code = 200, footer = footer, msg = "Lấy Footer thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy Footer thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
-        // GET: Admin/Footers/Details/5
-        public ActionResult Details(int? id)
+            // GET: Admin/Footers/Details/5
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -49,15 +75,21 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id,title,companyInfo,contactAddress,contactEmail,contactPhone,socialFacebook,socialTwitter,socialLinkedIn,socialYoutube,copyrightInfo,privacyPolicyLink,termsOfServiceLink,TermsOfUseLink,TermsOfPostingLink,meta,hide,order,datebegin")] Footer footer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                footer.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                db.Footers.Add(footer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    footer.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    db.Footers.Add(footer);
+                    db.SaveChanges();
+                    return Json(new { code = 200, msg = "Footer created successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
-
-            return View(footer);
+            catch (Exception ex) 
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/Footers/Edit/5
@@ -106,9 +138,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
-            return View(footer);
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
 
         public Footer getById(long id)
@@ -132,14 +164,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/Footers/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Footer footer = db.Footers.Find(id);
-            db.Footers.Remove(footer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var footer = db.Footers.Find(id);
+            if (footer == null)
+            {
+                return Json(new { code = 404, msg = "Footer không tồn tại" });
+            }
+
+            try
+            {
+                db.Footers.Remove(footer);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa Footer thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa Footer: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

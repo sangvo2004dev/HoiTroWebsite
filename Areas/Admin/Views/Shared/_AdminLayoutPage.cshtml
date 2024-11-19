@@ -289,6 +289,24 @@
 
                         </li>
                         <li>
+                            <a href="@Url.Action("Index", "Banners", new { area = "Admin" })">
+                                <i class="fa fa-dashboard fa-fw"></i> Quản lý Banner
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Accounts", new { area = "Admin" })">
+                                <i class="fa fa-dashboard fa-fw"></i> Quản lý Account
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Footers", new { area = "Admin" })">
+                                <i class="fa fa-dashboard fa-fw"></i> Quản lý Footer
+                            </a>
+
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -410,8 +428,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    @*Phân trang*@
     <link rel="stylesheet" href="~/Areas/Admin/Content/vendor/datatables/css/jquery.dataTables.min.css">
-    <script src="~/Areas/Admin/Content/js/jquery-3.6.0.min.js"></script>
+    @*<script src="~/Areas/Admin/Content/js/jquery-3.6.0.min.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.7.0.min.js"></script>*@
     <script src="~/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    @*Xử lý not null*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 </body>
 </html>

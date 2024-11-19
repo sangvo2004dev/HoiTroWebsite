@@ -26,7 +26,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             try
             {
-                var banner = (from t in db.Banners.Where(x => x.hide != false)
+                var banner = (from t in db.Banners
                               select new
                               {
                                   Id = t.id,
@@ -201,8 +201,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa banner: " + ex.Message });
             }
         }
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

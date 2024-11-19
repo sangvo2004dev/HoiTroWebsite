@@ -25,7 +25,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 menu.SubMenus.Where(s => s.hide == true).OrderBy(s => s.order).ToList();
             }
 
-            return View(menus);
+            return View();
         }
 
         // GET: Admin/Menus/Details/5

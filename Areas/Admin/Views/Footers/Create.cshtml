@@ -1,14 +1,8 @@
 ﻿@model HoiTroWebsite.Models.Footer
 
-@{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Create</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Banners", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-create" }))
 {
     @Html.AntiForgeryToken()
 
@@ -157,80 +151,10 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-@section _Footer
-{
-    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
-    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("companyInfo");
-        var editor = CKEDITOR.replace("companyInfo { height: '600px' }");
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("privacyPolicyLink");
-        var editor = CKEDITOR.replace("privacyPolicyLink { height: '600px' }");
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("termsOfServiceLink");
-        var editor = CKEDITOR.replace("termsOfServiceLink { height: '600px' }");
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("TermsOfUseLink");
-        var editor = CKEDITOR.replace("TermsOfUseLink { height: '600px' }");
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("TermsOfPostingLink");
-        var editor = CKEDITOR.replace("TermsOfPostingLink { height: '600px' }");
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script>
-        $(function () {
-            $("#title").keyup(function () {
-                var text = $.trim($(this).val().toLowerCase());
-                var text_create;
-
-                // Thay thế tất cả các ký tự có dấu thành không dấu
-                text_create = text
-                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                    .replace(/đ/g, "d")
-                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-                $('#meta').val(text_create);
-            }).keyup();
-        });
-    </script>
 }

@@ -6,196 +6,374 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
-@section _Header
-{
-    <!-- DataTables CSS -->
-    <link href="~/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
-    <!-- DataTables Responsive CSS -->
-    <link href="~/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-}
+<button class="btn btn-success text-white" id="btnAdd">
 
-<div class="col-lg-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Quản lý Footer
-        </div>
-        <div class="panel-body">
-            <div class="bs-example" style="text-align:right; padding-bottom:10px;">
-                <div class="btn-group">
-                    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "CreateNew", "Create", "Footers", new { }, new { @class = "btn btn-primary" })
-                </div>
-                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="dataTables_length" id="dataTables-example_length">
-                                <label>
-                                    Show <select name="dataTables-example_length" aria-controls="dataTables-example"
-                                                 class="form-control input-sm">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> entries
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-10">
-                            <div id="dataTables-example_filter" class="dataTables_filter">
-                                <label>
-                                    Search:<input type="search" class="form-control input-sm" placeholder=""
-                                                  aria-controls="dataTables-example">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- chèn bảng  -->
-                    <div class="row">
-                        <!-- /.panel-heading -->
-                        <div class="col-lg-12">
-                            <table width="100%" class="table table-striped table-bordered table-hover"
-                                   id="dataTables-example">
-                                <tr>
-                                    <th>
-                                        @Html.DisplayName("Tiêu đề")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Địa chỉ liên hệ")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Email liên hệ")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Số điện thoại liên hệ")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.meta)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Hiển thị")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Sắp xếp")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Ngày tạo")
-                                    </th>
-                                    <th></th>
-                                </tr>
+    <a href="#" class="" data-toggle="modal" data-target="#modalFooter">
+        <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
+    </a>
+</button>
 
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.title)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.contactAddress)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.contactEmail)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.contactPhone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.meta)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.hide)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.order)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.datebegin)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                                        </td>
-                                    </tr>
-                                }
-
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_info" id="dataTables-example_info" role="status"
-                                 aria-live="polite">
-                                Showing 1 to
-                                10 of 57 entries
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" aria-controls="dataTables-example"
-                                        tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li>
-                                    <li class="paginate_button active" aria-controls="dataTables-example"
-                                        tabindex="0">
-                                        <a href="#">1</a>
-                                    </li>
-                                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                        <a href="#">3</a>
-                                    </li>
-                                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                        <a href="#">4</a>
-                                    </li>
-                                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                        <a href="#">5</a>
-                                    </li>
-                                    <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                        <a href="#">6</a>
-                                    </li>
-                                    <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0"
-                                        id="dataTables-example_next"><a href="#">Next</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.table-responsive -->
-    <div class="well">
-        <h4>DataTables Usage Information</h4>
-        <p>
-            DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a
-            specialized
-            version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font
-            Awesome
-            icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.
-        </p>
-        <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">
-            View DataTables
-            Documentation
-        </a>
+<div class="row">
+    <div class="col-lg-12">
+        <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("STT")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Tiêu đề")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Địa chỉ liên hệ")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Email liên hệ")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Số điện thoại liên hệ")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Meta")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Hiển thị")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Sắp xếp")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Ngày tạo")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbfooter">
+            </tbody>
+        </table>
     </div>
 </div>
 
-@section _Footer
+<!-- Modal -->
+<div class="modal fade" id="modalFooter" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+            </div>
+            <div class="modal-body">
+                @*<h3>Modal Body</h3>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
 {
-    <!-- DataTables JavaScript -->
-    <script src="~/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="~/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Areas/Admin/Content/dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
         $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
+            LoadFooter();
+        })
+        // Create
+        $('#btnAdd').click(function () {
+            $.ajax({
+                url: '/Admin/Footers/Create',
+                type: 'get',
+                success: function (data) {
+                    //console.log(data);
+                    $('#modalFooter').find('.modal-body').html(data);
+                },
+            });
+        })
+        // Detail
+        $(document).on('click', '.btnDetail', function () {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '/Admin/Footers/Details/' + id,
+                type: 'get',
+                success: function (data) {
+                    $('#modalFooter').find('.modal-body').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
             });
         });
+        // Edit
+        $(document).on('click', '.btnEdit', function () {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '/Admin/Footers/Edit/' + id,
+                type: 'get',
+                success: function (data) {
+                    $('#modalFooter').find('.modal-body').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
+            });
+        });
+        // Delete
+        $(document).on('click', '.btnDelete', function () {
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: '/Admin/Footers/Delete/' + id,
+                type: 'get',
+                success: function (data) {
+                    $('#modalFooter').find('.modal-body').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
+            });
+        });
+
+        function LoadFooter() {
+            $.ajax({
+                url: '/Admin/Footers/getFooter',
+                type: 'get',
+                success: function (data) {
+                    if (data.code == 200) {
+                        $('#tbfooter').empty();
+                        $.each(data.footer, function (k, v) {
+                            console.log(data.footer)
+                            const dateBegin = v.DateBegin === null ? '' : formatDate(v.DateBegin);
+
+                            let tr = '<tr id="' + v.Id + '">'
+                            tr += '<td>' + (k + 1) + '</td>';
+                            tr += '<td>' + v.Name + '</td>';
+                            tr += '<td>' + v.Address + '</td>';
+                            tr += '<td>' + v.Email + '</td>';
+                            tr += '<td>' + v.Phone + '</td>';
+                            tr += '<td>' + v.Meta + '</td>';
+                            tr += '<td>' + v.Hide + '</td>';
+                            tr += '<td>' + v.Order + '</td>';
+                            tr += '<td>' + dateBegin + '</td>';
+                            tr += '<td class="text-right">';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Xóa </button>';
+                            tr += '</td>';
+                            tr += '</tr>';
+                            $('#tbfooter').append(tr);
+                        });
+
+                        if ($.fn.dataTable.isDataTable('#dataTables-example')) {
+
+                            var table = $('#dataTables-example').DataTable();
+                            table.clear();
+                            table.rows.add($('#tbfooter').find('tr'));
+                            table.draw();
+                        } else {
+
+                            $('#dataTables-example').DataTable({
+                                "paging": true,
+                                "searching": true,
+                                "ordering": true
+                            });
+                        }
+
+                        attachEventHandlers();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
+            });
+        }
+
+        function formatDate(jsonDate) {
+
+            const timestamp = parseInt(jsonDate.replace(/\/Date\((\d+)\)\//, '$1'));
+            const date = new Date(timestamp);
+
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+
+            return `${day}/${month}/${year}`;
+        }
+
+        // Submet create
+        $(document).on('submit', '#form-create', function (e) {
+            e.preventDefault();
+            const form_data = $(this).serializeArray();
+            console.log(form_data);
+            $.ajax({
+                url: '/Admin/Footers/Create',
+                type: 'POST',
+                data: form_data,
+                success: function (response) {
+                    console.log(response)
+                    if (response.code == 200) {
+                        $('#modalFooter').find('.close').click();
+                        LoadFooter();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                }
+            });
+        });
+        // Submit edit
+        $(document).on('submit', '#form-edit', function (e) {
+            e.preventDefault();
+
+            const form_data = new FormData(this);
+            const id = $(this).find("input[name='id']").val();
+
+            $.ajax({
+                url: '/Admin/Footers/Edit/' + id,
+                type: 'POST',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    console.log(response);
+                    if (response.code === 200) {
+                        $('#modalFooter').find('.close').click();
+                        LoadFooter();
+                    } else {
+                        alert(response.msg);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                    alert("Có lỗi xảy ra khi cập nhật footer.");
+                }
+            });
+        });
+
+        // Submit delete
+        $(document).on('submit', '#form-delete', function (e) {
+            e.preventDefault();
+
+            const id = $(this).find("input[name='id']").val();
+            const token = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                url: '/Admin/Footers/DeleteConfirmed',
+                type: 'POST',
+                data: { id: id, __RequestVerificationToken: token },
+                success: function (response) {
+                    console.log(response);
+                    if (response.code == 200) {
+                        $('#modalFooter').find('.close').click();
+                        LoadFooter();
+                    } else {
+                        alert(response.msg);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Lỗi:', error);
+                    console.error('Mã trạng thái:', xhr.status);
+                    console.error('Nội dung lỗi:', xhr.responseText);
+                    alert("Có lỗi xảy ra khi xóa footer. Vui lòng kiểm tra log lỗi.");
+                }
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            // Danh sách các trường cần tích hợp CKEditor
+            const editorFields = [
+                "companyInfo",
+                "privacyPolicyLink",
+                "termsOfServiceLink",
+                "TermsOfUseLink",
+                "TermsOfPostingLink"
+            ];
+
+            editorFields.forEach(function (fieldId) {
+                CKEDITOR.replace(fieldId, {
+                    height: '600px',
+                    customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                    language: 'vi',
+                    filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                    filebrowserUploadMethod: 'form'
+                });
+            });
+        });
+        $(document).on('shown.bs.modal', '#modalFooter', function () {
+            // Xóa các instance CKEditor cũ trước khi tạo mới
+            $('#modalFooter').find('textarea').each(function () {
+                var id = $(this).attr('id');
+                if (CKEDITOR.instances[id]) {
+                    CKEDITOR.instances[id].destroy(true);
+                    // Hủy CKEditor instance nếu tồn tại
+                }
+                // Tạo mới CKEditor cho textarea
+                CKEDITOR.replace(id, {
+                    height: '400px',
+                    customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                    language: 'vi',
+                    filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                    filebrowserUploadMethod: 'form'
+                });
+            });
+        });
+
+        $(document).on('submit', '#form-create, #form-edit', function (e) {
+            e.preventDefault();
+
+            // Cập nhật nội dung CKEditor vào textarea
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+
+            const form_data = new FormData(this);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: form_data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.code === 200) {
+                        $('#modalFooter').modal('hide');
+                        LoadFooter();
+                    } else {
+                        alert(response.msg);
+                    }
+                },
+                error: function (xhr) {
+                    console.error('Lỗi:', xhr.responseText);
+                }
+            });
+        });
+
+    </script>
+
+    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
+
+    <script>
+        $(document).on('keyup', '#title', function () {
+            var text = $.trim($(this).val().toLowerCase());
+            var text_create;
+
+            text_create = text
+                .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
+                .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
+                .replace(/ì|í|ị|ỉ|ĩ/g, "i")
+                .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
+                .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
+                .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
+                .replace(/đ/g, "d")
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-+|-+$/g, '');
+
+            $('#meta').val(text_create);
+        }).keyup();
     </script>
 }
