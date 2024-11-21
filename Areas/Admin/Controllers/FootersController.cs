@@ -79,7 +79,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    footer.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    footer.datebegin = DateTime.Now.Date;
                     db.Footers.Add(footer);
                     db.SaveChanges();
                     return Json(new { code = 200, msg = "Footer created successfully" }, JsonRequestBehavior.AllowGet);

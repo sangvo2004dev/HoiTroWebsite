@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -19,22 +20,13 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             var subMenus = db.SubMenus.Include(s => s.Menu);
             getMenu();
+            Response.StatusCode = 200;
             return View();
         }
 
         public void getMenu(long? selectedId = null)
         {
             ViewBag.Menu = new SelectList(db.Menus.Where(x => x.hide == true).OrderBy(x => x.order), "id", "name", selectedId);
-        }
-        public ActionResult getSubMenu(long? id)
-        {
-            if (id == null)
-            {
-                var v = db.SubMenus.OrderBy(x => x.order).ToList();
-                return PartialView(v);
-            }
-            var m = db.SubMenus.Where(x => x.menuId == id).OrderBy(x => x.order).ToList();
-            return PartialView(m);
         }
 
         // GET: Admin/SubMenus/Details/5
@@ -51,30 +43,47 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
             return View(subMenu);
         }
-        //[HttpGet]
-        //public JsonResult getSubMenu()
-        //{
-        //    try
-        //    {
-        //        var submenu = (from t in db.SubMenus
-        //                      select new
-        //                      {
-        //                          Id = t.id,
-        //                          Name = t.name,
-        //                          Link = t.link,
-        //                          Meta = t.meta,
-        //                          Hide = t.hide,
-        //                          Order = t.order,
-        //                          DateBegin = t.datebegin,
-        //                          Menu = t.Menu.name,
-        //                      }).ToList();
-        //        return Json(new { code = 200, submenu = submenu, msg = "Lấy Footer thành công" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { code = 500, msg = "Lấy Footer thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+        [HttpGet]
+
+        public JsonResult getSubMenu(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    var submenu1 = (from t in db.SubMenus.OrderBy(x => x.order)
+                                   select new
+                                   {
+                                       Id = t.id,
+                                       Name = t.name,
+                                       Link = t.link,
+                                       Meta = t.meta,
+                                       Hide = t.hide,
+                                       Order = t.order,
+                                       DateBegin = t.datebegin,
+                                       Menu = t.Menu.name,
+                                   }).ToList();
+                    return Json(new { code = 200, submenu = submenu1, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+                }
+                    var submenu2 = (from t in db.SubMenus.Where(x => x.menuId == id).OrderBy(x => x.order)
+                               select new
+                               {
+                                   Id = t.id,
+                                   Name = t.name,
+                                   Link = t.link,
+                                   Meta = t.meta,
+                                   Hide = t.hide,
+                                   Order = t.order,
+                                   DateBegin = t.datebegin,
+                                   Menu = t.Menu.name,
+                               }).ToList();
+                return Json(new { code = 200, submenu = submenu2, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy SubMenu thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
         // GET: Admin/SubMenus/Create
@@ -95,37 +104,25 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,name,link,meta,hide,order,datebegin,menuId")] SubMenu subMenu)
         {
-            //try
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        subMenu.order = getMaxOrder((long)subMenu.menuId);
-            //        db.SubMenus.Add(subMenu);
-            //        db.SaveChanges();
-            //        //return Json(new { code = 200, msg = "Footer created successfully" }, JsonRequestBehavior.AllowGet);
-            //    }
-
-            //    ViewBag.menuId = new SelectList(db.Menus, "id", "name", subMenu.menuId);
-            //    //return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (Exception ex) 
-            //{
-            //    return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
-            //}
-
-            if (ModelState.IsValid)
+            try
             {
-                subMenu.order = getMaxOrder((long)subMenu.menuId);
-                db.SubMenus.Add(subMenu);
-                db.SaveChanges();
-                return RedirectToAction("Index", "SubMenus", new { menuId = subMenu.menuId});
+                if (ModelState.IsValid)
+                {
+                    subMenu.datebegin = DateTime.Now.Date;
+                    subMenu.order = getMaxOrder((long)subMenu.menuId);
+                    db.SubMenus.Add(subMenu);
+                    db.SaveChanges();
+                    return Json(new { code = 200, msg = "Footer created successfully" }, JsonRequestBehavior.AllowGet);
+                }
 
+                ViewBag.menuId = new SelectList(db.Menus, "id", "name", subMenu.menuId);
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
-
-            ViewBag.menuId = new SelectList(db.Menus, "id", "name", subMenu.menuId);
-            return View(subMenu);
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
-
 
         // GET: Admin/SubMenus/Edit/5
         public ActionResult Edit(int? id)

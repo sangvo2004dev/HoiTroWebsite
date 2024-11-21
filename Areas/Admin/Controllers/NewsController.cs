@@ -72,7 +72,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     {
                         news.imagePath = "logo.png";
                     }
-                    news.datebegin =  Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    news.datebegin = DateTime.Now.Date;
                     //news.meta = Functions.ConvertTopUpSign(news.title);
                     db.News.Add(news);
                     db.SaveChanges();

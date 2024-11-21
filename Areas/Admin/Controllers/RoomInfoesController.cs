@@ -76,7 +76,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                roomInfo.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                roomInfo.datebegin = DateTime.Now.Date;
                 roomInfo.order = getMaxOrder((long)roomInfo.roomTypeId);
                 db.RoomInfoes.Add(roomInfo);
                 db.SaveChanges();

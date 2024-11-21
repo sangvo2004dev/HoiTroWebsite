@@ -95,7 +95,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                         {
                             mentor.avtImage = "default-user.jpg";
                         }
-                        mentor.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                        mentor.datebegin = DateTime.Now.Date;
                         db.Mentors.Add(mentor);
                         db.SaveChanges();
                         return Json(new { code = 200, msg = "Banner created successfully" }, JsonRequestBehavior.AllowGet);
