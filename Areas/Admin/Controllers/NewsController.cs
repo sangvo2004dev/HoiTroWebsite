@@ -20,9 +20,57 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var news = db.News.Include(n => n.NewsType);
-            return View(news.ToList());
+            getNewType();
+            Response.StatusCode = 200;
+            return View();
         }
+        public void getNewType(long? selectedId = null)
+        {
+            ViewBag.NewsType = new SelectList(db.NewsTypes.Where(x => x.hide == true).OrderBy(x => x.order), "id", "title", selectedId);
+        }
+        [HttpGet]
 
+        public JsonResult getNews(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    var news1 = (from t in db.News.OrderBy(x => x.order)
+                                    select new
+                                    {
+                                        Id = t.id,
+                                        Name = t.title,
+                                        Img = t.imagePath,
+                                        Author = t.author, 
+                                        Meta = t.meta,
+                                        Hide = t.hide,
+                                        Order = t.order,
+                                        DateBegin = t.datebegin,
+                                        NewsType = t.NewsType.title
+                                    }).ToList();
+                    return Json(new { code = 200, news = news1, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+                }
+                var news2 = (from t in db.News.Where(x => x.newsTypeId == id).OrderBy(x => x.order)
+                                select new
+                                {
+                                    Id = t.id,
+                                    Name = t.title,
+                                    Img = t.imagePath,
+                                    Author = t.author,
+                                    Meta = t.meta,
+                                    Hide = t.hide,
+                                    Order = t.order,
+                                    DateBegin = t.datebegin,
+                                    NewsType = t.NewsType.title
+                                }).ToList();
+                return Json(new { code = 200, news = news2, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy SubMenu thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         // GET: Admin/News/Details/5
         public ActionResult Details(int? id)
         {
@@ -44,6 +92,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title");
             return View();
         }
+        public int getMaxOrder(long newsTypeId)
+        {
+            return db.News.Where(x => x.newsTypeId == newsTypeId).Count();
+        }
 
         // POST: Admin/News/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -53,15 +105,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var path = "";
-                var filename = "";
                 if (ModelState.IsValid)
                 {
+                    var path = "";
+                    var filename = "";
                     if (img != null)
                     {
-                        //file =  Guid = Guid.newGuid().toString() + img.FileName;
                         filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
 
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
@@ -73,14 +124,17 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                         news.imagePath = "logo.png";
                     }
                     news.datebegin = DateTime.Now.Date;
-                    //news.meta = Functions.ConvertTopUpSign(news.title);
                     db.News.Add(news);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Json(new { code = 200, msg = "News created successfully" }, JsonRequestBehavior.AllowGet);
                 }
+                ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-            return View(news);
+            catch (Exception ex) 
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Admin/News/Edit/5
@@ -115,14 +169,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    // filename = Guid.NewGuid().ToString() + img.FileName;
-                    //filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
                     temp.imagePath = filename; // Lưu ý
                 }
-                // tem.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 temp.title = news.title;
                 temp.brief_description = news.brief_description;
                 temp.detail_description = news.detail_description;
@@ -131,10 +182,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.order = news.order;
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
             ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-            return View(news);
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
         public News getById(long id)
         {
@@ -157,14 +208,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/News/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var news = db.News.Find(id);
+            if (news == null)
+            {
+                return Json(new { code = 404, msg = "News không tồn tại" });
+            }
+
+            try
+            {
+                db.News.Remove(news);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa News thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa News: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

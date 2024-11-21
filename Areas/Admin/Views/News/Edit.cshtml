@@ -1,13 +1,8 @@
 ﻿@model HoiTroWebsite.Models.News
 
-@{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" , @id = "form-edit"}))
 {
     @Html.AntiForgeryToken()
 
@@ -69,14 +64,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -107,55 +94,4 @@
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-@section Scripts
-{
-    <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function () {
-                var output = document.getElementById('preview');
-                output.src = reader.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
-}
-
-@section _Footer
-{
-    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
-    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
-        var editor = CKEDITOR.replace("detail_description");
-        var editor = CKEDITOR.replace("detail_description", { height: '600px' });
-        customConfig: '/Areas/Admin/Content/ckeditor/config.js';
-    </script>
-    <script>
-        $(function () {
-            $("#title").keyup(function () {
-                var text = $.trim($(this).val().toLowerCase());
-                var text_create;
-
-                // Thay thế tất cả các ký tự có dấu thành không dấu
-                text_create = text
-                    .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                    .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                    .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                    .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                    .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                    .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                    .replace(/đ/g, "d")
-                    .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                    .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                    .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-                $('#meta').val(text_create);
-            }).keyup();
-        });
-    </script>
 }

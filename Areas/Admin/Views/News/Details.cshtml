@@ -1,10 +1,5 @@
 ﻿@model HoiTroWebsite.Models.News
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-}
-
 <h2>Details</h2>
 
 <div>
@@ -25,7 +20,7 @@
 
         <dd>
             <div class="col-md-4">
-                <img src="~/Content/images/@Model.imagePath" width="100px" /> <!--Lưu ý quyết định nd lưu imagePath trên csdl-->
+                <img src="~/Content/images/@Model.imagePath" width="100px" />
             </div>
         </dd>
 
@@ -95,7 +90,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

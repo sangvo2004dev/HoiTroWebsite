@@ -200,7 +200,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             var submenu = db.SubMenus.Find(id);
             if (submenu == null)
             {
-                return Json(new { code = 404, msg = "Footer không tồn tại" });
+                return Json(new { code = 404, msg = "SubMenu không tồn tại" });
             }
 
             try

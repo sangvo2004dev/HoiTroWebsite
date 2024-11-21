@@ -57,6 +57,12 @@ namespace HoiTroWebsite.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { controller = "SubMenus", action = "Index", id = UrlParameter.Optional }
             );
+            // News
+            context.MapRoute(
+                "Newses",
+                "Admin/{controller}/{action}/{id}",
+                new { controller = "News", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

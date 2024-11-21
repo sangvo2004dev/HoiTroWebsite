@@ -144,7 +144,7 @@
                 }
             });
         });
-
+        //Load khi dùng DropdownList
         function LoadSubMenu1(submenu) {
             const table = $('#dataTables-example').DataTable();
             table.clear(); // Xóa dữ liệu cũ trong DataTable
@@ -169,6 +169,7 @@
 
             table.draw(); // Vẽ lại bảng
         }
+        // Load toàn bộ submenu
         function LoadSubMenu() {
             var menuId = $('#Menu').val(); // Lấy giá trị menuId
             $.ajax({
