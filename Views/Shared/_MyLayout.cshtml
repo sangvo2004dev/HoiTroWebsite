@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <!-- style css -->
     <link rel="stylesheet" href="~/Content/css/hoitro-style-config.css" />
     <link rel="stylesheet" href="~/Content/css/hoitro-style.css">
@@ -36,6 +36,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection(name: "header", required: false)
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>    
 </head>
 <!-- body -->
 <body class="main-layout">
@@ -158,12 +159,13 @@
     <!-- Javascript files-->
     @*<script src="~/Scripts/js/jquery.min.js"></script>*@
     <script src="~/Scripts/js/bootstrap.bundle.min.js"></script>
+    @Html.Raw("<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js\"></script>")
+    
     @*<script src="~/Scripts/js/jquery-3.0.0.min.js"></script>*@
     <!-- sidebar -->
     <script src="~/Scripts/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="~/Scripts/js/custom.js"></script>
-
-    @RenderSection(name: "footer", required: false) 
+    @RenderSection(name: "footer", required: false)
 
 </body>
 </html>

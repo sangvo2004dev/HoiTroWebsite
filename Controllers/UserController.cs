@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.WebParts;
 using HoiTroWebsite.Models;
 using HoiTroWebsite.UserModels;
 using Microsoft.Ajax.Utilities;
@@ -46,8 +41,8 @@ namespace HoiTroWebsite.Controllers
                 db.Accounts.Add(user);
                 db.SaveChanges();
                 ViewBag.Message = "Đăng ký thành công";
-            } 
-            else 
+            }
+            else
             {
                 ViewBag.Message = "Đăng ký không thành công";
             }
@@ -124,6 +119,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         // GET 
+        //[Route("quan-ly/sua-bai-dang/{id}")]
         [HttpGet]
         // edit bài đăng từ của user
         public ActionResult EditPostRoom(int? id) // id bài post
@@ -178,6 +174,28 @@ namespace HoiTroWebsite.Controllers
             DeleteFileUrl(file_delete_list, id);
 
             return RedirectToAction("Index", "HomePage");
+        }
+
+        // cho user cập nhật thông tin cá nhân
+        [Route("quan-ly/cap-nhat-thong-tin-tai-khoan")]
+        [HttpGet]
+        public ActionResult UpdateProfile()
+        {
+            if (Session["User"] == null)
+            {
+                Session["User"] = db.Accounts.SingleOrDefault(a => a.id == 11);
+            }
+            var account = Session["User"] as Account;
+
+            ViewBag.id = account.id;
+            return View(account);
+        }
+
+        [Route("quan-ly/tin-dang")]
+        [HttpGet]
+        public ActionResult ManagePostRooms()
+        {
+            return View();
         }
 
         // lưu tên file và đường dẫn lên database

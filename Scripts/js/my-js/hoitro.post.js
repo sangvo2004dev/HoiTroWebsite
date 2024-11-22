@@ -3,6 +3,7 @@ manage_post = manage_post || {};
 manage_post = {
     form: (function () { return $('form'); })(),
     url_upload_image: '/api/upload',
+    chon_anh: '.chon-anh',
 
     uploadImage: function () {
         if (typeof Dropzone === 'undefined') return;
@@ -27,13 +28,13 @@ manage_post = {
 
         let myDropzone;
         if (Dropzone.instances.length === 0) {
-            myDropzone = new Dropzone('.js-dropzone', dropzoneOptions);
+            myDropzone = new Dropzone(this.chon_anh, dropzoneOptions);
         } else {
             // Nếu đã có Dropzone, hủy và tạo lại (nếu cần)
             Dropzone.instances.forEach(function (dropzone) {
                 dropzone.destroy();
             });
-            myDropzone = new Dropzone('.js-dropzone', dropzoneOptions);
+            myDropzone = new Dropzone(this.chon_anh, dropzoneOptions);
         }
 
         var _window_with = $(document).width();
@@ -51,56 +52,85 @@ manage_post = {
             console.log(myDropzone.options.dictRemoveFileConfirmation);
             if (myDropzone.options.dictRemoveFileConfirmation) {
                 return Dropzone.confirm(myDropzone.options.dictRemoveFileConfirmation, function () {
+                    const preview_element = $(_self).closest('.js-photo-manual');
+                    const file_name = preview_element.find('input[name ="file_name_list"]').val();
+                    const input_delete = $(`<input type="hidden" name="file_delete_list" value="${file_name}">`);
+                    console.log(file_name)
+
+                    if (preview_element.find('input').hasClass('js-not-temp')) {
+                        $('#list-photos-dropzone-previews').append(input_delete);
+                    };
                     _self.closest('.js-photo-manual').remove();
                 });
             } else {
+                console.log('here2');
                 $(this).closest('.js-photo-manual').remove();
             }
         });
 
-        Dropzone.confirm = function (question, fnAccepted, fnRejected) {
-            console.dir(this);
-
-            // lấy val của obj có thuộc tính động
-            let jquery_prop = Object.keys(this.instances[0].previewsContainer)[0];
-            let jquery_obj = this.instances[0].previewsContainer[jquery_prop];
-            let preview_element = $(jquery_obj.uiSortable.currentItem);
-            let file_name = preview_element.find('input').val();
-            //console.log(file_name);
-            let result = window.confirm(myDropzone.options.dictRemoveFileConfirmation);
-            if (result) {
-                const input_delete = $(`<input type="hidden" name="file_delete_list" value="${file_name}">`);
-
-                if (preview_element.find('input').hasClass('js-not-temp')) {
-                    $(preview_element).remove();
-                    $('#list-photos-dropzone-previews').append(input_delete);
+        myDropzone.on('removedfile', function (file) {
+            const preview_element = file.previewElement;
+            const file_name = $(preview_element).find('input').val();
+            console.log(file_name);
+            $.ajax({
+                url: '/api/delete',
+                type: 'POST',
+                data: { fileName: file_name },
+                //success: function (response, status) {
+                //    console.log(status, response);
+                //    if (typeof fnAccepted === 'function') {
+                //        fnAccepted();
+                //    }
+                //},
+                error: () => {
+                    Swal.fire('Lỗi', 'Vui lòng thử lại sau', 'error');
                     return;
-                };
-
-                $.ajax({
-                    url: '/api/delete',
-                    type: 'POST',
-                    data: { fileName: file_name },
-                    success: function (response, status) {
-                        //console.log(status, response);
-                        //$('#list-photos-dropzone-previews').append(input_delete);
-                        //console.log(input_delete);
-                        if (typeof fnAccepted === 'function') {
-                            fnAccepted();
-                        }
-                    },
-                    error: () => {
-                        Swal.fire('Lỗi', 'Vui lòng thử lại sau', 'error');
-                        return;
-                    }
-                });
-            }
-            else {
-                if (typeof fnRejected === 'function') {
-                    fnRejected();
                 }
-            }
-        };
+            });
+        });
+        //Dropzone.confirm = function (question, fnAccepted, fnRejected) {
+        //    console.dir(this);
+
+        //    // lấy val của obj có thuộc tính động
+        //    let jquery_prop = Object.keys(this.instances[0].previewsContainer)[0];
+        //    let jquery_obj = this.instances[0].previewsContainer[jquery_prop];
+        //    let preview_element = $(jquery_obj.uiSortable.currentItem);
+        //    let file_name = preview_element.find('input').val();
+        //    console.log(file_name);
+        //    let result = window.confirm(myDropzone.options.dictRemoveFileConfirmation);
+        //    if (result) {
+        //        const input_delete = $(`<input type="hidden" name="file_delete_list" value="${file_name}">`);
+
+        //        if (preview_element.find('input').hasClass('js-not-temp')) {
+        //            $(preview_element).remove();
+        //            $('#list-photos-dropzone-previews').append(input_delete);
+        //            return;
+        //        };
+
+        //        $.ajax({
+        //            url: '/api/delete',
+        //            type: 'POST',
+        //            data: { fileName: file_name },
+        //            success: function (response, status) {
+        //                //console.log(status, response);
+        //                //$('#list-photos-dropzone-previews').append(input_delete);
+        //                //console.log(input_delete);
+        //                if (typeof fnAccepted === 'function') {
+        //                    fnAccepted();
+        //                }
+        //            },
+        //            error: () => {
+        //                Swal.fire('Lỗi', 'Vui lòng thử lại sau', 'error');
+        //                return;
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        if (typeof fnRejected === 'function') {
+        //            fnRejected();
+        //        }
+        //    }
+        ////};
 
         myDropzone.on('error', function (file, message) {
             console.log(file, message);
