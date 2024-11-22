@@ -5932,8 +5932,8 @@ button.close {
   opacity: .5;
 }
 .modal-header {
-  padding: 15px;
-  border-bottom: 1px solid #e5e5e5;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .modal-header .close {
   margin-top: -2px;
@@ -5943,8 +5943,8 @@ button.close {
   line-height: 1.42857143;
 }
 .modal-body {
-  position: relative;
-  padding: 15px;
+    position: relative;
+    padding: 15px;
 }
 .modal-footer {
   padding: 15px;

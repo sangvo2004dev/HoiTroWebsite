@@ -49,7 +49,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                                         DateBegin = t.datebegin,
                                         NewsType = t.NewsType.title
                                     }).ToList();
-                    return Json(new { code = 200, news = news1, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { code = 200, news = news1, msg = "Lấy News thành công" }, JsonRequestBehavior.AllowGet);
                 }
                 var news2 = (from t in db.News.Where(x => x.newsTypeId == id).OrderBy(x => x.order)
                                 select new
@@ -64,7 +64,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                                     DateBegin = t.datebegin,
                                     NewsType = t.NewsType.title
                                 }).ToList();
-                return Json(new { code = 200, news = news2, msg = "Lấy SubMenu thành công" }, JsonRequestBehavior.AllowGet);
+                return Json(new { code = 200, news = news2, msg = "Lấy News thành công" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

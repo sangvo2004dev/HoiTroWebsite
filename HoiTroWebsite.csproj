@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\MentorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenusController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoomImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomInfoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -1638,6 +1639,11 @@
     <Content Include="Areas\Admin\Views\SubMenus\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\SubMenus\Details.cshtml" />
     <Content Include="Areas\Admin\Views\SubMenus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomImages\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomImages\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomImages\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomImages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomImages\Index.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -1761,6 +1767,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Content\Uploads\RoomImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

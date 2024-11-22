@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CKFinder.Settings;
 using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
@@ -18,7 +20,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         public ActionResult Index(long? id = null)
         {
             var roomInfoes = db.RoomInfoes.Include(r => r.RoomType).Include(r => r.Account);
-            //return View(roomInfoes.ToList());
+            Response.StatusCode = 200;
             getRoomType(id);
             return View();
         }
@@ -27,18 +29,52 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             ViewBag.RoomType = new SelectList(db.RoomTypes.Where(x => x.hide == true).OrderBy(x => x.order), "id", "title", selectedId);
         }
+        [HttpGet]
 
-        public ActionResult getRoom(long? id)
+        public JsonResult getRoom(int? id)
         {
-            if (id == null)
+            try
             {
-                var v = db.RoomInfoes.OrderBy(x => x.order).ToList();
-                return PartialView(v);
+                if (id == null)
+                {
+                    var room1 = (from t in db.RoomInfoes.OrderBy(x => x.order)
+                                 select new
+                                 {
+                                     Id = t.id,
+                                     Name = t.title,
+                                     Price = t.price,
+                                     Acreage = t.acreage,
+                                     Address = t.location,
+                                     Meta = t.meta,
+                                     Hide = t.hide,
+                                     Order = t.order,
+                                     DateBegin = t.datebegin,
+                                     RoomType = t.RoomType.title,
+                                     Account = t.Account.name
+                                 }).ToList();
+                    return Json(new { code = 200, room = room1, msg = "Lấy Room thành công" }, JsonRequestBehavior.AllowGet);
+                }
+                var room2 = (from t in db.RoomInfoes.Where(x => x.roomTypeId == id).OrderBy(x => x.order)
+                             select new
+                             {
+                                 Id = t.id,
+                                 Name = t.title,
+                                 Price = t.price,
+                                 Acreage = t.acreage,
+                                 Address = t.location,
+                                 Meta = t.meta,
+                                 Hide = t.hide,
+                                 Order = t.order,
+                                 DateBegin = t.datebegin,
+                                 RoomType = t.RoomType.title
+                             }).ToList();
+                return Json(new { code = 200, room = room2, msg = "Lấy Room thành công" }, JsonRequestBehavior.AllowGet);
             }
-            var m = db.RoomInfoes.Where(x => x.roomTypeId == id).OrderBy(x => x.order).ToList();
-            return PartialView(m);
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lấy Room thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
-
         // GET: Admin/RoomInfoes/Details/5
         public ActionResult Details(int? id)
         {
@@ -62,7 +98,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title");
-            ViewBag.accountId = new SelectList(db.Accounts, "id", "name");
             return View();
         }
 
@@ -72,20 +107,52 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
+        public ActionResult Create([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo, List<RoomImageViewModel> Images)
         {
-            if (ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
+                    Response.StatusCode = 400;
+                    return View();
+                }
                 roomInfo.datebegin = DateTime.Now.Date;
                 roomInfo.order = getMaxOrder((long)roomInfo.roomTypeId);
                 db.RoomInfoes.Add(roomInfo);
                 db.SaveChanges();
-                return RedirectToAction("Index", "RoomInfoes", new { roomTypeId = roomInfo.roomTypeId, accountId = roomInfo.accountId });
-            }
 
-            ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
-            ViewBag.accountId = new SelectList(db.Accounts, "id", "name", roomInfo.accountId);
-            return View(roomInfo);
+
+                // Xử lý danh sách ảnh nếu có
+                if (Images != null)
+                {
+                    foreach (var image in Images)
+                    {
+                        if (image.File != null && image.File.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(image.File.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                            image.File.SaveAs(path);
+
+                            var roomImage = new RoomImage
+                            {
+                                reference_id = roomInfo.id,
+                                imagePath = fileName,
+                                meta = image.Meta,
+                                hide = image.Hide
+                            };
+                            db.RoomImages.Add(roomImage);
+                        }
+                    }
+                    db.SaveChanges();
+                    return Json(new { code = 200, msg = "Room created successfully" }, JsonRequestBehavior.AllowGet);
+                } // Lưu tất cả ảnh liên kết với bài đăng
+                return Json(new { code = 400, msg = "Room created failed" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public RoomInfo getById(long id)
@@ -105,7 +172,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
-            ViewBag.accountId = new SelectList(db.Accounts, "id", "name", roomInfo.accountId);
             return View(roomInfo);
         }
 
@@ -134,13 +200,13 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.order = roomInfo.order;
                 temp.roomTypeId = roomInfo.roomTypeId;
                 roomInfo.order = getMaxOrder((long)roomInfo.roomTypeId);
+                temp.accountId = roomInfo.accountId;
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "RoomInfoes", new { roomTypeId = roomInfo.roomTypeId, accountId = roomInfo.accountId });
+                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
             ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
-            ViewBag.accountId = new SelectList(db.Accounts, "id", "name", roomInfo.accountId);
-            return View(roomInfo);
+            return Json(new { code = 400, msg = "Cập nhật thất bại" });
         }
 
         // GET: Admin/RoomInfoes/Delete/5
@@ -159,14 +225,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         // POST: Admin/RoomInfoes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            RoomInfo roomInfo = db.RoomInfoes.Find(id);
-            db.RoomInfoes.Remove(roomInfo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var room = db.RoomInfoes.Find(id);
+            if (room == null)
+            {
+                return Json(new { code = 404, msg = "Room không tồn tại" });
+            }
+
+            try
+            {
+                db.RoomInfoes.Remove(room);
+                db.SaveChanges();
+                return Json(new { code = 200, msg = "Xóa Room thành công" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa Room: " + ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)

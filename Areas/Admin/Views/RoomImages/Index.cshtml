@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HoiTroWebsite.Models.Account>
+﻿@model HoiTroWebsite.Models.RoomImage
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 
 <button class="btn btn-success text-white" id="btnAdd">
 
-    <a href="#" class="" data-toggle="modal" data-target="#modalAccount">
+    <a href="#" class="" data-toggle="modal" data-target="#modalImg">
         <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
     </a>
 </button>
@@ -21,19 +21,13 @@
                         @Html.DisplayName("STT")
                     </th>
                     <th>
-                        @Html.DisplayName("Tên người dùng")
+                        @Html.DisplayName("Ảnh")
                     </th>
                     <th>
-                        @Html.DisplayName("ID")
+                        @Html.DisplayName("ID bài đăng")
                     </th>
                     <th>
-                        @Html.DisplayName("Ảnh đại diện")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Số điện thọai")
-                    </th>
-                    <th>
-                        @Html.DisplayName("meta")
+                        @Html.DisplayName("Meta")
                     </th>
                     <th>
                         @Html.DisplayName("Hiển thị")
@@ -42,19 +36,19 @@
                         @Html.DisplayName("Sắp xếp")
                     </th>
                     <th>
-                        @Html.DisplayName("Ngày tạo tài khoản")
+                        @Html.DisplayName("Ngày tạo")
                     </th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="tbaccount">
+            <tbody id="tbimg">
             </tbody>
         </table>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -71,25 +65,21 @@
         </div>
     </div>
 </div>
-
 @section Scripts
 {
     <script>
         $(document).ready(function () {
-            LoadAccount();
+            LoadImg();
         })
         // Create
         $('#btnAdd').click(function () {
             $.ajax({
-                url: '/Admin/Accounts/Create',
+                url: '/Admin/RoomImages/Create',
                 type: 'get',
                 success: function (data) {
-                    console.log(data);
-                    $('#modalAccount').find('.modal-body').html(data);
+                    //console.log(data);
+                    $('#modalImg').find('.modal-body').html(data);
                 },
-                error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
-                }
             });
         })
         // Detail
@@ -97,10 +87,10 @@
             var id = $(this).data('id');
 
             $.ajax({
-                url: '/Admin/Accounts/Details/' + id,
+                url: '/Admin/RoomImages/Details/' + id,
                 type: 'get',
                 success: function (data) {
-                    $('#modalAccount').find('.modal-body').html(data);
+                    $('#modalImg').find('.modal-body').html(data);
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
@@ -112,10 +102,10 @@
             var id = $(this).data('id');
 
             $.ajax({
-                url: '/Admin/Accounts/Edit/' + id,
+                url: '/Admin/RoomImages/Edit/' + id,
                 type: 'get',
                 success: function (data) {
-                    $('#modalAccount').find('.modal-body').html(data);
+                    $('#modalImg').find('.modal-body').html(data);
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
@@ -127,10 +117,10 @@
             var id = $(this).data('id');
 
             $.ajax({
-                url: '/Admin/Accounts/Delete/' + id,
+                url: '/Admin/RoomImages/Delete/' + id,
                 type: 'get',
                 success: function (data) {
-                    $('#modalAccount').find('.modal-body').html(data);
+                    $('#modalImg').find('.modal-body').html(data);
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
@@ -138,44 +128,42 @@
             });
         });
 
-        function LoadAccount() {
+        function LoadImg() {
             $.ajax({
-                url: '/Admin/Accounts/getAccount',
+                url: '/Admin/RoomImages/getImages',
                 type: 'get',
                 success: function (data) {
                     if (data.code == 200) {
-                        $('#tbaccount').empty();
-                        $.each(data.account, function (k, v) {
-                            console.log(data.account)
+                        $('#tbimg').empty();
+                        $.each(data.img, function (k, v) {
+                            //console.log(data.img)
                             const dateBegin = v.DateBegin === null ? '' : formatDate(v.DateBegin);
 
-                            let tr = '<tr id="' + v.Id + '">';
+                            let tr = '<tr id="' + v.Id + '">'
                             tr += '<td>' + (k + 1) + '</td>';
-                                tr += '<td>' + v.Name + '</td>';
-                                tr += '<td>' + v.Id + '</td>';
-                                tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px" alt="' + v.Img + '"/></td>';
-                                tr += '<td>' + v.PhoneNum + '</td>';
-                                tr += '<td>' + v.Meta + '</td>';
-                                tr += '<td>' + v.Hide + '</td>';
-                                tr += '<td>' + v.Order + '</td>';
-                                tr += '<td>' + dateBegin + '</td>';
-                                tr += '<td class="text-right">';
-                                tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chi tiết </button>';
-                                tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chỉnh sửa </button>';
-                                tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Xóa </button>';
-                                tr += '</td>';
+                            tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px" alt="' + v.Img + '"/></td>';
+                            tr += '<td>' + v.Reference + '</td>';
+                            tr += '<td>' + v.Meta + '</td>';
+                            tr += '<td>' + v.Hide + '</td>';
+                            tr += '<td>' + v.Order + '</td>';
+                            tr += '<td>' + dateBegin + '</td>';
+                            tr += '<td class="text-right">';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Xóa </button>';
+                            tr += '</td>';
                             tr += '</tr>';
-                            $('#tbaccount').append(tr); // Add the row
+                            $('#tbimg').append(tr);
                         });
                         // Kiểm tra nếu DataTable đã được khởi tạo
                         if ($.fn.dataTable.isDataTable('#dataTables-example')) {
+                            // Nếu đã khởi tạo, clear và redraw lại
                             var table = $('#dataTables-example').DataTable();
-                            table.clear(); // Xóa tất cả dữ liệu cũ
-                            $('#tbaccount tr').each(function () {
-                                table.row.add($(this));
-                            });
-                            table.draw(); // Vẽ lại bảng
+                            table.clear();
+                            table.rows.add($('#tbimg').find('tr')); // Thêm các dòng mới từ tbody
+                            table.draw();
                         } else {
+                            // Nếu chưa khởi tạo DataTable, thì khởi tạo
                             $('#dataTables-example').DataTable({
                                 "paging": true,
                                 "searching": true,
@@ -206,35 +194,33 @@
             return `${day}/${month}/${year}`;
         }
 
-        // Submt create
+        // Submit create
         $(document).on('submit', '#form-create', function (e) {
             e.preventDefault();
+
             // Sử dụng FormData để xử lý file
-            const form_data = new FormData(this);
-            console.log(form_data);
-            //console.log('create');
+            const formData = new FormData(this);
+
             $.ajax({
-                url: '/Admin/Accounts/Create',
+                url: '/Admin/RoomImages/Create',
                 type: 'POST',
-                data: form_data,
+                data: formData,
                 contentType: false, // Quan trọng để gửi file
                 processData: false, // Quan trọng để gửi file
                 success: function (response) {
-                    console.log(response)
                     if (response.code == 200) {
-                        $('#modalAccount').find('.close').click();
-                        LoadAccount();
+                        $('#modalImg').find('.close').click();
+                        LoadImg();
+                    } else {
+                        console.error('Lỗi:', response.msg);
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
-                    console.log(xhr, status, error)
-                    // xử lý lỗi ràng buộc not null
-                    $('#modalAccount').find('.modal-body').html(xhr.responseText);
-
                 }
             });
         });
+
         // Submit edit
         $(document).on('submit', '#form-edit', function (e) {
             e.preventDefault();
@@ -243,23 +229,23 @@
             const id = $(this).find("input[name='id']").val();
 
             $.ajax({
-                url: '/Admin/Accounts/Edit/' + id,
+                url: '/Admin/RoomImages/Edit/' + id,
                 type: 'POST',
                 data: form_data,
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code === 200) {
-                        $('#modalAccount').find('.close').click();
-                        LoadAccount();
+                        $('#modalImg').find('.close').click();
+                        LoadImg();
                     } else {
                         alert(response.msg);
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
-                    alert("Có lỗi xảy ra khi cập nhật Account.");
+                    alert("Có lỗi xảy ra khi cập nhật img.");
                 }
             });
         });
@@ -272,14 +258,14 @@
             const token = $('input[name="__RequestVerificationToken"]').val(); // Lấy token chống giả mạo từ form
 
             $.ajax({
-                url: '/Admin/Accounts/DeleteConfirmed',
+                url: '/Admin/RoomImages/DeleteConfirmed',
                 type: 'POST',
                 data: { id: id, __RequestVerificationToken: token },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code == 200) {
-                        $('#modalAccount').find('.close').click();
-                        LoadAccount();
+                        $('#modalImg').find('.close').click();
+                        LoadImg();
                     } else {
                         alert(response.msg);
                     }
@@ -288,7 +274,7 @@
                     console.error('Lỗi:', error);
                     console.error('Mã trạng thái:', xhr.status);
                     console.error('Nội dung lỗi:', xhr.responseText);
-                    alert("Có lỗi xảy ra khi xóa Account. Vui lòng kiểm tra log lỗi.");
+                    alert("Có lỗi xảy ra khi xóa img. Vui lòng kiểm tra log lỗi.");
                 }
             });
         });
@@ -304,27 +290,5 @@
             };
             reader.readAsDataURL(event.target.files[0]);
         }
-    </script>
-
-    <script>
-        $(document).on('keyup', '#name', function () {
-            var text = $.trim($(this).val().toLowerCase());
-            var text_create;
-
-            // Thay thế tất cả các ký tự có dấu thành không dấu
-            text_create = text
-                .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a")
-                .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e")
-                .replace(/ì|í|ị|ỉ|ĩ/g, "i")
-                .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o")
-                .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u")
-                .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y")
-                .replace(/đ/g, "d")
-                .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu '-'
-                .replace(/-+/g, '-') // Loại bỏ các dấu '-' liên tiếp
-                .replace(/^-+|-+$/g, ''); // Loại bỏ dấu '-' ở đầu và cuối chuỗi
-
-            $('#meta').val(text_create);
-        }).keyup();
     </script>
 }

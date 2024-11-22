@@ -249,7 +249,8 @@
         $(document).on('submit', '#form-create', function (e) {
             e.preventDefault();
             // Sử dụng FormData để xử lý file
-            const formData = new FormData(this);
+            const form_data = new FormData(this);
+            
             $.ajax({
                 url: '/Admin/News/Create',
                 type: 'POST',
@@ -258,7 +259,7 @@
                 processData: false, // Quan trọng để gửi file
                 success: function (response) {
                     console.log(response)
-                    if (response.code == 200) {
+                    if (response.code === 200) {
                         $('#modalNews').find('.close').click();
                         LoadNews();
                     }
@@ -394,7 +395,7 @@
             // Gọi hàm khi tải trang lần đầu
             getNews();
         });
-
+        
     </script>
 
     <script>
