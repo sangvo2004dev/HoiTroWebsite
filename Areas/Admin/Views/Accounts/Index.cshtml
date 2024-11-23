@@ -54,18 +54,37 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<!--<div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body">-->
                 @*<h3>Modal Body</h3>*@
+            <!--</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            <!--</div>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="modal" id="modalAccount" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @*<p>Modal body text goes here.</p>*@
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 @*<button type="button" class="btn btn-primary">Save changes</button>*@
             </div>
         </div>
@@ -151,19 +170,19 @@
 
                             let tr = '<tr id="' + v.Id + '">';
                             tr += '<td>' + (k + 1) + '</td>';
-                                tr += '<td>' + v.Name + '</td>';
-                                tr += '<td>' + v.Id + '</td>';
-                                tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px" alt="' + v.Img + '"/></td>';
-                                tr += '<td>' + v.PhoneNum + '</td>';
-                                tr += '<td>' + v.Meta + '</td>';
-                                tr += '<td>' + v.Hide + '</td>';
-                                tr += '<td>' + v.Order + '</td>';
-                                tr += '<td>' + dateBegin + '</td>';
-                                tr += '<td class="text-right">';
-                                tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chi tiết </button>';
-                                tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chỉnh sửa </button>';
-                                tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Xóa </button>';
-                                tr += '</td>';
+                            tr += '<td>' + v.Name + '</td>';
+                            tr += '<td>' + v.Id + '</td>';
+                            tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px" alt="' + v.Img + '"/></td>';
+                            tr += '<td>' + v.PhoneNum + '</td>';
+                            tr += '<td>' + v.Meta + '</td>';
+                            tr += '<td>' + v.Hide + '</td>';
+                            tr += '<td>' + v.Order + '</td>';
+                            tr += '<td>' + dateBegin + '</td>';
+                            tr += '<td class="text-right">';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalAccount"> Xóa </button>';
+                            tr += '</td>';
                             tr += '</tr>';
                             $('#tbaccount').append(tr); // Add the row
                         });

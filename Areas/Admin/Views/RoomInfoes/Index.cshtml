@@ -253,12 +253,14 @@
         // Submit create
         $(document).on('submit', '#form-create', function (e) {
             e.preventDefault();
-            const form_data = $(this).serializeArray();
+            const form_data = new FormData(this);
             console.log(form_data);
             $.ajax({
                 url: '/Admin/RoomInfoes/Create',
                 type: 'POST',
                 data: form_data,
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     console.log(response)
                     if (response.code === 200) {
@@ -416,28 +418,26 @@
             getRoom();
         });
 
-
-
-        
+        // Thêm ảnh vào table Images của mỗi roomInfoes
         let imageIndex = 0;
 
         function addImageRow() {
             const row = `
-        <tr id="image-row-${imageIndex}">
-            <td>
-                <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
-                <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
-            </td>
-            <td>
-                <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
-            </td>
-            <td>
-                <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
-            </td>
-        </tr>`;
+            <tr id="image-row-${imageIndex}">
+                <td>
+                    <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
+                    <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
+                </td>
+                <td>
+                    <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
+                </td>
+                <td>
+                    <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
+                </td>
+            </tr>`;
             document.getElementById("image-list").insertAdjacentHTML("beforeend", row);
             imageIndex++;
         }
@@ -456,6 +456,50 @@
         function removeImageRow(index) {
             document.getElementById(`image-row-${index}`).remove();
         }
+        // Edit ảnh trên Images của mỗi roomInfoes
+        let newImageIndex = -1; // Dùng index âm để phân biệt ảnh mới
+        let deletedImageIds = []; // Mảng lưu trữ các ID ảnh bị xóa
+
+        // Thêm một hàng ảnh mới
+        function addImageRowEdit() {
+            const row = `
+            <tr id="image-row-${newImageIndex}">
+                <td>
+                    <input type="file" name="Images[${newImageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${newImageIndex})" class="form-control" />
+                    <img id="preview-${newImageIndex}" src="" alt="Ảnh xem trước" class="img-thumbnail" style="width: 100px; margin-top: 5px;" />
+                </td>
+                <td>
+                    <input type="text" name="Images[${newImageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
+                </td>
+                <td>
+                    <input type="checkbox" name="Images[${newImageIndex}].Hide" />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="removeImageRowEdit(${newImageIndex})">Xóa</button>
+                </td>
+            </tr>`;
+            document.getElementById("image-table").querySelector("tbody").insertAdjacentHTML("beforeend", row);
+            newImageIndex--; // Giảm index để tiếp tục phân biệt các ảnh mới
+        }
+
+        // Xóa một hàng ảnh khỏi giao diện
+        function removeImageRowEdit(index) {
+            const row = document.getElementById(`image-row-${index}`);
+            if (row) {
+                row.remove();
+                deletedImageIds.push(index); // Thêm vào danh sách ảnh bị xóa
+            }
+        }
+
+        // Trước khi gửi form, thêm danh sách các ảnh bị xóa vào input hidden
+        function prepareFormData() {
+            let deletedInput = document.createElement("input");
+            deletedInput.type = "hidden";
+            deletedInput.name = "DeletedImageIds";
+            deletedInput.value = JSON.stringify(deletedImageIds); // Chuyển danh sách ID ảnh đã xóa thành chuỗi JSON
+            document.getElementById("editForm").appendChild(deletedInput); // Thêm vào form
+        }
+
 
 
     </script>

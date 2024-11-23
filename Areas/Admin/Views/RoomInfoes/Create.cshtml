@@ -119,8 +119,6 @@
         </div>
     </div>
 
-
-
     <div id="images-container">
         <h4>Thêm ảnh cho bài đăng</h4>
         <table class="table">
@@ -139,8 +137,6 @@
         <button type="button" class="btn btn-success" onclick="addImageRow()">Thêm ảnh</button>
     </div>
 
-
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
@@ -149,41 +145,5 @@
 </div>
 }
 <script>
-    let imageIndex = 0;
-
-    function addImageRow() {
-        const row = `
-<tr id="image-row-${imageIndex}">
-    <td>
-        <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
-        <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
-    </td>
-    <td>
-        <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
-    </td>
-    <td>
-        <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
-    </td>
-    <td>
-        <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
-    </td>
-</tr>`;
-        document.getElementById("image-list").insertAdjacentHTML("beforeend", row);
-        imageIndex++;
-    }
-
-    function previewImage(input, index) {
-        const file = input.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById(`preview-${index}`).src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-    function removeImageRow(index) {
-        document.getElementById(`image-row-${index}`).remove();
-    }
+    
 </script>

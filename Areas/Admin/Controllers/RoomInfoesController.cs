@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CKFinder.Settings;
 using HoiTroWebsite.Models;
+using Newtonsoft.Json;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
@@ -75,6 +76,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return Json(new { code = 500, msg = "Lấy Room thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
         // GET: Admin/RoomInfoes/Details/5
         public ActionResult Details(int? id)
         {
@@ -181,33 +183,90 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
+        public ActionResult Edit([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo,
+                         List<RoomImageViewModel> Images, string DeletedImageIds)
         {
-            RoomInfo temp = getById(roomInfo.id);
-            if (ModelState.IsValid)
+            try
             {
-                roomInfo.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                temp.title = roomInfo.title;
-                temp.brief_description = roomInfo.brief_description;
-                temp.detail_description = roomInfo.detail_description;
-                temp.price = roomInfo.price;
-                temp.acreage = roomInfo.acreage;
-                temp.area = roomInfo.area;
-                temp.location = roomInfo.location;
-                temp.tenant = roomInfo.tenant;
-                temp.meta = roomInfo.meta;
-                temp.hide = roomInfo.hide;
-                temp.order = roomInfo.order;
-                temp.roomTypeId = roomInfo.roomTypeId;
-                roomInfo.order = getMaxOrder((long)roomInfo.roomTypeId);
-                temp.accountId = roomInfo.accountId;
-                db.Entry(temp).State = EntityState.Modified;
-                db.SaveChanges();
-                return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
+                RoomInfo temp = getById(roomInfo.id); // Tìm phòng theo ID
+                if (ModelState.IsValid)
+                {
+                    // Cập nhật thông tin phòng
+                    roomInfo.datebegin = DateTime.Now.Date;
+                    roomInfo.order = getMaxOrder((long)roomInfo.roomTypeId);
+
+                    // Cập nhật các thuộc tính của phòng từ form
+                    temp.title = roomInfo.title;
+                    temp.brief_description = roomInfo.brief_description;
+                    temp.detail_description = roomInfo.detail_description;
+                    temp.price = roomInfo.price;
+                    temp.acreage = roomInfo.acreage;
+                    temp.area = roomInfo.area;
+                    temp.location = roomInfo.location;
+                    temp.tenant = roomInfo.tenant;
+                    temp.meta = roomInfo.meta;
+                    temp.hide = roomInfo.hide;
+                    temp.order = roomInfo.order;
+                    temp.roomTypeId = roomInfo.roomTypeId;
+                    temp.accountId = roomInfo.accountId;
+
+                    // Cập nhật phòng trong database
+                    db.Entry(temp).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    // Cập nhật ảnh (nếu có ảnh mới được gửi lên)
+                    if (Images != null)
+                    {
+                        foreach (var image in Images)
+                        {
+                            // Kiểm tra ảnh mới và thêm vào database
+                            if (image.File != null && image.File.ContentLength > 0)
+                            {
+                                var fileName = Path.GetFileName(image.File.FileName);
+                                var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                                image.File.SaveAs(path); // Lưu ảnh vào thư mục
+
+                                var roomImage = new RoomImage
+                                {
+                                    reference_id = roomInfo.id,
+                                    imagePath = fileName,
+                                    meta = image.Meta,
+                                    hide = image.Hide
+                                };
+                                db.RoomImages.Add(roomImage); // Thêm ảnh vào database
+                            }
+                        }
+                    }
+
+                    // Xóa các ảnh không còn tồn tại trên view
+                    if (!string.IsNullOrEmpty(DeletedImageIds))
+                    {
+                        var deletedIds = JsonConvert.DeserializeObject<List<int>>(DeletedImageIds); // Deserialize danh sách ID ảnh đã xóa
+                        foreach (var imageId in deletedIds)
+                        {
+                            var roomImage = db.RoomImages.Find(imageId); // Lấy ảnh từ CSDL theo ID
+                            if (roomImage != null)
+                            {
+                                db.RoomImages.Remove(roomImage); // Xóa ảnh khỏi CSDL
+                            }
+                        }
+                        db.SaveChanges();
+                    }
+
+                    return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về thông báo thành công
+                }
+
+                ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
+                return Json(new { code = 400, msg = "Cập nhật thất bại" }); // Trả về thông báo thất bại nếu dữ liệu không hợp lệ
             }
-            ViewBag.roomTypeId = new SelectList(db.RoomTypes, "id", "title", roomInfo.roomTypeId);
-            return Json(new { code = 400, msg = "Cập nhật thất bại" });
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = "Lỗi: " + ex.Message }); // Trả về lỗi nếu có ngoại lệ xảy ra
+            }
         }
+
+
+
 
         // GET: Admin/RoomInfoes/Delete/5
         public ActionResult Delete(int? id)
