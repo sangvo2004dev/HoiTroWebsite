@@ -5,79 +5,82 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
-<h2>Index</h2>
+@section ql_submenu_active {active}
 
-<div class="panel-body">
-    <div class="bs-example" style="text-align:right; padding-bottom:10px;">
-        <div class="btn-group">
-            @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Menu, " --- Tất cả Menu --- ",
-                new { @class = "form-control", @id = "Menu" })
-        </div>
-        <button class="btn btn-success text-white" id="btnAdd">
-            <a href="#" class="" data-toggle="modal" data-target="#modalSubMenu">
-                <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
-            </a>
-        </button>
-        <div id="getSubMenu"></div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("STT")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Tên")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Liên kết")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Meta")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Hiển thị")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Sắp xếp")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Ngày tạo")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Menu cha")
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tbsubmenu">
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modalSubMenu" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+<div class="container">
+    <div class="panel-body">
+        <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+            <div class="btn-group">
+                @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Menu, " --- Tất cả Menu --- ",
+                    new { @class = "form-control", @id = "Menu" })
             </div>
-            <div class="modal-body">
-                @*<h3>Modal Body</h3>*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            <button class="btn btn-success text-white" id="btnAdd">
+                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu">
+                    <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
+                </a>
+            </button>
+            <div id="getSubMenu"></div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("STT")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tên")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Liên kết")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Meta")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Hiển thị")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sắp xếp")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày tạo")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Menu cha")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbsubmenu">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="modalSubMenu" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @*<p>Modal body text goes here.</p>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@section Scripts
+
+@section script
 {
     <script>
         $(document).ready(function () {
@@ -161,9 +164,9 @@
                     v.Order,
                     dateBegin,
                     v.Menu,
-                    `<button class="btn btn-xs btn-info btnDetail" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Chi tiết </button>
-                     <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Chỉnh sửa </button>
-                     <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Xóa </button>`
+                    `<button class="btn btn-xs btn-info btnDetail" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Chi tiết </button>
+                         <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Chỉnh sửa </button>
+                         <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Xóa </button>`
                 ]);
             });
 
@@ -196,9 +199,9 @@
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td>' + v.Menu + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalSubMenu"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalSubMenu"> Xóa </button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbsubmenu').append(tr);
@@ -252,7 +255,7 @@
                 success: function (response) {
                     console.log(response)
                     if (response.code == 200) {
-                        $('#modalSubMenu').find('.close').click();
+                        $('#modalSubMenu').find('.btn-close').click();
                         LoadSubMenu();
                     }
                 },
@@ -275,9 +278,9 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code === 200) {
-                        $('#modalSubMenu').find('.close').click();
+                        $('#modalSubMenu').find('.btn-close').click();
                         LoadSubMenu();
                     } else {
                         alert(response.msg);
@@ -304,7 +307,7 @@
                 success: function (response) {
                     console.log(response);
                     if (response.code == 200) {
-                        $('#modalSubMenu').find('.close').click();
+                        $('#modalSubMenu').find('.btn-close').click();
                         LoadSubMenu();
                     } else {
                         alert(response.msg);

@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Thông báo bài đăng bị xóa do quá hạn - Hỏi Trọ Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f0ad4e;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .details {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông báo bài đăng bị xóa do quá hạn</h1>
+        <p>Chào bạn,</p>
+        <p>Bài đăng của bạn trên Hỏi Trọ Website đã bị xóa do hết thời gian hiển thị. Thông tin bài đăng:</p>
+        <div class="details">
+            <p><strong>Tiêu đề:</strong> {{Title}}</p>
+            <p><strong>Ngày đăng:</strong> {{PostDate}}</p>
+            <p><strong>Ngày hết hạn:</strong> {{ExpiryDate}}</p>
+        </div>
+        <p>Hãy đăng bài mới nếu bạn cần tiếp tục hiển thị thông tin.</p>
+        <p class="footer">Cảm ơn bạn đã sử dụng Hỏi Trọ Website!</p>
+    </div>
+</body>
+</html>

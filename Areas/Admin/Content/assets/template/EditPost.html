@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Thông báo chỉnh sửa bài đăng - Hỏi Trọ Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            width: 30%;
+        }
+
+        .section-title {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .editor-info {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông báo chỉnh sửa bài đăng</h1>
+        <p>Chào bạn,</p>
+        <p>Bài đăng của bạn trên Hỏi Trọ Website vừa được chỉnh sửa. Dưới đây là thông tin chi tiết trước và sau khi chỉnh sửa:</p>
+
+        <div class="section-title">Trước khi chỉnh sửa:</div>
+        <table>
+            <tr><th>Tiêu đề</th><td>{{Title}}</td></tr>
+            <tr><th>Mô tả</th><td>{{BriefDescription}}</td></tr>
+            <tr><th>Chi tiết</th><td>{{DetailDescription}}</td></tr>
+            <tr><th>Loại phòng</th><td>{{RoomType}}</td></tr>
+            <tr><th>Đối tượng cho thuê</th><td>{{Tenant}}</td></tr>
+            <tr><th>Giá cho thuê</th><td>{{Price}}</td></tr>
+            <tr><th>Diện tích</th><td>{{Acreage}}</td></tr>
+            <tr><th>Khu vực</th><td>{{Area}}</td></tr>
+            <tr><th>Địa chỉ</th><td>{{Location}}</td></tr>
+            <tr><th>Đăng bởi</th><td>{{Author}}</td></tr>
+        </table>
+
+        <div class="section-title">Sau khi chỉnh sửa:</div>
+        <table>
+            <tr><th>Tiêu đề</th><td>{{NewTitle}}</td></tr>
+            <tr><th>Mô tả</th><td>{{NewBriefDescription}}</td></tr>
+            <tr><th>Chi tiết</th><td>{{NewDetailDescription}}</td></tr>
+            <tr><th>Loại phòng</th><td>{{NewRoomType}}</td></tr>
+            <tr><th>Đối tượng cho thuê</th><td>{{NewTenant}}</td></tr>
+            <tr><th>Giá cho thuê</th><td>{{NewPrice}}</td></tr>
+            <tr><th>Diện tích</th><td>{{NewAcreage}}</td></tr>
+            <tr><th>Khu vực</th><td>{{NewArea}}</td></tr>
+            <tr><th>Địa chỉ</th><td>{{NewLocation}}</td></tr>
+            <tr><th>Đăng bởi</th><td>{{NewAuthor}}</td></tr>
+        </table>
+
+        <p class="editor-info">Dữ liệu được chỉnh sửa bởi: {{Editor}}</p>
+
+        <p class="footer">Cảm ơn bạn đã sử dụng Hỏi Trọ Website!</p>
+    </div>
+</body>
+</html>

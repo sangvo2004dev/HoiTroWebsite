@@ -128,12 +128,28 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             return View(account);
         }
 
+        private void resetPassword(int? id)
+        {
+            if (!id.HasValue)
+            {
+                // Kiểm tra nếu id là null
+                throw new ArgumentNullException(nameof(id), "ID không hợp lệ.");
+            }
+
+            // Truy vấn tài khoản có id khớp với id truyền vào
+            var client = (from t in db.Accounts
+                         where t.id == id
+                         select t).FirstOrDefault();
+            client.password = client.phoneNum;
+        }
+
         // POST: Admin/Accounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,avtImage,password,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
+
+        public ActionResult Edit([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,avtImage,password,resetPass,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
@@ -142,22 +158,29 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if(img != null)
                 {
-                    //filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     filename = Path.GetFileName(img.FileName);
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
                     temp.avtImage = filename;
                 }
+                
+
                 temp.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 temp.name = account.name;
                 temp.phoneNum = account.phoneNum;
                 temp.email = account.email;
                 temp.zaloNum = account.zaloNum;
                 temp.FBlink = account.FBlink;
-                temp.password = account.password;
+                //temp.password = account.password;
                 temp.meta = account.meta;
                 temp.hide = account.hide;
                 temp.order = account.order;
+
+                if (account.resetPass)
+                {
+                    resetPassword(account.id);
+                }
+
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
                 return Json(new { code = 200, msg = "Cập nhật thành công" });

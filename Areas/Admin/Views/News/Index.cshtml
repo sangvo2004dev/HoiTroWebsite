@@ -5,83 +5,89 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
-<h2>Index</h2>
+@section ql_news_active {active}
 
-<div class="panel-body">
-    <div class="bs-example" style="text-align:right; padding-bottom:10px;">
-        <div class="btn-group">
-            @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.NewsType, " --- Tất cả Tin tức --- ",
-                new { @class = "form-control", @id = "NewsType" })
-        </div>
-        <button class="btn btn-success text-white" id="btnAdd">
-            <a href="#" class="" data-toggle="modal" data-target="#modalNews">
-                <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
-            </a>
-        </button>
-        <div id="getNews"></div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("STT")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Tiêu đề")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Hình đại diện")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Tác giả")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Meta")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Hiển thị")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Sắp xếp")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Ngày tạo")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Loại tin tức")
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tbnews">
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modalNews" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
-            </div>
-            <div class="modal-body">
-                @*<h3>Modal Body</h3>*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<div class="container">
+    <div class="container">
+        <div class="panel-body">
+            <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                <div class="btn-group">
+                    @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.NewsType, " --- Tất cả Tin tức --- ",
+                        new { @class = "form-control", @id = "NewsType" })
+                </div>
+                <button class="btn btn-success text-white" id="btnAdd">
+                    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
+                    </a>
+                </button>
+                <div id="getNews"></div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayName("STT")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Tiêu đề")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Hình đại diện")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Tác giả")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Meta")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Hiển thị")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Sắp xếp")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Ngày tạo")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Loại tin tức")
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbnews">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal" id="modalNews" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @*<p>Modal body text goes here.</p>*@
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-@section Scripts
+@section script
 {
+    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             LoadNews();
@@ -94,6 +100,22 @@
                 success: function (data) {
                     //console.log(data);
                     $('#modalNews').find('.modal-body').html(data);
+                    // dùng ckeditor
+                    $('#form-create').find('textarea').each(function () {
+                        var id = $(this).attr('id');
+                        // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
+                        if (CKEDITOR.instances[id]) {
+                            CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
+                        }
+                        // Tạo mới CKEditor cho textarea
+                        CKEDITOR.replace(id, {
+                            height: '400px',
+                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                            language: 'vi',
+                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                            filebrowserUploadMethod: 'form'
+                        });
+                    });
                 },
             });
         })
@@ -126,6 +148,22 @@
                 type: 'get',
                 success: function (data) {
                     $('#modalNews').find('.modal-body').html(data);
+                    // dùng ckeditor
+                    $('#form-edit').find('textarea').each(function () {
+                        var id = $(this).attr('id');
+                        // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
+                        if (CKEDITOR.instances[id]) {
+                            CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
+                        }
+                        // Tạo mới CKEditor cho textarea
+                        CKEDITOR.replace(id, {
+                            height: '400px',
+                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                            language: 'vi',
+                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                            filebrowserUploadMethod: 'form'
+                        });
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
@@ -165,9 +203,9 @@
                     v.Order,
                     dateBegin,
                     v.NewsType,
-                    `<button class="btn btn-xs btn-info btnDetail" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Chi tiết </button>
-                                 <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Chỉnh sửa </button>
-                                 <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Xóa </button>`
+                    `<button class="btn btn-xs btn-info btnDetail" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Chi tiết </button>
+                                                     <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Chỉnh sửa </button>
+                                                     <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Xóa </button>`
                 ]);
             });
 
@@ -201,9 +239,9 @@
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td>' + v.NewsType + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalNews"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalNews"> Xóa </button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbnews').append(tr);
@@ -250,7 +288,7 @@
             e.preventDefault();
             // Sử dụng FormData để xử lý file
             const form_data = new FormData(this);
-            
+
             $.ajax({
                 url: '/Admin/News/Create',
                 type: 'POST',
@@ -260,7 +298,7 @@
                 success: function (response) {
                     console.log(response)
                     if (response.code === 200) {
-                        $('#modalNews').find('.close').click();
+                        $('#modalNews').find('.btn-close').click();
                         LoadNews();
                     }
                 },
@@ -285,7 +323,7 @@
                 success: function (response) {
                     console.log(response);
                     if (response.code === 200) {
-                        $('#modalNews').find('.close').click();
+                        $('#modalNews').find('.btn-close').click();
                         LoadNews();
                     } else {
                         alert(response.msg);
@@ -312,7 +350,7 @@
                 success: function (response) {
                     console.log(response);
                     if (response.code == 200) {
-                        $('#modalNews').find('.close').click();
+                        $('#modalNews').find('.btn-close').click();
                         LoadNews();
                     } else {
                         alert(response.msg);
@@ -343,24 +381,7 @@
                 });
             });
         });
-        $(document).on('shown.bs.modal', '#modalNews', function () {
-            // Xóa các instance CKEditor cũ trước khi tạo mới
-            $('#modalNews').find('textarea').each(function () {
-                var id = $(this).attr('id');
-                if (CKEDITOR.instances[id]) {
-                    CKEDITOR.instances[id].destroy(true);
-                    // Hủy CKEditor instance nếu tồn tại
-                }
-                // Tạo mới CKEditor cho textarea
-                CKEDITOR.replace(id, {
-                    height: '400px',
-                    customConfig: '/Areas/Admin/Content/ckeditor/config.js',
-                    language: 'vi',
-                    filebrowserUploadUrl: '/Admin/Upload/UploadImage',
-                    filebrowserUploadMethod: 'form'
-                });
-            });
-        });
+
     </script>
 
     <script>
@@ -395,7 +416,7 @@
             // Gọi hàm khi tải trang lần đầu
             getNews();
         });
-        
+
     </script>
 
     <script>
@@ -408,9 +429,6 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-
-    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
-    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
 
     <script>
         $(document).on('keyup', '#title', function () {

@@ -1,0 +1,122 @@
+﻿<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Thông báo một bài đăng mới được thêm vào danh sách bài đăng của bạn trên Hỏi Trọ Website. Đến kiểm tra nhé!</title>
+</head>
+<body>
+    Tiêu đề:{{Title}}   <br />
+    Mô tả:{{BriefDescription}}   <br />
+    Chi tiết:{{DetailDescription}}  <br />
+    Loại phòng:{{RoomType}}   <br />
+    Đối tượng cho thuê:{{Tenant}}   <br />
+    Giá cho thuê:{{Price}}   <br />
+    Diện tích:{{Acreage}}   <br />
+    Khu vực:{{Area}}   <br />
+    Địa chỉ:{{Location}}   <br />
+    Đăng bởi:{{Author}}   <br />
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Thông báo bài đăng mới - Hỏi Trọ Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông báo bài đăng mới</h1>
+        <p>Chào bạn,</p>
+        <p>Bài đăng mới đã được thêm vào danh sách của bạn trên Hỏi Trọ Website. Hãy kiểm tra thông tin chi tiết bên dưới:</p>
+        <table>
+            <tr>
+                <th>Tiêu đề</th>
+                <td>{{Title}}</td>
+            </tr>
+            <tr>
+                <th>Mô tả</th>
+                <td>{{BriefDescription}}</td>
+            </tr>
+            <tr>
+                <th>Chi tiết</th>
+                <td>{{DetailDescription}}</td>
+            </tr>
+            <tr>
+                <th>Loại phòng</th>
+                <td>{{RoomType}}</td>
+            </tr>
+            <tr>
+                <th>Đối tượng cho thuê</th>
+                <td>{{Tenant}}</td>
+            </tr>
+            <tr>
+                <th>Giá cho thuê</th>
+                <td>{{Price}}</td>
+            </tr>
+            <tr>
+                <th>Diện tích</th>
+                <td>{{Acreage}}</td>
+            </tr>
+            <tr>
+                <th>Khu vực</th>
+                <td>{{Area}}</td>
+            </tr>
+            <tr>
+                <th>Địa chỉ</th>
+                <td>{{Location}}</td>
+            </tr>
+            <tr>
+                <th>Đăng bởi</th>
+                <td>{{Author}}</td>
+            </tr>
+        </table>
+        <p class="footer">Cảm ơn bạn đã sử dụng Hỏi Trọ Website!</p>
+    </div>
+</body>
+</html>

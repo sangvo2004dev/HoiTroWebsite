@@ -11,9 +11,7 @@ namespace HoiTroWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    //them xu ly not null
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,23 +21,18 @@ namespace HoiTroWebsite.Models
         }
     
         public int id { get; set; }
-        // Required xu ly not null
-        [Required(ErrorMessage = "Ten nguoi dung khong duoc de trong.")]
         public string name { get; set; }
-
-        [Required(ErrorMessage = "So dien thoai khong duoc de trong.")]
         public string phoneNum { get; set; }
         public string email { get; set; }
-        [Required(ErrorMessage = "Zalo khong duoc de trong")]
         public string zaloNum { get; set; }
         public string FBlink { get; set; }
         public string avtImage { get; set; }
-        [Required(ErrorMessage = "Mat khau khong duoc de trong")]
         public string password { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
+        public bool resetPass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomInfo> RoomInfoes { get; set; }

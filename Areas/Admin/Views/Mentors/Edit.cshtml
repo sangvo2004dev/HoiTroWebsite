@@ -1,6 +1,6 @@
 ﻿@model HoiTroWebsite.Models.Mentor
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa</h2>
 
 @using (Html.BeginForm(Html.BeginForm("Edit", "Mentors", FormMethod.Post, new { enctype = "multipart/form-data" , @id = "form-edit"})))
 {
@@ -13,7 +13,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.Label("Tên người đại diện", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Tên người đại diện", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Hình đại diện", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Hình đại diện", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-6">
                 <input type="file" name="img" id="img" accept=".jpg, .png, .jpeg, .bmp" onchange="previewImage(event)"/>
             </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Thư điện tử", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Thư điện tử", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Số điện thoại", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.phoneNum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.phoneNum, "", new { @class = "text-danger" })
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Liên kết FaceBook", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Liên kết FaceBook", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FBlink, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FBlink, "", new { @class = "text-danger" })
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Số zalo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Số zalo", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.zaloNum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.zaloNum, "", new { @class = "text-danger" })
@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Vai trò hỗ trợ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Vai trò hỗ trợ", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.supportTask, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.supportTask, "", new { @class = "text-danger" })
@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.meta, "", new { @class = "text-danger" })
@@ -79,7 +79,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Hiển thị", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 <div class="checkbox">
                     @{
@@ -91,7 +91,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Sắp xếp", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
@@ -100,7 +100,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu thay đổi" class="btn btn-light" />
             </div>
         </div>
     </div>

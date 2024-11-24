@@ -4,74 +4,79 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
+@section ql_footer_active {active}
 
-<button class="btn btn-success text-white" id="btnAdd">
+<div class="container">
+    <button class="btn btn-success text-white" id="btnAdd">
 
-    <a href="#" class="" data-toggle="modal" data-target="#modalFooter">
-        <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
-    </a>
-</button>
-
-<div class="row">
-    <div class="col-lg-12">
-        <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("STT")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Tiêu đề")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Địa chỉ liên hệ")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Email liên hệ")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Số điện thoại liên hệ")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Meta")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Hiển thị")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Sắp xếp")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Ngày tạo")
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tbfooter">
-            </tbody>
-        </table>
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter">
+            <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
+        </a>
+    </button>
+    <div class="row">
+        <div class="col-lg-12">
+            <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("STT")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tiêu đề")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Địa chỉ liên hệ")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Email liên hệ")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Số điện thoại liên hệ")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Meta")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Hiển thị")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sắp xếp")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày tạo")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbfooter">
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modalFooter" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
-            </div>
-            <div class="modal-body">
-                @*<h3>Modal Body</h3>*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <!-- Modal -->
+    <div class="modal" id="modalFooter" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hỏi Trọ Website</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @*<p>Modal body text goes here.</p>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
             </div>
         </div>
     </div>
 </div>
-@section Scripts
+
+@section script
 {
+    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             LoadFooter();
@@ -84,6 +89,22 @@
                 success: function (data) {
                     //console.log(data);
                     $('#modalFooter').find('.modal-body').html(data);
+                    // dùng ckeditor
+                    $('#form-create').find('textarea').each(function () {
+                        var id = $(this).attr('id');
+                        // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
+                        if (CKEDITOR.instances[id]) {
+                            CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
+                        }
+                        // Tạo mới CKEditor cho textarea
+                        CKEDITOR.replace(id, {
+                            height: '400px',
+                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                            language: 'vi',
+                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                            filebrowserUploadMethod: 'form'
+                        });
+                    });
                 },
             });
         })
@@ -111,6 +132,22 @@
                 type: 'get',
                 success: function (data) {
                     $('#modalFooter').find('.modal-body').html(data);
+                    // dùng ckeditor
+                    $('#form-edit').find('textarea').each(function () {
+                        var id = $(this).attr('id');
+                        // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
+                        if (CKEDITOR.instances[id]) {
+                            CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
+                        }
+                        // Tạo mới CKEditor cho textarea
+                        CKEDITOR.replace(id, {
+                            height: '400px',
+                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                            language: 'vi',
+                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                            filebrowserUploadMethod: 'form'
+                        });
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
@@ -141,7 +178,7 @@
                     if (data.code == 200) {
                         $('#tbfooter').empty();
                         $.each(data.footer, function (k, v) {
-                            console.log(data.footer)
+                            //console.log(data.footer)
                             const dateBegin = v.DateBegin === null ? '' : formatDate(v.DateBegin);
 
                             let tr = '<tr id="' + v.Id + '">'
@@ -155,9 +192,9 @@
                             tr += '<td>' + v.Order + '</td>';
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalFooter"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Xóa </button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbfooter').append(tr);
@@ -178,7 +215,7 @@
                             });
                         }
 
-                        attachEventHandlers();
+                        //attachEventHandlers();
                     }
                 },
                 error: function (xhr, status, error) {
@@ -203,15 +240,15 @@
         $(document).on('submit', '#form-create', function (e) {
             e.preventDefault();
             const form_data = $(this).serializeArray();
-            console.log(form_data);
+            //console.log(form_data);
             $.ajax({
                 url: '/Admin/Footers/Create',
                 type: 'POST',
                 data: form_data,
                 success: function (response) {
-                    console.log(response)
+                    //console.log(response)
                     if (response.code == 200) {
-                        $('#modalFooter').find('.close').click();
+                        $('#modalFooter').find('.btn-close').click();
                         LoadFooter();
                     }
                 },
@@ -234,9 +271,9 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code === 200) {
-                        $('#modalFooter').find('.close').click();
+                        $('#modalFooter').find('.btn-close').click();
                         LoadFooter();
                     } else {
                         alert(response.msg);
@@ -261,9 +298,9 @@
                 type: 'POST',
                 data: { id: id, __RequestVerificationToken: token },
                 success: function (response) {
-                    console.log(response);
+                    //console.log(response);
                     if (response.code == 200) {
-                        $('#modalFooter').find('.close').click();
+                        $('#modalFooter').find('.btn-close').click();
                         LoadFooter();
                     } else {
                         alert(response.msg);
@@ -278,81 +315,7 @@
             });
         });
 
-        //dùng ckeditor
-
-        $(document).ready(function () {
-            // Danh sách các trường cần tích hợp CKEditor
-            const editorFields = [
-                "companyInfo",
-                "privacyPolicyLink",
-                "termsOfServiceLink",
-                "TermsOfUseLink",
-                "TermsOfPostingLink"
-            ];
-
-            editorFields.forEach(function (fieldId) {
-                CKEDITOR.replace(fieldId, {
-                    height: '600px',
-                    customConfig: '/Areas/Admin/Content/ckeditor/config.js',
-                    language: 'vi',
-                    filebrowserUploadUrl: '/Admin/Upload/UploadImage',
-                    filebrowserUploadMethod: 'form'
-                });
-            });
-        });
-        $(document).on('shown.bs.modal', '#modalFooter', function () {
-            // Xóa các instance CKEditor cũ trước khi tạo mới
-            $('#modalFooter').find('textarea').each(function () {
-                var id = $(this).attr('id');
-                if (CKEDITOR.instances[id]) {
-                    CKEDITOR.instances[id].destroy(true);
-                    // Hủy CKEditor instance nếu tồn tại
-                }
-                // Tạo mới CKEditor cho textarea
-                CKEDITOR.replace(id, {
-                    height: '400px',
-                    customConfig: '/Areas/Admin/Content/ckeditor/config.js',
-                    language: 'vi',
-                    filebrowserUploadUrl: '/Admin/Upload/UploadImage',
-                    filebrowserUploadMethod: 'form'
-                });
-            });
-        });
-
-        $(document).on('submit', '#form-create, #form-edit', function (e) {
-            e.preventDefault();
-
-            // Cập nhật nội dung CKEditor vào textarea
-            for (instance in CKEDITOR.instances) {
-                CKEDITOR.instances[instance].updateElement();
-            }
-
-            const form_data = new FormData(this);
-
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'POST',
-                data: form_data,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response.code === 200) {
-                        $('#modalFooter').modal('hide');
-                        LoadFooter();
-                    } else {
-                        alert(response.msg);
-                    }
-                },
-                error: function (xhr) {
-                    console.error('Lỗi:', xhr.responseText);
-                }
-            });
-        });
-
     </script>
-
-    <script src="~/Areas/Admin/Content/ckfinder/ckfinder.js"></script>
-    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
 
     <script>
         $(document).on('keyup', '#title', function () {

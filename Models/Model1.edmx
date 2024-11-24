@@ -21,6 +21,7 @@
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="resetPass" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Banner">
           <Key>
@@ -522,6 +523,7 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
           <NavigationProperty Name="RoomInfoes" Relationship="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" FromRole="Account" ToRole="RoomInfo" />
+          <Property Name="resetPass" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__RoomInfo__accoun__5F3414E9">
           <End Type="HoiTroModel.Account" Role="Account" Multiplicity="0..1">
@@ -717,6 +719,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="HoiTroModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="resetPass" ColumnName="resetPass" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
