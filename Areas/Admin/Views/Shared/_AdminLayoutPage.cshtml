@@ -61,67 +61,68 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="sidebar-menu">
                     <ul class="menu">
 
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item @RenderSection("ql_menu_active", false)">
-                            <a href="@Url.Action("Index", "Menus")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "Menus" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý Menu</span>
                             </a>
                         </li>
                         <li class="sidebar-item @RenderSection("ql_submenu_active", false)">
-                            <a href="@Url.Action("Index", "SubMenus")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "SubMenus" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý SubMenu</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_room_active", false)">
-                            <a href="@Url.Action("Index", "RoomInfoes")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "RoomInfoes" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tin đăng</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_news_active", false)">
-                            <a href="@Url.Action("Index", "News")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "News" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tin tức</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_account_active", false)">
-                            <a href="@Url.Action("Index", "Accounts")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "Accounts" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tài khoản</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_banner_active", false)">
-                            <a href="@Url.Action("Index", "Banners")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "Banners" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý Banner</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_mentor_active", false)">
-                            <a href="@Url.Action("Index", "Mentors")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "Mentors" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý Mentor</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_footer_active", false)">
-                            <a href="@Url.Action("Index", "Footers")" class="sidebar-link">
+                            <a href="@Url.Action("Index", "Footers" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý Footer</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_tin_dang_active", false)">
-                            <a href="@Url.Action("ManagePostRooms", "User")" class="sidebar-link">
+                            <a href="@Url.Action(" ManagePostRooms", "User" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tin đăng</span>
                             </a>
@@ -144,17 +145,143 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             @RenderBody()
+            <div id="notification" class="alert alert-info">
+                Không có bài đăng chưa duyệt.
+            </div>
+
+            <div class="page-heading">
+                <h3>Profile Statistics</h3>
+            </div>
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-12 col-lg-9">
+                        <div class="row">
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon purple mb-2">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">Profile Views</h6>
+                                                <h6 id="notification" class="font-extrabold mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon blue mb-2">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">Followers</h6>
+                                                <h6 class="font-extrabold mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon green mb-2">
+                                                    <i class="iconly-boldAdd-User"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">Following</h6>
+                                                <h6 class="font-extrabold mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-4 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                                <div class="stats-icon red mb-2">
+                                                    <i class="iconly-boldBookmark"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                <h6 class="text-muted font-semibold">Saved Post</h6>
+                                                <h6 class="font-extrabold mb-0">0</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
         </div>
     </div>
 
 
+
+
     <script src="~/Areas/Admin/Content/assets/static/js/components/dark.js"></script>
     @*<script src="~/Areas/Admin/Content/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>*@
+    <script src="~/Areas/Admin/Content/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
     <script src="~/Areas/Admin/Content/assets/compiled/js/app.js"></script>
-    @*<script src="~/Areas/Admin/Content/assets/extensions/jquery/jquery.min.js"></script>*@
-    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/extensions/jquery/jquery.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.7.0.min.js"></script>*@
+
+    @*<script src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+        <script src="/signalr/hubs"></script>
+
+        <script>
+            $(function () {
+                var notificationHub = $.connection.notificationHub;
+
+                notificationHub.client.receiveNotification = function (message) {
+                    // Kiểm tra số lượng bài đăng chưa duyệt và cập nhật giao diện
+                    if (message.count > 0) {
+                        $('#notification').removeClass('alert-info').addClass('alert-warning').text(message.count + " bài đăng chưa duyệt.");
+                    } else {
+                        $('#notification').removeClass('alert-warning').addClass('alert-info').text("Không có bài đăng chưa duyệt.");
+                    }
+                };
+
+                $.connection.hub.start().done(function () {
+                    console.log("SignalR đã kết nối thành công.");
+                });
+            });
+
+            setInterval(function () {
+                $.ajax({
+                    url: '/Admin/RoomInfoes/CheckPendingPosts', // Route đến API kiểm tra
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.count > 0) {
+                            $('#notification').removeClass('alert-info').addClass('alert-warning').text(response.count + " bài đăng chưa duyệt.");
+                        } else {
+                            $('#notification').removeClass('alert-warning').addClass('alert-info').text("Không có bài đăng chưa duyệt.");
+                        }
+                    }
+                });
+            }, 15000); // Gọi mỗi 30 giây
+        </script>*@
+
 
     <script src="~/Areas/Admin/Content/assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="~/Areas/Admin/Content/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>

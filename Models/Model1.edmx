@@ -164,6 +164,7 @@
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="roomTypeId" Type="int" />
           <Property Name="accountId" Type="int" />
+          <Property Name="isApproved" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -437,6 +438,7 @@
           <NavigationProperty Name="RoomType" Relationship="HoiTroModel.FK__RoomInfo__roomTy__69279377" FromRole="RoomInfo" ToRole="RoomType" />
           <Property Name="accountId" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" FromRole="RoomInfo" ToRole="Account" />
+          <Property Name="isApproved" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -672,6 +674,7 @@
           <EntitySetMapping Name="RoomInfoes">
             <EntityTypeMapping TypeName="HoiTroModel.RoomInfo">
               <MappingFragment StoreEntitySet="RoomInfo">
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />

@@ -77,6 +77,17 @@
     </div>
 
     <div class="form-group">
+        @Html.Label("Được duyệt", htmlAttributes: new { @class = "control-label" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @* Kiểm tra giá trị của isApproved, nếu là null thì mặc định là false *@
+                @Html.CheckBoxFor(model => model.isApproved, new { @class = "checkbox-inline" })
+                @Html.ValidationMessageFor(model => model.isApproved, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label " })
         <div class="col-md-10">
             @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control" } })

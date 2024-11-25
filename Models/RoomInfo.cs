@@ -41,7 +41,9 @@ namespace HoiTroWebsite.Models
         public Nullable<System.DateTime> datebegin { get; set; }
         public Nullable<int> roomTypeId { get; set; }
         public Nullable<int> accountId { get; set; }
-    
+
+        public bool isApproved { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomImage> RoomImages { get; set; }
         public virtual RoomType RoomType { get; set; }

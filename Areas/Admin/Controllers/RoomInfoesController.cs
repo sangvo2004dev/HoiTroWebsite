@@ -18,6 +18,8 @@ using Newtonsoft.Json;
 using Common;
 using System.Diagnostics;
 using System.Text;
+using HoiTroWebsite.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
@@ -32,6 +34,25 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             Response.StatusCode = 200;
             getRoomType(id);
             
+            return View();
+        }
+
+        public ActionResult CheckPendingPosts()
+        {
+            var pendingPosts = db.RoomInfoes.Where(r => r.isApproved == false).ToList(); // Ví dụ: Lọc bài chưa duyệt
+            int count = pendingPosts.Count;
+
+            if (count > 0)
+            {
+                var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+                context.Clients.All.receiveNotification($"Có {count} bài đăng chưa được duyệt.");
+            }
+
+            return Json(new { code = 200, count = count }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult notication()
+        {
             return View();
         }
 
@@ -287,7 +308,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
+        public ActionResult Edit([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,isApproved,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
         {
             RoomInfo temp = getById(roomInfo.id); // Tìm phòng theo ID
             if (ModelState.IsValid)
@@ -310,6 +331,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 temp.order = roomInfo.order;
                 temp.roomTypeId = roomInfo.roomTypeId;
                 temp.accountId = roomInfo.accountId;
+                temp.isApproved = roomInfo.isApproved;
 
                 // Cập nhật phòng trong database
                 db.Entry(temp).State = EntityState.Modified;
