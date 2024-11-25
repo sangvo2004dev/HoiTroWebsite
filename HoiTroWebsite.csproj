@@ -162,6 +162,7 @@
     <Compile Include="Areas\Admin\Controllers\RoomImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomInfoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
@@ -185,9 +186,11 @@
     <Compile Include="Models\Contact.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomAuthenticationFilter.cs" />
     <Compile Include="Models\Footer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Mentor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -7990,6 +7993,7 @@
     <Content Include="Views\Footer\getTermsOfServiceLink.cshtml" />
     <Content Include="Views\Footer\getTermsOfUseLink.cshtml" />
     <Content Include="Views\Footer\getTermsOfPostingLink.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

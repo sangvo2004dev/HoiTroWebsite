@@ -21,6 +21,5 @@ namespace HoiTroWebsite.Controllers
         {
             return PartialView();
         }
-
     }
 }

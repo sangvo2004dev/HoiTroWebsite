@@ -121,13 +121,6 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item @RenderSection("ql_tin_dang_active", false)">
-                            <a href="@Url.Action(" ManagePostRooms", "User" )" class="sidebar-link">
-                                <i class="fa-fw select-all fas"></i>
-                                <span>Quản lý tin đăng</span>
-                            </a>
-                        </li>
-
                         <li class="sidebar-item">
                             <a href="index.html" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
@@ -146,7 +139,6 @@
                 </a>
             </header>
 
-            @RenderBody()
             <div id="notification" class="alert alert-info">
                 Không có bài đăng chưa duyệt.
             </div>
@@ -231,7 +223,7 @@
 
                 </section>
             </div>
-
+            @RenderBody()
         </div>
     </div>
 
@@ -244,9 +236,9 @@
 
     <script src="~/Areas/Admin/Content/assets/compiled/js/app.js"></script>
     <script src="~/Areas/Admin/Content/assets/extensions/jquery/jquery.min.js"></script>
-    @*<script src="~/Scripts/jquery-3.7.0.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
 
-    @*<script src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.3.js"></script>
         <script src="/signalr/hubs"></script>
 
         <script>
@@ -279,8 +271,8 @@
                         }
                     }
                 });
-            }, 15000); // Gọi mỗi 30 giây
-        </script>*@
+            }, 20000); // Gọi mỗi 20 giây
+        </script>
 
 
     <script src="~/Areas/Admin/Content/assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>

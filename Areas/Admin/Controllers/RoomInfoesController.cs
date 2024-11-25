@@ -401,12 +401,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
             try
             {
+
                 if (room.datebegin == null)
                 {
                     return Json(new { code = 500, msg = "Ngày bắt đầu của Room không hợp lệ" });
                 }
                 DateTime expiryDate = room.datebegin.Value.AddDays(30);
-
                 //Gửi mail đến người dùng
                 string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/DeletePost.html"));
                 // chọn loại Email gửi đến người dùng
