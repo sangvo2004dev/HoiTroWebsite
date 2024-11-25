@@ -12,7 +12,7 @@ namespace HoiTroWebsite.Models2
         public string dia_chi { get; set; }
 
         [Required(ErrorMessage = "Chưa chọn loại chuyên mục")]
-        public int loai_chuyen_muc { get; set; }
+        public int? loai_chuyen_muc { get; set; }
 
         public string tieu_de { get; set; }
 

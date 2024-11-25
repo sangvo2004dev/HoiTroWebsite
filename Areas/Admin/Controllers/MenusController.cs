@@ -174,11 +174,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
 
             try
-        {
-            Menu menu = db.Menus.Find(id);
-            db.Menus.Remove(menu);
-            db.SaveChanges();
-                return Json(new { code = 200, msg = "Xóa Menu thành công" });
+            {
+                db.Menus.Remove(menu);
+                db.SaveChanges();
+                    return Json(new { code = 200, msg = "Xóa Menu thành công" });
             }
             catch (Exception ex)
             {

@@ -222,7 +222,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
             try
         {
-            News news = db.News.Find(id);
             db.News.Remove(news);
             db.SaveChanges();
                 return Json(new { code = 200, msg = "Xóa News thành công" });

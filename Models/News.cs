@@ -16,15 +16,15 @@ namespace HoiTroWebsite.Models
     {
         public int id { get; set; }
         public string title { get; set; }
+        public string imagePath { get; set; }
+        public string brief_description { get; set; }
+        public string detail_description { get; set; }
         public string author { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public string brief_description { get; set; }
-        public string detail_description { get; set; }
         public Nullable<int> newsTypeId { get; set; }
-        public string imagePath { get; set; }
     
         public virtual NewsType NewsType { get; set; }
     }

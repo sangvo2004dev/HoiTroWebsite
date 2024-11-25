@@ -28,11 +28,11 @@ namespace HoiTroWebsite.Models
         public string FBlink { get; set; }
         public string avtImage { get; set; }
         public string password { get; set; }
+        public bool resetPass { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public bool resetPass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomInfo> RoomInfoes { get; set; }

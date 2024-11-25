@@ -15,6 +15,7 @@ namespace HoiTroWebsite.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
+
     public partial class RoomInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -33,20 +34,23 @@ namespace HoiTroWebsite.Models
         public string area { get; set; }
         public string location { get; set; }
         public string tenant { get; set; }
+        public string nameInfor { get; set; }
+        public string phoneInfor { get; set; }
+        public string zaloInfor { get; set; }
+        public bool isApproved { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public int roomTypeId { get; set; }
+        public Nullable<int> roomTypeId { get; set; }
         public Nullable<int> accountId { get; set; }
-        public bool isApproved { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomImage> RoomImages { get; set; }
-        public virtual RoomType RoomType { get; set; }
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomImage> RoomImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomImg> RoomImgs { get; set; }
+        public virtual RoomType RoomType { get; set; }
         // Danh sách ảnh tạm thời
         public List<RoomImageViewModel> Images { get; set; }
     }

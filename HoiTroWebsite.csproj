@@ -168,7 +168,7 @@
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />
-	<Compile Include="Controllers\APIController.cs" />
+    <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
@@ -250,6 +250,7 @@
     <Compile Include="Models2\PostVM.cs" />
     <Compile Include="Models2\ProfileVM.cs" />
     <Compile Include="Models2\RegisterVM.cs" />
+    <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\assets\compiled\css\app-dark.css" />
@@ -13327,16 +13328,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\css\.DS_Store" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
@@ -13345,13 +13336,6 @@
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\images\.DS_Store" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\Default\AdminIndex.cshtml" />
@@ -13827,7 +13811,24 @@
     <Content Include="Areas\Admin\Content\assets\static\fonts\nunito-latin-800-normal.woff" />
     <Content Include="Areas\Admin\Content\assets\static\fonts\nunito-latin-800-normal.woff2" />
     <Content Include="Areas\Admin\Views\RoomInfoes\CheckConfig.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\my-js\hoitro.main.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />

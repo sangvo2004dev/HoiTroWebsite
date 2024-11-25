@@ -16,10 +16,10 @@ namespace HoiTroWebsite.Models
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string img { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public string img { get; set; }
     }
 }
