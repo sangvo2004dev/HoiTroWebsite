@@ -174,25 +174,6 @@
   align-items: center;
   padding: 5px;
 }
-.btn {
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #3961fb;
-  background: #3961fb;
-  font-weight: bold;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  cursor: pointer;
-  padding: 0 10px;
-  margin: 0;
-}
-    .btn:hover {
-        text-decoration: underline !important;
-/*        color: #070e13;*/
-    }
 .btn.complete {
   background: #16c784;
   border-color: #16c784;

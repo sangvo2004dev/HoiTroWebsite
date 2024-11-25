@@ -1,0 +1,61 @@
+﻿@import url('error-message.css');
+
+.fs-5-5 {
+    font-size: 1.1rem !important;
+}
+
+.fs-7 {
+    font-size: 0.95rem !important;
+}
+
+.fs-10 {
+    font-size: 0.8rem !important;
+}
+
+.list-photos .photo_item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.list-photos .photo_item .photo {
+    width: 100%;
+    height: 100px;
+    background-color: #f5f5f5;
+}
+
+.chon-anh {
+    width: 100%;
+    height: 150px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px dashed #fe0000;
+    cursor: pointer;
+    background-color: #fff8f8;
+}
+
+    .chon-anh * {
+        pointer-events: none;
+    }
+
+.my-bg-red {
+    background-color: #fe0000;
+}
+
+@media (max-width: 767.98px) {
+    .border-sm-start-none {
+        border-left: none !important;
+    }
+}
+.anh-dai-dien {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.anh-dai-dien img {
+    width: 100%;
+    aspect-ratio: 1.5;
+    object-fit: cover;
+}

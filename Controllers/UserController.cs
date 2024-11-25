@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
-using HoiTroWebsite.UserModels;
+using HoiTroWebsite.Models2;
 using Microsoft.Ajax.Utilities;
 
 namespace HoiTroWebsite.Controllers
@@ -18,13 +18,14 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
+        [Route("dang-ky-tai-khoan")]
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        // 
+        [Route("dang-ky-a", Name = "UserLogout")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterVM registerVM)
@@ -46,10 +47,11 @@ namespace HoiTroWebsite.Controllers
             {
                 ViewBag.Message = "Đăng ký không thành công";
             }
-            return View();
+            return RedirectToAction("Login", "User");
         }
 
         // GET
+        [Route("dang-nhap-tai-khoan")]
         [HttpGet]
         public ActionResult Login()
         {
@@ -57,6 +59,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         // POST
+        [Route("dang-nhap", Name = "UserLogin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginVM loginVM)
@@ -78,48 +81,22 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
+        [Route("dang-xuat-tai-khoan")]
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index", "HomePage");
+        }
+
         [HttpGet]
+        [Route("quan-ly/dang-tin-moi")]
         public ActionResult PostRoom()
         {
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title");
             return View();
-        }
+        }        
 
-        [HttpPost]
-        public ActionResult PostRoom(PostRoomVM postRoomVM, string[] file_name_list)
-        {
-            if (ModelState.IsValid)
-            {
-                RoomInfo roomInfo = new RoomInfo
-                {
-                    title = postRoomVM.tieu_de,
-                    roomTypeId = postRoomVM.loai_chuyen_muc,
-                    brief_description = "a",
-                    price = postRoomVM.gia,
-                    location = postRoomVM.dia_chi,
-                    detail_description = postRoomVM.noi_dung,
-                    datebegin = DateTime.Now,
-                    hide = false
-                };
-                try
-                {
-                    db.RoomInfoes.Add(roomInfo);
-                    db.SaveChanges();
-                    SaveFileUrl(file_name_list, roomInfo.id);
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Message = e.ToString();
-                }
-
-                return RedirectToAction("Index", "HomePage");
-            }
-
-            return View();
-        }
-
-        // GET 
-        //[Route("quan-ly/sua-bai-dang/{id}")]
+        [Route("quan-ly/sua-bai-dang/{id}", Name = "editPost")]
         [HttpGet]
         // edit bài đăng từ của user
         public ActionResult EditPostRoom(int? id) // id bài post
@@ -139,10 +116,12 @@ namespace HoiTroWebsite.Controllers
             {
                 dia_chi = room.location,
                 tieu_de = room.title,
+                tieu_de_meta = room.meta,
                 noi_dung = room.detail_description,
                 gia = room.price,
                 dien_tich = Convert.ToInt32(room.area),
                 loai_chuyen_muc = room.roomTypeId,
+                doi_tuong = room.tenant,
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
@@ -152,29 +131,6 @@ namespace HoiTroWebsite.Controllers
             return View(postRoomVM);
         }
 
-        [HttpPost]
-        public ActionResult EditPostRoom(PostRoomVM postRoomVM, string[] file_name_list, string[] file_delete_list)
-        {
-            int id = int.Parse((TempData["id"]).ToString());
-            var room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
-
-            if (room != null)
-            {
-                room.title = postRoomVM.tieu_de;
-                room.brief_description = "a";
-                room.price = postRoomVM.gia;
-                room.area = postRoomVM.dien_tich.ToString();
-                room.location = postRoomVM.dia_chi;
-                room.detail_description = postRoomVM.noi_dung;
-                room.datebegin = DateTime.Now;
-                db.SaveChanges();
-            }
-
-            SaveFileUrl(file_name_list, id);
-            DeleteFileUrl(file_delete_list, id);
-
-            return RedirectToAction("Index", "HomePage");
-        }
 
         // cho user cập nhật thông tin cá nhân
         [Route("quan-ly/cap-nhat-thong-tin-tai-khoan")]
@@ -195,53 +151,10 @@ namespace HoiTroWebsite.Controllers
         [HttpGet]
         public ActionResult ManagePostRooms()
         {
+            ViewBag.tat_ca_count = 10;
+            ViewBag.tin_an_count = 0;
+            ViewBag.duoc_duyet_count = 2;
             return View();
-        }
-
-        // lưu tên file và đường dẫn lên database
-        private void SaveFileUrl(string[] file_name_list, int roomInfoId)
-        {
-            if (file_name_list == null) { return; }
-            int count = 0;
-            foreach (var file_name in file_name_list)
-            {
-                var f = db.RoomImgs.SingleOrDefault(ri => ri.fileName == file_name);
-                if (f == null)
-                {
-                    // thêm đường dẫn file vào database
-                    db.RoomImgs.Add(new RoomImg
-                    {
-                        postRoomId = roomInfoId,
-                        folder = "/Data/user/",
-                        fileName = file_name,
-                        hide = true,
-                        order = count,
-                        datebegin = DateTime.Now,
-                    });
-                }
-                else
-                {
-                    f.order = count;
-                }
-                count++;
-            }
-            db.SaveChanges();
-        }
-
-        // xóa đường dẫn file trên database
-        private void DeleteFileUrl(string[] file_delete_list, int roomInfoId)
-        {
-            if (file_delete_list == null) { return; }
-
-            file_delete_list.ForEach(f =>
-            {
-                var roomImg = db.RoomImgs.SingleOrDefault(ri => ri.postRoomId == roomInfoId && ri.fileName == f);
-                if (roomImg != null)
-                {
-                    db.RoomImgs.Remove(roomImg);
-                }
-            });
-            db.SaveChanges();
         }
     }
 }

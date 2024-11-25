@@ -1,5 +1,5 @@
 ﻿@using HoiTroWebsite.Models
-@model HoiTroWebsite.UserModels.PostRoomVM
+@model HoiTroWebsite.Models2.PostRoomVM
 
 @{
     ViewBag.Title = "Đăng tin mới";
@@ -26,59 +26,12 @@
 
     <!-- CSS của Dropzone -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
-
-    <style>
-        .fs-5-5 {
-            font-size: 1.1rem;
-        }
-
-        .fs-10 {
-            font-size: 0.8rem;
-        }
-
-        .list-photos .photo_item img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            margin: 0 auto;
-        }
-
-        .list-photos .photo_item .photo {
-            width: 100%;
-            height: 100px;
-            background-color: #f5f5f5;
-        }
-
-        .chon-anh {
-            width: 100%;
-            height: 150px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 2px dashed #fe0000;
-            cursor: pointer;
-            background-color: #fff8f8;
-        }
-
-            .chon-anh * {
-                pointer-events: none;
-            }
-
-        .my-bg-red {
-            background-color: #fe0000;
-        }
-
-        span.field-validation-error {
-            display: block;
-            color: #e4012b;
-            font-size: .875rem;
-        }
-    </style>
 }
 
 @section scrollspy { data-bs-spy="scroll" data-bs-target="#my-scrollspy-nav" tabindex="0" }
+@section ql_tin_dang_active {active}
 
-<div class="bg-white mb-3 sticky-top">
+<div class="bg-white mb-3 sticky-top shadow-sm z-1">
     <h5 class="m-3">Sửa bài đăng</h5>
     <ul class="nav nav-tabs ms-3" id="my-scrollspy-nav">
         <li class="nav-item">
@@ -97,7 +50,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-12 col-lg-8">
-        @using (Html.BeginForm("EditPostRoom", "User", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
+        @using (Html.BeginRouteForm("post/sua-tin", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
         {
             @*<input type="submit" value="Test submit" />*@
             @Html.AntiForgeryToken()
@@ -197,7 +150,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.doi_tuong, "Đối tượng cho thuê", new { @class = "form-label mb-1" })
                                     <div class="input-group mb-3">
-                                        <select class="form-control form-select" name="doi_tuong">
+                                        <select class="form-control form-select" id="doi_tuong" name="doi_tuong" value="@Model.doi_tuong">
                                             <option value="Tất cả">-- Tất cả --</option>
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
@@ -283,7 +236,7 @@
                     </div>
                 </div>
                 <div class="rounded my-bg-red mt-5">
-                    <input type="submit" class="btn btn-lg btn-block js-btn-hoan-tat text-white" value="Đăng tin">
+                    <input type="submit" class="btn btn-lg btn-block js-btn-hoan-tat text-white" value="Cập nhật">
                 </div>
             </div>
         }
@@ -294,7 +247,7 @@
 {
     @*<script src="~/Scripts/js/manage-main.js"></script>*@
     @*<script src="~/Scripts/js/tinh-thanh.js"></script>*@
-    <script src="~/Scripts/js/my-js/hoitro.post.js"></script>
+    <script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <!-- JavaScript của Dropzone -->
@@ -304,4 +257,5 @@
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>$('#doi_tuong').val($('#doi_tuong').attr('value'));</script>
 }

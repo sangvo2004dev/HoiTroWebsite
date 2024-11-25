@@ -3,12 +3,6 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<!-- thanh tìm kiếm -->
-<div id="search-bar">
-    @{ Html.RenderAction("GetSearchBar", "MainPartial"); }
-</div>
-<!-- kết thúc thanh tìm kiếm -->
-
 <!-- banner -->
 @{ Html.RenderAction("getBanner", "HomePage"); }
 <!-- end banner -->

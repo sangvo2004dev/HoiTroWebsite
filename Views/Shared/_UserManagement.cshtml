@@ -12,6 +12,8 @@
     <link rel="stylesheet" crossorigin href="~/dist/assets/compiled/css/app.css">
     <link rel="stylesheet" crossorigin href="~/dist/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" crossorigin href="~/dist/assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="~/Content/user.dashboard.css" />
+    <link href="~/Content/hoitro.main.css" rel="stylesheet" />
     @Html.Raw("<link rel=\"stylesheet\" href=\"/dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css\">\n")
 
     @RenderSection(name: "css", required: false)
@@ -20,7 +22,7 @@
 <body @RenderSection(name: "scrollspy", required: false)>
     <script src="~/dist/assets/static/js/initTheme.js"></script>
     <div id="app">
-        <div id="sidebar">
+        <div id="sidebar" class="z-n1">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
@@ -64,29 +66,29 @@
 
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item @RenderSection("dang_tin_active", false)">
+                            <a href="@Url.Action("PostRoom", "User")" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Đăng tin mới</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item @RenderSection("ql_tin_dang_active", false)">
+                            <a href="@Url.Action("ManagePostRooms", "User")" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tin đăng</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item @RenderSection("ql_tai_khoan_active", false)">
+                            <a href="@Url.Action("UpdateProfile", "User")" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tài khoản</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="index.html" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Đăng xuất</span>
                             </a>
@@ -111,6 +113,8 @@
 
     <script src="~/dist/assets/compiled/js/app.js"></script>
     <script src="~/dist/assets/extensions/jquery/jquery.min.js"></script>
+
+    <script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>
 
     @RenderSection(name: "script", required: false)
 </body>

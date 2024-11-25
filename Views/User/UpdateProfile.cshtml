@@ -1,8 +1,19 @@
-﻿@*@model HoiTroWebsite.UserModels.ProfileVM*@
+﻿@*@model HoiTroWebsite.Models2.ProfileVM*@
 
 @{
     Layout = "~/Views/Shared/_UserManagement.cshtml";
 }
+
+@section css {
+    <style>
+        #matKhau, #soDienThoai {
+            cursor: pointer;
+        }
+    </style>
+}
+
+@section ql_tai_khoan_active {active}
+
 <div class="bg-white mb-3 sticky-lg-top">
     <h5 class="m-3">Quản lý tài khoản</h5>
     <ul class="nav nav-tabs ms-3" id="myTab" role="tablist">
@@ -39,7 +50,7 @@
                                     Đổi hình đại diện
                                 </div>
                                 <input class="d-none" type="file" name="avatar" accept="image/png, image/jpeg, image/jpg" />
-                            </div>                            
+                            </div>
                             <div class="col-md-4">
                                 @*@Html.LabelFor(model => model.Ten_lien_he, "Tiên liên hệ")*@
                                 <label for="first-name-horizontal-icon">Tên liên hệ</label>
@@ -47,7 +58,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Tên của bạn" id="tenLienHe">
+                                        <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="tenLienHe">
                                         <div class="form-control-icon">
                                             <i class="bi bi-person"></i>
                                         </div>
@@ -60,7 +71,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="number" class="form-control" id="soDienThoai" readonly>
+                                        <input type="number" class="form-control fs-5-5" id="soDienThoai" readonly>
                                         <div class="form-control-icon">
                                             <i class="bi bi-phone"></i>
                                         </div>
@@ -73,9 +84,9 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="email" class="form-control" placeholder="Đường dẫn facebook của bạn" id="linkFacebook">
+                                        <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="linkFacebook">
                                         <div class="form-control-icon">
-                                            <i class="bi bi-envelope"></i>
+                                            <i class="bi bi-facebook"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +97,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="email" class="form-control" placeholder="Email" id="email">
+                                        <input type="email" class="form-control fs-5-5" placeholder="Email" id="email">
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -99,7 +110,7 @@
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="password" class="form-control" placeholder="Password" id="matKhau" readonly value="********">
+                                        <input type="password" class="form-control fs-5-5" placeholder="Password" id="matKhau" readonly value="********">
                                         <div class="form-control-icon">
                                             <i class="bi bi-lock"></i>
                                         </div>
@@ -128,13 +139,13 @@
                                 <label for="oldNumberPhone">Số điện thoại cũ</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="oldNumberPhone" class="form-control" name="oldNumberPhone">
+                                <input type="text" id="oldNumberPhone" class="form-control fs-5-5" name="oldNumberPhone">
                             </div>
                             <div class="col-md-4">
                                 <label for="newNumberPhone">Số điện thoại mới</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="newNumberPhone" class="form-control" name="newNumberPhone">
+                                <input type="text" id="newNumberPhone" class="form-control fs-5-5" name="newNumberPhone">
                             </div>
                             <div class="form-group">
                                 <button type="button" class="w-100 btn btn-danger">Lấy mã xác thực</button>
@@ -143,7 +154,7 @@
                                 <label for="maXacThuc">Mã xác thực</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="text" id="maXacThuc" class="form-control" name="maXacThuc">
+                                <input type="text" id="maXacThuc" class="form-control fs-5-5" name="maXacThuc">
                             </div>
                         </div>
                         <div class="row">
@@ -166,14 +177,17 @@
                             <div class="col-md-4">
                                 <label for="oldPassword">Mật khẩu cũ</label>
                             </div>
-                            <div class="col-md-8 form-group">
-                                <input type="password" id="oldPassword" class="form-control" name="oldPassword">
+                            <div class="col-md-8 form-group mb-0">
+                                <input type="password" id="oldPassword" class="form-control fs-5-5" name="oldPassword">
+                            </div>
+                            <div class="offset-md-4">
+                                <a class="d-inline-block mt-2 mb-3 text-decoration-underline text-primary fs-7" href="">Bạn quên mật khẩu?</a>
                             </div>
                             <div class="col-md-4">
                                 <label for="newPassword">Mật khẩu cũ</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="password" id="newPassword" class="form-control" name="newPassword">
+                                <input type="password" id="newPassword" class="form-control fs-5-5" name="newPassword">
                             </div>
                         </div>
                         <div class="row">
@@ -186,84 +200,13 @@
     </div>
 </div>
 
-@*<div class="container-fluid">
-    <div class="row">
-        <main role="main" class="ml-sm-auto col-lg-9">
-
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Cập nhật thông tin cá nhân</h1>
-            </div>
-            <form class="js-form-submit-data" action="#" data-a.user-avatar-previewction-url="https://phongtro123.com/api/user/update/profile" method="POST" novalidate="novalidate">
-                <div class="form-group row mt-5">
-                    <label for="user_id" class="col-md-2 offset-md-2 col-form-label">Mã thành viên</label>
-                    <div class="col-md-6">
-                        <input type="text" readonly="" class="form-control disable" id="user_id" value="@Model.id">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="user_phone" class="col-md-2 offset-md-2 col-form-label">Số điện thoại</label>
-                    <div class="col-md-6">
-                        <input type="phone" readonly="" class="form-control disable" id="user_phone" value="@Model.phoneNum">
-                        <div class="form-text text-muted"><a style="display: inline-block; margin-top: 5px;" href="/thay-doi-so-dien-thoai/@Model.id">Đổi số điện thoại</a></div>
-                    </div>
-                </div>
-                <div class="form-group row mt-5">
-                    <label for="user_name" class="col-md-2 offset-md-2 col-form-label">Tên hiển thị</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="user_name" name="name" value="@Model.name" placeholder="Ex: Nguyễn Văn A">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="user_email" class="col-md-2 offset-md-2 col-form-label">Email</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="user_email" name="email" value="@Model.email" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="user_zalo" class="col-md-2 offset-md-2 col-form-label">Số Zalo</label>
-                    <div class="col-md-6">
-                        <input type="phone" class="form-control" id="user_zalo" name="user_zalo" value="@Model.zaloNum">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="user_facebook" class="col-md-2 offset-md-2 col-form-label">Facebook</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="user_facebook" name="user_facebook" value="@Model.FBlink" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group row mt-5">
-                    <label for="user_password" class="col-md-2 offset-md-2 col-form-label" style="padding-top: 0;">Mật khẩu</label>
-                    <div class="col-md-6">
-                        <a class="" href="/thay-doi-mat-khau/@Model.id">Đổi mật khẩu</a>
-                    </div>
-                </div>
-
-
-                <div class="form-group row mt-5">
-                    <label for="user_avatar" class="col-md-2 offset-md-2 col-form-label" style="padding-top: 0;">Ảnh đại diện</label>
-                    <div class="col-md-6">
-                        <div class="user-avatar-upload-wrapper js-one-image-wrapper ">
-                            <div class="user-avatar-inner js-one-image-inner">
-                                <div class="user-avatar-preview js-one-image-preview" style="background: url(~/Content/images/default-user.jpg) center no-repeat; background-size: cover;"></div>
-                            </div>
-                            <div class="user-avatar-upload clearfix">
-                                <a class="remove-image js-remove-one-image">Xóa hình này</a>
-                                <input type="file" class="btn-add-avatar js-change-image-file" multiple="">
-                                <input type="hidden" name="user_avatar" class="js-input-value" value="">
-                            </div>
-                        </div>  end one_featured_image_wrapper 
-                    </div>
-                </div>
-                <div class="form-group row mt-5">
-                    <label for="user_email" class="col-md-2 col-form-label"></label>
-                    <div class="col-md-8">
-                        <button type="submit" class="btn btn-primary btn-lg mb-2 btn-block">Lưu &amp; Cập nhật</button>
-                    </div>
-                </div>
-                <input type="hidden" name="user_id" value="@Model.id">
-            </form>
-        </main>
-
-    </div>
-</div>*@
-
+@section script {
+    <script>
+        $('#soDienThoai').click(() => {
+            $('li a[href="#doi-so-dien-thoai"]').tab('show');
+        });
+        $('#matKhau').click(() => {
+            $('li a[href="#doi-mat-khau"]').tab('show');
+        });
+    </script>    
+}

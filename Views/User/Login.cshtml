@@ -1,41 +1,103 @@
-﻿@model HoiTroWebsite.UserModels.LoginVM
+﻿@model HoiTroWebsite.Models2.CombineVMLoginAndRegister
 
 @{
     ViewBag.Title = "Đăng nhập";
 }
 
-<h2>Login</h2>
+@section header {
+    <link href="~/Content/login.logout.css" rel="stylesheet" />
+}
 
-@using (Html.BeginForm("Login", "User", FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Đăng nhập</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+@Html.AntiForgeryToken()
+<div></div>
+<div class="my-container" style="margin-left:auto; margin-right: auto;">
+    <section id="formHolder">
+
+        <div class="row">
+
+            <!-- Brand Box -->
+            <div class="col-sm-6 brand">
+                <a href="#" class="logo">MR <span>.</span></a>
+
+                <div class="heading">
+                    <h2 class="text-white">HoiTro</h2>
+                    <p>Việc khó có Hoi Tro</p>
+                </div>
+            </div>
+
+
+            <!-- Form Box -->
+            <div class="col-sm-6 form">
+
+                <!-- Login Form -->
+                <div class="login form-peice">
+                    @using (Html.BeginRouteForm("UserLogin", FormMethod.Post, new { @class = "login-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.phoneNumber, "Số điện thoại")
+                            @Html.TextBoxFor(model => model.phoneNumber)
+                            @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "error" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.password, "Mật khẩu")
+                            @Html.PasswordFor(model => model.password)
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "error" })
+                        </div>
+
+                        <a href="" class="link-primary text-decoration-underline" style="font-size: 13px; font-weight: 400;">Bạn quên mật khẩu</a>
+
+                        <div class="CTA">
+                            <input class="btn btn-outline-danger" type="submit" value="Đăng nhập">
+                            <a href="" class="switch">Chưa có tài khoản, đăng ký</a>
+                        </div>
+                    }
+                </div><!-- End Login Form -->
+                <!-- Signup Form -->
+                <div class="signup form-peice switched">
+                    @using (Html.BeginRouteForm("UserLogout", FormMethod.Post, new { @class = "signup-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, "Họ tên")
+                            @Html.TextBoxFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "error" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại")
+                            @Html.TextBoxFor(model => model.PhoneNumber)
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, "Mật khẩu")
+                            @Html.PasswordFor(model => model.Password)
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "error" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword, "Nhập lại mật khẩu")
+                            @Html.PasswordFor(model => model.ConfirmPassword)
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "error" })
+                        </div>
+
+                        <div class="CTA">
+                            <input class="btn btn-outline-danger" type="submit" value="Đăng ký" id="submit">
+                            <a href="#" class="switch">Đã có tài khoản đăng nhập</a>
+                        </div>
+                    }
+
+                </div><!-- End Signup Form -->
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </section>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+</div>
 
-    <div>@ViewBag.Message</div>
+@section footer {
+    <script src="~/Scripts/my-js/login.logout.js"></script>
 }

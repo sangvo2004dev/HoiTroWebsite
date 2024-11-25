@@ -146,6 +146,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HTLibraries\NumberUnit.cs" />
+    <Compile Include="HTLibraries\StringUI.cs" />
+    <Compile Include="Models2\CombineVMLoginAndRegister.cs" />
+    <Compile Include="Models2\Paginate.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -196,11 +199,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserModels\LoginVM.cs" />
-    <Compile Include="UserModels\PostRoomVM.cs" />
-    <Compile Include="UserModels\PostVM.cs" />
-    <Compile Include="UserModels\ProfileVM.cs" />
-    <Compile Include="UserModels\RegisterVM.cs" />
+    <Compile Include="Models2\LoginVM.cs" />
+    <Compile Include="Models2\PostRoomVM.cs" />
+    <Compile Include="Models2\PostVM.cs" />
+    <Compile Include="Models2\ProfileVM.cs" />
+    <Compile Include="Models2\RegisterVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\data\flot-data.js" />
@@ -340,6 +343,8 @@
     <Content Include="Content\css\style_room.css" />
     <Content Include="Content\css\style_signinsignout.css" />
     <Content Include="Content\css\style_dangtin.css" />
+    <Content Include="Content\error-message.css" />
+    <Content Include="Content\hoitro.main.css" />
     <Content Include="Content\images\about.png" />
     <Content Include="Content\images\acreage-icon.svg" />
     <Content Include="Content\images\arrow-right.svg" />
@@ -379,12 +384,8 @@
     <Content Include="Content\images\room5.jpg" />
     <Content Include="Content\images\room6.jpg" />
     <Content Include="Content\images\search-white-icon.svg" />
-    <Content Include="dist\account-profile.html" />
-    <Content Include="dist\account-security.html" />
-    <Content Include="dist\application-chat.html" />
-    <Content Include="dist\application-checkout.html" />
-    <Content Include="dist\application-email.html" />
-    <Content Include="dist\application-gallery.html" />
+    <Content Include="Content\login.logout.css" />
+    <Content Include="Content\user.dashboard.css" />
     <Content Include="dist\assets\compiled\css\app-dark.css" />
     <Content Include="dist\assets\compiled\css\app-dark.rtl.css" />
     <Content Include="dist\assets\compiled\css\app.css" />
@@ -6326,72 +6327,6 @@
     <Content Include="dist\assets\static\js\pages\ui-apexchart.js" />
     <Content Include="dist\assets\static\js\pages\ui-chartjs.js" />
     <Content Include="dist\assets\static\js\pages\ui-todolist.js" />
-    <Content Include="dist\auth-forgot-password.html" />
-    <Content Include="dist\auth-login.html" />
-    <Content Include="dist\auth-register.html" />
-    <Content Include="dist\component-accordion.html" />
-    <Content Include="dist\component-alert.html" />
-    <Content Include="dist\component-badge.html" />
-    <Content Include="dist\component-breadcrumb.html" />
-    <Content Include="dist\component-button.html" />
-    <Content Include="dist\component-card.html" />
-    <Content Include="dist\component-carousel.html" />
-    <Content Include="dist\component-collapse.html" />
-    <Content Include="dist\component-dropdown.html" />
-    <Content Include="dist\component-list-group.html" />
-    <Content Include="dist\component-modal.html" />
-    <Content Include="dist\component-navs.html" />
-    <Content Include="dist\component-pagination.html" />
-    <Content Include="dist\component-placeholder.html" />
-    <Content Include="dist\component-progress.html" />
-    <Content Include="dist\component-spinner.html" />
-    <Content Include="dist\component-toasts.html" />
-    <Content Include="dist\component-tooltip.html" />
-    <Content Include="dist\error-403.html" />
-    <Content Include="dist\error-404.html" />
-    <Content Include="dist\error-500.html" />
-    <Content Include="dist\extra-component-avatar.html" />
-    <Content Include="dist\extra-component-comment.html" />
-    <Content Include="dist\extra-component-date-picker.html" />
-    <Content Include="dist\extra-component-divider.html" />
-    <Content Include="dist\extra-component-flag.html" />
-    <Content Include="dist\extra-component-rating.html" />
-    <Content Include="dist\extra-component-sweetalert.html" />
-    <Content Include="dist\extra-component-toastify.html" />
-    <Content Include="dist\form-editor-ckeditor.html" />
-    <Content Include="dist\form-editor-quill.html" />
-    <Content Include="dist\form-editor-summernote.html" />
-    <Content Include="dist\form-editor-tinymce.html" />
-    <Content Include="dist\form-element-checkbox.html" />
-    <Content Include="dist\form-element-input-group.html" />
-    <Content Include="dist\form-element-input.html" />
-    <Content Include="dist\form-element-radio.html" />
-    <Content Include="dist\form-element-select.html" />
-    <Content Include="dist\form-element-textarea.html" />
-    <Content Include="dist\form-layout.html" />
-    <Content Include="dist\form-validation-parsley.html" />
-    <Content Include="dist\index.html" />
-    <Content Include="dist\layout-default.html" />
-    <Content Include="dist\layout-horizontal.html" />
-    <Content Include="dist\layout-rtl-backup.html" />
-    <Content Include="dist\layout-rtl.html" />
-    <Content Include="dist\layout-vertical-1-column.html" />
-    <Content Include="dist\layout-vertical-navbar.html" />
-    <Content Include="dist\table-datatable-jquery.html" />
-    <Content Include="dist\table-datatable.html" />
-    <Content Include="dist\table.html" />
-    <Content Include="dist\ui-chart-apexcharts.html" />
-    <Content Include="dist\ui-chart-chartjs.html" />
-    <Content Include="dist\ui-file-uploader.html" />
-    <Content Include="dist\ui-icons-bootstrap-icons.html" />
-    <Content Include="dist\ui-icons-dripicons.html" />
-    <Content Include="dist\ui-icons-fontawesome.html" />
-    <Content Include="dist\ui-map-google-map.html" />
-    <Content Include="dist\ui-map-jsvectormap.html" />
-    <Content Include="dist\ui-multi-level-menu.html" />
-    <Content Include="dist\ui-widgets-chatbox.html" />
-    <Content Include="dist\ui-widgets-pricing.html" />
-    <Content Include="dist\ui-widgets-todolist.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -6911,8 +6846,8 @@
     <Content Include="dist\assets\static\fonts\nunito-latin-800-italic.woff2" />
     <Content Include="dist\assets\static\fonts\nunito-latin-800-normal.woff" />
     <Content Include="dist\assets\static\fonts\nunito-latin-800-normal.woff2" />
-    <Content Include="dist\manifest.json" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\my-js\hoitro.main.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -6922,22 +6857,16 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\js\bootstrap.bundle.js" />
-    <Content Include="Scripts\js\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\js\bootstrap.js" />
-    <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\custom.js" />
-    <Content Include="Scripts\js\jquery-3.0.0.min.js" />
     <Content Include="Scripts\js\jquery.mCustomScrollbar.concat.min.js" />
-    <Content Include="Scripts\js\jquery.min.js" />
-    <Content Include="Scripts\js\jquery.validate.js" />
     <Content Include="Scripts\libs\vn-num2words\html\index.html" />
     <Content Include="Scripts\libs\vn-num2words\html\index.m.html" />
     <Content Include="Scripts\libs\vn-num2words\src\index.js" />
     <Content Include="Scripts\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
-    <Content Include="Scripts\js\my-js\hoitro.post.js" />
-    <Content Include="Scripts\js\my-js\newFile.js" />
+    <Content Include="Scripts\my-js\hoitro.user.dashboard.js" />
+    <Content Include="Scripts\my-js\login.logout.js" />
+    <Content Include="Scripts\my-js\newFile.js" />
     <Content Include="Scripts\js\plugin.js" />
     <Content Include="Scripts\js\popper.min.js" />
     <Content Include="Scripts\js\revolution\assets\coloredbg.png" />
@@ -6983,10 +6912,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\js\.DS_Store" />
-    <Content Include="Scripts\js\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\js\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\js\bootstrap.js.map" />
-    <Content Include="Scripts\js\bootstrap.min.js.map" />
     <Content Include="Scripts\js\revolution\.DS_Store" />
     <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.eot" />
     <Content Include="Scripts\js\revolution\fonts\pe-icon-7-stroke\fonts\Pe-icon-7-strokebb1d.ttf" />
@@ -7036,6 +6961,9 @@
     <Content Include="Views\User\UpdateProfile.cshtml" />
     <Content Include="Views\Shared\_UserManagement.cshtml" />
     <Content Include="Views\User\ManagePostRooms.cshtml" />
+    <Content Include="Views\Shared\FilterPopup.cshtml" />
+    <Content Include="Views\Api_\GetUserPostRooms.cshtml" />
+    <Content Include="Views\Shared\_Paging.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\user\10\" />
