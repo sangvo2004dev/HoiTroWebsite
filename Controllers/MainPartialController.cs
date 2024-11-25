@@ -1,4 +1,5 @@
 ﻿using HoiTroWebsite.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace HoiTroWebsite.Controllers
                     where t.hide == true
                     orderby t.order ascending
                     select t;
+            //List<Menu> menus = _db.Menus.ToList();
+            //menus.ForEach(m => _db.Entry(m).Collection(p => p.SubMenus).Load());
 
             return PartialView(v.ToList());
         }

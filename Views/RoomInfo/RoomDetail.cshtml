@@ -1,57 +1,150 @@
-﻿@model HoiTroWebsite.Models.RoomInfo
+﻿@using System;
+@using System.Globalization;
+@using HoiTroWebsite.HTLibraries;
+
+@model HoiTroWebsite.Models.RoomInfo
 
 @{
-    ViewBag.Title = "Chi tiết phòng trọ";
+    ViewBag.Title = Model.title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
+    string gia_tien = new NumberUnit(Model.price).RoundWithLargestUnit();
 }
 
 @*@Styles.Render("~/Content/css")
-@Scripts.Render("~/Scripts/js")*@
+    @Scripts.Render("~/Scripts/js")*@
+@section header
+{
+    <style>
+        #hinh-anh-tin-dang .carousel-inner {
+            background-color: #000;
+            height: 400px;
+        }
 
+            #hinh-anh-tin-dang .carousel-inner .carousel-item img {
+                object-fit: contain;
+                margin: 0 auto;
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            #hinh-anh-tin-dang .carousel-inner .carousel-item {
+                height: 100%;
+            }
+
+                #hinh-anh-tin-dang .carousel-inner .carousel-item.active {
+                    height: 100%;
+                }
+
+        #hinh-anh-tin-dang .carousel-indicators {
+            position: static !important;
+        }
+            /* Tùy chỉnh cho hình ảnh xem trước trong indicators */
+            .carousel-indicators [data-bs-target] {
+                width: 65px; /* Đặt kích thước của ảnh xem trước */
+                height: 65px;
+                overflow: hidden;
+                border-radius: 4px; /* Tạo bo góc cho ảnh */
+                border: 2px solid #fff;
+                cursor: pointer;
+                opacity: 0.7; /* Độ mờ cho ảnh xem trước */
+                text-indent: initial !important;
+/*                box-shadow: */
+            }
+
+        #hinh-anh-tin-dang .carousel-indicators .active {
+            opacity: 1; /* Tăng độ sáng cho ảnh đang chọn */
+            border-color: #007bff;
+        }
+
+        #hinh-anh-tin-dang .carousel-indicators img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Đảm bảo hình ảnh xem trước nằm gọn */
+        }
+
+        #hinh-anh-tin-dang .carousel-control-next-icon, .carousel-control-prev-icon {
+            background-color: #fe0000;
+        }
+
+        #hinh-anh-tin-dang .carousel-control-next {
+            justify-content: right;
+        }
+
+        #hinh-anh-tin-dang .carousel-control-prev {
+            justify-content: left;
+        }
+
+        #hinh-anh-tin-dang .carousel-indicators .active {
+            opacity: 1;
+            border-color: #fe0000;
+        }
+
+    </style>
+}
 <div class="container">
     <div class="row">
 
-        <div class="col-8">
+        <div class="col-lg-8">
+            <div id="hinh-anh-tin-dang" class="mb-5 bg-white rounded-3 overflow-hidden">
+                <div id="slide-anh-phong" class="carousel slide" data-bs-touch="false" data-bs-ride="carousel" data-interval="10000">
+                    @{
+                        if (Model.RoomImgs != null)
+                        {
+                            int n = Model.RoomImgs.Count;
+
+                            <div class="carousel-inner mb-3">
+                                <div class="carousel-item active">
+                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(0).fileName">
+                                </div>
+                                @for (int i = 1; i < n; i++)
+                                {
+                                    <div class="carousel-item">
+                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(i).fileName">
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#slide-anh-phong" data-bs-slide-to="0" class="active">
+                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" alt="@Model.RoomImgs.ElementAt(0).fileName" />
+                                </button>
+                                @for (int i = 1; i < n; i++)
+                                {
+                                    <button type="button" data-bs-target="#slide-anh-phong" data-bs-slide-to="@i">
+                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" alt="@Model.RoomImgs.ElementAt(i).fileName" />
+                                    </button>
+                                }
+                            </div>
+                            <div style="height: 400px; justify-content: space-between; width: 100%; position: absolute; top: 0px; display: flex; left: 0px; ">
+                                <button class="carousel-control-prev" type="button" data-bs-target="#slide-anh-phong" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#slide-anh-phong" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
             <div class="left-content">
+
+
                 <article class="the-post">
-                    <div class="post-images">
-                        <div class="images-swiper-container swiper-container-horizontal">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
-                                     style="width: 728px;">
-                                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
-                                         src="~/Content/images/room1.jpg">
-                                </div>
-                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="7"
-                                     style="width: 728px;">
-                                    <img alt="Phòng trọ dạng căn hộ mini cao cấp tại 796 Lê Đức Thọ, P.15, Quận Gò Vấp"
-                                         src="~/Content/images/room2.jpg">
-                                </div>
-                            </div>
-                            <div class="swiper-pagination swiper-pagination-fraction">
-                                <span class="swiper-pagination-current">8</span> /
-                                <span class="swiper-pagination-total">8</span>
-                            </div>
-                            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
-                            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        </div>
-                    </div>
-
-                    @*nháp*@
-
-                    @*Thông tin phòng*@
                     <header class="page-header">
                         <h1 class="page-h1">
-                            <span class="star star-5" style="float: left;"></span>
-                            <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">2,5tr phòng khép kín full đồ gần Học Viện Tài Chính</a>
+                            <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">@Model.title</a>
                         </h1>
                         <div class="clearfix"></div>
-                        <address class="post-address">@Model.location</address>
+                        <address class="post-address">@Model.location asfd asdf</address>
                         <div class="post-attributes">
-                            <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price tr VNĐ/tháng</span></div>
-                            <div class="item acreage"><i></i><span> @Model.acreage<sup>2</sup></span></div>
-                            <div class="item published"><i></i><span>@Model.datebegin</span></div>
-                            <div class="item hashtag"><i></i><span>@Model.id</span></div>
+                            <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@gia_tien/tháng</span></div>
+                            <div class="item acreage"><i></i><span> @Model.area m<sup>2</sup></span></div>
+                            @*<div class="item published"><i></i><span>@Model.datebegin</span></div>*@
+                            @*<div class="item hashtag"><i></i><span>@Model.id</span></div>*@
                         </div>
                     </header>
 
@@ -59,7 +152,7 @@
                     <section class="section post-main-content">
                         <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
                         <div class="section-content">
-                            <p>@Html.DisplayFor(modelItem => Model.detail_description)</p>
+                            <p>@Html.DisplayFor(Model => Model.detail_description)</p>
                         </div>
                     </section>
                     @*đặc điểm đăng tin*@
@@ -74,17 +167,33 @@
                                         <td class="name">Mã tin:</td>
                                         <td>@Model.id</td>
                                     </tr>
-                                    <tr>
-                                        <td class="name">Khu vực</td>
-                                        <td> @Model.area </td>
-                                    </tr>
+                                    @*<tr>
+                                            <td class="name">Khu vực</td>
+                                            <td> @Model.area </td>
+                                        </tr>*@
                                     <tr>
                                         <td class="name">Đối tượng thuê:</td>
                                         <td>@Model.tenant</td>
                                     </tr>
                                     <tr>
+                                        @{
+                                            string dateString = Model.datebegin.ToString();
+
+                                            // Định dạng của chuỗi ngày giờ
+                                            string format = "MM/dd/yyyy h:mm:ss tt";
+
+                                            // Chuyển đổi chuỗi thành DateTime
+                                            DateTime date = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
+
+                                            // Tạo CultureInfo cho Việt Nam
+                                            var vietnamCulture = new CultureInfo("vi-VN");
+
+                                            // Định dạng ngày giờ theo kiểu "Thứ, ngày/tháng/năm giờ:phút:giây"
+                                            string formattedDate = date.ToString("dddd, HH:mm tt dd/MM/yyyy", vietnamCulture);
+
+                                        }
                                         <td class="name">Ngày đăng:</td>
-                                        <td><time title="@Model.datebegin">@Model.datebegin</time></td>
+                                        <td><time title="@formattedDate">@formattedDate</time></td>
                                     </tr>
 
                                 </tbody>
@@ -92,29 +201,29 @@
                         </div>
                     </section>
                     @*thông tin liên hệ*@
-                    <section class="section post-contact">
-                        <div class="section-header">
-                            <h3 class="section-title">Thông tin liên hệ</h3>
-                        </div>
-                        <div class="section-content">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="name">Liên hệ:</td>
-                                        <td> @Model.Account.name </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="name">Điện thoại:</td>
-                                        <td> @Model.Account.phoneNum </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="name">Zalo</td>
-                                        <td> @Model.Account.zaloNum </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+                    @*<section class="section post-contact">
+                            <div class="section-header">
+                                <h3 class="section-title">Thông tin liên hệ</h3>
+                            </div>
+                            <div class="section-content">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="name">Liên hệ:</td>
+                                            <td> @Model.Account.name </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="name">Điện thoại:</td>
+                                            <td> @Model.Account.phoneNum </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="name">Zalo</td>
+                                            <td> @Model.Account.zaloNum </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>*@
                     @*bản đồ*@
                     <section class="section post-map">
                         <div class="section-header">
@@ -134,23 +243,23 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-lg-4">
             <div class="right-content">
 
-                <div class="author-aside">
-                    <figure class="author-avatar"><img src="https://phongtro123.com/images/default-user.png"></figure><span class="author-name">@Model.Account.name</span>
-                    <div style="min-height: 16px; margin-bottom: 10px;">
-                        <div class="js-author-online-status author-online-status offline" author_id="146225">
-                            <i></i><span>
-                                Hoạt động vài
-                                giờ trước
-                            </span>
-                        </div>
-                    </div><a class="btn author-phone" rel="nofollow" href="tel:@Model.Account.phoneNum"><i></i> @Model.Account.phoneNum</a><a class="btn author-zalo" target="_blank" rel="nofollow" href="https://zalo.me/0914398413">
-                        <i></i> Nhắn
-                        Zalo
-                    </a><span class="btn post-save js-btn-save" data-post-id="668196"><i></i> Yêu thích</span>
-                </div>
+                @*<div class="author-aside">
+                        <figure class="author-avatar"><img src="https://phongtro123.com/images/default-user.png"></figure><span class="author-name">@Model.Account.name</span>
+                        <div style="min-height: 16px; margin-bottom: 10px;">
+                            <div class="js-author-online-status author-online-status offline" author_id="146225">
+                                <i></i><span>
+                                    Hoạt động vài
+                                    giờ trước
+                                </span>
+                            </div>
+                        </div><a class="btn author-phone" rel="nofollow" href="tel:@Model.Account.phoneNum"><i></i> @Model.Account.phoneNum</a><a class="btn author-zalo" target="_blank" rel="nofollow" href="https://zalo.me/0914398413">
+                            <i></i> Nhắn
+                            Zalo
+                        </a><span class="btn post-save js-btn-save" data-post-id="668196"><i></i> Yêu thích</span>
+                    </div>*@
 
                 @{
                     Html.RenderAction("GetMiniNews", "MainPartial");

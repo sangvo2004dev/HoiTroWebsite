@@ -21,12 +21,12 @@
 @import url(font-awesome.min.css);
 @import url(meanmenu.css);
 @import url(owl.carousel.min.css);
-@import url(swiper.min.css);
+/*@import url(swiper.min.css);*/
 @import url(slick.css);
 @import url(jquery.fancybox.min.css);
 @import url(jquery-ui.css);
 @import url(nice-select.css);
-@import url(my-css.css);
+/*@import url(my-css.css);*/
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
@@ -390,11 +390,6 @@ button {
      background-color: #fff;
      color: #fe0000;
      transition: ease-in 0.5s;
-}
-
-.carousel-control-next,
-.carousel-control-prev {
-     display: none;
 }
 
 .carousel-indicators {

@@ -11,6 +11,8 @@ namespace HoiTroWebsite
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapMvcAttributeRoutes();
+
             // menu-tin tức
             routes.MapRoute("News", "tin-tuc",
                new { controller = "News", action = "Index" },
@@ -63,7 +65,7 @@ namespace HoiTroWebsite
 
             // đăng ký
             routes.MapRoute("Register", "{type}",
-               new { controller = "Button", action = "getRegister", type = UrlParameter.Optional },
+               new { controller = "User", action = "Register", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
                     {"type","dang-ky" }
@@ -72,7 +74,7 @@ namespace HoiTroWebsite
 
             // đăng nhập
             routes.MapRoute("Login", "{type}",
-               new { controller = "Button", action = "getLognIn", type = UrlParameter.Optional },
+               new { controller = "User", action = "Login", type = UrlParameter.Optional },
                new RouteValueDictionary
                {
                     {"type","dang-nhap" }

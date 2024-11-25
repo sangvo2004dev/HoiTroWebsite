@@ -13,7 +13,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 {
     public class MenusController : Controller
     {
-        private HoiTroEntities db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         // GET: Admin/Menus
         public ActionResult Index()
@@ -82,13 +82,13 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+            if (ModelState.IsValid)
+            {
                     menu.datebegin = DateTime.Now.Date;
-                    db.Menus.Add(menu);
-                    db.SaveChanges();
+                db.Menus.Add(menu);
+                db.SaveChanges();
                     return Json(new { code = 200, msg = "Menu created successfully" }, JsonRequestBehavior.AllowGet);
-                }
+            }
                 return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) 
@@ -140,7 +140,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về JSON để AJAX xử lý
             }
             return Json(new { code = 400, msg = "Cập nhật thất bại" });
-        }
+            }
 
         public Menu getById(long id)
         {
@@ -174,9 +174,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
 
             try
-            {
-                db.Menus.Remove(menu);
-                db.SaveChanges();
+        {
+            Menu menu = db.Menus.Find(id);
+            db.Menus.Remove(menu);
+            db.SaveChanges();
                 return Json(new { code = 200, msg = "Xóa Menu thành công" });
             }
             catch (Exception ex)

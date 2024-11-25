@@ -16,7 +16,10 @@
                         <a href="javascript:void(0);">Tổng @Model.Count kết quả</a>
                     </div>
                     <ul class="post-list">
-                        @{ Html.RenderPartial("GetListRoomInfo", Model); }
+                        @{
+                            ViewBag.meta = "cho-thue";
+                            Html.RenderPartial("GetListRoomInfo", Model);
+                        }
                     </ul>
                 </section>
             </div>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -37,10 +39,12 @@ namespace HoiTroWebsite.Controllers
         // chi tiết tin trên HomePage-Menu
         public ActionResult RoomDetail(long roomID)
         {
-            var v = from t in _db.RoomInfoes
+            RoomInfo v = (from t in _db.RoomInfoes
                     where t.id == roomID
-                    select t;
-            return PartialView(v.FirstOrDefault());
+                    select t).FirstOrDefault();
+            _db.Entry(v).Collection(ri => ri.RoomImgs).Query().OrderBy(img => img.order).Load();
+            //v.RoomImgs = v.RoomImgs.OrderBy(ri => ri.order) as Collection<RoomImg>; 
+            return PartialView(v);
         }
 
         // lấy thông tin danh sách phòng theo loại

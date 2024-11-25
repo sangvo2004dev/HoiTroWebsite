@@ -1,0 +1,261 @@
+﻿@using HoiTroWebsite.Models
+@model HoiTroWebsite.Models2.PostRoomVM
+
+@{
+    ViewBag.Title = "Đăng tin mới";
+    Layout = "~/Views/Shared/_UserManagement.cshtml";
+
+    string ten_lien_he = "";
+    string phone = "";
+
+    if (Session["User"] != null)
+    {
+        ten_lien_he = (Session["User"] as Account).name;
+        phone = (Session["User"] as Account).phoneNum;
+    }
+}
+
+
+@section css
+{
+    @*jquery UI*@
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+    @*jquery slect2*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <!-- CSS của Dropzone -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />
+}
+
+@section scrollspy { data-bs-spy="scroll" data-bs-target="#my-scrollspy-nav" tabindex="0" }
+@section ql_tin_dang_active {active}
+
+<div class="bg-white mb-3 sticky-top shadow-sm z-1">
+    <h5 class="m-3">Sửa bài đăng</h5>
+    <ul class="nav nav-tabs ms-3" id="my-scrollspy-nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#scrollspy_khuvuc">Địa chỉ cho thuê</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspy_mota">Thông tin mô tả</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspy_hinhanh">Hình ảnh</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspy_lienhe">Thông tin liên hệ</a>
+        </li>
+    </ul>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-12 col-lg-8">
+        @using (Html.BeginRouteForm("post/sua-tin", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
+        {
+            @*<input type="submit" value="Test submit" />*@
+            @Html.AntiForgeryToken()
+
+            <div class="form-body">
+                <div id="scrollspy_khuvuc">
+                    <div class="bg-white rounded shadow-sm p-3 mb-4">
+                        <div class="fs-5 fw-bolder mb-3">Địa chỉ cho thuê</div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label mb-1" for="province_id">Tỉnh/Thành phố</label>
+                                    <select id="province_id" name="province_id" class="form-control fs-5-5" tabindex="-1">
+                                        <option value="">-- Chưa chọn tỉnh/thành phố --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label mb-1" for="district_id">Quận/Huyện</label>
+                                    <select name="district_id" id="district_id" class="form-control fs-5-5" tabindex="-1" aria-hidden="true">
+                                        <option value="">Chọn quận huyện</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label mb-1" for="phuongxa">Phường/Xã</label>
+                                    <select class="form-control fs-5-5" name="phuongxa" id="phuongxa" tabindex="-1">
+                                        <option value="">Chọn phường xã</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="sonha_duong" class="form-label mb-1">Số nhà, Đường</label>
+                                    <input type="text" class="form-control fs-5-5" name="sonha_duong" id="sonha_duong" value="">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dia_chi, "Địa chỉ chính xác", new { @class = "form-lable mb-1" })
+                                    @*<input type="text" readonly="" class="form-control" name="dia_chi" id="diachi" required="">*@
+                                    @Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control bg-body-secondary fs-5-5", @readonly = "" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scrollspy_mota">
+                    <div class="bg-white rounded shadow-sm p-3 mb-4">
+                        <div class="fs-5 fw-bolder mb-3">Thông tin mô tả</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.loai_chuyen_muc, "Loại chuyên mục", new { @class = "form-label mb-1" })
+                                    @Html.DropDownListFor(model => model.loai_chuyen_muc, null, "-- Chọn loại chuyên mục --", new { @class = "form-control form-select fs-5-5 border-secondary-subtle", @readonly = "", @disabled = "" })
+                                    @*@Html.ValidationMessageFor(model => model.loai_chuyen_muc)*@
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tieu_de, "Tiêu đề", new { @class = "form-label mb-1" })
+                                    @Html.TextBoxFor(model => model.tieu_de, new { @class = "form-control fs-5-5" })
+                                    <input id="meta_tieu_de" type="hidden" name="meta_tieu_de" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.noi_dung, "Nội dung mô tả", new { @class = "form-label mb-1" })
+                                    @Html.TextAreaFor(model => model.noi_dung, new { @class = "form-control fs-5-5", @id = "post_content", @rows = "10" })
+                                    @Html.ValidationMessageFor(model => model.noi_dung)
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.gia, "Giá cho thuê", new { @class = "form-label mb-1" })
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(model => model.gia, new { @class = "form-control fs-5-5", @id = "giachothue" })
+                                        <div class="input-group-text fs-6 border-secondary-subtle">đồng/tháng</div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.gia)
+                                    <small class="form-text text-muted">Nhập đầy đủ số, ví dụ 1 triệu thì nhập là 1000000</small>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dien_tich, "Diện tích", new { @class = "form-label mb-1" })
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(model => model.dien_tich, new { @type = "number", @class = "form-control fs-5-5" })
+                                        <div class="input-group-text fs-6 border-secondary-subtle">m<sup>2</sup></div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.dien_tich)
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.doi_tuong, "Đối tượng cho thuê", new { @class = "form-label mb-1" })
+                                    <div class="input-group mb-3">
+                                        <select class="form-control form-select" id="doi_tuong" name="doi_tuong" value="@Model.doi_tuong">
+                                            <option value="Tất cả">-- Tất cả --</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scrollspy_hinhanh">
+                    <div class="bg-white rounded shadow-sm p-3 mb-4">
+                        <div class="fs-5 fw-bolder mb-3">Hình ảnh</div>
+                        <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p>
+                        <div class="mb-3">
+                            <div class="chon-anh js-dropzone rounded">
+                                <i class="fa-fw select-all fas mx-auto mb-2" style="font-size: 48px;"></i>
+                                <br />
+                                <span class="js-btn-chon-anh mx-auto">Tải ảnh từ thiết bị</span>
+                            </div>
+                        </div>
+                        <div class="text-body-secondary text-secondary mb-3 fs-10">
+                            <ul style="list-style: none; padding: 0;">
+                                <li>• Tải lên tối đa 20 ảnh trong một bài đăng</li>
+                                <li>• Dung lượng ảnh tối đa 10MB</li>
+                                <li>• Hình ảnh phải liên quan đến phòng trọ, nhà cho thuê</li>
+                                <li>• Không chèn văn bản, số điện thoại lên ảnh</li>
+                            </ul>
+                        </div>
+                        <div class="list-photos row dropzone-previews" id="list-photos-dropzone-previews">
+                            @{
+                                if (ViewBag.RoomImgs != null)
+                                {
+                                    foreach (RoomImg img in ViewBag.RoomImgs)
+                                    {
+                                        <div class="col-4 col-sm-3 photo_item js-photo-manual">
+                                            <div class="shadow-sm bg-white border mb-3 rounded">
+                                                <div class="photo rounded-top"><img class="rounded-top" src="@img.folder@img.fileName" alt="@img.fileName" data-dz-thumbnail=""></div>
+                                                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-sm text-red d-flex justify-content-center align-items-center w-100 photo_delete js-photo-delete text-danger" data-dz-remove=""><i class="fa-fw select-all fas me-1"></i> Xóa</button>
+                                                </div>
+                                                @*<input name="" value="" type="hidden">*@
+                                            </div>
+                                            <input type="hidden" class="js-not-temp" name="file_name_list" value="@img.fileName" />
+
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div id="tpl" style="display:none">
+                            <div class="col-4 col-sm-3 photo_item js-photo-manual">
+                                <div class="shadow-sm bg-white border mb-3 rounded">
+                                    <div class="photo rounded-top"><img class="rounded-top" data-dz-thumbnail=""></div>
+                                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
+                                    <div>
+                                        <button type="button" class="btn btn-sm text-red d-flex justify-content-center align-items-center w-100 photo_delete js-photo-delete text-danger" data-dz-remove=""><i class="fa-fw select-all fas me-1"></i> Xóa</button>
+                                    </div>
+                                    @*<input name="" value="" type="hidden">*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="scrollspy_lienhe">
+                    <div class="bg-white rounded shadow-sm p-3 mb-4">
+                        <div class="fs-5 fw-bolder mb-3">Thông tin liên hệ</div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group mb-3">
+                                    @Html.LabelFor(model => model.ten_lien_he, "Họ tên", new { @class = "form-label mb-1" })
+                                    @Html.TextBoxFor(model => model.ten_lien_he, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = ten_lien_he })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group mb-3">
+                                    @Html.LabelFor(model => model.phone, "Số điện thoại", new { @class = "form-label mb-1" })
+                                    @Html.TextBoxFor(model => model.phone, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = phone })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded my-bg-red mt-5">
+                    <input type="submit" class="btn btn-lg btn-block js-btn-hoan-tat text-white" value="Cập nhật">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section script
+{
+    @*<script src="~/Scripts/js/manage-main.js"></script>*@
+    @*<script src="~/Scripts/js/tinh-thanh.js"></script>*@
+    <script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <!-- JavaScript của Dropzone -->
+    <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>
+    <!-- Thêm CDN cho SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>$('#doi_tuong').val($('#doi_tuong').attr('value'));</script>
+}

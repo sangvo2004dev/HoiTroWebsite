@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<HoiTroWebsite.Models.Menu>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
@@ -18,33 +19,33 @@
         <div class="col-lg-12">
             <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
                 <thead>
-                    <tr>
-                        <th>
+    <tr>
+        <th>
                             @Html.DisplayName("STT")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Tên")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Liên kết")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Meta")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Hiển thị")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Sắp xếp")
-                        </th>
-                        <th>
+        </th>
+        <th>
                             @Html.DisplayName("Ngày tạo")
-                        </th>
+        </th>
                         <th>
                             @Html.DisplayName("Có menu con")
                         </th>
-                        <th></th>
-                    </tr>
+        <th></th>
+    </tr>
                 </thead>
                 <tbody id="tbmenu">
                 </tbody>
@@ -277,7 +278,7 @@
                     console.error('Mã trạng thái:', xhr.status);
                     console.error('Nội dung lỗi:', xhr.responseText);
                     alert("Có lỗi xảy ra khi xóa menu. Vui lòng kiểm tra log lỗi.");
-                }
+}
             });
         });
 

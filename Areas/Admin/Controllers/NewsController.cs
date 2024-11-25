@@ -14,7 +14,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 {
     public class NewsController : Controller
     {
-        private HoiTroEntities db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         // GET: Admin/News
         public ActionResult Index()
@@ -67,10 +67,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return Json(new { code = 200, news = news2, msg = "Lấy News thành công" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
-            {
+        {
                 return Json(new { code = 500, msg = "Lấy SubMenu thất bại: " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
         // GET: Admin/News/Details/5
         public ActionResult Details(int? id)
         {
@@ -106,9 +107,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
         {
             try
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
                     var path = "";
                     var filename = "";
                     if (img != null)
@@ -124,13 +125,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                         news.imagePath = "logo.png";
                     }
                     news.datebegin = DateTime.Now.Date;
-                    db.News.Add(news);
-                    db.SaveChanges();
+                db.News.Add(news);
+                db.SaveChanges();
                     return Json(new { code = 200, msg = "News created successfully" }, JsonRequestBehavior.AllowGet);
-                }
-                ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
             }
+
+            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
+                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
+        }
             catch (Exception ex) 
             {
                 return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
@@ -219,9 +221,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
 
             try
-            {
-                db.News.Remove(news);
-                db.SaveChanges();
+        {
+            News news = db.News.Find(id);
+            db.News.Remove(news);
+            db.SaveChanges();
                 return Json(new { code = 200, msg = "Xóa News thành công" });
             }
             catch (Exception ex)
