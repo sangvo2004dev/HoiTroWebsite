@@ -17,11 +17,11 @@
           <Property Name="FBlink" Type="nvarchar" MaxLength="255" />
           <Property Name="avtImage" Type="nvarchar" MaxLength="255" />
           <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="resetPass" Type="bit" Nullable="false" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
-          <Property Name="resetPass" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Banner">
           <Key>
@@ -66,12 +66,12 @@
           <Property Name="copyrightInfo" Type="nvarchar" MaxLength="255" />
           <Property Name="privacyPolicyLink" Type="nvarchar(max)" />
           <Property Name="termsOfServiceLink" Type="nvarchar(max)" />
+          <Property Name="TermsOfUseLink" Type="nvarchar(max)" />
+          <Property Name="TermsOfPostingLink" Type="nvarchar(max)" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
-          <Property Name="TermsOfUseLink" Type="nvarchar(max)" />
-          <Property Name="TermsOfPostingLink" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Mentor">
           <Key>
@@ -142,6 +142,20 @@
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
         </EntityType>
+        <EntityType Name="RoomImgs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postRoomId" Type="int" Nullable="false" />
+          <Property Name="fileName" Type="varchar" MaxLength="100" />
+          <Property Name="folder" Type="varchar" MaxLength="100" />
+          <Property Name="serverFolder" Type="varchar" MaxLength="100" />
+          <Property Name="meta" Type="varchar" MaxLength="255" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
         <EntityType Name="RoomInfo">
           <Key>
             <PropertyRef Name="id" />
@@ -158,13 +172,13 @@
           <Property Name="nameInfor" Type="nvarchar" MaxLength="100" />
           <Property Name="phoneInfor" Type="nvarchar" MaxLength="10" />
           <Property Name="zaloInfor" Type="nvarchar" MaxLength="10" />
+          <Property Name="isApproved" Type="bit" Nullable="false" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="roomTypeId" Type="int" />
           <Property Name="accountId" Type="int" />
-          <Property Name="isApproved" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -190,7 +204,7 @@
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="menuId" Type="int" />
         </EntityType>
-        <Association Name="FK__News__newsTypeId__7211DF33">
+        <Association Name="FK__News__newsTypeId__09746778">
           <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -204,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImage__refer__78BEDCC2">
+        <Association Name="FK__RoomImage__refer__10216507">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -218,7 +232,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__accoun__6D4D2A16">
+        <Association Name="FK__RoomImgs__datebe__16CE6296">
+          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RoomImgs" Type="Self.RoomImgs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomImgs">
+              <PropertyRef Name="postRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomInfo__accoun__04AFB25B">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -232,7 +260,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__roomTy__6C5905DD">
+        <Association Name="FK__RoomInfo__roomTy__03BB8E22">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -246,7 +274,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubMenu__menuId__64B7E415">
+        <Association Name="FK__SubMenu__menuId__7A3223E8">
           <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -270,26 +298,31 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsType" EntityType="Self.NewsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomImages" EntityType="Self.RoomImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomImgs" EntityType="Self.RoomImgs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__News__newsTypeId__7211DF33" Association="Self.FK__News__newsTypeId__7211DF33">
+          <AssociationSet Name="FK__News__newsTypeId__09746778" Association="Self.FK__News__newsTypeId__09746778">
             <End Role="NewsType" EntitySet="NewsType" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__78BEDCC2" Association="Self.FK__RoomImage__refer__78BEDCC2">
+          <AssociationSet Name="FK__RoomImage__refer__10216507" Association="Self.FK__RoomImage__refer__10216507">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__accoun__6D4D2A16" Association="Self.FK__RoomInfo__accoun__6D4D2A16">
+          <AssociationSet Name="FK__RoomImgs__datebe__16CE6296" Association="Self.FK__RoomImgs__datebe__16CE6296">
+            <End Role="RoomInfo" EntitySet="RoomInfo" />
+            <End Role="RoomImgs" EntitySet="RoomImgs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomInfo__accoun__04AFB25B" Association="Self.FK__RoomInfo__accoun__04AFB25B">
             <End Role="Account" EntitySet="Account" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__6C5905DD" Association="Self.FK__RoomInfo__roomTy__6C5905DD">
+          <AssociationSet Name="FK__RoomInfo__roomTy__03BB8E22" Association="Self.FK__RoomInfo__roomTy__03BB8E22">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubMenu__menuId__64B7E415" Association="Self.FK__SubMenu__menuId__64B7E415">
+          <AssociationSet Name="FK__SubMenu__menuId__7A3223E8" Association="Self.FK__SubMenu__menuId__7A3223E8">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="SubMenu" EntitySet="SubMenu" />
           </AssociationSet>
@@ -345,6 +378,11 @@
           <EntitySet Name="Mentors" EntityType="HoiTroModel.Mentor" />
           <EntitySet Name="Banners" EntityType="HoiTroModel.Banner" />
           <EntitySet Name="Footers" EntityType="HoiTroModel.Footer" />
+          <EntitySet Name="RoomImgs" EntityType="HoiTroModel.RoomImg" />
+          <AssociationSet Name="FK__RoomImgs__datebe__16CE6296" Association="HoiTroModel.FK__RoomImgs__datebe__16CE6296">
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
+            <End Role="RoomImg" EntitySet="RoomImgs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contact">
           <Key>
@@ -439,6 +477,7 @@
           <Property Name="accountId" Type="Int32" />
           <NavigationProperty Name="Account" Relationship="HoiTroModel.FK__RoomInfo__accoun__5F3414E9" FromRole="RoomInfo" ToRole="Account" />
           <Property Name="isApproved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RoomImgs" Relationship="HoiTroModel.FK__RoomImgs__datebe__16CE6296" FromRole="RoomInfo" ToRole="RoomImg" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -594,6 +633,35 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="RoomImg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postRoomId" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="folder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="serverFolder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="meta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RoomInfo" Relationship="HoiTroModel.FK__RoomImgs__datebe__16CE6296" FromRole="RoomImg" ToRole="RoomInfo" />
+        </EntityType>
+        <Association Name="FK__RoomImgs__datebe__16CE6296">
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HoiTroModel.RoomImg" Role="RoomImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomImg">
+              <PropertyRef Name="postRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -790,6 +858,21 @@
                 <ScalarProperty Name="contactEmail" ColumnName="contactEmail" />
                 <ScalarProperty Name="contactAddress" ColumnName="contactAddress" />
                 <ScalarProperty Name="companyInfo" ColumnName="companyInfo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomImgs">
+            <EntityTypeMapping TypeName="HoiTroModel.RoomImg">
+              <MappingFragment StoreEntitySet="RoomImgs">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="serverFolder" ColumnName="serverFolder" />
+                <ScalarProperty Name="folder" ColumnName="folder" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="postRoomId" ColumnName="postRoomId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
