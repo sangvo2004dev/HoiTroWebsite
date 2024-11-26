@@ -36,6 +36,9 @@
                             @Html.DisplayName("Tiêu đề")
                         </th>
                         <th>
+                            @Html.DisplayName("ID")
+                        </th>
+                        <th>
                             @Html.DisplayName("Giá cho thuê")
                         </th>
                         <th>
@@ -196,6 +199,7 @@
                 table.row.add([
                     k + 1,
                     v.Name,
+                    v.Id,
                     v.Price,
                     v.Acreage,
                     v.Address,
@@ -232,6 +236,7 @@
                             let tr = '<tr id="' + v.Id + '">'
                             tr += '<td>' + (k + 1) + '</td>';
                             tr += '<td>' + v.Name + '</td>';
+                            tr += '<td>' + v.Id + '</td>';
                             tr += '<td>' + v.Price + '</td>';
                             tr += '<td>' + v.Acreage + '</td>';
                             tr += '<td>' + v.Address + '</td>';

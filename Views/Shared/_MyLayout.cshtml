@@ -58,6 +58,34 @@
                 <i class="icon funnel size-14 me-1"></i> <span>Bộ lọc</span>
             </button>
         </div>
+        <div class="user-welcome d-flex justify-content-end align-items-center mr-5">
+            <!-- Yêu thích -->
+            <a rel="nofollow" class="btn btn-outline-secondary me-2 d-flex align-items-center" href="javascript:void(0)">
+                <i class="icon heart size-18 me-1"></i> Yêu thích
+                <span class="badge bg-danger text-white js-save-post-total ms-1 d-none">1</span>
+            </a>
+
+            <!-- Đăng nhập -->
+            <a rel="nofollow" class="btn btn-outline-primary me-2" href="/dang-nhap">
+                <i class="icon register"></i> Đăng nhập
+            </a>
+
+            <!-- Đăng ký -->
+            <a rel="nofollow" class="btn btn-outline-primary me-2" href="/dang-ky">
+                <i class="icon login"></i> Đăng ký
+            </a>
+
+            <!-- Tài khoản người dùng -->
+            <a rel="nofollow" class="btn btn-outline-secondary me-2" href="/quan-ly-tin-dang">
+                <i class="icon login"></i> Tài khoản người dùng
+            </a>
+
+            <!-- Đăng tin miễn phí -->
+            <a rel="nofollow" class="btn btn-success btn-add-post" href="/dang-tin-moi">
+                <i class="icon"></i> Đăng tin miễn phí
+            </a>
+        </div>
+
         <div class="user-welcome clearfix me-5" style="float: right">
             @{
                 if (Session["User"] != null)

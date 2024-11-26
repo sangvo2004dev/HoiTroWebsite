@@ -337,33 +337,51 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
 
-                //Gửi mail đến người dùng
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/EditPost.html"));
-                // chọn loại Email gửi đến người dùng
-                // thêm thông tin trước khi Edit
-                content = content.Replace("{{Title}}", roomInfo.title);
-                content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
-                content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
-                content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
-                content = content.Replace("{{Tenant}}", roomInfo.tenant);
-                content = content.Replace("{{Price}}", roomInfo.price);
-                content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                content = content.Replace("{{Area}}", roomInfo.area);
-                content = content.Replace("{{Location}}", roomInfo.location);
-                content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
-                // thêm thông tin sau khi Edit
-                content = content.Replace("{{NewTitle}}", temp.title);
-                content = content.Replace("{{NewBriefDescription}}", temp.brief_description);
-                content = content.Replace("{{NewDetailDescription}}", temp.detail_description);
-                content = content.Replace("{{NewRoomType}}", getTitleRoomType(temp.roomTypeId));
-                content = content.Replace("{{NewTenant}}", temp.tenant);
-                content = content.Replace("{{NewPrice}}", temp.price);
-                content = content.Replace("{{NewAcreage}}", (temp.acreage).ToString());
-                content = content.Replace("{{NewArea}}", temp.area);
-                content = content.Replace("{{NewLocation}}", temp.location);
-                content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
-                //Editor
-                content = content.Replace("{{Editor}}", "....");// thêm Admin: Session.name or User: Account.name
+                string content = "";
+                //if (roomInfo.isApproved)
+                //{
+                //    //Gửi mail đến người dùng thông báo bài đăng hợp lệ đã được duyệt
+                //    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/ValidPost.html"));
+                //    content = content.Replace("{{Title}}", roomInfo.title);
+
+                //}
+                //else if(!roomInfo.isApproved)
+                //{
+                //    //Gửi mail đến người dùng thông báo bài đăng ko được duyệt
+                //    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/InvalidPost.html"));
+                //    content = content.Replace("{{Title}}", roomInfo.title);
+                //    content = content.Replace("{{Reason}}", "Vui lòng liên hệ nhân viên hỗ trợ để biết thêm chi tiết và Hỏi trọ Website có thể hỗ trợ bạn tốt hơn");
+                //}
+                //else
+                {
+                    //Gửi mail đến người dùng thông báo chỉnh sửa
+                    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/EditPost.html"));
+                    // chọn loại Email gửi đến người dùng
+
+                    content = content.Replace("{{Title}}", roomInfo.title);
+                    content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
+                    content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
+                    content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
+                    content = content.Replace("{{Tenant}}", roomInfo.tenant);
+                    content = content.Replace("{{Price}}", roomInfo.price);
+                    content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
+                    content = content.Replace("{{Area}}", roomInfo.area);
+                    content = content.Replace("{{Location}}", roomInfo.location);
+                    content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
+                                                                    // thêm thông tin sau khi Edit
+                    content = content.Replace("{{NewTitle}}", temp.title);
+                    content = content.Replace("{{NewBriefDescription}}", temp.brief_description);
+                    content = content.Replace("{{NewDetailDescription}}", temp.detail_description);
+                    content = content.Replace("{{NewRoomType}}", getTitleRoomType(temp.roomTypeId));
+                    content = content.Replace("{{NewTenant}}", temp.tenant);
+                    content = content.Replace("{{NewPrice}}", temp.price);
+                    content = content.Replace("{{NewAcreage}}", (temp.acreage).ToString());
+                    content = content.Replace("{{NewArea}}", temp.area);
+                    content = content.Replace("{{NewLocation}}", temp.location);
+                    content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
+                                                                       //Editor
+                    content = content.Replace("{{Editor}}", "....");// thêm Admin: Session.name or User: Account.name
+                }
 
                 string email = GetEmail(roomInfo.accountId);
                 new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);

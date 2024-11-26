@@ -86,6 +86,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item @RenderSection("ql_roomImg_active", false)">
+                            <a href="@Url.Action("Index", "RoomImages" )" class="sidebar-link">
+                                <i class="fa-fw select-all fas"></i>
+                                <span>Quản lý ảnh slide tin đăng</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item @RenderSection("ql_news_active", false)">
                             <a href="@Url.Action("Index", "News" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
@@ -122,7 +129,7 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="index.html" class="sidebar-link">
+                            <a href="#" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Đăng xuất</span>
                             </a>

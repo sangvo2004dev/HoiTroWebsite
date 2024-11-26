@@ -5,67 +5,69 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
-<button class="btn btn-success text-white" id="btnAdd">
+<div class="container">
+    <button class="btn btn-success text-white" id="btnAdd">
 
-    <a href="#" class="" data-toggle="modal" data-target="#modalImg">
-        <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
-    </a>
-</button>
+        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalImg">
+            <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
+        </a>
+    </button>
 
-<div class="row">
-    <div class="col-lg-12">
-        <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("STT")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Ảnh")
-                    </th>
-                    <th>
-                        @Html.DisplayName("ID bài đăng")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Meta")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Hiển thị")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Sắp xếp")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Ngày tạo")
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tbimg">
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="col-lg-12">
+            <table width="100%" class="table table-striped table-bordered table-hover myTable" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("STT")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ảnh")
+                        </th>
+                        <th>
+                            @Html.DisplayName("ID bài đăng")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Meta")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Hiển thị")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Sắp xếp")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày tạo")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbimg">
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
-            </div>
-            <div class="modal-body">
-                @*<h3>Modal Body</h3>*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+    <!-- Modal -->
+    <div class="modal" id="modalImg" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @*<p>Modal body text goes here.</p>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
             </div>
         </div>
     </div>
 </div>
-@section Scripts
+
+@section script
 {
     <script>
         $(document).ready(function () {
@@ -148,9 +150,9 @@
                             tr += '<td>' + v.Order + '</td>';
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-toggle="modal" data-target="#modalImg"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalImg"> Chi tiết </button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalImg"> Chỉnh sửa </button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalImg"> Xóa </button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbimg').append(tr);
