@@ -11,10 +11,10 @@
 
 @foreach (var i in Model)
 {
-    if (i.RoomImgs.Count > 0)
+    if (i.RoomImages.Count > 0)
     {
-        ten_anh = i.RoomImgs.FirstOrDefault().fileName;
-        path_1 = i.RoomImgs.FirstOrDefault().folder + ten_anh;
+        ten_anh = i.RoomImages.FirstOrDefault().file_name;
+        path_1 = i.RoomImages.FirstOrDefault().imagePath;
     }
     href = "/" + ViewBag.meta + "/" + i.meta + "/" + i.id.ToString();
     gia_tien = new NumberUnit(i.price).RoundWithLargestUnit();
@@ -42,7 +42,7 @@
                 </a>
             </h3>
             <div class="meta-row clearfix">
-                <span class="post-price">@gia_tien/tháng</span><span class="post-acreage">@i.area m<sup>2</sup></span>
+                <span class="post-price">@gia_tien/tháng</span><span class="post-acreage">@i.acreage m<sup>2</sup></span>
                 @*<span class="post-location">
                         <a href="Cho thuê">
                             @i.RoomInfo.area
@@ -52,12 +52,12 @@
             </div>
             <div class="meta-row clearfix">
                 <p class="post-summary">
-                    @Html.Raw(i.brief_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
+                    @Html.Raw(i.detail_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
                 </p>
             </div>
             <div class="meta-row clearfix">
                 <div class="post-author">
-                    <img src="@i.Account.avtImage" alt="@i.Account.name">
+                    <img src="@i.Account.imagePath" alt="@i.Account.name">
                     <span class="author-name">@i.Account.name</span>
                 </div>
                 <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"

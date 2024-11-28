@@ -66,7 +66,7 @@
                     @if (Session["User"] != null)
                     {
                         Account user = (Account)Session["User"];
-                        string avatar_path = user.avtImage ?? "/Data/default-user-avata.svg";
+                        string avatar_path = user.imagePath ?? "/Data/default-user-avata.svg";
                         <button class="btn border-0 text-body d-flex align-items-center dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="avatar-trang-chu border-black size-33 me-2" src="@avatar_path" alt="Ảnh đại diện tài khoản">
                             @user.name

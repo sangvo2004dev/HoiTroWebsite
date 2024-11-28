@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
 
@@ -14,12 +9,12 @@ namespace HoiTroWebsite.Controllers
     public class RoomInfoController : Controller
     {
         // Khai báo
-        private readonly HoiTroEntities _db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         // xem tất cả phòng theo 1 loại
         public ActionResult Index()
         {
-            var listRoomInfo = _db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == false)
+            var listRoomInfo = db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == false)
                 .Include(ri => ri.Account)
                 .Include(ri => ri.RoomImages)
                 .ToList();
@@ -30,7 +25,7 @@ namespace HoiTroWebsite.Controllers
         // chi tiết tin trên HomePage-Menu
         public ActionResult RoomDetail(long roomID)
         {
-            RoomInfo v = (from t in _db.RoomInfoes
+            RoomInfo roomDetail = (from t in db.RoomInfoes
                     where t.id == roomID
                     select t).FirstOrDefault();
             _db.Entry(v).Collection(ri => ri.RoomImages).Query().OrderBy(img => img.order).Load();
@@ -39,12 +34,9 @@ namespace HoiTroWebsite.Controllers
         }
 
         // lấy thông tin danh sách phòng theo loại
-        public ActionResult Room_GetListRoomInfoFollowType(string roomTypeMeta)
+        public ActionResult GetListRoomInfoFollowType(string roomTypeMeta)
         {
-            var v = (from t in _db.RoomTypes
-                     where t.meta == roomTypeMeta
-                     select t).FirstOrDefault();
-
+            var v = db.RoomInfoes.Where(rt => rt.meta ==  roomTypeMeta);
             return View(v);
         }
 
@@ -53,7 +45,7 @@ namespace HoiTroWebsite.Controllers
         {
             ViewBag.meta = metaTitle;
 
-            var listRoomInfo = _db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
+            var listRoomInfo = db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
                 .Include(ri => ri.Account)
                 .Include(ri => ri.RoomImages)
                 .ToList();

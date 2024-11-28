@@ -11,10 +11,6 @@ namespace HoiTroWebsite.Models
 {
     using System;
     using System.Collections.Generic;
-    //them xu ly not null
-    using System.ComponentModel.DataAnnotations;
-    using System.Web;
-
     
     public partial class RoomInfo
     {

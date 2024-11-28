@@ -1,31 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mail;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using Antlr.Runtime;
-using CKFinder.Settings;
 using HoiTroWebsite.Models;
-using Newtonsoft.Json;
 //dùng MailHelper
 using Common;
-using System.Diagnostics;
-using System.Text;
 using HoiTroWebsite.Hubs;
 using Microsoft.AspNet.SignalR;
+using HoiTroWebsite.Models2;
+using HoiTroWebsite.HTLibraries;
+using System.Threading;
+using System.Web.Helpers;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
     public class RoomInfoesController : Controller
     {
-        private HoiTroEntities db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         // GET: Admin/RoomInfoes
         public ActionResult Index(long? id = null)
@@ -332,6 +328,83 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             return Json(new { code = 400, msg = "Cập nhật thất bại" }); // Trả về thông báo thất bại nếu dữ liệu không hợp lệ
         }
         // GET: Admin/RoomInfoes/Delete/5
+
+        [HttpGet]
+        public ActionResult SangEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RoomInfo roomInfo = db.RoomInfoes.SingleOrDefault(r => r.id == id);
+            if (roomInfo == null)
+            {
+                return HttpNotFound();
+            }
+
+            // load và lấy theo thứ tự
+            db.Entry(roomInfo).Collection(r => r.RoomImages).Query().OrderBy(i => i.order).Load();
+            ViewBag.RoomImages = roomInfo.RoomImages;
+            ViewBag.ten_lien_he = roomInfo.Account.name;
+            ViewBag.phone = roomInfo.Account.phoneNum;
+            int dienTich = 0;
+            int.TryParse(roomInfo.acreage, out dienTich);
+
+            PostRoomVM postRoomVM = new PostRoomVM()
+            {
+                id = roomInfo.id,
+                dia_chi = roomInfo.location,
+                tieu_de = roomInfo.title,
+                tieu_de_meta = roomInfo.meta,
+                noi_dung = roomInfo.detail_description,
+                gia = roomInfo.price,
+                dien_tich = dienTich,
+                loai_chuyen_muc = roomInfo.roomTypeId,
+                doi_tuong = roomInfo.tenant,
+            };
+
+            ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
+            ViewBag.RoomImages = roomInfo.RoomImages;
+            return View(postRoomVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SangEdit(PostRoomVM postRoomVM, string[] file_name_list, string[] file_delete_list)
+        {
+            try
+            {
+                var room = db.RoomInfoes.SingleOrDefault(r => r.id == postRoomVM.id);
+
+                if (room != null)
+                {
+                    room.title = postRoomVM.tieu_de;
+                    room.meta = postRoomVM.tieu_de_meta;
+                    room.roomTypeId = postRoomVM.loai_chuyen_muc;
+                    room.price = postRoomVM.gia;
+                    room.acreage = postRoomVM.dien_tich.ToString();
+                    room.location = postRoomVM.dia_chi;
+                    room.detail_description = postRoomVM.noi_dung;
+                    room.datebegin = DateTime.Now;
+                    room.tenant = postRoomVM.doi_tuong.Replace("-", "").Trim();
+                    db.SaveChanges();
+                }
+
+                HandleUrlFile.SaveFileUrl(file_name_list, postRoomVM.id);
+                HandleUrlFile.DeleteFileUrl(file_delete_list, postRoomVM.id);
+
+                Response.StatusCode = 200;
+                return Json(new { statusCode = Response.StatusCode, message = "Cập nhật tin đăng thành công" });
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { statusCode = Response.StatusCode, message = "Vui lòng thử lại sau", error = ex.ToString() });
+                //return View();
+            }
+        }
+
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

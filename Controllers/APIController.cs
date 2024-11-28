@@ -1,4 +1,5 @@
-﻿using HoiTroWebsite.Models;
+﻿using HoiTroWebsite.HTLibraries;
+using HoiTroWebsite.Models;
 using HoiTroWebsite.Models2;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
@@ -151,7 +152,7 @@ namespace HoiTroWebsite.Controllers
                 {
                     db.RoomInfoes.Add(roomInfo);
                     db.SaveChanges();
-                    SaveFileUrl(file_name_list, roomInfo.id);
+                    HandleUrlFile.SaveFileUrl(file_name_list, roomInfo.id);
                 }
                 catch (Exception e)
                 {
@@ -202,8 +203,8 @@ namespace HoiTroWebsite.Controllers
                     db.SaveChanges();
                 }
 
-                SaveFileUrl(file_name_list, id);
-                DeleteFileUrl(file_delete_list, id);
+                HandleUrlFile.SaveFileUrl(file_name_list, id);
+                HandleUrlFile.DeleteFileUrl(file_delete_list, id);
                 Response.StatusCode = 200;
                 Thread.Sleep(2000);
 

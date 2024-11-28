@@ -168,6 +168,7 @@
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Filter\MyAuthenFilter.cs" />
+    <Compile Include="HTLibraries\HandleUrlFile.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -7381,6 +7382,7 @@
     <Content Include="Content\images\room5.jpg" />
     <Content Include="Content\images\room6.jpg" />
     <Content Include="Content\images\search-white-icon.svg" />
+    <Content Include="Content\libs\dropzone.min.css" />
     <Content Include="Content\login.logout.css" />
     <Content Include="Content\user.dashboard.css" />
     <Content Include="Data\default-news.jpg" />
@@ -12297,36 +12299,6 @@
     <Content Include="dist\assets\extensions\feather-icons\icons\zap.svg" />
     <Content Include="dist\assets\extensions\feather-icons\icons\zoom-in.svg" />
     <Content Include="dist\assets\extensions\feather-icons\icons\zoom-out.svg" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-size\filepond-plugin-file-validate-size.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-size\filepond-plugin-file-validate-size.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-size\filepond-plugin-file-validate-size.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-size\filepond-plugin-file-validate-size.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-type\filepond-plugin-file-validate-type.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-type\filepond-plugin-file-validate-type.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-type\filepond-plugin-file-validate-type.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-file-validate-type\filepond-plugin-file-validate-type.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-crop\filepond-plugin-image-crop.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-crop\filepond-plugin-image-crop.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-crop\filepond-plugin-image-crop.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-crop\filepond-plugin-image-crop.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-exif-orientation\filepond-plugin-image-exif-orientation.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-exif-orientation\filepond-plugin-image-exif-orientation.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-exif-orientation\filepond-plugin-image-exif-orientation.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-exif-orientation\filepond-plugin-image-exif-orientation.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-filter\filepond-plugin-image-filter.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-filter\filepond-plugin-image-filter.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-filter\filepond-plugin-image-filter.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-filter\filepond-plugin-image-filter.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.css" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.min.css" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-preview\filepond-plugin-image-preview.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-resize\filepond-plugin-image-resize.esm.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-resize\filepond-plugin-image-resize.esm.min.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-resize\filepond-plugin-image-resize.js" />
-    <Content Include="dist\assets\extensions\filepond-plugin-image-resize\filepond-plugin-image-resize.min.js" />
     <Content Include="dist\assets\extensions\filepond\filepond.css" />
     <Content Include="dist\assets\extensions\filepond\filepond.esm.js" />
     <Content Include="dist\assets\extensions\filepond\filepond.esm.min.js" />
@@ -13376,7 +13348,6 @@
     <Content Include="Areas\Admin\Views\RoomInfoes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\RoomInfoes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\getRoom.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Delete.cshtml" />
@@ -13813,20 +13784,6 @@
     <Content Include="Areas\Admin\Content\assets\static\fonts\nunito-latin-800-normal.woff" />
     <Content Include="Areas\Admin\Content\assets\static\fonts\nunito-latin-800-normal.woff2" />
     <Content Include="Areas\Admin\Views\RoomInfoes\CheckConfig.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -13837,12 +13794,30 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\RoomInfoes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_IframeView.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomInfoes\SangEdit.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\libs\dropzone.min.js" />
     <Content Include="Scripts\my-js\convert.2.meta.js" />
     <Content Include="Scripts\my-js\hoitro.main.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -13864,7 +13839,7 @@
     <Content Include="Scripts\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
     <Content Include="Scripts\my-js\hoitro.user.dashboard.js" />
-    <Content Include="Scripts\my-js\login.logout.js" />
+    <Content Include="Scripts\my-js\login.logout.effect.js" />
     <Content Include="Scripts\my-js\newFile.js" />
     <Content Include="Scripts\js\plugin.js" />
     <Content Include="Scripts\js\popper.min.js" />
@@ -13933,7 +13908,7 @@
     <Content Include="Views\News\GetNewsFollowType.cshtml" />
     <Content Include="Views\MainPartial\GetLatestRoomList.cshtml" />
     <Content Include="Views\MainPartial\GetSupport.cshtml" />
-    <Content Include="Views\RoomInfo\Room_GetListRoomInfoFollowType.cshtml" />
+    <Content Include="Views\RoomInfo\GetListRoomInfoFollowType.cshtml" />
     <Content Include="Views\Button\editInfor.cshtml" />
     <Content Include="Views\Button\managePosted.cshtml" />
     <Content Include="Views\Button\listPosted.cshtml" />

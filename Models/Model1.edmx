@@ -345,8 +345,13 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="hasSubMenu" Type="Boolean" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FBlink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="zaloNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="supportTask" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />

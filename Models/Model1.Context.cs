@@ -29,6 +29,8 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<Footer> Footers { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<NewsType> NewsTypes { get; set; }
+        public virtual DbSet<RoomImage> RoomImages { get; set; }
+        public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<SubMenu> SubMenus { get; set; }
         public virtual DbSet<RoomInfo> RoomInfoes { get; set; }

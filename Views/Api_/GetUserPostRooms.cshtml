@@ -8,12 +8,14 @@
     string ten_anh = "";
     int so_luong_anh = 0;
     string gia_tien = new NumberUnit(room.price).RoundWithLargestUnit();
-    string ngay_gio = StringUI.Convert2DateTimeVietnamese(room.datebegin.ToString());
-    (string, string) trang_thai = room.hide == true ? ("text-success", "Đã duyệt") : ("text-danger", "Chưa duyệt");
+    string ngay_gio = StringUI.Convert2DateTimeVietnamese(dateTime: room.datebegin);
+    (string, string) trang_thai = room.isApproved == true ? ("text-success", "Đã duyệt") : ("text-danger", "Chưa duyệt");
+    (string, string) trang_thai_an_tin = room.hide == true ? ("text-bg-success", "Tin đang hiện") : ("text-bg-danger", "Tin đang ẩn");
+    (string, string) nut_an_hien = room.hide == true ? ("btn-outline-light", "Ẩn tin") : ("btn-outline-succes", "Hiện tin");
     if (room.RoomImages.Count != 0)
     {
-        path = room.RoomImages.ElementAt(0).imagePath + room.RoomImages.ElementAt(0).file_name;
-        ten_anh = room.RoomImages.ElementAt(0).file_name;
+        ten_anh = room.RoomImages.Where(ri => ri.order == 0).FirstOrDefault().file_name;
+        path = room.RoomImages.Where(ri => ri.order == 0).FirstOrDefault().imagePath;
         so_luong_anh = room.RoomImages.Count;
     }
 
@@ -34,9 +36,9 @@
                         <div class="bg-light d-inline text-uppercase p-1" style="font-size: 0.7rem;">@room.RoomType.title</div>
                         <h6>@room.title</h6>
                         <div class="mt-1 mb-0">
-                            <span class="text-success">1.3 triệu/tháng</span>
+                            <span class="text-success">@gia_tien/tháng</span>
                             <span class="text-light"> • </span>
-                            <span>36m<sup>2</sup></span>
+                            <span>@(room.acreage)m<sup>2</sup></span>
                             <span class="text-light"> • </span>
                             <span>Quận 7, Thành Phố Hồ Chí Minh<br></span>
                         </div>
@@ -55,11 +57,6 @@
                             </div>
                         </div>
                         <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1 d-lg-none">@trang_thai_an_tin.Item2</span>
-                        @*<p class="text-truncate mb-4 mb-md-0">
-                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                have suffered alteration in some form, by injected humour, or randomised words
-                                which don't look even slightly believable.
-                            </p>*@
                     </div>
                     <div class="border-start col-lg-2 col-xl-2 d-none d-lg-flex d-xl-flex justify-content-center align-items-center">
                         <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1">@trang_thai_an_tin.Item2</span>
@@ -83,17 +80,5 @@
         </div>
     </div>
 }
-
-@*@{
-    Paginate pager = new Paginate();
-    int pageNo = 0;
-    if (ViewBag.Pager != null)
-    {
-        pager = ViewBag.Pager;
-        pageNo = pager.CurrentPage;
-    }
-}
-
-@Html.Partial("_Paging", pager)*@
 
 

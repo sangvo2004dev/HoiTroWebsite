@@ -119,7 +119,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         [CustomAuthenticationFilter]
-        [Route("quan-ly/sua-bai-dang/{id}", Name = "editPost")]
+        [Route("quan-ly/sua-bai-dang", Name = "editPost")]
         [HttpGet]
         // edit bài đăng từ của user
         public ActionResult EditPostRoom(int? id) // id bài post
@@ -129,6 +129,7 @@ namespace HoiTroWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+
             RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
             db.Entry(room).Collection(r => r.RoomImages).Load();
 
@@ -137,6 +138,7 @@ namespace HoiTroWebsite.Controllers
 
             PostRoomVM postRoomVM = new PostRoomVM()
             {
+                id = room.id,
                 dia_chi = room.location,
                 tieu_de = room.title,
                 tieu_de_meta = room.meta,
@@ -148,6 +150,7 @@ namespace HoiTroWebsite.Controllers
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
+
             TempData["id"] = room.id;
             ViewBag.RoomImages = room.RoomImages;
 
@@ -179,8 +182,8 @@ namespace HoiTroWebsite.Controllers
             var listRoom = db.RoomInfoes.Where(ri => ri.accountId == userID).ToList();
             ViewBag.tat_ca_count = listRoom.Count;
             ViewBag.tin_an_count = listRoom.Where(ri => ri.hide == false).Count();
-            ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();
-            return View();
+            ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();         
+            return View(listRoom);
         }
     }
 }
