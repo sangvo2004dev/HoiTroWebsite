@@ -1,0 +1,42 @@
+﻿@model List<HoiTroWebsite.Models.RoomInfo>
+
+@{
+    int stt = 1;
+    bool? trang_thai = false;
+}
+
+@foreach (var room in Model)
+{
+    trang_thai = room.isApproved;
+    <tr>
+        <td>@stt</td>
+        <td>@room.id</td>
+        <td>@room.title</td>
+        <td>
+            @if (trang_thai == true)
+            {
+                <span class="js-status badge bg-success">Đã duyệt</span>
+            }
+            else
+            {
+                <span class="js-status badge bg-danger">Chưa duyệt</span>
+
+            }
+        </td>
+        <td>
+            @if (trang_thai == true)
+            {
+                <a class="js-duyet-bai-dang btn btn-success disabled">
+                    Đã duyệt
+                </a>
+            }
+            else
+            {
+                <a data-href="@Url.Action("DuyetBaiDang", "RoomInfoes", new { id = room.id })" post-id="@room.id" class="js-duyet-bai-dang btn btn-warning">
+                    Duyệt bài đăng
+                </a>
+            }
+        </td>
+    </tr>
+    stt++;
+}

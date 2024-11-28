@@ -12,13 +12,17 @@
     <link rel="stylesheet" crossorigin href="~/Areas/Admin/Content/assets/compiled/css/app.css">
     <link rel="stylesheet" crossorigin href="~/Areas/Admin/Content/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" crossorigin href="~/Areas/Admin/Content/assets/compiled/css/iconly.css">
+
+    <link href="~/dist/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    
     @*<link rel="stylesheet" href="~/Content/user.dashboard.css" />*@
 
     @Html.Raw("<link rel=\"stylesheet\" href=\"/Areas/Admin/Content/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css\">\n")
 
+<link href="~/dist/assets/extensions/toastify-js/src/toastify.css" rel="stylesheet" />
+
     @RenderSection(name: "css", required: false)
 </head>
-
 <body @RenderSection(name: "scrollspy", required: false)>
     <script src="~/Areas/Admin/Content/assets/static/js/initTheme.js"></script>
     <div id="app">
@@ -90,8 +94,8 @@
                                     <a href="@Url.Action("Index", "RoomInfoes" )" class="submenu-link">Tất cả</a>
 
                                 </li>
-                                <li class="submenu-item">
-                                    <a href="/@Url.Action("Index", "HomePage")" class="submenu-link">Duyệt bài</a>
+                                <li class="submenu-item @RenderSection("ql_room_duyetBai_active", false)">
+                                    <a href="@Url.Action("DuyetBai", "RoomInfoes")" class="submenu-link">Duyệt bài</a>
                                 </li>
                             </ul>
                         </li>
@@ -164,9 +168,7 @@
                 <h3>Profile Statistics</h3>
             </div>
             <div class="page-content">
-                <section class="row">
-                    <div class="col-12 col-lg-9">
-                        <div class="row">
+                <section class="row justify-content-between mx-3">
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-4 py-4-5">
@@ -235,8 +237,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
                 </section>
             </div>
@@ -256,44 +256,45 @@
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
 
     <script src="~/Scripts/jquery.signalR-2.4.3.js"></script>
-        <script src="/signalr/hubs"></script>
+    <script src="/signalr/hubs"></script>
 
-        <script>
-            $(function () {
-                var notificationHub = $.connection.notificationHub;
+    <script>
+        $(function () {
+            var notificationHub = $.connection.notificationHub;
 
-                notificationHub.client.receiveNotification = function (message) {
-                    // Kiểm tra số lượng bài đăng chưa duyệt và cập nhật giao diện
-                    if (message.count > 0) {
-                        $('#notification').removeClass('alert-info').addClass('alert-warning').text(message.count + " bài đăng chưa duyệt.");
+            notificationHub.client.receiveNotification = function (message) {
+                // Kiểm tra số lượng bài đăng chưa duyệt và cập nhật giao diện
+                if (message.count > 0) {
+                    $('#notification').removeClass('alert-info').addClass('alert-warning').text(message.count + " bài đăng chưa duyệt.");
+                } else {
+                    $('#notification').removeClass('alert-warning').addClass('alert-info').text("Không có bài đăng chưa duyệt.");
+                }
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log("SignalR đã kết nối thành công.");
+            });
+        });
+
+        setInterval(function () {
+            $.ajax({
+                url: '/Admin/RoomInfoes/CheckPendingPosts', // Route đến API kiểm tra
+                type: 'GET',
+                success: function (response) {
+                    if (response.count > 0) {
+                        $('#notification').removeClass('alert-info').addClass('alert-warning').text(response.count + " bài đăng chưa duyệt.");
                     } else {
                         $('#notification').removeClass('alert-warning').addClass('alert-info').text("Không có bài đăng chưa duyệt.");
                     }
-                };
-
-                $.connection.hub.start().done(function () {
-                    console.log("SignalR đã kết nối thành công.");
-                });
+                }
             });
-
-            setInterval(function () {
-                $.ajax({
-                    url: '/Admin/RoomInfoes/CheckPendingPosts', // Route đến API kiểm tra
-                    type: 'GET',
-                    success: function (response) {
-                        if (response.count > 0) {
-                            $('#notification').removeClass('alert-info').addClass('alert-warning').text(response.count + " bài đăng chưa duyệt.");
-                        } else {
-                            $('#notification').removeClass('alert-warning').addClass('alert-info').text("Không có bài đăng chưa duyệt.");
-                        }
-                    }
-                });
-            }, 20000); // Gọi mỗi 20 giây
-        </script>
-
+        }, 20000); // Gọi mỗi 20 giây
+    </script>
 
     <script src="~/Areas/Admin/Content/assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="~/Areas/Admin/Content/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="~/dist/assets/extensions/toastify-js/src/toastify.js"></script>
 
     @RenderSection(name: "script", required: false)
 

@@ -516,6 +516,43 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public ActionResult DuyetBai()
+        {
+            var rooms = db.RoomInfoes.ToList();
+            return View(rooms);
+        }
+
+        public ActionResult GetRoomInfoes(string action)
+        {
+            var rooms = db.RoomInfoes.ToList();
+            return PartialView();
+        }
+
+        [HttpGet]
+        public ActionResult DuyetBaiDang(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var room = db.RoomInfoes.FirstOrDefault(r => r.id == id);
+            if (room == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            try
+            {
+                room.isApproved = true;
+                db.SaveChanges();
+                Response.StatusCode = 200;
+                return Json(new { message = "Duyệt bài thành công" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) 
+            { 
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { message = ex.ToString() }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

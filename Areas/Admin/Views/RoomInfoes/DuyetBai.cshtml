@@ -1,0 +1,100 @@
+﻿@model List<HoiTroWebsite.Models.RoomInfo>
+
+@{
+    ViewBag.Title = "Duyệt bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+@section css {
+    <link href="~/dist/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
+}
+
+@section ql_room_active {active}
+@section ql_room_duyetBai_active{active}
+
+<div class="container">
+    <table width="100%" class="js-table table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã tin</th>
+                <th>Tiêu đề</th>
+                <th>Trạng Thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.Partial("~/Areas/Admin/Views/RoomInfoes/GetRoomInfoes.cshtml", Model)
+        </tbody>
+    </table>
+</div>
+
+@section script {
+    <script defer>
+        let table;
+        table = table || {};
+        table = {
+            table: '.js-table',
+            btn_duyet_bai_dang: '.js-duyet-bai-dang',
+
+            createTable: function () {
+                const table = $(this.table);
+                if (table.lenght == 0) { return; }
+
+                $(table).DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": true
+                });
+                console.log('create datatable');
+            },
+            btnClick: function () {
+                console.log('click');
+
+                const self = this;
+                $(document).on('click', this.btn_duyet_bai_dang, function () {
+                    console.log('click');
+                    const _self = this;
+                    const action_url = $(this).attr('data-href');
+                    const id = $(this).attr('post-id');
+                    $.ajax({
+                        url: action_url,
+                        //type: 'POST',
+                        //data: id,
+                        success: function () {
+                            console.log('success');
+                            Toastify({
+                                text: "Thành công",
+                                duration: 1500,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#4fbe87",
+                            }).showToast();
+                            $(_self).closest('tr').find('td .js-status').text('Đã duyệt').removeClass('bg-danger').addClass('bg-success');
+                            $(_self).text('Đã duyệt').removeClass('btn-warning').addClass('btn-success disabled');
+                        },
+                        error: function () {
+                            Toastify({
+                                text: "Error! Thử lại sau",
+                                duration: 1500,
+                                close: true,
+                                gravity: "top",
+                                position: "right",
+                                backgroundColor: "#fe0000",
+                            }).showToast();
+                        }
+                    });
+                });
+            },
+
+            init: function () {
+                this.createTable();
+                this.btnClick();
+            }
+        }
+
+        table.init();
+    </script>
+}
