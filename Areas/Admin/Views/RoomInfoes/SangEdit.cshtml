@@ -278,6 +278,7 @@
                             console.log(parent.$('#modalRoom'));
                             parent.$('#modalRoom').modal('hide');
                             console.log('hide modal');
+                            parent.$('#modalRoom').find('.modal-body').html('');
                         });
                 },
                 error: function (xhr, status, error) {
@@ -285,6 +286,7 @@
                     const message = response.message;
                     //console.log(message, xhr);
                     Swal.fire('Lỗi', message, 'error');
+                    parent.$('#modalRoom').find('.modal-body').html('');
                 }
             });
         });
