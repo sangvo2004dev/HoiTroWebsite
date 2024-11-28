@@ -30,7 +30,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.imagePath,
+                                  Img = t.file_name,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -72,7 +72,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public JsonResult Create([Bind(Include = "id,name,imgData,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
+        public JsonResult Create([Bind(Include = "id,name,file_name,meta,hide,order,datebegin")] Banner banner, HttpPostedFileBase img)
         {
             try
             {
@@ -83,14 +83,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     if (img != null)
                     {
-                        filename = Path.GetFileName(img.FileName);
+                        filename = img.FileName;
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                         img.SaveAs(path);
-                        banner.imagePath = filename;
+                        banner.file_name = filename;
                     }
                     else
                     {
-                        banner.imagePath = "logo.png";
+                        banner.file_name = "logo.png";
                     }
 
                     banner.datebegin = DateTime.Now;
@@ -140,10 +140,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.imagePath = filename; // Cập nhật tên ảnh mới
+                    temp.file_name = filename; // Cập nhật tên ảnh mới
                 }
                 temp.name = banner.name;
                 temp.meta = banner.meta;

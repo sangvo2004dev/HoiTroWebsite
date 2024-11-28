@@ -23,7 +23,7 @@
             @Html.Label("Hình đại diện", htmlAttributes: new { @class = "control-label " })
             <div class="col-md-6">
                 <input type="file" name="img" id="img" accept=".jpg, .png, .gif, .jpeg, .bmp" onchange="previewImage(event)" />
-                @Html.ValidationMessageFor(model => model.avtImage, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.file_name, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-4">
                 <img id="preview" src="" width="100px" />

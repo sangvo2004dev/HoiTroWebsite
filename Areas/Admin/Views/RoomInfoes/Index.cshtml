@@ -212,9 +212,8 @@
                     dateBegin,
                     v.RoomType,
                     `<button class="btn btn-xs btn-info btnDetail s" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>
-                                <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>
-                                                             <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>
-                                                             <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>`
+                            <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>
+                                                         <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>`
                 ]);
             });
 
@@ -251,7 +250,7 @@
                             tr += '<td>' + v.RoomType + '</td>';
                             tr += '<td class="text-right">';
                             tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>';
+                            //tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>';
 
                             tr += '<button class="btn btn-xs btn-warning js-btn-edit" data-id="' + v.Id + '" action-param="quan-ly/sua-bai-dang?id=' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>';
 

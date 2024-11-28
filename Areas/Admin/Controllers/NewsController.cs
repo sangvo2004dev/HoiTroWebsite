@@ -41,7 +41,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                                     {
                                         Id = t.id,
                                         Name = t.title,
-                                        Img = t.imagePath,
+                                        Img = t.file_name,
                                         Author = t.author, 
                                         Meta = t.meta,
                                         Hide = t.hide,
@@ -56,7 +56,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                                 {
                                     Id = t.id,
                                     Name = t.title,
-                                    Img = t.imagePath,
+                                    Img = t.file_name,
                                     Author = t.author,
                                     Meta = t.meta,
                                     Hide = t.hide,
@@ -104,35 +104,35 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,file_name")] News news, HttpPostedFileBase img)
         {
             try
-        {
-            if (ModelState.IsValid)
             {
-                    var path = "";
-                    var filename = "";
-                    if (img != null)
-                    {
-                        filename = img.FileName;  // Chỉ lấy phần tên file
+                ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
+                if (!ModelState.IsValid)
+                {
+                    Response.StatusCode = 400;
+                    return View();
+                }
+                var path = "";
+                var filename = "";
+                if (img != null)
+                {
+                    filename = img.FileName;  // Chỉ lấy phần tên file
 
-                        path = Path.Combine(Server.MapPath("/Content/images"), filename);
-                        img.SaveAs(path);
-                        news.imagePath = "/Content/images" + "/" + filename; //Lưu ý
-                    }
-                    else
-                    {
-                        news.imagePath = "logo.png";
-                    }
-                    news.datebegin = DateTime.Now.Date;
+                    path = Path.Combine(Server.MapPath("/Content/images"), filename);
+                    img.SaveAs(path);
+                    news.file_name = "/Content/images" + "/" + filename; //Lưu ý
+                }
+                else
+                {
+                    news.file_name = "logo.png";
+                }
+                news.datebegin = DateTime.Now.Date;
                 db.News.Add(news);
                 db.SaveChanges();
-                    return Json(new { code = 200, msg = "News created successfully" }, JsonRequestBehavior.AllowGet);
+                return Json(new { code = 200, msg = "News created successfully" }, JsonRequestBehavior.AllowGet);
             }
-
-            ViewBag.newsTypeId = new SelectList(db.NewsTypes, "id", "title", news.newsTypeId);
-                return Json(new { code = 400, msg = "Invalid data" }, JsonRequestBehavior.AllowGet);
-        }
             catch (Exception ex) 
             {
                 return Json(new { code = 500, msg = "Error: " + ex.Message }, JsonRequestBehavior.AllowGet);
@@ -161,7 +161,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,imagePath")] News news, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,title,author,meta,hide,order,datebegin,brief_description,detail_description,newsTypeId,file_name")] News news, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
@@ -171,10 +171,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    filename = img.FileName;  // Chỉ lấy phần tên file
+                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.imagePath = "/Content/images" + "/" + filename; // Lưu ý
+                    temp.file_name = "/Content/images" + "/" + filename; // Lưu ý
                 }
                 temp.title = news.title;
                 temp.brief_description = news.brief_description;
