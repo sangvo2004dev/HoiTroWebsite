@@ -305,6 +305,24 @@
                 },
                 error: function (xhr, status, error) {
                     console.error('Lỗi:', error);
+                    // xử lý lỗi ràng buộc not null
+                    $('#modalNews').find('.modal-body').html(xhr.responseText);
+                    // khi gọi view Create Ckeditor mà bị lỗi not null cần phải tạo lại
+                    $('#modalNews').find('textarea').each(function () {
+                        var id = $(this).attr('id');
+                        if (CKEDITOR.instances[id]) {
+                            CKEDITOR.instances[id].destroy(true);
+                            // Hủy CKEditor instance nếu tồn tại
+                        }
+                        // Tạo mới CKEditor cho textarea
+                        CKEDITOR.replace(id, {
+                            height: '400px',
+                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+                            language: 'vi',
+                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+                            filebrowserUploadMethod: 'form'
+                        });
+                    });
                 }
             });
         });
