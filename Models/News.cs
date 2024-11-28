@@ -16,6 +16,7 @@ namespace HoiTroWebsite.Models
     {
         public int id { get; set; }
         public string title { get; set; }
+        public string file_name { get; set; }
         public string imagePath { get; set; }
         public string brief_description { get; set; }
         public string detail_description { get; set; }

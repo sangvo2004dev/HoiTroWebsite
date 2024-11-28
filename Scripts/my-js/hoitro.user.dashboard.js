@@ -175,6 +175,7 @@ manage_post = {
     },
 
     loadPost: function (page, chonDaAn, chonDaDuyet) {
+        console.log('load post');
         page = page || 1;
         //chonDaAn = chonDaDuyet && true;
         //chonDaDuyet = chonDaDuyet && true;
@@ -231,7 +232,7 @@ manage_post = {
         let self = this;
         const action = new URLSearchParams(window.location.search).get('action');
         if (!action) {
-            self.loadPost();
+            //self.loadPost();
             return;
         }
         $(document).ready(function () {

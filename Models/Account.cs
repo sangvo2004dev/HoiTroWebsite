@@ -26,7 +26,8 @@ namespace HoiTroWebsite.Models
         public string email { get; set; }
         public string zaloNum { get; set; }
         public string FBlink { get; set; }
-        public string avtImage { get; set; }
+        public string file_name { get; set; }
+        public string imagePath { get; set; }
         public string password { get; set; }
         public bool resetPass { get; set; }
         public string meta { get; set; }

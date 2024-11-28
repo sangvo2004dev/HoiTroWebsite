@@ -3,16 +3,10 @@
 
 @{
     ViewBag.Title = "Sửa bài đăng";
-    Layout = "~/Views/Shared/_UserManagement.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_IframeView.cshtml";
 
-    string ten_lien_he = "";
-    string phone = "";
-
-    if (Session["User"] != null)
-    {
-        ten_lien_he = (Session["User"] as Account).name;
-        phone = (Session["User"] as Account).phoneNum;
-    }
+    string ten_lien_he = ViewBag.ten_lien_he;
+    string phone = ViewBag.phone;
 }
 
 
@@ -30,7 +24,6 @@
 }
 
 @section scrollspy { data-bs-spy="scroll" data-bs-target="#my-scrollspy-nav" tabindex="0" }
-@section ql_tin_dang_active {active}
 
 <div class="bg-white mb-3 sticky-top shadow-sm z-1">
     <h5 class="m-3">Sửa bài đăng</h5>
@@ -51,10 +44,11 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-12 col-lg-8">
-        @using (Html.BeginRouteForm("post/sua-tin", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("SangEdit", "RoomInfoes", FormMethod.Post, new { @id = "from_dangtin", enctype = "multipart/form-data" }))
         {
             @*<input type="submit" value="Test submit" />*@
             @Html.AntiForgeryToken()
+            @Html.TextBoxFor(model => model.id, new { @hidden = "" })
 
             <div class="form-body">
                 <div id="scrollspy_khuvuc">
@@ -108,15 +102,16 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.loai_chuyen_muc, "Loại chuyên mục", new { @class = "form-label mb-1" })
-                                    @Html.DropDownListFor(model => model.loai_chuyen_muc, null, "-- Chọn loại chuyên mục --", new { @class = "form-control form-select fs-5-5 border-secondary-subtle", @readonly = "", @disabled = "" })
-                                    @*@Html.ValidationMessageFor(model => model.loai_chuyen_muc)*@
+                                    @Html.DropDownListFor(model => model.loai_chuyen_muc, null, "-- Chọn loại chuyên mục --", new { @class = "form-control form-select fs-5-5" })
+                                    @Html.ValidationMessageFor(model => model.loai_chuyen_muc)
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tieu_de, "Tiêu đề", new { @class = "form-label mb-1" })
                                     @Html.TextBoxFor(model => model.tieu_de, new { @class = "js-meta-source form-control fs-5-5" })
-                                    @Html.TextBoxFor(model => model.tieu_de_meta, new { @class = "js-meta", @hidden = "" })
+                                    @Html.ValidationMessageFor(model => model.tieu_de)
+                                    @Html.TextBoxFor(model => model.tieu_de_meta, new { @class = "js-meta form-control fs-5-5 mt-3", @readonly = "" })
                                 </div>
                             </div>
                             <div class="col-12">
@@ -264,4 +259,34 @@
     <script>$('#doi_tuong').val($('#doi_tuong').attr('value'));</script>
 
     <script src="~/Scripts/my-js/convert.2.meta.js"></script>
+
+    <script defer>
+        $('#from_dangtin').on('submit', function (e) {
+            console.log('form submit');
+            e.preventDefault();
+            if (!$(this).valid()) return;
+            console.log('form valid');
+            const url_form_action = $(this).attr('action');
+            const formData = $(this).serializeArray();
+            $.ajax({
+                url: url_form_action,
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    Swal.fire({ title: 'Thành công', text: response.message, icon: 'success', timer: 2000, showConfirmButton: true, timerProgressBar: true })
+                        .then(function () {
+                            console.log(parent.$('#modalRoom'));
+                            parent.$('#modalRoom').modal('hide');
+                            console.log('hide modal');
+                        });
+                },
+                error: function (xhr, status, error) {
+                    const response = xhr.responseJSON;
+                    const message = response.message;
+                    //console.log(message, xhr);
+                    Swal.fire('Lỗi', message, 'error');
+                }
+            });
+        });
+    </script>
 }

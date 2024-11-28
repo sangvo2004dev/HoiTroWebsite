@@ -8,12 +8,15 @@ namespace HoiTroWebsite.Models2
 {
     public class PostRoomVM
     {
+        public int id { get; set; }
+
         //[Required(ErrorMessage = "Chưa chọn khu vực đăng tin")]
         public string dia_chi { get; set; }
 
         [Required(ErrorMessage = "Chưa chọn loại chuyên mục")]
         public int? loai_chuyen_muc { get; set; }
 
+        [Required(ErrorMessage = "Tiêu đề không được bỏ trống")]
         public string tieu_de { get; set; }
 
         public string tieu_de_meta { get; set; }

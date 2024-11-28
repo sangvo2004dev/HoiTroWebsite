@@ -1,4 +1,5 @@
-﻿using HoiTroWebsite.Models;
+﻿using HoiTroWebsite.HTLibraries;
+using HoiTroWebsite.Models;
 using HoiTroWebsite.Models2;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
@@ -152,7 +153,7 @@ namespace HoiTroWebsite.Controllers
                 {
                     db.RoomInfoes.Add(roomInfo);
                     db.SaveChanges();
-                    SaveFileUrl(file_name_list, roomInfo.id);
+                    HandleUrlFile.SaveFileUrl(file_name_list, roomInfo.id);
                 }
                 catch (Exception e)
                 {
@@ -204,8 +205,8 @@ namespace HoiTroWebsite.Controllers
                     db.SaveChanges();
                 }
 
-                SaveFileUrl(file_name_list, id);
-                DeleteFileUrl(file_delete_list, id);
+                HandleUrlFile.SaveFileUrl(file_name_list, id);
+                HandleUrlFile.DeleteFileUrl(file_delete_list, id);
                 Response.StatusCode = 200;
                 Thread.Sleep(2000);
 
@@ -217,53 +218,6 @@ namespace HoiTroWebsite.Controllers
                 Thread.Sleep(2000);
                 return RedirectToAction("ManagePostRooms", "User");
             }
-        }
-
-
-        // lưu tên file và đường dẫn lên database
-        private void SaveFileUrl(string[] file_name_list, int roomInfoId)
-        {
-            if (file_name_list == null) { return; }
-            int count = 0;
-            foreach (var file_name in file_name_list)
-            {
-                var f = db.RoomImgs.SingleOrDefault(ri => ri.fileName == file_name);
-                if (f == null)
-                {
-                    // thêm đường dẫn file vào database
-                    db.RoomImgs.Add(new RoomImg
-                    {
-                        postRoomId = roomInfoId,
-                        folder = "/Data/user/",
-                        fileName = file_name,
-                        hide = true,
-                        order = count,
-                        datebegin = DateTime.Now,
-                    });
-                }
-                else
-                {
-                    f.order = count;
-                }
-                count++;
-            }
-            db.SaveChanges();
-        }
-
-        // xóa đường dẫn file trên database
-        private void DeleteFileUrl(string[] file_delete_list, int roomInfoId)
-        {
-            if (file_delete_list == null) { return; }
-
-            file_delete_list.ForEach(f =>
-            {
-                var roomImg = db.RoomImgs.SingleOrDefault(ri => ri.postRoomId == roomInfoId && ri.fileName == f);
-                if (roomImg != null)
-                {
-                    db.RoomImgs.Remove(roomImg);
-                }
-            });
-            db.SaveChanges();
         }
 
         [HttpPost]

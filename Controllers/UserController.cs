@@ -119,7 +119,7 @@ namespace HoiTroWebsite.Controllers
         }
 
         [CustomAuthenticationFilter]
-        [Route("quan-ly/sua-bai-dang/{id}", Name = "editPost")]
+        [Route("quan-ly/sua-bai-dang", Name = "editPost")]
         [HttpGet]
         // edit bài đăng từ của user
         public ActionResult EditPostRoom(int? id) // id bài post
@@ -179,7 +179,7 @@ namespace HoiTroWebsite.Controllers
             var listRoom = db.RoomInfoes.Where(ri => ri.accountId == userID).ToList();
             ViewBag.tat_ca_count = listRoom.Count;
             ViewBag.tin_an_count = listRoom.Where(ri => ri.hide == false).Count();
-            ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();
+            ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();         
             return View();
         }
     }

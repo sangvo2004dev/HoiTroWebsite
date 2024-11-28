@@ -1,5 +1,4 @@
-﻿
-@model HoiTroWebsite.Models.RoomType
+﻿@model HoiTroWebsite.Models.RoomType
 
 @{
     ViewBag.Title = "Danh sách cho thuê";
@@ -12,8 +11,7 @@
     <div class="panel-body">
         <div class="bs-example" style="text-align:right; padding-bottom:10px;">
             <div class="btn-group">
-                @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.RoomType, " --- Tất cả phòng cho thuê --- ",
-                    new { @class = "form-control", @id = "RoomType" })
+                @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.RoomType, " --- Tất cả phòng cho thuê --- ", new { @class = "form-control", @id = "RoomType" })
             </div>
             <button class="btn btn-success text-white" id="btnAdd">
                 <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">
@@ -70,14 +68,15 @@
             </table>
         </div>
     </div>
+
     <div class="modal" id="modalRoom" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down" style="height: 90%;">
+            <div class="modal-content h-100">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body overflow-y-scroll">
                     @*<p>Modal body text goes here.</p>*@
                 </div>
                 <div class="modal-footer">
@@ -87,10 +86,12 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @section script
 {
+
     <script>
         $(document).ready(function () {
             LoadRoom();
@@ -173,6 +174,7 @@
                 }
             });
         });
+
         // Delete
         $(document).on('click', '.btnDelete', function () {
             var id = $(this).data('id');
@@ -208,9 +210,10 @@
                     v.Order,
                     dateBegin,
                     v.RoomType,
-                    `<button class="btn btn-xs btn-info btnDetail" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </button>
-                                             <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </button>
-                                             <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </button>`
+                    `<button class="btn btn-xs btn-info btnDetail s" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>
+                            <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>
+                                                         <button class="btn btn-xs btn-warning btnEdit" data-id="${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>
+                                                         <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>`
                 ]);
             });
 
@@ -224,13 +227,13 @@
                 type: 'get',
                 data: { id: roomTypeId }, // Truyền roomTypeId vào data
                 success: function (data) {
-                    console.log(data.room)
+                    //console.log(data.room)
                     if (data.code == 200) {
 
                         $('#tbroom').empty();
                         //console.log(data)
                         $.each(data.room, function (k, v) {
-                            console.log(data.room)
+                            //console.log(data.room);
                             const dateBegin = v.DateBegin === null ? '' : formatDate(v.DateBegin);
 
                             let tr = '<tr id="' + v.Id + '">'
@@ -246,9 +249,12 @@
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td>' + v.RoomType + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>';
+
+                            tr += '<button class="btn btn-xs btn-warning js-btn-edit" data-id="' + v.Id + '" action-param="quan-ly/sua-bai-dang?id=' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>';
+
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbroom').append(tr);
@@ -429,21 +435,21 @@
 
         function addImageRow() {
             const row = `
-                    <tr id="image-row-${imageIndex}">
-                        <td>
-                            <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
-                            <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
-                        </td>
-                        <td>
-                            <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
-                        </td>
-                        <td>
-                            <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
-                        </td>
-                    </tr>`;
+                                <tr id="image-row-${imageIndex}">
+                                    <td>
+                                        <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
+                                        <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
+                                    </td>
+                                </tr>`;
             document.getElementById("image-list").insertAdjacentHTML("beforeend", row);
             imageIndex++;
         }
@@ -486,5 +492,40 @@
 
             $('#meta').val(text_create);
         }).keyup();
+    </script>
+
+    <script>
+        let manage_post_admin;
+        manage_post_admin = manage_post_admin || {};
+        manage_post_admin = {
+            base_url: '',
+            btn_edit: '.js-btn-edit',
+
+            clickEditBtn: function () {
+                const self = this;
+
+                $(document).on('click', this.btn_edit, function (e) {
+                    console.log('sang');
+                    const action_param = $(this).attr('action-param');
+                    const iframe = $('<iframe>', {
+                        src: self.base_url + '/' + action_param,  // Địa chỉ URL
+                        width: '100%',  // Chiều rộng iframe
+                        height: '100%', // Chiều cao iframe
+                        frameborder: 0, // Bỏ viền
+                        //allowfullscreen: true, // Cho phép chế độ toàn màn hình
+                        //class: 'responsive-iframe' // Thêm lớp để làm iframe phản hồi
+                    });
+
+                    $('#modalRoom').find('.modal-body').html(iframe);
+
+                });
+            },
+            init: function () {
+                this.base_url = window.location.origin;
+                this.clickEditBtn();
+            }
+        };
+
+        manage_post_admin.init();
     </script>
 }
