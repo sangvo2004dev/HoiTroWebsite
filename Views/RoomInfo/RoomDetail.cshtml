@@ -7,7 +7,9 @@
 @{
     ViewBag.Title = Model.title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
+
     string gia_tien = new NumberUnit(Model.price).RoundWithLargestUnit();
+    string anh_nguoi_dang = Model.Account.avtImage ?? "/Data/default-user-avata.svg";
 }
 
 @*@Styles.Render("~/Content/css")
@@ -39,18 +41,18 @@
         #hinh-anh-tin-dang .carousel-indicators {
             position: static !important;
         }
-            /* Tùy chỉnh cho hình ảnh xem trước trong indicators */
-            .carousel-indicators [data-bs-target] {
-                width: 65px; /* Đặt kích thước của ảnh xem trước */
-                height: 65px;
-                overflow: hidden;
-                border-radius: 4px; /* Tạo bo góc cho ảnh */
-                border: 2px solid #fff;
-                cursor: pointer;
-                opacity: 0.7; /* Độ mờ cho ảnh xem trước */
-                text-indent: initial !important;
-/*                box-shadow: */
-            }
+        /* Tùy chỉnh cho hình ảnh xem trước trong indicators */
+        .carousel-indicators [data-bs-target] {
+            width: 65px; /* Đặt kích thước của ảnh xem trước */
+            height: 65px;
+            overflow: hidden;
+            border-radius: 4px; /* Tạo bo góc cho ảnh */
+            border: 2px solid #fff;
+            cursor: pointer;
+            opacity: 0.7; /* Độ mờ cho ảnh xem trước */
+            text-indent: initial !important;
+            /*                box-shadow: */
+        }
 
         #hinh-anh-tin-dang .carousel-indicators .active {
             opacity: 1; /* Tăng độ sáng cho ảnh đang chọn */
@@ -79,9 +81,13 @@
             opacity: 1;
             border-color: #fe0000;
         }
-
     </style>
 }
+
+@{ 
+    string ngay_gio = StringUI.Convert2DateTimeVietnamese(dateTime: Model.datebegin);
+}
+
 <div class="container">
     <div class="row">
 
@@ -93,21 +99,40 @@
                         {
                             int n = Model.RoomImgs.Count;
 
-                            <div class="carousel-inner mb-3">
-                                <div class="carousel-item active">
-                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(0).fileName">
-                                </div>
-                                @for (int i = 1; i < n; i++)
-                                {
-                                    <div class="carousel-item">
-                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(i).fileName">
-                                    </div>
-                                }
-                            </div>
+                                        <div class="carousel-inner mb-3">
+                                            @if (n == 0)
+                                            {
+                                                <div class="carousel-item active">
+                                                    <img src="~/Data/default-room-img.jpg" class="d-block w-100" alt="">
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="carousel-item active">
+                                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(0).fileName">
+                                                </div>
+                                            }
+                                            @for (int i = 1; i < n; i++)
+                                            {
+                                                <div class="carousel-item">
+                                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(i).fileName">
+                                                </div>
+                                            }
+                                        </div>
 
                             <div class="carousel-indicators">
+
                                 <button type="button" data-bs-target="#slide-anh-phong" data-bs-slide-to="0" class="active">
-                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" alt="@Model.RoomImgs.ElementAt(0).fileName" />
+                                    @if (n == 0)
+                                    {
+                                        <img src="~/Data/default-room-img.jpg" alt="" />
+
+                                    }
+                                    else
+                                    {
+                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" alt="@Model.RoomImgs.ElementAt(0).fileName" />
+
+                                    }
                                 </button>
                                 @for (int i = 1; i < n; i++)
                                 {
@@ -152,7 +177,7 @@
                     <section class="section post-main-content">
                         <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
                         <div class="section-content">
-                            <p>@Html.DisplayFor(Model => Model.detail_description)</p>
+                            <p>@Html.Raw(Model.detail_description)</p>
                         </div>
                     </section>
                     @*đặc điểm đăng tin*@
@@ -175,25 +200,9 @@
                                         <td class="name">Đối tượng thuê:</td>
                                         <td>@Model.tenant</td>
                                     </tr>
-                                    <tr>
-                                        @{
-                                            string dateString = Model.datebegin.ToString();
-
-                                            // Định dạng của chuỗi ngày giờ
-                                            string format = "MM/dd/yyyy h:mm:ss tt";
-
-                                            // Chuyển đổi chuỗi thành DateTime
-                                            DateTime date = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
-
-                                            // Tạo CultureInfo cho Việt Nam
-                                            var vietnamCulture = new CultureInfo("vi-VN");
-
-                                            // Định dạng ngày giờ theo kiểu "Thứ, ngày/tháng/năm giờ:phút:giây"
-                                            string formattedDate = date.ToString("dddd, HH:mm tt dd/MM/yyyy", vietnamCulture);
-
-                                        }
+                                    <tr>                                        
                                         <td class="name">Ngày đăng:</td>
-                                        <td><time title="@formattedDate">@formattedDate</time></td>
+                                        <td><time title="@ngay_gio">@ngay_gio</time></td>
                                     </tr>
 
                                 </tbody>
@@ -201,7 +210,7 @@
                         </div>
                     </section>
                     @*thông tin liên hệ*@
-                    @*<section class="section post-contact">
+                    <section class="section post-contact">
                             <div class="section-header">
                                 <h3 class="section-title">Thông tin liên hệ</h3>
                             </div>
@@ -223,18 +232,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </section>*@
+                        </section>
                     @*bản đồ*@
                     <section class="section post-map">
                         <div class="section-header">
                             <h3 class="section-title">Bản đồ</h3>
-                            <address class="section-description">Địa chỉ: Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội</address>
+                            <address class="section-description">Địa chỉ: @Model.location</address>
                         </div>
                         <div class="section-content">
-                            <div id="__maps_content" style="width:100%; height:300px;" data-lat="" data-long="" data-address="Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội">
-                                <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Phạm Văn Nghị, Phường Cổ Nhuế 2, Quận Bắc Từ Liêm, Hà Nội&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
-                            </div>
-
+                            <div id="map-container"></div>
                         </div>
                     </section>
 
@@ -246,8 +252,8 @@
         <div class="col-lg-4">
             <div class="right-content">
 
-                @*<div class="author-aside">
-                        <figure class="author-avatar"><img src="https://phongtro123.com/images/default-user.png"></figure><span class="author-name">@Model.Account.name</span>
+                <div class="author-aside">
+                        <figure class="author-avatar"><img src="@anh_nguoi_dang"></figure><span class="author-name">@Model.Account.name</span>
                         <div style="min-height: 16px; margin-bottom: 10px;">
                             <div class="js-author-online-status author-online-status offline" author_id="146225">
                                 <i></i><span>
@@ -259,7 +265,7 @@
                             <i></i> Nhắn
                             Zalo
                         </a><span class="btn post-save js-btn-save" data-post-id="668196"><i></i> Yêu thích</span>
-                    </div>*@
+                    </div>
 
                 @{
                     Html.RenderAction("GetMiniNews", "MainPartial");
@@ -270,3 +276,31 @@
 
     </div>
 </div>
+
+@section footer {
+
+    <script>
+function generateMapIframe(address) {
+        const baseUrl = "https://www.google.com/maps?q=";
+        const url = baseUrl + encodeURIComponent(address) + "&output=embed";
+        return `
+                <iframe
+                    src="${url}"
+                    width="600"
+                    height="400"
+                    frameborder="0"
+                    style="border:0; width: 100%;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            `;
+    }
+
+    // Tự động hiển thị bản đồ khi trang được tải
+    window.onload = function () {
+        const address = "@Model.location"; // Địa chỉ mặc định
+        const mapIframe = generateMapIframe(address); // Tạo iframe bản đồ
+        document.getElementById("map-container").innerHTML = mapIframe; // Hiển thị bản đồ
+    };</script>
+}

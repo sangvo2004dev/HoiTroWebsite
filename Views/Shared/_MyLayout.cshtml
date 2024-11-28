@@ -47,7 +47,7 @@
             <div class="full">
                 <div class="center-desk">
                     <div class="logo">
-                        <a href="index.html"><img src="~/Content/images/logo.png" alt="Logo" /></a>
+                        <a href="index.html"><img src="~/Content/images/logo-web.jpg" alt="Logo" style="width: 135px; height: 54px; object-fit: contain;"/></a>
                     </div>
                 </div>
             </div>
@@ -58,85 +58,100 @@
                 <i class="icon funnel size-14 me-1"></i> <span>Bộ lọc</span>
             </button>
         </div>
-        <div class="user-welcome clearfix me-5" style="float: right">
+        <div class="user-welcome clearfix d-flex me-5" style="float: right">
             @{
-                if (Session["User"] != null)
-                {
-                    Account user = (Account)Session["User"];
-                    <div class="dropdown-menu dropdown-menu-end rounded-4 shadow p-3 show" style="width: 350px; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 35.2px, 0px);" data-popper-placement="bottom-end">
-                        <a class="d-flex mb-3 text-decoration-none my-bg-red text-white p-2 rounded-top-4" rel="nofollow" href="@Url.Action("UpdateProfile", "User")">
-                            <div class="flex-shrink-0">
-                                <img class="avatar-trang-chu size-60" src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/11/19/green-screen-wall_1732017322.jpg">
-                            </div>
-                            <div class="flex-grow-1 ms-3 fs-7">
-                                <span class="d-block fs-5 fw-semibold">@user.name</span>
-                                @user.phoneNum
-                            </div>
-                        </a>
-                        <div class="mt-3">
-                            <a class="d-flex justify-content-between mb-2 text-decoration-none text-decoration-none" href="@Url.Action("ManagePostRooms", "User")">
-                                <div class="fs-9 text-secondary text-uppercase">Quản lý tin đăng</div>
-                                <div class="d-flex text-link text-decoration-underline fs-7">
-                                    <span class="link-dark">Xem tất cả</span>
+                <a rel="nofollow" class="btn d-flex align-items-center" href="javascript:void(0)"><i class="icon heart size-18"></i> Yêu thích <span class="number-count js-save-post-total hidden" style="display: none;">1</span></a>
+
+                <div class="dropdown">
+                    @if (Session["User"] != null)
+                    {
+                        Account user = (Account)Session["User"];
+                        string avatar_path = user.avtImage ?? "/Data/default-user-avata.svg";
+                        <button class="btn border-0 text-body d-flex align-items-center dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="avatar-trang-chu border-black size-33 me-2" src="@avatar_path" alt="Ảnh đại diện tài khoản">
+                            @user.name
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end rounded-4 shadow p-3" style="width: 350px; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 35.2px, 0px);" data-popper-placement="bottom-end">
+                            <a class="d-flex mb-3 text-decoration-none my-bg-red text-white p-2 rounded-top-4" rel="nofollow" href="@Url.Action("UpdateProfile", "User")">
+                                <div class="flex-shrink-0">
+                                    <img class="avatar-trang-chu size-60" src="@avatar_path">
+                                </div>
+                                <div class="flex-grow-1 ms-3 fs-7">
+                                    <span class="d-block fs-5 fw-semibold">@user.name</span>
+                                    @user.phoneNum
                                 </div>
                             </a>
-                            <div class="my-bg-red-light text-center p-3 px-1 mb-3 rounded-4">
-                                <ul class="d-flex justify-content-around" style="list-style: none; padding: 0; margin: 0;">
-                                    <li class="w-auto">
-                                        <a class="text-body fs-8 pb-25 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("PostRoom", "User")">
-                                            <span class="fa-fw select-all fas fs-5"></span>
-                                            <span class="d-block">Đăng mới</span>
-                                        </a>
-                                    </li>
-                                    <li class="w-auto">
-                                        <a class="js-dang-hien-thi text-body fs-8 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("ManagePostRooms", "User")?action=chonDaDuyet">
-                                            <span class="fa-fw select-all fas fs-5"></span>
-                                            <span class="d-block">Đang hiển thị</span>
-                                        </a>
-                                    </li>
-                                    <li class="w-auto">
-                                        <a class="text-body fs-8 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("ManagePostRooms", "User")?action=chonDaAn">
-                                            <span class="fa-fw select-all fas fs-5"></span>
-                                            <span class="d-block">Tin ẩn</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                            <div class="mt-3">
+                                <a class="d-flex justify-content-between mb-2 text-decoration-none text-decoration-none" href="@Url.Action("ManagePostRooms", "User")">
+                                    <div class="fs-9 text-secondary text-uppercase">Quản lý tin đăng</div>
+                                    <div class="d-flex text-link text-decoration-underline fs-7">
+                                        <span class="link-dark">Xem tất cả</span>
+                                    </div>
+                                </a>
+                                <div class="my-bg-red-light text-center p-3 px-1 mb-3 rounded-4">
+                                    <ul class="d-flex justify-content-around" style="list-style: none; padding: 0; margin: 0;">
+                                        <li class="w-auto">
+                                            <a class="text-body fs-8 pb-25 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("PostRoom", "User")">
+                                                <span class="fa-fw select-all fas fs-5"></span>
+                                                <span class="d-block">Đăng mới</span>
+                                            </a>
+                                        </li>
+                                        <li class="w-auto">
+                                            <a class="js-dang-hien-thi text-body fs-8 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("ManagePostRooms", "User")?action=chonDaDuyet">
+                                                <span class="fa-fw select-all fas fs-5"></span>
+                                                <span class="d-block">Đang hiển thị</span>
+                                            </a>
+                                        </li>
+                                        <li class="w-auto">
+                                            <a class="text-body fs-8 pt-2 text-decoration-none" rel="nofollow" href="@Url.Action("ManagePostRooms", "User")?action=chonDaAn">
+                                                <span class="fa-fw select-all fas fs-5"></span>
+                                                <span class="d-block">Tin ẩn</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
-                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li>
+                                    <a class="btn btn-white d-flex justify-content-between p-1 text-decoration-none" rel="nofollow" href="@Url.Action("UpdateProfile", "User")">
+                                        <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas fs-5"></span></span> Quản lý tài khoản</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-white d-flex justify-content-between p-1 text-decoration-none" rel="nofollow" href="@Url.Action("Logout","User")">
+                                        <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas fs-5"></span></span> Đăng xuất</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <button class="btn border-0 text-body d-flex align-items-center dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Tài khoản">
+                            <img class="avatar-trang-chu border-black size-33 me-2" src="~/Data/default-user-avata.svg" alt="Ảnh đại diện tài khoản">
+                            Tài khoản
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 pt-3 pb-3" data-popper-placement="bottom-end" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 44.8px, 0px);">
                             <li>
-                                <a class="btn btn-white d-flex justify-content-between p-1 text-decoration-none" rel="nofollow" href="@Url.Action("UpdateProfile", "User")">
-                                    <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas fs-5"></span></span> Quản lý tài khoản</div>
+                                <a class="dropdown-item d-flex justify-content-between pt-1 pb-1 pe-5" rel="nofollow" href="@Url.Action("Register", "User")">
+                                    <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas pt-1"></span></span> Tạo tài khoản mới</div>
                                 </a>
                             </li>
                             <li>
-                                <a class="btn btn-white d-flex justify-content-between p-1 text-decoration-none" rel="nofollow" href="@Url.Action("Logout","User")">
-                                    <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas fs-5"></span></span> Đăng xuất</div>
+                                <a class="dropdown-item d-flex justify-content-between pt-1 pb-1 pe-5" rel="nofollow" href="@Url.Action("Login", "User")">
+                                    <div class="d-flex">
+                                        <span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2">
+                                            <span class="fa-fw select-all fas pt-1"></span>
+                                        </span> Đăng nhập
+                                    </div>
                                 </a>
                             </li>
                         </ul>
-                    </div>
-                }
-                else
-                {
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 pt-3 pb-3 show" data-popper-placement="bottom-end" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 44.8px, 0px);">
-                        <li>
-                            <a class="dropdown-item d-flex justify-content-between pt-1 pb-1 pe-5" rel="nofollow" href="@Url.Action("Register", "User")">
-                                <div class="d-flex"><span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2"><span class="fa-fw select-all fas pt-1"></span></span> Tạo tài khoản mới</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex justify-content-between pt-1 pb-1 pe-5" rel="nofollow" href="@Url.Action("Login", "User")">
-                                <div class="d-flex">
-                                    <span class="d-flex size-30 bg-light rounded-circle justify-content-center me-2">
-                                        <span class="fa-fw select-all fas pt-1"></span>
-                                    </span> Đăng nhập
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                }
+                    }
+                </div>
+
+                <a rel="nofollow" class="btn btn-add-post d-flex align-items-center" href="@Url.Action("PostRoom", "User")"><i></i>Đăng tin miễn phí</a>
             }
         </div>
     </div>

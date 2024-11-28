@@ -131,9 +131,11 @@ namespace HoiTroWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+                int userID = (Session["USer"] as Account).id;
                 RoomInfo roomInfo = new RoomInfo
                 {
                     title = postRoomVM.tieu_de,
+                    meta = postRoomVM.tieu_de_meta,
                     roomTypeId = postRoomVM.loai_chuyen_muc,
                     brief_description = "khong can",
                     price = postRoomVM.gia,
@@ -141,8 +143,10 @@ namespace HoiTroWebsite.Controllers
                     location = postRoomVM.dia_chi,
                     detail_description = postRoomVM.noi_dung,
                     datebegin = DateTime.Now,
-                    hide = false,
+                    hide = true,
+                    isApproved = false,
                     tenant = postRoomVM.doi_tuong.Replace("-", "").Trim(),
+                    accountId = userID,
                 };
                 try
                 {
@@ -155,10 +159,26 @@ namespace HoiTroWebsite.Controllers
                     ViewBag.Message = e.ToString();
                 }
 
-                return RedirectToAction("Index", "HomePage");
+                return RedirectToAction("ManagePostRooms", "User");
             }
 
             return View();
+        }
+
+        [HttpGet]
+        [Route("api/post/an-hien")]
+        public ActionResult SwitchStatusPost(string action, int id)
+        {
+            
+            if (action == "an-tin")
+            {
+                
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("ManagePostRooms", "User");
         }
 
         [HttpPost]
@@ -198,6 +218,7 @@ namespace HoiTroWebsite.Controllers
                 return RedirectToAction("ManagePostRooms", "User");
             }
         }
+
 
         // lưu tên file và đường dẫn lên database
         private void SaveFileUrl(string[] file_name_list, int roomInfoId)
@@ -251,18 +272,20 @@ namespace HoiTroWebsite.Controllers
         {
             try
             {
-                int userID = 10;
-                List<RoomInfo> rooms = db.RoomInfoes.Where(r => r.accountId == userID).ToList();
+                int userID = (Session["USer"] as Account).id;
+                List<RoomInfo> rooms = db.RoomInfoes.Where(r => r.accountId == userID)
+                    .Include(ri => ri.RoomImgs)
+                    .ToList();
                 if (chonDaDuyet == true)
                 {
-                    rooms = rooms.FindAll(r => r.hide ==  true);
+                    rooms = rooms.FindAll(r => r.isApproved ==  true);
                 }
                 if (chonDaAn == true)
                 {
-                    //rooms = rooms.f
+                    rooms = rooms.FindAll(r => r.hide == false);
                 }
 
-                const int pageSize = 2; //10 items/trang
+                const int pageSize = 5; //10 items/trang
 
                 if (pg < 1) //page < 1;
                 {
@@ -277,14 +300,14 @@ namespace HoiTroWebsite.Controllers
                 //category.Skip(20).Take(10).ToList()
 
                 var rooms2 = rooms.Skip(recSkip).Take(pager.PageSize).ToList();
-                if (rooms2.Count != 0)
-                {
-                    rooms2.ForEach(room =>
-                    {
-                        db.Entry(room).Reference(r => r.RoomType).Load();
-                        db.Entry(room).Collection(r => r.RoomImgs).Query().OrderBy(rm => rm.order).Load();
-                    });
-                }
+                //if (rooms2.Count != 0)
+                //{
+                //    rooms2.ForEach(room =>
+                //    {
+                //        db.Entry(room).Reference(r => r.RoomType).Load();
+                //        db.Entry(room).Collection(r => r.RoomImgs).Query().OrderBy(rm => rm.order).Load();
+                //    });
+                //}
 
                 ViewBag.Pager = pager;
 

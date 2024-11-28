@@ -95,7 +95,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.dia_chi, "Địa chỉ chính xác", new { @class = "form-lable mb-1" })
                                     @*<input type="text" readonly="" class="form-control" name="dia_chi" id="diachi" required="">*@
-                                    @Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control bg-body-secondary fs-5-5", @readonly = "" })
+                                    @*@Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control bg-body-secondary fs-5-5", @readonly = "" })*@
+                                    @Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control bg-body-secondary fs-5-5", })
                                 </div>
                             </div>
                         </div>
@@ -115,8 +116,9 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tieu_de, "Tiêu đề", new { @class = "form-label mb-1" })
-                                    @Html.TextBoxFor(model => model.tieu_de, new { @class = "form-control fs-5-5" })
-                                    <input id="meta_tieu_de" type="hidden" name="meta_tieu_de" />
+                                    @Html.TextBoxFor(model => model.tieu_de, new { @class = "js-meta-source form-control fs-5-5" })
+                                    @*<input type="text" class="js-meta" id="tieu_de_meta" hidden name="tieu_de_meta" />*@
+                                    @Html.TextBoxFor(model => model.tieu_de_meta, new { @class = "js-meta", @hidden = "" })
                                 </div>
                             </div>
                             <div class="col-12">
@@ -224,13 +226,15 @@
                             <div class="col-sm-6">
                                 <div class="form-group mb-3">
                                     @Html.LabelFor(model => model.ten_lien_he, "Họ tên", new { @class = "form-label mb-1" })
-                                    @Html.TextBoxFor(model => model.ten_lien_he, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = ten_lien_he })
+                                    @*@Html.TextBoxFor(model => model.ten_lien_he, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = ten_lien_he })*@
+                                    <input class="form-control fs-5-5" id="ten_lien_he" readonly value="@ten_lien_he" />
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group mb-3">
                                     @Html.LabelFor(model => model.phone, "Số điện thoại", new { @class = "form-label mb-1" })
-                                    @Html.TextBoxFor(model => model.phone, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = phone })
+                                    @*@Html.TextBoxFor(model => model.phone, new { @class = "form-control fs-5-5", @readonly = "readonly", @value = phone })*@
+                                    <input class="form-control fs-5-5" id="phone" readonly value="@phone" />
                                 </div>
                             </div>
                         </div>
@@ -258,4 +262,6 @@
 
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/my-js/convert.2.meta.js"></script>
 }

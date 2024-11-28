@@ -114,11 +114,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     var filename = "";
                     if (img != null)
                     {
-                        filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                        filename = img.FileName;  // Chỉ lấy phần tên file
 
-                        path = Path.Combine(Server.MapPath("~/Content/images"), filename);
+                        path = Path.Combine(Server.MapPath("/Content/images"), filename);
                         img.SaveAs(path);
-                        news.imagePath = filename; //Lưu ý
+                        news.imagePath = "/Content/images" + "/" + filename; //Lưu ý
                     }
                     else
                     {
@@ -171,10 +171,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
-                    path = Path.Combine(Server.MapPath("~/Content/images"), filename);
+                    filename = img.FileName;  // Chỉ lấy phần tên file
+                    path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.imagePath = filename; // Lưu ý
+                    temp.imagePath = "/Content/images" + "/" + filename; // Lưu ý
                 }
                 temp.title = news.title;
                 temp.brief_description = news.brief_description;

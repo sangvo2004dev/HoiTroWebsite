@@ -16,7 +16,7 @@
         <div class="row">
 
             <!-- Brand Box -->
-            <div class="col-sm-6 brand">
+            <div class="col-sm-6 brand z-2">
                 <a href="#" class="logo">MR <span>.</span></a>
 
                 <div class="heading">
@@ -31,7 +31,7 @@
 
                 <!-- Login Form -->
                 <div class="login form-peice">
-                    @using (Html.BeginRouteForm("UserLogin", FormMethod.Post, new { @class = "login-form" }))
+                    @using (Html.BeginRouteForm("UserLogin", FormMethod.Post, new { @class = "login-form", @id = "from-dang-nhap" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
@@ -56,7 +56,7 @@
                 </div><!-- End Login Form -->
                 <!-- Signup Form -->
                 <div class="signup form-peice switched">
-                    @using (Html.BeginRouteForm("UserLogout", FormMethod.Post, new { @class = "signup-form" }))
+                    @using (Html.BeginRouteForm("UserRegister", FormMethod.Post, new { @class = "signup-form", @id = "from-dang-ky" }))
                     {
                         @Html.AntiForgeryToken()
 

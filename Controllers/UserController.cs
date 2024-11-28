@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
 using HoiTroWebsite.Models2;
@@ -25,29 +26,44 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
-        [Route("dang-ky-a", Name = "UserLogout")]
+        [Route("dang-ky", Name = "UserRegister")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterVM registerVM)
         {
             if (ModelState.IsValid)
             {
-                Account user = new Account
+                var temp = db.Accounts.Where(a => a.phoneNum == registerVM.PhoneNumber).FirstOrDefault();
+                if (temp != null) // số điện thoại đã tồn tại trong database
                 {
-                    name = registerVM.Name,
-                    phoneNum = registerVM.PhoneNumber,
-                    password = registerVM.Password,
-                    zaloNum = registerVM.PhoneNumber
-                };
-                db.Accounts.Add(user);
-                db.SaveChanges();
-                ViewBag.Message = "Đăng ký thành công";
+                    Response.StatusCode = (int)HttpStatusCode.Conflict;
+                    return Json(new { statusCode = Response.StatusCode, message = "Số điện thoại đã được sử dụng!" });
+                }
+                try
+                {
+                    Account user = new Account
+                    {
+                        name = registerVM.Name,
+                        phoneNum = registerVM.PhoneNumber,
+                        password = registerVM.Password,
+                        zaloNum = registerVM.PhoneNumber
+                    };
+                    db.Accounts.Add(user);
+                    db.SaveChanges();
+                    Response.StatusCode = (int)HttpStatusCode.OK;
+                    return Json(new { statusCode = Response.StatusCode , redirectUrl = Url.Action("Login", "User") });
+                }
+                catch (Exception ex)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.ExpectationFailed;
+                    return Json(new { message = "Đã xảy ra lỗi vui lòng thử lại sau!", error = ex.ToString() });
+                }
             }
             else
             {
-                ViewBag.Message = "Đăng ký không thành công";
+                Response.StatusCode = (int)HttpStatusCode.ExpectationFailed;
+                return Json(new { message = "Đã xảy ra lỗi vui lòng thử lại sau!" });
             }
-            return RedirectToAction("Login", "User");
         }
 
         // GET
@@ -70,15 +86,20 @@ namespace HoiTroWebsite.Controllers
                 if (user != null)
                 {
                     Session.Add("User", user);
-                    ViewBag.Message = "Đăng nhập thành công.";
-                    return RedirectToAction("Index", "HomePage");
+                    Response.StatusCode = (int)HttpStatusCode.OK;
+                    return Json(new { statusCode = Response.StatusCode, message = "Đăng nhập thành công", redirectUrl = Url.Action("Index", "HomePage") });
                 }
                 else
                 {
-                    ViewBag.Message = "Tài khoản hoặc mật khẩu không đúng.";
+                    Response.StatusCode = (int)HttpStatusCode.ExpectationFailed;
+                    return Json(new { statusCode = Response.StatusCode, message = "Tài khoản hoặc mật khẩu không đúng" });
                 }
             }
-            return View();
+            else
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { message = "Đã xảy ra lỗi vui lòng thử lại sau!" });
+            }
         }
 
         [Route("dang-xuat-tai-khoan")]
@@ -88,14 +109,16 @@ namespace HoiTroWebsite.Controllers
             return RedirectToAction("Index", "HomePage");
         }
 
+        [CustomAuthenticationFilter]
         [HttpGet]
         [Route("quan-ly/dang-tin-moi")]
         public ActionResult PostRoom()
         {
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title");
             return View();
-        }        
+        }
 
+        [CustomAuthenticationFilter]
         [Route("quan-ly/sua-bai-dang/{id}", Name = "editPost")]
         [HttpGet]
         // edit bài đăng từ của user
@@ -147,13 +170,16 @@ namespace HoiTroWebsite.Controllers
             return View(account);
         }
 
+        [CustomAuthenticationFilter]
         [Route("quan-ly/tin-dang")]
         [HttpGet]
         public ActionResult ManagePostRooms()
         {
-            ViewBag.tat_ca_count = 10;
-            ViewBag.tin_an_count = 0;
-            ViewBag.duoc_duyet_count = 2;
+            int userID = (Session["User"] as Account).id;
+            var listRoom = db.RoomInfoes.Where(ri => ri.accountId == userID).ToList();
+            ViewBag.tat_ca_count = listRoom.Count;
+            ViewBag.tin_an_count = listRoom.Where(ri => ri.hide == false).Count();
+            ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();
             return View();
         }
     }

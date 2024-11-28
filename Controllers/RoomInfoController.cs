@@ -19,21 +19,12 @@ namespace HoiTroWebsite.Controllers
         // xem tất cả phòng theo 1 loại
         public ActionResult Index()
         {
-            var v = from n in _db.RoomInfoes
-                    join t in _db.RoomTypes on n.roomTypeId equals t.id
-                    join r in _db.Accounts on n.accountId equals r.id
-                    orderby n.datebegin descending
-                    select new RoomInfoViewModel
-                    {
-                        RoomInfo = n,
-                        Account = r,
-                        ImagePath = (from i in _db.RoomImages
-                                     where i.reference_id == n.id
-                                     orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
-                    };
+            var listRoomInfo = _db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == false)
+                .Include(ri => ri.Account)
+                .Include(ri => ri.RoomImgs)
+                .ToList();
 
-            return View(v.ToList());
+            return View(listRoomInfo);
         }
 
         // chi tiết tin trên HomePage-Menu
@@ -62,22 +53,12 @@ namespace HoiTroWebsite.Controllers
         {
             ViewBag.meta = metaTitle;
 
-            var v = from n in _db.RoomInfoes
-                    join t in _db.RoomTypes on n.roomTypeId equals t.id
-                    join r in _db.Accounts on n.accountId equals r.id
-                    where n.hide == true && n.roomTypeId == roomTypeID
-                    orderby n.datebegin descending
-                    select new RoomInfoViewModel
-                    {
-                        RoomInfo = n,
-                        Account = r,
-                        ImagePath = (from i in _db.RoomImages
-                                     where i.reference_id == n.id
-                                     orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
-                    };
+            var listRoomInfo = _db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
+                .Include(ri => ri.Account)
+                .Include(ri => ri.RoomImgs)
+                .ToList();
 
-            return PartialView(v.ToList());
+            return PartialView(listRoomInfo);
         }
     }
 }

@@ -1,67 +1,33 @@
-﻿@model List<HoiTroWebsite.Models.RoomInfoViewModel>
+﻿@model List<HoiTroWebsite.Models.RoomInfo>
+@using HoiTroWebsite.HTLibraries;
+
+@{
+    string ten_anh = "";
+    string path_1 = "/Data/default-room-img.jpg";
+    string href = "";
+    string gia_tien = "";
+    string ngay_dang_tin = "";
+}
 
 @foreach (var i in Model)
 {
- <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
-    post-id="649687">
-    <figure class="post-thumb">
-        <a class="clearfix"
-           href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
-            <img class="img-thumb"
-                 src="@i.ImagePath"
-                 data-src="@i.ImagePath"
-                 alt="@i.RoomInfo.title">
-        </a>
-        <span class="images-number">14 ảnh</span>
-        <span class="has-video"></span>
-        <span class="chothuenhanh-label"></span>
-        <span class="post-save js-btn-save" data-post-id="649687"><i></i></span>
-    </figure>
-    <div class="post-meta">
-        <h3 class="post-title">
-            <a style="color: #e13427"
-               href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
-                @i.RoomInfo.title
-            </a>
-        </h3>
-        <div class="meta-row clearfix">
-            <span class="post-price">@i.RoomInfo.price triệu/tháng</span><span class="post-acreage">@i.RoomInfo.acreage.ToString()m²</span>
-            <span class="post-location">
-                <a href="Cho thuê">
-                    @i.RoomInfo.area
-                </a>
-            </span>
-            <time class="post-time" title="@i.RoomInfo.datebegin">thời gian đến hiện t</time>
-        </div>
-        <div class="meta-row clearfix">
-            <p class="post-summary">
-                @Html.Raw(i.RoomInfo.brief_description.Length > 200 ? i.RoomInfo.brief_description.Substring(0, 200) + "..." : i.RoomInfo.brief_description)
-            </p>
-        </div>
-        <div class="meta-row clearfix">
-            <div class="post-author">
-                <img src="@i.Account.avtImage" alt="@i.Account.name">
-                <span class="author-name">@i.Account.name</span>
-            </div>
-            <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"
-               class="btn-quick-zalo">Nhắn Zalo</a>
-            <a rel="nofollow" target="_blank" href="tel:@i.Account.phoneNum" class="btn-quick-call">
-                Gọi @i.Account.phoneNum
-            </a>
-        </div>
-    </div>
-</li>
-}
+    if (i.RoomImgs.Count > 0)
+    {
+        ten_anh = i.RoomImgs.FirstOrDefault().fileName;
+        path_1 = i.RoomImgs.FirstOrDefault().folder + ten_anh;
+    }
+    href = "/" + ViewBag.meta + "/" + i.meta + "/" + i.id.ToString();
+    gia_tien = new NumberUnit(i.price).RoundWithLargestUnit();
+    ngay_dang_tin = StringUI.Convert2DateTimeVietnamese(dateTime: i.datebegin);
 
-@* template
-        <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427" post-id="649687">
+    <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
+        post-id="649687">
         <figure class="post-thumb">
             <a class="clearfix"
-               href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
+               href="@href">
                 <img class="img-thumb"
-                     src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"
-                     data-src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/03/29/2_1711684797.jpg"
-                     alt="GẦN TRƯỜNG GTVT, NGOẠI THƯƠNG, HUTECH, HỒNG BÀNG, UEF - AN NINH, TIỆN NGHI - TT Q.BÌNH THẠNH ĐƯỜNG UNG VĂN KHIÊM" />
+                     src="@path_1"
+                     alt="@ten_anh">
             </a>
             <span class="images-number">14 ảnh</span>
             <span class="has-video"></span>
@@ -71,40 +37,35 @@
         <div class="post-meta">
             <h3 class="post-title">
                 <a style="color: #e13427"
-                   href="/chinh-chu-cho-thue-phong-tro-duong-ung-van-khiem-quan-binh-thanh-pr649687.html">
-                   GẦN TRƯỜNG GTVT, NGOẠI THƯƠNG, HUTECH, HỒNG BÀNG, UEF - AN NINH, TIỆN NGHI - TT Q.BÌNH THẠNH ĐƯỜNG UNG VĂN KHIÊM
+                   href="@href">
+                    @i.title
                 </a>
             </h3>
             <div class="meta-row clearfix">
-                <span class="post-price">4.5 triệu/tháng</span><span class="post-acreage">30m²</span>
-
-                <span class="post-location">
-                    <a
-                       href="https://phongtro123.com/tinh-thanh/ho-chi-minh/quan-binh-thanh"
-                       title="Cho thuê phòng trọ Quận Bình Thạnh, Hồ Chí Minh">
-                        Quận Bình Thạnh, Hồ Chí Minh
-                    </a>
-                </span>
-                <time class="post-time" title="Thứ 7, 15:21 05/10/2024">1 ngày trước</time>
+                <span class="post-price">@gia_tien/tháng</span><span class="post-acreage">@i.area m<sup>2</sup></span>
+                @*<span class="post-location">
+                        <a href="Cho thuê">
+                            @i.RoomInfo.area
+                        </a>
+                    </span>*@
+                <time class="post-time" title="@ngay_dang_tin">@ngay_dang_tin</time>
             </div>
             <div class="meta-row clearfix">
                 <p class="post-summary">
-                    - Để đảm bảo an ninh cho Sinh Viên ở Ngõ Sen giờ hoạt động
-                    từ 6h - 24h (không có giờ tự do), ra vào cổng bằng khóa
-                    vân tay.- Đ/c: Ngõ Sen 97/15, Ung Văn…
+                    @Html.Raw(i.brief_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
                 </p>
             </div>
             <div class="meta-row clearfix">
                 <div class="post-author">
-                    <img src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/08/09/z5713455168024-ccda1e38ce32297e6f81d40431003eee_1723171698.jpg" />
-                    <span class="author-name">Nhà Trọ Ngõ Sen</span>
+                    <img src="@i.Account.avtImage" alt="@i.Account.name">
+                    <span class="author-name">@i.Account.name</span>
                 </div>
-                <a rel="nofollow" target="_blank" href="https://zalo.me/0909814679"
+                <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"
                    class="btn-quick-zalo">Nhắn Zalo</a>
-                <a rel="nofollow" target="_blank" href="tel:0909814679" class="btn-quick-call">
-                    Gọi 0909814679
+                <a rel="nofollow" target="_blank" href="tel:@i.Account.phoneNum" class="btn-quick-call">
+                    Gọi @i.Account.phoneNum
                 </a>
             </div>
         </div>
     </li>
-*@
+}
