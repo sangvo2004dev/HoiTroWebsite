@@ -9,7 +9,7 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 
     string gia_tien = new NumberUnit(Model.price).RoundWithLargestUnit();
-    string anh_nguoi_dang = Model.Account.avtImage ?? "/Data/default-user-avata.svg";
+    string anh_nguoi_dang = Model.Account.imagePath ?? "/Data/default-user-avata.svg";
 }
 
 @*@Styles.Render("~/Content/css")
@@ -95,9 +95,9 @@
             <div id="hinh-anh-tin-dang" class="mb-5 bg-white rounded-3 overflow-hidden">
                 <div id="slide-anh-phong" class="carousel slide" data-bs-touch="false" data-bs-ride="carousel" data-interval="10000">
                     @{
-                        if (Model.RoomImgs != null)
+                        if (Model.RoomImages != null)
                         {
-                            int n = Model.RoomImgs.Count;
+                            int n = Model.RoomImages.Count;
 
                                         <div class="carousel-inner mb-3">
                                             @if (n == 0)
@@ -109,13 +109,13 @@
                                             else
                                             {
                                                 <div class="carousel-item active">
-                                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(0).fileName">
+                                                    <img src="@Model.RoomImages.ElementAt(0).imagePath" class="d-block w-100" alt="@Model.RoomImages.ElementAt(0).file_name">
                                                 </div>
                                             }
                                             @for (int i = 1; i < n; i++)
                                             {
                                                 <div class="carousel-item">
-                                                    <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" class="d-block w-100" alt="@Model.RoomImgs.ElementAt(i).fileName">
+                                                    <img src="@Model.RoomImages.ElementAt(i).imagePath" class="d-block w-100" alt="@Model.RoomImages.ElementAt(i).file_name">
                                                 </div>
                                             }
                                         </div>
@@ -130,14 +130,14 @@
                                     }
                                     else
                                     {
-                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(0).fileName" alt="@Model.RoomImgs.ElementAt(0).fileName" />
+                                        <img src="@Model.RoomImages.ElementAt(0).imagePath" alt="@Model.RoomImages.ElementAt(0).file_name" />
 
                                     }
                                 </button>
                                 @for (int i = 1; i < n; i++)
                                 {
                                     <button type="button" data-bs-target="#slide-anh-phong" data-bs-slide-to="@i">
-                                        <img src="@Model.RoomImgs.ElementAt(0).folder@Model.RoomImgs.ElementAt(i).fileName" alt="@Model.RoomImgs.ElementAt(i).fileName" />
+                                        <img src="@Model.RoomImages.ElementAt(i).imagePath" alt="@Model.RoomImages.ElementAt(i).file_name" />
                                     </button>
                                 }
                             </div>
@@ -167,7 +167,7 @@
                         <address class="post-address">@Model.location asfd asdf</address>
                         <div class="post-attributes">
                             <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@gia_tien/tháng</span></div>
-                            <div class="item acreage"><i></i><span> @Model.area m<sup>2</sup></span></div>
+                            <div class="item acreage"><i></i><span> @Model.acreage m<sup>2</sup></span></div>
                             @*<div class="item published"><i></i><span>@Model.datebegin</span></div>*@
                             @*<div class="item hashtag"><i></i><span>@Model.id</span></div>*@
                         </div>

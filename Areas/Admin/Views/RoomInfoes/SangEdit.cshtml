@@ -178,20 +178,20 @@
                         </div>
                         <div class="list-photos row dropzone-previews" id="list-photos-dropzone-previews">
                             @{
-                                if (ViewBag.RoomImgs != null)
+                                if (ViewBag.RoomImages != null)
                                 {
-                                    foreach (RoomImg img in ViewBag.RoomImgs)
+                                    foreach (RoomImage img in ViewBag.RoomImages)
                                     {
                                         <div class="col-4 col-sm-3 photo_item js-photo-manual">
                                             <div class="shadow-sm bg-white border mb-3 rounded">
-                                                <div class="photo rounded-top"><img class="rounded-top" src="@img.folder@img.fileName" alt="@img.fileName" data-dz-thumbnail=""></div>
+                                                <div class="photo rounded-top"><img class="rounded-top" src="@img.imagePath" alt="@img.file_name" data-dz-thumbnail=""></div>
                                                 <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
                                                 <div>
                                                     <button type="button" class="btn btn-sm text-red d-flex justify-content-center align-items-center w-100 photo_delete js-photo-delete text-danger" data-dz-remove=""><i class="fa-fw select-all fas me-1"></i> Xóa</button>
                                                 </div>
                                                 @*<input name="" value="" type="hidden">*@
                                             </div>
-                                            <input type="hidden" class="js-not-temp" name="file_name_list" value="@img.fileName" />
+                                            <input type="hidden" class="js-not-temp" name="file_name_list" value="@img.file_name" />
 
                                         </div>
                                     }

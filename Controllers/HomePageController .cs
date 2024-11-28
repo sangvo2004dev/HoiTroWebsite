@@ -60,7 +60,7 @@ namespace HoiTroWebsite.Controllers
             ViewBag.meta = metatitle;
             var listRoomInfo = _db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
                 .Include(ri => ri.Account)
-                .Include(ri => ri.RoomImgs)
+                .Include(ri => ri.RoomImages)
                 .ToList();
             return PartialView(listRoomInfo);
         }

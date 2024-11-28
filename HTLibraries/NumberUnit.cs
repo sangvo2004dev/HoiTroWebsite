@@ -12,7 +12,8 @@ namespace HoiTroWebsite.HTLibraries
         {
             if (!long.TryParse(numberString, out _number))
             {
-                throw new ArgumentException("Chuỗi không hợp lệ. Vui lòng nhập một chuỗi số hợp lệ.");
+                // chuyển đổi không thành công thì chuyển thành 0
+                _number = 0;
             }
         }
 

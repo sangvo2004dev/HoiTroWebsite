@@ -212,7 +212,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo, List<RoomImageViewModel> Images)
+        public ActionResult Create([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
         {
             try
             {
@@ -232,13 +232,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 // chọn loại Email gửi đến người dùng
                 // thêm thông tin phù hợp
                 content = content.Replace("{{Title}}", roomInfo.title);
-                content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
                 content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
                 content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
                 content = content.Replace("{{Tenant}}", roomInfo.tenant);
                 content = content.Replace("{{Price}}", roomInfo.price);
                 content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                content = content.Replace("{{Area}}", roomInfo.area);
+                content = content.Replace("{{Area}}", roomInfo.acreage);
                 content = content.Replace("{{Location}}", roomInfo.location);
                 content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
 
@@ -247,28 +246,28 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
 
                 // Xử lý danh sách ảnh nếu có
-                if (Images != null)
-                {
-                    foreach (var image in Images)
-                    {
-                        if (image.File != null && image.File.ContentLength > 0)
-                        {
-                            var fileName = Path.GetFileName(image.File.FileName);
-                            var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                            image.File.SaveAs(path);
+                //if (Images != null)
+                //{
+                //    foreach (var image in Images)
+                //    {
+                //        if (image.File != null && image.File.ContentLength > 0)
+                //        {
+                //            var fileName = Path.GetFileName(image.File.FileName);
+                //            var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
+                //            image.File.SaveAs(path);
 
-                            var roomImage = new RoomImage
-                            {
-                                reference_id = roomInfo.id,
-                                imagePath = fileName,
-                                meta = image.Meta,
-                                hide = image.Hide
-                            };
-                            db.RoomImages.Add(roomImage);
-                        }
-                    }
-                    db.SaveChanges();
-                }
+                //            var roomImage = new RoomImage
+                //            {
+                //                reference_id = roomInfo.id,
+                //                imagePath = fileName,
+                //                meta = image.Meta,
+                //                hide = image.Hide
+                //            };
+                //            db.RoomImages.Add(roomImage);
+                //        }
+                //    }
+                //    db.SaveChanges();
+                //}
                 
                 return Json(new { code = 200, msg = "Room created successfully" }, JsonRequestBehavior.AllowGet);
             }
@@ -315,11 +314,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                 // Cập nhật các thuộc tính của phòng từ form
                 temp.title = roomInfo.title;
-                temp.brief_description = roomInfo.brief_description;
                 temp.detail_description = roomInfo.detail_description;
                 temp.price = roomInfo.price;
                 temp.acreage = roomInfo.acreage;
-                temp.area = roomInfo.area;
                 temp.location = roomInfo.location;
                 temp.tenant = roomInfo.tenant;
                 temp.meta = roomInfo.meta;
@@ -355,24 +352,22 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     // chọn loại Email gửi đến người dùng
 
                     content = content.Replace("{{Title}}", roomInfo.title);
-                    content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
                     content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
                     content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
                     content = content.Replace("{{Tenant}}", roomInfo.tenant);
                     content = content.Replace("{{Price}}", roomInfo.price);
                     content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                    content = content.Replace("{{Area}}", roomInfo.area);
+                    content = content.Replace("{{Area}}", roomInfo.acreage);
                     content = content.Replace("{{Location}}", roomInfo.location);
                     content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
                                                                     // thêm thông tin sau khi Edit
                     content = content.Replace("{{NewTitle}}", temp.title);
-                    content = content.Replace("{{NewBriefDescription}}", temp.brief_description);
                     content = content.Replace("{{NewDetailDescription}}", temp.detail_description);
                     content = content.Replace("{{NewRoomType}}", getTitleRoomType(temp.roomTypeId));
                     content = content.Replace("{{NewTenant}}", temp.tenant);
                     content = content.Replace("{{NewPrice}}", temp.price);
                     content = content.Replace("{{NewAcreage}}", (temp.acreage).ToString());
-                    content = content.Replace("{{NewArea}}", temp.area);
+                    content = content.Replace("{{NewArea}}", temp.acreage);
                     content = content.Replace("{{NewLocation}}", temp.location);
                     content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
                                                                        //Editor
@@ -403,10 +398,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
 
             // load và lấy theo thứ tự
-            db.Entry(roomInfo).Collection(r => r.RoomImgs).Query().OrderBy(i => i.order).Load();
-            ViewBag.RoomImgs = roomInfo.RoomImgs;
+            db.Entry(roomInfo).Collection(r => r.RoomImages).Query().OrderBy(i => i.order).Load();
+            ViewBag.RoomImages = roomInfo.RoomImages;
             ViewBag.ten_lien_he = roomInfo.Account.name;
             ViewBag.phone = roomInfo.Account.phoneNum;
+            int dienTich = 0;
+            int.TryParse(roomInfo.acreage, out dienTich);
 
             PostRoomVM postRoomVM = new PostRoomVM()
             {
@@ -416,13 +413,13 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 tieu_de_meta = roomInfo.meta,
                 noi_dung = roomInfo.detail_description,
                 gia = roomInfo.price,
-                dien_tich = Convert.ToInt32(roomInfo.area),
+                dien_tich = dienTich,
                 loai_chuyen_muc = roomInfo.roomTypeId,
                 doi_tuong = roomInfo.tenant,
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
-            ViewBag.RoomImgs = roomInfo.RoomImgs;
+            ViewBag.RoomImages = roomInfo.RoomImages;
             return View(postRoomVM);
         }
 
@@ -439,9 +436,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     room.title = postRoomVM.tieu_de;
                     room.meta = postRoomVM.tieu_de_meta;
                     room.roomTypeId = postRoomVM.loai_chuyen_muc;
-                    room.brief_description = "khong can";
                     room.price = postRoomVM.gia;
-                    room.area = postRoomVM.dien_tich.ToString();
+                    room.acreage = postRoomVM.dien_tich.ToString();
                     room.location = postRoomVM.dia_chi;
                     room.detail_description = postRoomVM.noi_dung;
                     room.datebegin = DateTime.Now;

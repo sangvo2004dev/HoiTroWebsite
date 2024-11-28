@@ -31,7 +31,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.avtImage,
+                                  Img = t.imagePath,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -89,11 +89,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                             path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                             img.SaveAs(path);
-                            mentor.avtImage = filename; //Lưu ý
+                            mentor.imagePath = filename; //Lưu ý
                         }
                         else
                         {
-                            mentor.avtImage = "default-user.jpg";
+                            mentor.imagePath = "default-user.jpg";
                         }
                         mentor.datebegin = DateTime.Now.Date;
                         db.Mentors.Add(mentor);
@@ -144,7 +144,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.avtImage = filename; // Lưu ý
+                    temp.imagePath = filename; // Lưu ý
                 }
                 temp.name = mentor.name;
                 temp.email = mentor.email;

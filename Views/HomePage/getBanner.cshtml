@@ -15,7 +15,7 @@
             @foreach (var i in Model)
             {
                 <div class="carousel-item @(j == 0 ? "active" : "")">
-                    <img class="d-block w-100" src="~/Content/images/@i.img" alt="Slide @j">
+                    <img class="d-block w-100" src="~/Content/images/@i.imagePath" alt="Slide @j">
                 </div>
                 j++;
             }
@@ -31,7 +31,7 @@
         </a>
     </div>
 
-    <div class="booking_ocline">
+    @*<div class="booking_ocline">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -62,5 +62,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </section>

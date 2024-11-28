@@ -138,9 +138,8 @@ namespace HoiTroWebsite.Controllers
                     title = postRoomVM.tieu_de,
                     meta = postRoomVM.tieu_de_meta,
                     roomTypeId = postRoomVM.loai_chuyen_muc,
-                    brief_description = "khong can",
                     price = postRoomVM.gia,
-                    area = postRoomVM.dien_tich.ToString(),
+                    acreage = postRoomVM.dien_tich.ToString(),
                     location = postRoomVM.dia_chi,
                     detail_description = postRoomVM.noi_dung,
                     datebegin = DateTime.Now,
@@ -195,9 +194,8 @@ namespace HoiTroWebsite.Controllers
                 {
                     room.title = postRoomVM.tieu_de;
                     room.meta = postRoomVM.tieu_de_meta;
-                    room.brief_description = "khong can";
                     room.price = postRoomVM.gia;
-                    room.area = postRoomVM.dien_tich.ToString();
+                    room.acreage = postRoomVM.dien_tich.ToString();
                     room.location = postRoomVM.dia_chi;
                     room.detail_description = postRoomVM.noi_dung;
                     room.datebegin = DateTime.Now;
@@ -228,7 +226,7 @@ namespace HoiTroWebsite.Controllers
             {
                 int userID = (Session["USer"] as Account).id;
                 List<RoomInfo> rooms = db.RoomInfoes.Where(r => r.accountId == userID)
-                    .Include(ri => ri.RoomImgs)
+                    .Include(ri => ri.RoomImages)
                     .ToList();
                 if (chonDaDuyet == true)
                 {
@@ -259,7 +257,7 @@ namespace HoiTroWebsite.Controllers
                 //    rooms2.ForEach(room =>
                 //    {
                 //        db.Entry(room).Reference(r => r.RoomType).Load();
-                //        db.Entry(room).Collection(r => r.RoomImgs).Query().OrderBy(rm => rm.order).Load();
+                //        db.Entry(room).Collection(r => r.RoomImages).Query().OrderBy(rm => rm.order).Load();
                 //    });
                 //}
 

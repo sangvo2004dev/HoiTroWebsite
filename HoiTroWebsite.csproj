@@ -13839,7 +13839,7 @@
     <Content Include="Scripts\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
     <Content Include="Scripts\my-js\hoitro.user.dashboard.js" />
-    <Content Include="Scripts\my-js\login.logout.js" />
+    <Content Include="Scripts\my-js\login.logout.effect.js" />
     <Content Include="Scripts\my-js\newFile.js" />
     <Content Include="Scripts\js\plugin.js" />
     <Content Include="Scripts\js\popper.min.js" />
@@ -13908,7 +13908,7 @@
     <Content Include="Views\News\GetNewsFollowType.cshtml" />
     <Content Include="Views\MainPartial\GetLatestRoomList.cshtml" />
     <Content Include="Views\MainPartial\GetSupport.cshtml" />
-    <Content Include="Views\RoomInfo\Room_GetListRoomInfoFollowType.cshtml" />
+    <Content Include="Views\RoomInfo\GetListRoomInfoFollowType.cshtml" />
     <Content Include="Views\Button\editInfor.cshtml" />
     <Content Include="Views\Button\managePosted.cshtml" />
     <Content Include="Views\Button\listPosted.cshtml" />

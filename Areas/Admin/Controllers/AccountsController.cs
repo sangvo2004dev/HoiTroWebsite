@@ -32,7 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               {
                                   Id = t.id,
                                   Name = t.name,
-                                  Img = t.avtImage,
+                                  Img = t.imagePath,
                                   PhoneNum = t.phoneNum,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -90,11 +90,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = img.FileName;
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    account.avtImage = filename;
+                    account.imagePath = filename;
                 }
                 else
                 {
-                    account.avtImage = "default-user.jpg";
+                    account.imagePath = "default-user.jpg";
                 }
 
                 account.datebegin = DateTime.Now.Date;
@@ -161,7 +161,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = Path.GetFileName(img.FileName);
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.avtImage = filename;
+                    temp.imagePath = filename;
                 }
                 
 

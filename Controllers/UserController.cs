@@ -129,27 +129,34 @@ namespace HoiTroWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
-            db.Entry(room).Collection(r => r.RoomImgs).Load();
 
-            // sắp xếp lại roomImgs theo order
-            room.RoomImgs = room.RoomImgs.OrderBy(i => i.order).ToList();
+            RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
+            db.Entry(room).Collection(r => r.RoomImages).Load();
+            int dienTich = 0;
+            int.TryParse(room.acreage, out dienTich);
+
+            // sắp xếp lại RoomImages theo order
+            room.RoomImages = room.RoomImages.OrderBy(i => i.order).ToList();
 
             PostRoomVM postRoomVM = new PostRoomVM()
             {
+                id = room.id,
                 dia_chi = room.location,
                 tieu_de = room.title,
                 tieu_de_meta = room.meta,
                 noi_dung = room.detail_description,
                 gia = room.price,
-                dien_tich = Convert.ToInt32(room.area),
+                dien_tich = dienTich,
                 loai_chuyen_muc = room.roomTypeId,
                 doi_tuong = room.tenant,
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
+
             TempData["id"] = room.id;
-            ViewBag.RoomImgs = room.RoomImgs;
+            ViewBag.RoomImages = room.RoomImages;
+            ViewBag.ten_lien_he = room.Account.name;
+            ViewBag.phone = room.Account.phoneNum;
 
             return View(postRoomVM);
         }
@@ -180,7 +187,7 @@ namespace HoiTroWebsite.Controllers
             ViewBag.tat_ca_count = listRoom.Count;
             ViewBag.tin_an_count = listRoom.Where(ri => ri.hide == false).Count();
             ViewBag.duoc_duyet_count = listRoom.Where(ri => ri.isApproved == true).Count();         
-            return View();
+            return View(listRoom);
         }
     }
 }

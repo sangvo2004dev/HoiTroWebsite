@@ -30,7 +30,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.img,
+                                  Img = t.imagePath,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -86,11 +86,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                         filename = Path.GetFileName(img.FileName);
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                         img.SaveAs(path);
-                        banner.img = filename;
+                        banner.imagePath = filename;
                     }
                     else
                     {
-                        banner.img = "logo.png";
+                        banner.imagePath = "logo.png";
                     }
 
                     banner.datebegin = DateTime.Now;
@@ -143,7 +143,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.img = filename; // Cập nhật tên ảnh mới
+                    temp.imagePath = filename; // Cập nhật tên ảnh mới
                 }
                 temp.name = banner.name;
                 temp.meta = banner.meta;

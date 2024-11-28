@@ -36,7 +36,7 @@ namespace HoiTroWebsite
 
             // hiển thị tất cả phòng thuộc loại đã chọn
             routes.MapRoute("ListRoomFollowType", "{type}/{roomTypeMeta}",
-               new { controller = "RoomInfo", action = "Room_GetListRoomInfoFollowType", roomTypeMeta = UrlParameter.Optional },
+               new { controller = "RoomInfo", action = "GetListRoomInfoFollowType", roomTypeMeta = UrlParameter.Optional },
                constraints: new { type = @"^(phong-tro|ky-tuc-xa|nha-cho-thue)$" },
                new[] { "HoiTroWebsite.Controllers" });
 

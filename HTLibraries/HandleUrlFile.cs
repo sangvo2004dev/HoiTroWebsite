@@ -16,15 +16,15 @@ namespace HoiTroWebsite.HTLibraries
             int count = 0;
             foreach (var file_name in file_name_list)
             {
-                var f = db.RoomImgs.SingleOrDefault(ri => ri.fileName == file_name);
+                var f = db.RoomImages.SingleOrDefault(ri => ri.file_name == file_name);
                 if (f == null)
                 {
                     // thêm đường dẫn file vào database
-                    db.RoomImgs.Add(new RoomImg
+                    db.RoomImages.Add(new RoomImage
                     {
-                        postRoomId = roomInfoId,
-                        folder = "/Data/user/",
-                        fileName = file_name,
+                        reference_id = roomInfoId,
+                        imagePath = "/Data/user/" + file_name,
+                        file_name = file_name,
                         hide = true,
                         order = count,
                         datebegin = DateTime.Now,
@@ -46,10 +46,10 @@ namespace HoiTroWebsite.HTLibraries
 
             file_delete_list.ForEach(f =>
             {
-                var roomImg = db.RoomImgs.SingleOrDefault(ri => ri.postRoomId == roomInfoId && ri.fileName == f);
-                if (roomImg != null)
+                var RoomImage = db.RoomImages.SingleOrDefault(ri => ri.reference_id == roomInfoId && ri.file_name == f);
+                if (RoomImage != null)
                 {
-                    db.RoomImgs.Remove(roomImg);
+                    db.RoomImages.Remove(RoomImage);
                 }
             });
             db.SaveChanges();
