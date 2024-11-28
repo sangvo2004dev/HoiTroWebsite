@@ -21,7 +21,7 @@ namespace HoiTroWebsite.Controllers
         {
             var listRoomInfo = _db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == false)
                 .Include(ri => ri.Account)
-                .Include(ri => ri.RoomImgs)
+                .Include(ri => ri.RoomImages)
                 .ToList();
 
             return View(listRoomInfo);
@@ -55,7 +55,7 @@ namespace HoiTroWebsite.Controllers
 
             var listRoomInfo = _db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
                 .Include(ri => ri.Account)
-                .Include(ri => ri.RoomImgs)
+                .Include(ri => ri.RoomImages)
                 .ToList();
 
             return PartialView(listRoomInfo);

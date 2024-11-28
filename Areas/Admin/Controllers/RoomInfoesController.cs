@@ -83,13 +83,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             var email = (from t in db.Accounts
                          where t.id == id
                          select t.email).FirstOrDefault();
-
-            if (email == null)
-            {
-                // Kiểm tra nếu không tìm thấy email
-                throw new InvalidOperationException($"Không tìm thấy email cho tài khoản có ID {id}");
-            }
-
             return email; // Trả về email
         }
         public ActionResult CheckConfig()
@@ -226,24 +219,23 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 db.RoomInfoes.Add(roomInfo);
                 db.SaveChanges();
 
-                //Gửi mail đến người dùng
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/CreatePost.html"));
-                // chọn loại Email gửi đến người dùng
-                // thêm thông tin phù hợp
-                content = content.Replace("{{Title}}", roomInfo.title);
-                content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
-                content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
-                content = content.Replace("{{Tenant}}", roomInfo.tenant);
-                content = content.Replace("{{Price}}", roomInfo.price);
-                content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                content = content.Replace("{{Location}}", roomInfo.location);
-                content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
-
                 string email = GetEmail(roomInfo.accountId);
-                new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
-
-
-                
+                if (email != null)
+                {
+                    //Gửi mail đến người dùng
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/CreatePost.html"));
+                    // chọn loại Email gửi đến người dùng
+                    // thêm thông tin phù hợp
+                    content = content.Replace("{{Title}}", roomInfo.title);
+                    content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
+                    content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
+                    content = content.Replace("{{Tenant}}", roomInfo.tenant);
+                    content = content.Replace("{{Price}}", roomInfo.price);
+                    content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
+                    content = content.Replace("{{Location}}", roomInfo.location);
+                    content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
+                    new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
+                }
                 return Json(new { code = 200, msg = "Room created successfully" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -305,25 +297,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 db.Entry(temp).State = EntityState.Modified;
                 db.SaveChanges();
 
-                string content = "";
-                //if (roomInfo.isApproved)
-                //{
-                //    //Gửi mail đến người dùng thông báo bài đăng hợp lệ đã được duyệt
-                //    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/ValidPost.html"));
-                //    content = content.Replace("{{Title}}", roomInfo.title);
-
-                //}
-                //else if(!roomInfo.isApproved)
-                //{
-                //    //Gửi mail đến người dùng thông báo bài đăng ko được duyệt
-                //    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/InvalidPost.html"));
-                //    content = content.Replace("{{Title}}", roomInfo.title);
-                //    content = content.Replace("{{Reason}}", "Vui lòng liên hệ nhân viên hỗ trợ để biết thêm chi tiết và Hỏi trọ Website có thể hỗ trợ bạn tốt hơn");
-                //}
-                //else
+                string email = GetEmail(roomInfo.accountId);
+                if (email != null)
                 {
                     //Gửi mail đến người dùng thông báo chỉnh sửa
-                    content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/EditPost.html"));
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/EditPost.html"));
                     // chọn loại Email gửi đến người dùng
 
                     content = content.Replace("{{Title}}", roomInfo.title);
@@ -345,10 +323,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
                                                                        //Editor
                     content = content.Replace("{{Editor}}", "....");// thêm Admin: Session.name or User: Account.name
+                    new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
                 }
-
-                string email = GetEmail(roomInfo.accountId);
-                new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
 
                 return Json(new { code = 200, msg = "Cập nhật thành công" }); // Trả về thông báo thành công
             }
@@ -388,17 +364,20 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     return Json(new { code = 500, msg = "Ngày bắt đầu của Room không hợp lệ" });
                 }
-                DateTime expiryDate = room.datebegin.Value.AddDays(30);
-                //Gửi mail đến người dùng
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/DeletePost.html"));
-                // chọn loại Email gửi đến người dùng
-                // thêm thông tin phù hợp
-                content = content.Replace("{{Title}}", room.title);
-                content = content.Replace("{{PostDate}}", (room.datebegin).ToString());
-                content = content.Replace("{{ExpiryDate}}", expiryDate.ToString("dd/MM/yyyy"));
-
+                
                 string email = GetEmail(room.accountId);
-                new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
+                if (email != null)
+                {
+                    DateTime expiryDate = room.datebegin.Value.AddDays(30);
+                    //Gửi mail đến người dùng
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/DeletePost.html"));
+                    // chọn loại Email gửi đến người dùng
+                    // thêm thông tin phù hợp
+                    content = content.Replace("{{Title}}", room.title);
+                    content = content.Replace("{{PostDate}}", (room.datebegin).ToString());
+                    content = content.Replace("{{ExpiryDate}}", expiryDate.ToString("dd/MM/yyyy"));
+                    new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
+                }
 
                 db.RoomInfoes.Remove(room);
                 db.SaveChanges();

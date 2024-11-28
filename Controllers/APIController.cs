@@ -272,7 +272,7 @@ namespace HoiTroWebsite.Controllers
             {
                 int userID = (Session["USer"] as Account).id;
                 List<RoomInfo> rooms = db.RoomInfoes.Where(r => r.accountId == userID)
-                    .Include(ri => ri.RoomImgs)
+                    .Include(ri => ri.RoomImages)
                     .ToList();
                 if (chonDaDuyet == true)
                 {
