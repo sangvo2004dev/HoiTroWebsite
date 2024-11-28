@@ -1,12 +1,16 @@
 ﻿@model List<HoiTroWebsite.Models.News>
 
+@{ 
+    string path_anh_news = "";
+}
 @* lấy 7 cái thôi trong trang chủ *@
 @foreach (var i in Model)
 {
+    path_anh_news = i.imagePath ?? "/Data/default-news.jpg";
     <div class="blog-item">
         <a href="/@ViewBag.meta/@i.meta/@i.id" class="blog-card">
             <div class="blog-container-img">
-                <div class="blog-thumb" style="background-image: url(@i.imagePath);"></div>
+                <div class="blog-thumb" style="background-image: url(@path_anh_news);"></div>
             </div>
             <article>
                 <h1>@i.title</h1>

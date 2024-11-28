@@ -8,11 +8,11 @@ using System.Web.Routing;
 
 namespace HoiTroWebsite.Models
 {
-    public class CustomAuthenticationFilter
+    public class CustomAuthenticationFilter : ActionFilterAttribute, IAuthenticationFilter
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["User"])))
             {
                 filterContext.Result = new HttpUnauthorizedResult();
             }
@@ -25,7 +25,7 @@ namespace HoiTroWebsite.Models
                 filterContext.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                {
-                        { "controller", "Account" },
+                        { "controller", "User" },
                         { "action", "Login" }
                });
 

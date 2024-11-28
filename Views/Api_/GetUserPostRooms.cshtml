@@ -4,7 +4,7 @@
 
 @foreach (var room in Model)
 {
-    string path = "";
+    string path ="/Data/default-room-img.jpg";
     string ten_anh = "";
     int so_luong_anh = 0;
     string gia_tien = new NumberUnit(room.price).RoundWithLargestUnit();
@@ -54,7 +54,7 @@
                                 <span class="@trang_thai.Item1 bg-light rounded p-1" admin-hide="true">@trang_thai.Item2</span>
                             </div>
                         </div>
-                        <span user-hide="true" class="small text-bg-success rounded p-1 d-lg-none">Tin đang hiện</span>
+                        <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1 d-lg-none">@trang_thai_an_tin.Item2</span>
                         @*<p class="text-truncate mb-4 mb-md-0">
                                 There are many variations of passages of Lorem Ipsum available, but the majority
                                 have suffered alteration in some form, by injected humour, or randomised words
@@ -62,7 +62,7 @@
                             </p>*@
                     </div>
                     <div class="border-start col-lg-2 col-xl-2 d-none d-lg-flex d-xl-flex justify-content-center align-items-center">
-                        <span user-hide="true" class="small text-bg-success rounded p-1">Tin đang hiện</span>
+                        <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1">@trang_thai_an_tin.Item2</span>
                     </div>
                     <div class="col-md-6 col-lg-2 col-xl-2 border-sm-start-none border-start mt-3 mt-md-0 d-flex flex-column justify-content-center">
                         <a href="@Url.Action("EditPostRoom", "User", new { id = room.id })" data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-outline-success btn-sm" type="button" data-mdb-button-initialized="true">
@@ -71,9 +71,9 @@
                         @*<button data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-outline-primary btn-sm mt-2" type="button" data-mdb-button-initialized="true">
                             Xem tin đăng
                             </button>*@
-                        <button class="btn btn-outline-light btn-sm mt-2" type="button">
-                            Ẩn tin
-                        </button>
+                        <a class="btn @nut_an_hien.Item1 btn-sm mt-2" href="" type="button">
+                            @nut_an_hien.Item2
+                        </a>
                         <button class="btn btn-outline-danger btn-sm mt-2" type="button">
                             Xóa tin
                         </button>

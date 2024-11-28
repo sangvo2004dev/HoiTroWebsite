@@ -15,7 +15,7 @@ namespace HoiTroWebsite.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
-
+    
     public partial class RoomInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

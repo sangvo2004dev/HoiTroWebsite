@@ -5,6 +5,11 @@
     height: 12px !important;
 }
 
+.size-32 {
+    width: 33px !important;
+    height: 33px !important;
+}
+
 .image__count {
     position: absolute;
     bottom: 5px;

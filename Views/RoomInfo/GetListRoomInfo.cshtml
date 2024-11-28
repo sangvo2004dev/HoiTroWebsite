@@ -1,16 +1,33 @@
-﻿@model List<HoiTroWebsite.Models.RoomInfoViewModel>
+﻿@model List<HoiTroWebsite.Models.RoomInfo>
+@using HoiTroWebsite.HTLibraries;
+
+@{
+    string ten_anh = "";
+    string path_1 = "/Data/default-room-img.jpg";
+    string href = "";
+    string gia_tien = "";
+    string ngay_dang_tin = "";
+}
 
 @foreach (var i in Model)
 {
+    if (i.RoomImgs.Count > 0)
+    {
+        ten_anh = i.RoomImgs.FirstOrDefault().fileName;
+        path_1 = i.RoomImgs.FirstOrDefault().folder + ten_anh;
+    }
+    href = "/" + ViewBag.meta + "/" + i.meta + "/" + i.id.ToString();
+    gia_tien = new NumberUnit(i.price).RoundWithLargestUnit();
+    ngay_dang_tin = StringUI.Convert2DateTimeVietnamese(dateTime: i.datebegin);
+
     <li class="post-item post-id-649687 style-4 clearfix post-vip vipnoibat" style="border-color: #e13427"
         post-id="649687">
         <figure class="post-thumb">
-           <a class="clearfix"
-               href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
+            <a class="clearfix"
+               href="@href">
                 <img class="img-thumb"
-                     src="@i.ImagePath"
-                     data-src="@i.ImagePath"
-                     alt="@i.RoomInfo.title">
+                     src="@path_1"
+                     alt="@ten_anh">
             </a>
             <span class="images-number">14 ảnh</span>
             <span class="has-video"></span>
@@ -20,22 +37,22 @@
         <div class="post-meta">
             <h3 class="post-title">
                 <a style="color: #e13427"
-                   href="/@ViewBag.meta/@i.RoomInfo.meta/@i.RoomInfo.id">
-                    @i.RoomInfo.title
+                   href="@href">
+                    @i.title
                 </a>
             </h3>
             <div class="meta-row clearfix">
-                <span class="post-price">@i.RoomInfo.price triệu/tháng</span><span class="post-acreage">@i.RoomInfo.acreage.ToString()m²</span>
-                <span class="post-location">
-                    <a href="Cho thuê">
-                        @i.RoomInfo.area
-                    </a>
-                </span>
-                <time class="post-time" title="@i.RoomInfo.datebegin">thời gian đến hiện t</time>
+                <span class="post-price">@gia_tien/tháng</span><span class="post-acreage">@i.area m<sup>2</sup></span>
+                @*<span class="post-location">
+                        <a href="Cho thuê">
+                            @i.RoomInfo.area
+                        </a>
+                    </span>*@
+                <time class="post-time" title="@ngay_dang_tin">@ngay_dang_tin</time>
             </div>
             <div class="meta-row clearfix">
                 <p class="post-summary">
-                    @Html.Raw(i.RoomInfo.brief_description.Length > 200 ? i.RoomInfo.brief_description.Substring(0, 200) + "..." : i.RoomInfo.brief_description)
+                    @Html.Raw(i.brief_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
                 </p>
             </div>
             <div class="meta-row clearfix">

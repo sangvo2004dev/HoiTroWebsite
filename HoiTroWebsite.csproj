@@ -167,6 +167,7 @@
     <Compile Include="Areas\Admin\Controllers\RoomInfoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Filter\MyAuthenFilter.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -7369,6 +7370,7 @@
     <Content Include="Content\images\icons8-zalo-50.svg" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\location-icon.svg" />
+    <Content Include="Content\images\logo-web.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\menu_icon.png" />
     <Content Include="Content\images\price-icon.svg" />
@@ -7381,6 +7383,9 @@
     <Content Include="Content\images\search-white-icon.svg" />
     <Content Include="Content\login.logout.css" />
     <Content Include="Content\user.dashboard.css" />
+    <Content Include="Data\default-news.jpg" />
+    <Content Include="Data\default-room-img.jpg" />
+    <Content Include="Data\default-user-avata.svg" />
     <Content Include="dist\assets\compiled\css\app-dark.css" />
     <Content Include="dist\assets\compiled\css\app-dark.rtl.css" />
     <Content Include="dist\assets\compiled\css\app.css" />
@@ -13815,6 +13820,12 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -13826,6 +13837,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\my-js\convert.2.meta.js" />
     <Content Include="Scripts\my-js\hoitro.main.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -13946,6 +13964,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Upload\UploadImage\" />
+    <Folder Include="Data\user\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

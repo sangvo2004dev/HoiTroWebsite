@@ -11,11 +11,14 @@ namespace HoiTroWebsite.Controllers
     public class HomePageController : Controller
     {
         // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
+        private readonly HoiTroEntities _db = new HoiTroEntities();
 
         // GET: Default
         public ActionResult Index()
         {
+            // lấy list loại phòng
+            ViewBag.ListRoomType = _db.RoomTypes.Where(rt => rt.hide == true).OrderBy(rt => rt.order).ToList();
+
             return View();
         }
 
@@ -24,13 +27,9 @@ namespace HoiTroWebsite.Controllers
             if ((id == null) && (metatitle == null))
             {
                 ViewBag.meta = "tin-tuc";
-                var _7TinTuc = from t in _db.News
-                        where t.hide == true
-                        orderby t.order
-                        orderby t.datebegin
-                        select t;
+                var _7TinTuc = _db.News.Where(n => n.hide == true).OrderBy(n => n.order).Take(7).ToList();
 
-                return PartialView(_7TinTuc.Take(7).ToList());
+                return PartialView(_7TinTuc);
             }
             else
             {
@@ -56,24 +55,14 @@ namespace HoiTroWebsite.Controllers
             return PartialView(v.ToList());
         }
         // lấy thông tin phòng trọ
-        public ActionResult HomePageGetRoomInfo(long roomTypeID, string metatitle)
+        public ActionResult HomePageGetRoomInfo(int roomTypeID, string metatitle)
         {
             ViewBag.meta = metatitle;
-            var v = from n in _db.RoomInfoes
-                    join t in _db.RoomTypes on n.roomTypeId equals t.id
-                    join r in _db.Accounts on n.accountId equals r.id
-                    where n.hide == true && n.roomTypeId == roomTypeID
-                    orderby n.datebegin descending
-                    select new RoomInfoViewModel
-                    {
-                        RoomInfo = n,
-                        Account = r,
-                        ImagePath = (from i in _db.RoomImages
-                                     where i.reference_id == n.id
-                                     orderby i.datebegin descending
-                                     select i.file_name).FirstOrDefault()
-                    };
-            return PartialView(v.ToList());
+            var listRoomInfo = _db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
+                .Include(ri => ri.Account)
+                .Include(ri => ri.RoomImages)
+                .ToList();
+            return PartialView(listRoomInfo);
         }
         // contact
         public ActionResult getContact()

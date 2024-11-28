@@ -1,4 +1,6 @@
-﻿@{
+﻿@using HoiTroWebsite.Models
+
+@{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
@@ -14,8 +16,23 @@
         <!-- danh sách phòng -->
         <div class="col-8 pr-2">
             <div class="left-content">
+                @if (ViewBag.ListRoomType != null)
+                {
+                    List<RoomType> rt = ViewBag.ListRoomType as List<RoomType>;
+                    foreach (var i in rt)
+                    {
+                                    <section class="category-section">
+                            <div class="category-title h4">
+                                <a href="@i.meta/@i.meta">@i.title</a>
+                            </div>
+                            <ul class="post-list">
+                                @{ Html.RenderAction("HomePageGetRoomInfo", "HomePage", new { roomTypeID = i.id, metatitle =  i.meta }); }
+                            </ul>
+                        </section>
+                    }
+                }
                 <!--room information-->
-                @{ Html.RenderAction("GetRoomType", "HomePage"); }
+                @*@{ Html.RenderAction("GetRoomType", "HomePage"); }*@
                 <!--end room information-->
             </div>            
         </div>
