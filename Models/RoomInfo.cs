@@ -20,7 +20,7 @@ namespace HoiTroWebsite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RoomInfo()
         {
-            this.RoomImages = new HashSet<RoomImage>();
+            this.RoomImages = new List<RoomImage>();
         }
     
         public int id { get; set; }

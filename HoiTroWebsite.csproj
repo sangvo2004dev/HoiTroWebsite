@@ -189,6 +189,7 @@
     <Compile Include="Models2\CombineVMLoginAndRegister.cs" />
     <Compile Include="Models2\Paginate.cs" />
     <Compile Include="Help\Funtions.cs" />
+    <Compile Include="Models2\PostRoomAdvandceVM.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -252,8 +253,6 @@
     <Compile Include="startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Content\assets\compiled\css\app-dark.css" />
-    <Content Include="Areas\Admin\Content\assets\compiled\css\app-dark.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\app.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\app.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\application-chat.css" />
@@ -5368,7 +5367,6 @@
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\plugins\weekSelect\weekSelect.js" />
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\airbnb.css" />
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\confetti.css" />
-    <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\dark.css" />
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\light.css" />
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\material_blue.css" />
     <Content Include="Areas\Admin\Content\assets\extensions\flatpickr\themes\material_green.css" />
@@ -6167,7 +6165,6 @@
     <Content Include="Areas\Admin\Content\assets\static\images\svg-loaders\spinning-circles.svg" />
     <Content Include="Areas\Admin\Content\assets\static\images\svg-loaders\tail-spin.svg" />
     <Content Include="Areas\Admin\Content\assets\static\images\svg-loaders\three-dots.svg" />
-    <Content Include="Areas\Admin\Content\assets\static\js\components\dark.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\components\sidebar.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\helper\isDesktop.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\initTheme.js" />
@@ -7389,8 +7386,6 @@
     <Content Include="Data\default-news.jpg" />
     <Content Include="Data\default-room-img.jpg" />
     <Content Include="Data\default-user-avata.svg" />
-    <Content Include="dist\assets\compiled\css\app-dark.css" />
-    <Content Include="dist\assets\compiled\css\app-dark.rtl.css" />
     <Content Include="dist\assets\compiled\css\app.css" />
     <Content Include="dist\assets\compiled\css\app.rtl.css" />
     <Content Include="dist\assets\compiled\css\application-chat.css" />
@@ -12475,7 +12470,6 @@
     <Content Include="dist\assets\extensions\flatpickr\plugins\weekSelect\weekSelect.js" />
     <Content Include="dist\assets\extensions\flatpickr\themes\airbnb.css" />
     <Content Include="dist\assets\extensions\flatpickr\themes\confetti.css" />
-    <Content Include="dist\assets\extensions\flatpickr\themes\dark.css" />
     <Content Include="dist\assets\extensions\flatpickr\themes\light.css" />
     <Content Include="dist\assets\extensions\flatpickr\themes\material_blue.css" />
     <Content Include="dist\assets\extensions\flatpickr\themes\material_green.css" />
@@ -13274,7 +13268,6 @@
     <Content Include="dist\assets\static\images\svg-loaders\spinning-circles.svg" />
     <Content Include="dist\assets\static\images\svg-loaders\tail-spin.svg" />
     <Content Include="dist\assets\static\images\svg-loaders\three-dots.svg" />
-    <Content Include="dist\assets\static\js\components\dark.js" />
     <Content Include="dist\assets\static\js\components\sidebar.js" />
     <Content Include="dist\assets\static\js\helper\isDesktop.js" />
     <Content Include="dist\assets\static\js\initTheme.js" />
@@ -13813,6 +13806,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\RoomInfoes\DuyetBai.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\GetRoomInfoes.cshtml" />
+    <Content Include="Areas\Admin\Views\RoomInfoes\SangCreate.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

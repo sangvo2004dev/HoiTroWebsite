@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
+@{ 
+    string new_img_path = "";
+    string file_name = "";
+}
+
 <div class="container">
 
     <nav aria-label="breadcrumb">
@@ -26,12 +31,13 @@
                     <ul class="blog-listing clearfix">
                         @foreach (var i in Model)
                         {
+                            new_img_path = i.imagePath ?? "/Content/images/default-news.jpg";
+                            file_name = i.file_name ?? "default-news.jpg";
                             <li class="article-item clearfix">
                                 <a href="/tin-tuc/@i.meta/@i.id">
                                     <figure>
                                         <img class="lazy_done"
-                                             src="@i.imagePath"
-                                             data-src="@i.imagePath"
+                                             src="@new_img_path" alt="@file_name"
                                              data-loaded="true">
                                     </figure>
                                     <div class="article-meta">

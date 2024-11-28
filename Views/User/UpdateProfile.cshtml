@@ -1,8 +1,8 @@
 ﻿@model HoiTroWebsite.Models2.ProfileVM
 
 @{
+    ViewBag.Title = "Quản lý tài khoản";
     Layout = "~/Views/Shared/_UserManagement.cshtml";
-
 }
 
 @section css {
@@ -15,7 +15,11 @@
 
 @section ql_tai_khoan_active {active}
 
-<div class="bg-white mb-3 sticky-lg-top">
+@{ 
+    string avatarPath = ViewBag.Account.imagePath ?? "/Data/default-user-avata.svg";
+}
+
+<div class="bg-white mb-3 sticky-lg-top z-1">
     <h5 class="m-3">Quản lý tài khoản</h5>
     <ul class="nav nav-tabs ms-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -38,11 +42,11 @@
                         <div class="row mb-3 bg-white rounded p-3">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="avatar avatar-xl me-3">
-                                    <img src="https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/11/19/green-screen-wall_1732017322.jpg" alt="" style="object-fit: cover;">
+                                    <img src="@avatarPath" alt="" style="object-fit: cover;">
                                 </div>
                                 <div class="me-3">
-                                    <h5 class="mb-0">Võ</h5>
-                                    <h6 class="mb-0" style="font-weight: 100;">0369566322</h6>
+                                    <h5 class="mb-0">@Model.Ten_lien_he</h5>
+                                    <h6 class="mb-0" style="font-weight: 100;">@Model.So_dien_thoai</h6>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -54,25 +58,26 @@
                             </div>
                             <div class="col-md-4">
                                 @*@Html.LabelFor(model => model.Ten_lien_he, "Tiên liên hệ")*@
-                                <label for="first-name-horizontal-icon">Tên liên hệ</label>
+                                <label for="Ten_lien_he">Tên liên hệ</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="tenLienHe">
+                                        <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="Ten_lien_he" value="@Model.Ten_lien_he">
                                         <div class="form-control-icon">
                                             <i class="bi bi-person"></i>
                                         </div>
                                     </div>
+                                    @Html.ValidationMessageFor(model => model.Ten_lien_he)
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="soDienThoai">Số điện thoại</label>
+                                <label for="So_dien_thoai">Số điện thoại</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="number" class="form-control fs-5-5" id="soDienThoai" readonly>
+                                        <input type="number" class="form-control fs-5-5" id="So_dien_thoai" readonly value="@Model.So_dien_thoai">
                                         <div class="form-control-icon">
                                             <i class="bi bi-phone"></i>
                                         </div>
@@ -80,12 +85,12 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="linkFacebook">Link facebook</label>
+                                <label for="Facebook_link">Link facebook</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="linkFacebook">
+                                        <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="Facebook_link" value="@Model.Facebook_link">
                                         <div class="form-control-icon">
                                             <i class="bi bi-facebook"></i>
                                         </div>
@@ -93,12 +98,12 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="email">Email</label>
+                                <label for="Email">Email</label>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="email" class="form-control fs-5-5" placeholder="Email" id="email">
+                                        <input type="email" class="form-control fs-5-5" placeholder="Email" id="Email" value="@Model.Email">
                                         <div class="form-control-icon">
                                             <i class="bi bi-envelope"></i>
                                         </div>
@@ -203,7 +208,7 @@
 
 @section script {
     <script>
-        $('#soDienThoai').click(() => {
+        $('#So_dien_thoai').click(() => {
             $('li a[href="#doi-so-dien-thoai"]').tab('show');
         });
         $('#matKhau').click(() => {

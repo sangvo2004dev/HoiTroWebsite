@@ -11,27 +11,24 @@ namespace HoiTroWebsite.Controllers
     public class NewsController : Controller
     {
         // Khai báo
-        private readonly HoiTroEntities _db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         public ActionResult Index()
         {
-            var v = (from t in _db.News
-                     orderby t.order
-                     orderby t.datebegin
-                     select t).AsNoTracking();
+            var news = db.News.Where(n => n.hide == true).ToList();    
 
-            return View(v.ToList());
+            return View(news);
         }
 
         // lấy các tin tức theo loại
         public ActionResult GetNewsFollowType(string meta)
         {
-            ViewBag.title = (from t in _db.NewsTypes
+            ViewBag.title = (from t in db.NewsTypes
                             where t.meta == meta
                             select t.title).First();
 
-            var v = (from t in _db.News
-                     join s in _db.NewsTypes on t.newsTypeId equals s.id
+            var v = (from t in db.News
+                     join s in db.NewsTypes on t.newsTypeId equals s.id
                      where t.hide == true && s.meta == meta
                      orderby t.order descending
                      orderby t.datebegin
@@ -43,8 +40,8 @@ namespace HoiTroWebsite.Controllers
         // chi tiết tin trên
         public ActionResult NewsDetail(long id)
         {
-            var models = (from t in _db.News
-                    join s in _db.NewsTypes on t.newsTypeId equals s.id
+            var models = (from t in db.News
+                    join s in db.NewsTypes on t.newsTypeId equals s.id
                     where t.id == id
                     select new
                     {

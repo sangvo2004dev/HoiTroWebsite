@@ -163,18 +163,21 @@ namespace HoiTroWebsite.Controllers
 
 
         // cho user cập nhật thông tin cá nhân
+        [CustomAuthenticationFilter]
         [Route("quan-ly/cap-nhat-thong-tin-tai-khoan")]
         [HttpGet]
         public ActionResult UpdateProfile()
         {
-            if (Session["User"] == null)
-            {
-                Session["User"] = db.Accounts.SingleOrDefault(a => a.id == 11);
-            }
             var account = Session["User"] as Account;
-
-            ViewBag.id = account.id;
-            return View(account);
+            ProfileVM profileVM = new ProfileVM
+            {
+                Ten_lien_he = account.name,
+                Facebook_link = account.FBlink,
+                Email = account.email,
+                So_dien_thoai = account.phoneNum,
+            };
+            ViewBag.Account = account;
+            return View(profileVM);
         }
 
         [CustomAuthenticationFilter]

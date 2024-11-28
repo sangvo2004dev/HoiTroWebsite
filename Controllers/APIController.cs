@@ -276,6 +276,29 @@ namespace HoiTroWebsite.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/user/phone-and-name")]
+        public ActionResult GetPhoneAndName(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.ExpectationFailed;
+                return Json(new { statusCode = Response.StatusCode, message = "Mã người dùng rỗng" }, JsonRequestBehavior.AllowGet);
+            }
+            try
+            {
+                var account = db.Accounts.Where(a => a.id == id).SingleOrDefault();
+                Response.StatusCode = 200;
+                return Json(new { ten_lien_he = account.name, phone = account.phoneNum }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { statusCode = Response.StatusCode, message = "Vui lòng thử lại sau" , error = ex.ToString() }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
         private string RenderPartialViewToString(string viewName, object model)
         {
             ViewData.Model = model;

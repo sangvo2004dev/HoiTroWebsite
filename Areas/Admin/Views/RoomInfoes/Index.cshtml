@@ -15,7 +15,7 @@
                 @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.RoomType, " --- Tất cả phòng cho thuê --- ", new { @class = "form-control", @id = "RoomType" })
             </div>
             <button class="btn btn-success text-white" id="btnAdd">
-                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">
+                <a href="" action-param="@Url.Action("SangCreate", "RoomInfoes")" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">
                     <i class="fa fa-plus" aria-hidden="true"></i>Tạo thêm
                 </a>
             </button>
@@ -99,30 +99,43 @@
         })
         // Create
         $('#btnAdd').click(function () {
-            $.ajax({
-                url: '/Admin/RoomInfoes/Create',
-                type: 'get',
-                success: function (data) {
-                    //console.log(data);
-                    $('#modalRoom').find('.modal-body').html(data);
-                    // dùng ckeditor
-                    $('#form-create').find('textarea').each(function () {
-                        var id = $(this).attr('id');
-                        // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
-                        if (CKEDITOR.instances[id]) {
-                            CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
-                        }
-                        // Tạo mới CKEditor cho textarea
-                        CKEDITOR.replace(id, {
-                            height: '400px',
-                            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
-                            language: 'vi',
-                            filebrowserUploadUrl: '/Admin/Upload/UploadImage',
-                            filebrowserUploadMethod: 'form'
-                        });
-                    });
-                },
+            console.log('create');
+            const action_param = $(this).find('a').attr('action-param');
+            const iframe = $('<iframe>', {
+                src: action_param,  // Địa chỉ URL
+                width: '100%',  // Chiều rộng iframe
+                height: '100%', // Chiều cao iframe
+                frameborder: 0, // Bỏ viền
+                //allowfullscreen: true, // Cho phép chế độ toàn màn hình
+                //class: 'responsive-iframe' // Thêm lớp để làm iframe phản hồi
             });
+
+            $('#modalRoom').find('.modal-body').html(iframe);
+            $(self.modal).find('.modal-title').text('Đăng bài mới');
+            //$.ajax({
+            //    url: '/Admin/RoomInfoes/Create',
+            //    type: 'get',
+            //    success: function (data) {
+            //        //console.log(data);
+            //        $('#modalRoom').find('.modal-body').html(data);
+            //        // dùng ckeditor
+            //        $('#form-create').find('textarea').each(function () {
+            //            var id = $(this).attr('id');
+            //            // Kiểm tra nếu CKEditor đã được khởi tạo, nếu có thì hủy nó
+            //            if (CKEDITOR.instances[id]) {
+            //                CKEDITOR.instances[id].destroy(true); // Hủy instance cũ
+            //            }
+            //            // Tạo mới CKEditor cho textarea
+            //            CKEDITOR.replace(id, {
+            //                height: '400px',
+            //                customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+            //                language: 'vi',
+            //                filebrowserUploadUrl: '/Admin/Upload/UploadImage',
+            //                filebrowserUploadMethod: 'form'
+            //            });
+            //        });
+            //    },
+            //});
         })
         // Detail
         $(document).on('click', '.btnDetail', function () {
@@ -519,7 +532,6 @@
 
                     $('#modalRoom').find('.modal-body').html(iframe);
                     $(self.modal).find('.modal-title').text('Sửa bài đăng');
-
                 });
             },
             init: function () {

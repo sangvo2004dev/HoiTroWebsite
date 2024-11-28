@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
+@{
+
+    string new_img_path = Model.imagePath ?? "/Content/images/default-news.jpg";
+    string file_name = Model.file_name ?? "default-news.jpg";
+}
+
 @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/Scripts/js")*@
 
@@ -31,7 +37,7 @@
                     </div>
                     <div class="article-main-content">
                         <figure style="text-align: center;">
-                            <img src="@Model.imagePath" alt="@Model.title" width="960" height="720">
+                            <img src="@new_img_path" alt="@Model.title" width="960" height="720">
                             <figcaption>
                                 <em>@Model.title</em>
                             </figcaption>
@@ -49,7 +55,7 @@
         <div class="col-4 pl-2">
             <div class="right-content">
 
-                @{ 
+                @{
                     Html.RenderAction("GetLatestRoomList", "MainPartial");
                     Html.RenderAction("GetMiniNews", "MainPartial");
                 }

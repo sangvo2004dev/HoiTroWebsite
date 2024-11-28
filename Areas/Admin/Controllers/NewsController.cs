@@ -123,6 +123,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
                     news.file_name = "/Content/images" + "/" + filename; //Lưu ý
+                    news.imagePath = "/Content/images" + "/" + filename;
                 }
                 else
                 {
@@ -175,6 +176,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
                     temp.file_name = "/Content/images" + "/" + filename; // Lưu ý
+                    temp.imagePath = "/Content/images" + "/" + filename;
                 }
                 temp.title = news.title;
                 temp.brief_description = news.brief_description;

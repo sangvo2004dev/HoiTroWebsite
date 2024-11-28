@@ -14,7 +14,7 @@ namespace HoiTroWebsite.Controllers
         // xem tất cả phòng theo 1 loại
         public ActionResult Index()
         {
-            var listRoomInfo = db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == false)
+            var listRoomInfo = db.RoomInfoes.Where(ri => ri.hide == true && ri.isApproved == true)
                 .Include(ri => ri.Account)
                 .Include(ri => ri.RoomImages)
                 .ToList();
@@ -35,7 +35,7 @@ namespace HoiTroWebsite.Controllers
         // lấy thông tin danh sách phòng theo loại
         public ActionResult GetListRoomInfoFollowType(string roomTypeMeta)
         {
-            var v = db.RoomInfoes.Where(rt => rt.meta ==  roomTypeMeta);
+            var v = db.RoomTypes.Where(rt => rt.meta ==  roomTypeMeta).FirstOrDefault();
             return View(v);
         }
 
@@ -44,10 +44,7 @@ namespace HoiTroWebsite.Controllers
         {
             ViewBag.meta = metaTitle;
 
-            var listRoomInfo = db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
-                .Include(ri => ri.Account)
-                .Include(ri => ri.RoomImages.OrderBy(ri2 => ri2.order).ToList())
-                .ToList();
+            var listRoomInfo = db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true).ToList();                
 
             return PartialView(listRoomInfo);
         }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -14,8 +12,6 @@ using HoiTroWebsite.Hubs;
 using Microsoft.AspNet.SignalR;
 using HoiTroWebsite.Models2;
 using HoiTroWebsite.HTLibraries;
-using System.Threading;
-using System.Web.Helpers;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
@@ -86,7 +82,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             Console.WriteLine("One");
             try
             {
-
                 Console.WriteLine(getTitleRoomType(1))                ;
             }
             catch (Exception ex)
@@ -240,6 +235,55 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult SangCreate()
+        {
+            ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title");
+            PostRoomAdvandceVM postRoomVM = new PostRoomAdvandceVM
+            {
+                doi_tuong = "",
+            };
+
+            return View(postRoomVM);
+        }
+
+        [HttpPost]
+        public ActionResult SangCreate(PostRoomAdvandceVM postRoomVM, string[] file_name_list)
+        {
+            if (ModelState.IsValid)
+            {
+                RoomInfo roomInfo = new RoomInfo
+                {
+                    title = postRoomVM.tieu_de,
+                    meta = postRoomVM.tieu_de_meta,
+                    roomTypeId = postRoomVM.loai_chuyen_muc,
+                    price = postRoomVM.gia,
+                    acreage = postRoomVM.dien_tich.ToString(),
+                    location = postRoomVM.dia_chi,
+                    detail_description = postRoomVM.noi_dung,
+                    datebegin = DateTime.Now,
+                    hide = true,
+                    isApproved = false,
+                    tenant = postRoomVM.doi_tuong.Replace("-", "").Trim(),
+                    accountId = int.Parse(postRoomVM.User_id),
+                };
+                try
+                {
+                    db.RoomInfoes.Add(roomInfo);
+                    db.SaveChanges();
+                    HandleUrlFile.SaveFileUrl(file_name_list, roomInfo.id);
+                    Response.StatusCode = 200;
+                    return Json(new { statusCode = Response.StatusCode, message = "Đăng tin đăng thành công" });
+                }
+                catch (Exception ex)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return Json(new { statusCode = Response.StatusCode, message = "Vui lòng thử lại sau", error = ex.ToString() });
+                }
+            }
+            Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            return Json(new { statusCode = Response.StatusCode, message = "Vui lòng thử lại sau" });
+        }
 
         public RoomInfo getById(long id)
         {
