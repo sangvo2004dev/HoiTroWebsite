@@ -67,15 +67,15 @@ CKFinder.lang['pt-br'] =
 	DateTime : 'dd/mm/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Pastas',
-	FolderLoading	: 'Carregando...',
-	FolderNew		: 'Favor informar o nome da nova pasta: ',
-	FolderRename	: 'Favor informar o nome da nova pasta: ',
-	FolderDelete	: 'Você tem certeza que deseja apagar a pasta "%1"?',
-	FolderRenaming	: ' (Renomeando...)',
-	FolderDeleting	: ' (Apagando...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Pastas',
+	imagePathLoading	: 'Carregando...',
+	imagePathNew		: 'Favor informar o nome da nova pasta: ',
+	imagePathRename	: 'Favor informar o nome da nova pasta: ',
+	imagePathDelete	: 'Você tem certeza que deseja apagar a pasta "%1"?',
+	imagePathRenaming	: ' (Renomeando...)',
+	imagePathDeleting	: ' (Apagando...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Favor informar o nome do novo arquivo: ',
@@ -89,10 +89,10 @@ CKFinder.lang['pt-br'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Cesta',
+	BasketimagePath		: 'Cesta',
 	BasketClear			: 'Limpa Cesta',
 	BasketRemove		: 'Remove da cesta',
-	BasketOpenFolder	: 'Abre a pasta original',
+	BasketOpenimagePath	: 'Abre a pasta original',
 	BasketTruncateConfirm : 'Remover todos os arquivas da cesta?',
 	BasketRemoveConfirm	: 'Remover o arquivo "%1" da cesta?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['pt-br'] =
 	View			: 'Visualizar',
 	Download		: 'Download',
 
-	NewSubFolder	: 'Nova sub-pasta',
+	NewSubimagePath	: 'Nova sub-pasta',
 	Rename			: 'Renomear',
 	Delete			: 'Apagar',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['pt-br'] =
 	UploadBtnCancel		: 'Cancelar',
 
 	UploadNoFileMsg		: 'Favor selecionar o arquivo no seu computador.',
-	UploadNoFolder		: 'Favor selecionar a pasta antes the enviar o arquivo.',
+	UploadNoimagePath		: 'Favor selecionar a pasta antes the enviar o arquivo.',
 	UploadNoPerms		: 'Não é permitido o envio de arquivos.',
 	UploadUnknError		: 'Erro no envio do arquivo.',
 	UploadExtIncorrect	: 'A extensão deste arquivo não é permitida nesat pasta.',
@@ -236,12 +236,12 @@ CKFinder.lang['pt-br'] =
 	{
 		FileEmpty		: 'O nome do arquivo não pode ser vazio.',
 		FileExists		: 'O nome %s já é em uso.',
-		FolderEmpty		: 'O nome da pasta não pode ser vazio.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'O nome da pasta não pode ser vazio.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'O nome do arquivo não pode conter nenhum desses caracteres: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'O nome da pasta não pode conter nenhum desses caracteres: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'O nome da pasta não pode conter nenhum desses caracteres: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Não foi possível abrir o arquivo em outra janela. Configure seu navegador e desabilite o bloqueio a popups para esse site.',
 		XmlError		: 'Não foi possível carregar a resposta XML enviada pelo servidor.',

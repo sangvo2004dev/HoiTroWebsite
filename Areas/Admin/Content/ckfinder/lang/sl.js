@@ -67,15 +67,15 @@ CKFinder.lang['sl'] =
 	DateTime : 'd.m.yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Mape',
-	FolderLoading	: 'Nalagam...',
-	FolderNew		: 'Vnesite ime za novo mapo: ',
-	FolderRename	: 'Vnesite ime nove mape: ',
-	FolderDelete	: 'Ali ste prepričani, da želite zbrisati mapo "%1"?',
-	FolderRenaming	: ' (Preimenujem...)',
-	FolderDeleting	: ' (Brišem...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Mape',
+	imagePathLoading	: 'Nalagam...',
+	imagePathNew		: 'Vnesite ime za novo mapo: ',
+	imagePathRename	: 'Vnesite ime nove mape: ',
+	imagePathDelete	: 'Ali ste prepričani, da želite zbrisati mapo "%1"?',
+	imagePathRenaming	: ' (Preimenujem...)',
+	imagePathDeleting	: ' (Brišem...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Vnesite novo ime datoteke: ',
@@ -89,10 +89,10 @@ CKFinder.lang['sl'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Koš',
+	BasketimagePath		: 'Koš',
 	BasketClear			: 'Izprazni koš',
 	BasketRemove		: 'Odstrani iz koša',
-	BasketOpenFolder	: 'Odpri izvorno mapo',
+	BasketOpenimagePath	: 'Odpri izvorno mapo',
 	BasketTruncateConfirm : 'Ali res želite odstraniti vse datoteke iz koša?',
 	BasketRemoveConfirm	: 'Ali res želite odstraniti datoteko "%1" iz koša?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['sl'] =
 	View			: 'Predogled',
 	Download		: 'Prenesi na svoj računalnik',
 
-	NewSubFolder	: 'Nova podmapa',
+	NewSubimagePath	: 'Nova podmapa',
 	Rename			: 'Preimenuj',
 	Delete			: 'Zbriši',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['sl'] =
 	UploadBtnCancel		: 'Prekliči',
 
 	UploadNoFileMsg		: 'Prosimo izberite datoteko iz svojega računalnika za prenos na strežnik.',
-	UploadNoFolder		: 'Izberite mapo v katero se bo naložilo datoteko!',
+	UploadNoimagePath		: 'Izberite mapo v katero se bo naložilo datoteko!',
 	UploadNoPerms		: 'Nalaganje datotek ni dovoljeno.',
 	UploadUnknError		: 'Napaka pri pošiljanju datoteke.',
 	UploadExtIncorrect	: 'V tej mapi ta vrsta datoteke ni dovoljena.',
@@ -236,12 +236,12 @@ CKFinder.lang['sl'] =
 	{
 		FileEmpty		: 'Ime datoteke ne more biti prazno.',
 		FileExists		: 'Datoteka %s že obstaja.',
-		FolderEmpty		: 'Mapa ne more biti prazna.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Mapa ne more biti prazna.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Ime datoteke ne sme vsebovati naslednjih znakov: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Ime mape ne sme vsebovati naslednjih znakov: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Ime mape ne sme vsebovati naslednjih znakov: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Datoteke ni možno odpreti v novem oknu. Prosimo nastavite svoj brskalnik tako, da bo dopuščal odpiranje oken (popups) oz. izklopite filtre za blokado odpiranja oken.',
 		XmlError		: 'Nalaganje XML odgovora iz strežnika ni uspelo.',

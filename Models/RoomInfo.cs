@@ -22,22 +22,22 @@ namespace HoiTroWebsite.Models
         public RoomInfo()
         {
             this.RoomImages = new HashSet<RoomImage>();
-            this.RoomImgs = new HashSet<RoomImg>();
         }
     
         public int id { get; set; }
+        [Required(ErrorMessage = "Tiêu đề không được để trống.")]
         public string title { get; set; }
-        public string brief_description { get; set; }
+        [Required(ErrorMessage = "Chi tiết không được để trống.")]
         public string detail_description { get; set; }
+        [Required(ErrorMessage = "Giá cho thuê không được để trống.")]
         public string price { get; set; }
-        public Nullable<double> acreage { get; set; }
-        public string area { get; set; }
+        public string acreage { get; set; }
         public string location { get; set; }
         public string tenant { get; set; }
         public string nameInfor { get; set; }
         public string phoneInfor { get; set; }
         public string zaloInfor { get; set; }
-        public bool isApproved { get; set; }
+        public Nullable<bool> isApproved { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
@@ -45,19 +45,9 @@ namespace HoiTroWebsite.Models
         public Nullable<int> roomTypeId { get; set; }
         public Nullable<int> accountId { get; set; }
     
+        public virtual RoomType RoomType { get; set; }
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomImage> RoomImages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomImg> RoomImgs { get; set; }
-        public virtual RoomType RoomType { get; set; }
-        // Danh sách ảnh tạm thời
-        public List<RoomImageViewModel> Images { get; set; }
-    }
-    public class RoomImageViewModel
-    {
-        public HttpPostedFileBase File { get; set; }
-        public string Meta { get; set; }
-        public bool Hide { get; set; }
     }
 }

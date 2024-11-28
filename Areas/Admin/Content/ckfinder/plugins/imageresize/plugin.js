@@ -27,14 +27,14 @@ CKFinder.addPlugin( 'imageresize', {
 	uiReady : function( api )
 	{
 		var regexExt = /^(.*)\.([^\.]+)$/,
-			regexFileName = /^(.*?)(?:_\d+x\d+)?\.([^\.]+)$/,
+			regexfile_name = /^(.*?)(?:_\d+x\d+)?\.([^\.]+)$/,
 			regexGetSize = /^\s*(\d+)(px)?\s*$/i,
 			regexGetSizeOrEmpty = /(^\s*(\d+)(px)?\s*$)|^$/i,
 			imageDimension = { width : 0, height : 0 },
 			file,
 			doc;
 
-		var updateFileName = function( dialog )
+		var updatefile_name = function( dialog )
 		{
 			var width = dialog.getValueOf( 'tab1', 'width' ) || 0,
 				height = dialog.getValueOf( 'tab1', 'height' ) || 0,
@@ -42,8 +42,8 @@ CKFinder.addPlugin( 'imageresize', {
 
 			if ( width && height )
 			{
-				var matches = file.name.match( regexFileName );
-				dialog.setValueOf( 'tab1', 'fileName', matches[1] + '_' + width + 'x' + height );
+				var matches = file.name.match( regexfile_name );
+				dialog.setValueOf( 'tab1', 'file_name', matches[1] + '_' + width + 'x' + height );
 				e.getElement().show();
 			}
 			else
@@ -127,7 +127,7 @@ CKFinder.addPlugin( 'imageresize', {
 				}
 			}
 
-			updateFileName( dialog );
+			updatefile_name( dialog );
 		};
 
 		var resetSize = function( dialog )
@@ -136,7 +136,7 @@ CKFinder.addPlugin( 'imageresize', {
 			{
 				dialog.setValueOf( 'tab1', 'width', imageDimension.width );
 				dialog.setValueOf( 'tab1', 'height', imageDimension.height );
-				updateFileName( dialog );
+				updatefile_name( dialog );
 			}
 		};
 
@@ -244,7 +244,7 @@ CKFinder.addPlugin( 'imageresize', {
 					};
 
 					api.connector.sendCommand( 'ImageResizeInfo', {
-							fileName : file.name
+							file_name : file.name
 						},
 						function( xml )
 						{
@@ -286,8 +286,8 @@ CKFinder.addPlugin( 'imageresize', {
 								checkThumbs( 'largeThumb', thumbLarge );
 							}
 						},
-						file.folder.type,
-						file.folder
+						file.imagePath.type,
+						file.imagePath
 					);
 
 					if ( !thumbSmall )
@@ -302,10 +302,10 @@ CKFinder.addPlugin( 'imageresize', {
 					if ( !thumbSmall && !thumbMedium && !thumbLarge )
 						dialog.getContentElement( 'tab1', 'thumbsLabel' ).getElement().hide();
 
-					dialog.setValueOf( 'tab1', 'fileName', file.name );
-					dialog.getContentElement( 'tab1', 'fileNameExt' ).getElement().setHtml( '.' + file.ext );
+					dialog.setValueOf( 'tab1', 'file_name', file.name );
+					dialog.getContentElement( 'tab1', 'file_nameExt' ).getElement().setHtml( '.' + file.ext );
 					dialog.getContentElement( 'tab1', 'width' ).focus();
-					dialog.getContentElement( 'tab1', 'fileName').setValue( '' );
+					dialog.getContentElement( 'tab1', 'file_name').setValue( '' );
 					dialog.getContentElement( 'tab1', 'createNewBox' ).getElement().hide();
 					updateImgDimension( 0,0 );
 				},
@@ -317,7 +317,7 @@ CKFinder.addPlugin( 'imageresize', {
 						small = dialog.getValueOf( 'tab1', 'smallThumb' ),
 						medium = dialog.getValueOf( 'tab1', 'mediumThumb' ),
 						large = dialog.getValueOf( 'tab1', 'largeThumb' ),
-						fileName = dialog.getValueOf( 'tab1', 'fileName' ),
+						file_name = dialog.getValueOf( 'tab1', 'file_name' ),
 						createNew = dialog.getValueOf( 'tab1', 'createNew' );
 
 					if ( width && !height )
@@ -340,13 +340,13 @@ CKFinder.addPlugin( 'imageresize', {
 					if ( ( width && height ) || small || medium || large )
 					{
 						if ( !createNew )
-							fileName = file.name;
+							file_name = file.name;
 
 						api.connector.sendCommandPost( 'ImageResize', null, {
 								width : width,
 								height : height,
-								fileName : file.name,
-								newFileName : fileName + '.' + file.ext,
+								file_name : file.name,
+								newfile_name : file_name + '.' + file.ext,
 								overwrite : createNew ? 0 : 1,
 								small : small ? 1 : 0,
 								medium : medium ? 1 : 0,
@@ -357,10 +357,10 @@ CKFinder.addPlugin( 'imageresize', {
 								if ( xml.checkError() )
 									return;
 								api.openMsgDialog( '', api.lang.Imageresize.resizeSuccess );
-								api.refreshOpenedFolder();
+								api.refreshOpenedimagePath();
 							},
-							file.folder.type,
-							file.folder
+							file.imagePath.type,
+							file.imagePath
 						);
 					}
 					return undefined;
@@ -557,7 +557,7 @@ CKFinder.addPlugin( 'imageresize', {
 																			if ( !isNaN( height ) )
 																			{
 																				this.setValueOf( 'tab1', 'height', Math.round( height ) );
-																				updateFileName( dialog );
+																				updatefile_name( dialog );
 																			}
 																		}
 																		evt.data.preventDefault();
@@ -594,13 +594,13 @@ CKFinder.addPlugin( 'imageresize', {
 														onChange : function()
 														{
 															var dialog = this.getDialog();
-															var filenameInput = dialog.getContentElement( 'tab1', 'fileName' );
-															if ( filenameInput )
+															var file_nameInput = dialog.getContentElement( 'tab1', 'file_name' );
+															if ( file_nameInput )
 															{
 																if ( !this.getValue() )
-																	filenameInput.getElement().hide();
+																	file_nameInput.getElement().hide();
 																else
-																	filenameInput.getElement().show();
+																	file_nameInput.getElement().show();
 															}
 														}
 													},
@@ -629,12 +629,12 @@ CKFinder.addPlugin( 'imageresize', {
 																	}
 																	return true;
 																},
-																id : 'fileName'
+																id : 'file_name'
 															},
 															{
 																type : 'html',
 																html : '',
-																id : 'fileNameExt',
+																id : 'file_nameExt',
 																onLoad : function()
 																{
 																	this.getElement().getParent().setStyles( { 'vertical-align' : 'bottom', 'padding-bottom' : '2px' } );
@@ -663,9 +663,9 @@ CKFinder.addPlugin( 'imageresize', {
 			function ( file )
 			{
 				// Disable for files other than images.
-				if ( !file.isImage() || !api.getSelectedFolder().type )
+				if ( !file.isImage() || !api.getSelectedimagePath().type )
 					return false;
-				if ( file.folder.acl.fileDelete && file.folder.acl.fileUpload )
+				if ( file.imagePath.acl.fileDelete && file.imagePath.acl.fileUpload )
 					return true;
 				else
 					return -1;

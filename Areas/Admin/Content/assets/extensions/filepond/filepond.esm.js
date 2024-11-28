@@ -2083,7 +2083,7 @@ const queries = state => ({
 
     GET_ITEM_NAME: query => {
         const item = getItemByQuery(state.items, query);
-        return item ? item.filename : null;
+        return item ? item.file_name : null;
     },
 
     GET_ITEM_SIZE: query => {
@@ -2180,14 +2180,14 @@ const isBase64DataURI = str =>
         str
     );
 
-const getFilenameFromURL = url =>
+const getfile_nameFromURL = url =>
     `${url}`
         .split('/')
         .pop()
         .split('?')
         .shift();
 
-const getExtensionFromFilename = name => name.split('.').pop();
+const getExtensionFromfile_name = name => name.split('.').pop();
 
 const guesstimateExtension = type => {
     // if no extension supplied, exit here
@@ -2240,7 +2240,7 @@ const getDateString = (date = new Date()) =>
         '00'
     )}`;
 
-const getFileFromBlob = (blob, filename, type = null, extension = null) => {
+const getFileFromBlob = (blob, file_name, type = null, extension = null) => {
     const file =
         typeof type === 'string'
             ? blob.slice(0, blob.size, type)
@@ -2250,17 +2250,17 @@ const getFileFromBlob = (blob, filename, type = null, extension = null) => {
     // copy relative path
     if (blob._relativePath) file._relativePath = blob._relativePath;
 
-    // if blob has name property, use as filename if no filename supplied
-    if (!isString(filename)) {
-        filename = getDateString();
+    // if blob has name property, use as file_name if no file_name supplied
+    if (!isString(file_name)) {
+        file_name = getDateString();
     }
 
-    // if filename supplied but no extension and filename has extension
-    if (filename && extension === null && getExtensionFromFilename(filename)) {
-        file.name = filename;
+    // if file_name supplied but no extension and file_name has extension
+    if (file_name && extension === null && getExtensionFromfile_name(file_name)) {
+        file.name = file_name;
     } else {
         extension = extension || guesstimateExtension(file.type);
-        file.name = filename + (extension ? '.' + extension : '');
+        file.name = file_name + (extension ? '.' + extension : '');
     }
 
     return file;
@@ -2322,17 +2322,17 @@ const getBlobFromBase64DataURI = dataURI => {
     return getBlobFromByteStringWithMimeType(byteString, mimeType);
 };
 
-const getFileFromBase64DataURI = (dataURI, filename, extension) => {
-    return getFileFromBlob(getBlobFromBase64DataURI(dataURI), filename, null, extension);
+const getFileFromBase64DataURI = (dataURI, file_name, extension) => {
+    return getFileFromBlob(getBlobFromBase64DataURI(dataURI), file_name, null, extension);
 };
 
-const getFileNameFromHeader = header => {
+const getfile_nameFromHeader = header => {
     // test if is content disposition header, if not exit
     if (!/^content-disposition:/i.test(header)) return null;
 
-    // get filename parts
+    // get file_name parts
     const matches = header
-        .split(/filename=|filename\*=.+''/)
+        .split(/file_name=|file_name\*=.+''/)
         .splice(1)
         .map(name => name.trim().replace(/^["']|[;"']{0,2}$/g, ''))
         .filter(name => name.length);
@@ -2365,7 +2365,7 @@ const getFileInfoFromHeaders = headers => {
 
     const rows = headers.split('\n');
     for (let header of rows) {
-        const name = getFileNameFromHeader(header);
+        const name = getfile_nameFromHeader(header);
         if (name) {
             info.name = name;
             continue;
@@ -2454,7 +2454,7 @@ const createFileLoader = fetchFn => {
 
                 // turn blob response into a file
                 if (response instanceof Blob) {
-                    response = getFileFromBlob(response, response.name || getFilenameFromURL(url));
+                    response = getFileFromBlob(response, response.name || getfile_nameFromURL(url));
                 }
 
                 api.fire(
@@ -2505,7 +2505,7 @@ const createFileLoader = fetchFn => {
                 );
                 api.fire('meta', {
                     size: state.size || fileinfo.size,
-                    filename: fileinfo.name,
+                    file_name: fileinfo.name,
                     source: fileinfo.source,
                 });
             }
@@ -2695,8 +2695,8 @@ const createFetchFunction = (apiUrl = '', action) => {
             // get headers
             const headers = xhr.getAllResponseHeaders();
 
-            // get filename
-            const filename = getFileInfoFromHeaders(headers).name || getFilenameFromURL(url);
+            // get file_name
+            const file_name = getFileInfoFromHeaders(headers).name || getfile_nameFromURL(url);
 
             // create response
             load(
@@ -2705,7 +2705,7 @@ const createFetchFunction = (apiUrl = '', action) => {
                     xhr.status,
                     action.method === 'HEAD'
                         ? null
-                        : getFileFromBlob(onload(xhr.response), filename),
+                        : getFileFromBlob(onload(xhr.response), file_name),
                     headers
                 )
             );
@@ -3453,7 +3453,7 @@ const createFileProcessor = (processFn, options) => {
     return api;
 };
 
-const getFilenameWithoutExtension = name => name.substring(0, name.lastIndexOf('.')) || name;
+const getfile_nameWithoutExtension = name => name.substring(0, name.lastIndexOf('.')) || name;
 
 const createFileStub = source => {
     let data = [source.name, source.size, source.type];
@@ -3467,7 +3467,7 @@ const createFileStub = source => {
         data[2] = getMimeTypeFromBase64DataURI(source);
     } else if (isString(source)) {
         // url
-        data[0] = getFilenameFromURL(source);
+        data[0] = getfile_nameFromURL(source);
         data[1] = 0;
         data[2] = 'application/octet-stream';
     }
@@ -3550,7 +3550,7 @@ const createItem = (origin = null, serverFileReference = null, file = null) => {
     };
 
     // file data
-    const getFileExtension = () => getExtensionFromFilename(state.file.name);
+    const getFileExtension = () => getExtensionFromfile_name(state.file.name);
     const getFileType = () => state.file.type;
     const getFileSize = () => state.file.size;
     const getFile = () => state.file;
@@ -3585,7 +3585,7 @@ const createItem = (origin = null, serverFileReference = null, file = null) => {
             state.file.size = meta.size;
 
             // set name of file stub
-            state.file.filename = meta.filename;
+            state.file.file_name = meta.file_name;
 
             // if has received source, we done
             if (meta.source) {
@@ -3878,8 +3878,8 @@ const createItem = (origin = null, serverFileReference = null, file = null) => {
         serverId: { get: () => state.serverFileReference },
         transferId: { get: () => state.transferId },
         status: { get: () => state.status },
-        filename: { get: () => state.file.name },
-        filenameWithoutExtension: { get: () => getFilenameWithoutExtension(state.file.name) },
+        file_name: { get: () => state.file.name },
+        file_nameWithoutExtension: { get: () => getfile_nameWithoutExtension(state.file.name) },
         fileExtension: { get: getFileExtension },
         fileType: { get: getFileType },
         fileSize: { get: getFileSize },
@@ -3962,11 +3962,11 @@ const fetchBlob = (url, load, error, progress, abort, headers) => {
         // get headers
         const headers = xhr.getAllResponseHeaders();
 
-        // get filename
-        const filename = getFileInfoFromHeaders(headers).name || getFilenameFromURL(url);
+        // get file_name
+        const file_name = getFileInfoFromHeaders(headers).name || getfile_nameFromURL(url);
 
         // create response
-        load(createResponse('load', xhr.status, getFileFromBlob(xhr.response, filename), headers));
+        load(createResponse('load', xhr.status, getFileFromBlob(xhr.response, file_name), headers));
     };
 
     request.onerror = xhr => {
@@ -5020,7 +5020,7 @@ const PrioritizedOptions = [
     'server', // must be processed before "files"
 ];
 
-const formatFilename = name => name;
+const formatfile_name = name => name;
 
 const createElement$1 = tagName => {
     return document.createElement(tagName);
@@ -5233,15 +5233,15 @@ const removeDecimalsWhenZero = (value, decimalCount, separator) => {
 };
 
 const create$2 = ({ root, props }) => {
-    // filename
-    const fileName = createElement$1('span');
-    fileName.className = 'filepond--file-info-main';
+    // file_name
+    const file_name = createElement$1('span');
+    file_name.className = 'filepond--file-info-main';
     // hide for screenreaders
-    // the file is contained in a fieldset with legend that contains the filename
+    // the file is contained in a fieldset with legend that contains the file_name
     // no need to read it twice
-    attr(fileName, 'aria-hidden', 'true');
-    root.appendChild(fileName);
-    root.ref.fileName = fileName;
+    attr(file_name, 'aria-hidden', 'true');
+    root.appendChild(file_name);
+    root.ref.file_name = file_name;
 
     // filesize
     const fileSize = createElement$1('span');
@@ -5251,7 +5251,7 @@ const create$2 = ({ root, props }) => {
 
     // set initial values
     text(fileSize, root.query('GET_LABEL_FILE_WAITING_FOR_SIZE'));
-    text(fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+    text(file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
 };
 
 const updateFile = ({ root, props }) => {
@@ -5264,7 +5264,7 @@ const updateFile = ({ root, props }) => {
             root.query('GET_FILE_SIZE_LABELS', root.query)
         )
     );
-    text(root.ref.fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+    text(root.ref.file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
 };
 
 const updateFileSizeOnError = ({ root, props }) => {
@@ -5830,9 +5830,9 @@ const file = createView({
  * Creates the file view
  */
 const create$5 = ({ root, props }) => {
-    // filename
-    root.ref.fileName = createElement$1('legend');
-    root.appendChild(root.ref.fileName);
+    // file_name
+    root.ref.file_name = createElement$1('legend');
+    root.appendChild(root.ref.file_name);
 
     // file appended
     root.ref.file = root.appendChildView(root.createChildView(file, { id: props.id }));
@@ -5846,7 +5846,7 @@ const create$5 = ({ root, props }) => {
  */
 const didLoadItem = ({ root, props }) => {
     // updates the legend of the fieldset so screenreaders can better group buttons
-    text(root.ref.fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+    text(root.ref.file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
 };
 
 const fileWrapper = createView({
@@ -7382,7 +7382,7 @@ const correctMissingFileType = file => {
     if (file.type.length) return file;
     const date = file.lastModifiedDate;
     const name = file.name;
-    const type = guesstimateMimeType(getExtensionFromFilename(file.name));
+    const type = guesstimateMimeType(getExtensionFromfile_name(file.name));
     if (!type.length) return file;
     file = file.slice(0, file.size, type);
     file.name = name;
@@ -7828,7 +7828,7 @@ const create$d = ({ root, props }) => {
 let addFilesNotificationTimeout = null;
 let notificationClearTimeout = null;
 
-const filenames = [];
+const file_names = [];
 
 const assist = (root, message) => {
     root.element.textContent = message;
@@ -7838,11 +7838,11 @@ const clear$1 = root => {
     root.element.textContent = '';
 };
 
-const listModified = (root, filename, label) => {
+const listModified = (root, file_name, label) => {
     const total = root.query('GET_TOTAL_ITEMS');
     assist(
         root,
-        `${label} ${filename}, ${total} ${
+        `${label} ${file_name}, ${total} ${
             total === 1
                 ? root.query('GET_LABEL_FILE_COUNT_SINGULAR')
                 : root.query('GET_LABEL_FILE_COUNT_PLURAL')
@@ -7865,12 +7865,12 @@ const itemAdded = ({ root, action }) => {
 
     root.element.textContent = '';
     const item = root.query('GET_ITEM', action.id);
-    filenames.push(item.filename);
+    file_names.push(item.file_name);
 
     clearTimeout(addFilesNotificationTimeout);
     addFilesNotificationTimeout = setTimeout(() => {
-        listModified(root, filenames.join(', '), root.query('GET_LABEL_FILE_ADDED'));
-        filenames.length = 0;
+        listModified(root, file_names.join(', '), root.query('GET_LABEL_FILE_ADDED'));
+        file_names.length = 0;
     }, 750);
 };
 
@@ -7880,34 +7880,34 @@ const itemRemoved = ({ root, action }) => {
     }
 
     const item = action.item;
-    listModified(root, item.filename, root.query('GET_LABEL_FILE_REMOVED'));
+    listModified(root, item.file_name, root.query('GET_LABEL_FILE_REMOVED'));
 };
 
 const itemProcessed = ({ root, action }) => {
     // will also notify the user when FilePond is not being used, as the user might be occupied with other activities while uploading a file
 
     const item = root.query('GET_ITEM', action.id);
-    const filename = item.filename;
+    const file_name = item.file_name;
     const label = root.query('GET_LABEL_FILE_PROCESSING_COMPLETE');
 
-    assist(root, `${filename} ${label}`);
+    assist(root, `${file_name} ${label}`);
 };
 
 const itemProcessedUndo = ({ root, action }) => {
     const item = root.query('GET_ITEM', action.id);
-    const filename = item.filename;
+    const file_name = item.file_name;
     const label = root.query('GET_LABEL_FILE_PROCESSING_ABORTED');
 
-    assist(root, `${filename} ${label}`);
+    assist(root, `${file_name} ${label}`);
 };
 
 const itemError = ({ root, action }) => {
     const item = root.query('GET_ITEM', action.id);
-    const filename = item.filename;
+    const file_name = item.file_name;
 
     // will also notify the user when FilePond is not being used, as the user might be occupied with other activities while uploading a file
 
-    assist(root, `${action.status.main} ${filename} ${action.status.sub}`);
+    assist(root, `${action.status.main} ${file_name} ${action.status.sub}`);
 };
 
 const assistant = createView({
@@ -9494,11 +9494,11 @@ const createAppPlugin = plugin => {
             isFile,
             toNaturalFileSize,
             replaceInString,
-            getExtensionFromFilename,
-            getFilenameWithoutExtension,
+            getExtensionFromfile_name,
+            getfile_nameWithoutExtension,
             guesstimateMimeType,
             getFileFromBlob,
-            getFilenameFromURL,
+            getfile_nameFromURL,
             createRoute,
             createWorker,
             createView,

@@ -59,7 +59,7 @@ CKFinder.addPlugin( 'fileeditor', function( api )
 							var content = codemirror ? codemirror.getValue() : doc.getById( 'fileContent' ).getValue();
 							api.connector.sendCommandPost( 'SaveFile', null, {
 									content : content,
-									fileName : file.name
+									file_name : file.name
 								},
 								function( xml )
 								{
@@ -70,8 +70,8 @@ CKFinder.addPlugin( 'fileeditor', function( api )
 									dialog.hide();
 									return undefined;
 								},
-								file.folder.type,
-								file.folder
+								file.imagePath.type,
+								file.imagePath
 							);
 							return false;
 						}
@@ -124,8 +124,8 @@ CKFinder.addPlugin( 'fileeditor', function( api )
 				// If CKFinder is runninng under a different domain than baseUrl, then the following call will fail:
 				// CKFinder.ajax.load( file.getUrl() + '?t=' + (new Date().getTime()), function( data )...
 
-				var url = api.connector.composeUrl( 'DownloadFile', { FileName : file.name, format : 'text', t : new Date().getTime() },
-						file.folder.type, file.folder );
+				var url = api.connector.composeUrl( 'DownloadFile', { file_name : file.name, format : 'text', t : new Date().getTime() },
+						file.imagePath.type, file.imagePath );
 
 				CKFinder.ajax.load( url, function( data )
 				{
@@ -220,7 +220,7 @@ CKFinder.addPlugin( 'fileeditor', function( api )
 
 				// Disable for images, binary files, large files etc.
 				if ( regexTextExt.test( file.ext ) && file.size <= maxSize )
-					return file.folder.acl.fileDelete ? true : -1;
+					return file.imagePath.acl.fileDelete ? true : -1;
 
 				return false;
 			});

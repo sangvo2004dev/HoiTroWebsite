@@ -32,7 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               {
                                   Id = t.id,
                                   Name = t.name,
-                                  Img = t.avtImage,
+                                  Img = t.file_name,
                                   PhoneNum = t.phoneNum,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -73,7 +73,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,avtImage,password,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,file_name,password,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
         {
             try
             {
@@ -90,14 +90,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = img.FileName;
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    account.avtImage = filename;
+                    account.file_name = filename;
                 }
                 else
                 {
-                    account.avtImage = "default-user.jpg";
+                    account.file_name = "default-user.jpg";
                 }
 
-                account.datebegin = DateTime.Now.Date;
+                account.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 return Json(new { code = 200, msg = "Account created successfully" }, JsonRequestBehavior.AllowGet);
@@ -149,7 +149,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Edit([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,avtImage,password,resetPass,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,file_name,password,resetPass,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
@@ -158,20 +158,17 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if(img != null)
                 {
-                    filename = Path.GetFileName(img.FileName);
+                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.avtImage = filename;
+                    temp.file_name = filename;
                 }
                 
-
-                temp.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 temp.name = account.name;
                 temp.phoneNum = account.phoneNum;
                 temp.email = account.email;
                 temp.zaloNum = account.zaloNum;
                 temp.FBlink = account.FBlink;
-                //temp.password = account.password;
                 temp.meta = account.meta;
                 temp.hide = account.hide;
                 temp.order = account.order;

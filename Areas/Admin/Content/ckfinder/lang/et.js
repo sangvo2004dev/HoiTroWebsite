@@ -67,15 +67,15 @@ CKFinder.lang['et'] =
 	DateTime : 'yyyy-mm-dd H:MM',
 	DateAmPm : ['EL', 'PL'],
 
-	// Folders
-	FoldersTitle	: 'Kaustad',
-	FolderLoading	: 'Laadimine...',
-	FolderNew		: 'Palun sisesta uue kataloogi nimi: ',
-	FolderRename	: 'Palun sisesta uue kataloogi nimi: ',
-	FolderDelete	: 'Kas tahad kindlasti kausta "%1" kustutada?',
-	FolderRenaming	: ' (ümbernimetamine...)',
-	FolderDeleting	: ' (kustutamine...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Kaustad',
+	imagePathLoading	: 'Laadimine...',
+	imagePathNew		: 'Palun sisesta uue kataloogi nimi: ',
+	imagePathRename	: 'Palun sisesta uue kataloogi nimi: ',
+	imagePathDelete	: 'Kas tahad kindlasti kausta "%1" kustutada?',
+	imagePathRenaming	: ' (ümbernimetamine...)',
+	imagePathDeleting	: ' (kustutamine...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Palun sisesta faili uus nimi: ',
@@ -89,10 +89,10 @@ CKFinder.lang['et'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Korv',
+	BasketimagePath		: 'Korv',
 	BasketClear			: 'Tühjenda korv',
 	BasketRemove		: 'Eemalda korvist',
-	BasketOpenFolder	: 'Ava ülemine kaust',
+	BasketOpenimagePath	: 'Ava ülemine kaust',
 	BasketTruncateConfirm : 'Kas tahad tõesti eemaldada korvist kõik failid?',
 	BasketRemoveConfirm	: 'Kas tahad tõesti eemaldada korvist faili "%1"?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['et'] =
 	View			: 'Kuva',
 	Download		: 'Laadi alla',
 
-	NewSubFolder	: 'Uus alamkaust',
+	NewSubimagePath	: 'Uus alamkaust',
 	Rename			: 'Nimeta ümber',
 	Delete			: 'Kustuta',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['et'] =
 	UploadBtnCancel		: 'Loobu',
 
 	UploadNoFileMsg		: 'Palun vali fail oma arvutist.',
-	UploadNoFolder		: 'Palun vali enne üleslaadimist kataloog.',
+	UploadNoimagePath		: 'Palun vali enne üleslaadimist kataloog.',
 	UploadNoPerms		: 'Failide üleslaadimine pole lubatud.',
 	UploadUnknError		: 'Viga faili saatmisel.',
 	UploadExtIncorrect	: 'Selline faili laiend pole selles kaustas lubatud.',
@@ -236,12 +236,12 @@ CKFinder.lang['et'] =
 	{
 		FileEmpty		: 'Faili nimi ei tohi olla tühi.',
 		FileExists		: 'Fail nimega %s on juba olemas.',
-		FolderEmpty		: 'Kausta nimi ei tohi olla tühi.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Kausta nimi ei tohi olla tühi.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Faili nimi ei tohi sisaldada ühtegi järgnevatest märkidest: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Faili nimi ei tohi sisaldada ühtegi järgnevatest märkidest: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Faili nimi ei tohi sisaldada ühtegi järgnevatest märkidest: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Faili avamine uues aknas polnud võimalik. Palun seadista oma brauserit ning keela kõik hüpikakende blokeerijad selle saidi jaoks.',
 		XmlError		: 'XML vastust veebiserverist polnud võimalik korrektselt laadida.',

@@ -534,8 +534,8 @@ rocket-chat:
   url: 'https://rocket.chat'
 rodney-oliver:
   icons:
-    - folder-minus
-    - folder-plus
+    - imagePath-minus
+    - imagePath-plus
   label: Rodney Oliver
 schlix:
   icons:

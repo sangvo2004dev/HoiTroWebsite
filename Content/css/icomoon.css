@@ -175,22 +175,22 @@ body {
 .icon-stack:before {
     content: "\e92e";
 }
-.icon-folder:before {
+.icon-imagePath:before {
     content: "\e92f";
 }
-.icon-folder-open:before {
+.icon-imagePath-open:before {
     content: "\e930";
 }
-.icon-folder-plus:before {
+.icon-imagePath-plus:before {
     content: "\e931";
 }
-.icon-folder-minus:before {
+.icon-imagePath-minus:before {
     content: "\e932";
 }
-.icon-folder-download:before {
+.icon-imagePath-download:before {
     content: "\e933";
 }
-.icon-folder-upload:before {
+.icon-imagePath-upload:before {
     content: "\e934";
 }
 .icon-price-tag:before {

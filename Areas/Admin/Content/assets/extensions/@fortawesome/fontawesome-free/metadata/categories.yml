@@ -327,10 +327,10 @@ business:
     - fax
     - file
     - file-alt
-    - folder
-    - folder-minus
-    - folder-open
-    - folder-plus
+    - imagePath
+    - imagePath-minus
+    - imagePath-open
+    - imagePath-plus
     - glasses
     - globe
     - highlighter
@@ -488,8 +488,8 @@ code:
     - file-code
     - filter
     - fire-extinguisher
-    - folder
-    - folder-open
+    - imagePath
+    - imagePath-open
     - keyboard
     - laptop-code
     - microchip
@@ -872,8 +872,8 @@ files:
     - file-powerpoint
     - file-video
     - file-word
-    - folder
-    - folder-open
+    - imagePath
+    - imagePath-open
     - paste
     - photo-video
     - save
@@ -1255,8 +1255,8 @@ interfaces:
     - fingerprint
     - flag
     - flag-checkered
-    - folder
-    - folder-open
+    - imagePath
+    - imagePath-open
     - frown
     - glasses
     - grip-horizontal
@@ -2119,7 +2119,7 @@ shapes:
     - cloud
     - comment
     - file
-    - folder
+    - imagePath
     - heart
     - heart-broken
     - map-marker
@@ -2272,8 +2272,8 @@ status:
     - eye-slash
     - file
     - file-alt
-    - folder
-    - folder-open
+    - imagePath
+    - imagePath-open
     - gas-pump
     - info
     - info-circle
@@ -2554,8 +2554,8 @@ writing:
     - eraser
     - file
     - file-alt
-    - folder
-    - folder-open
+    - imagePath
+    - imagePath-open
     - keyboard
     - newspaper
     - paper-plane

@@ -303,7 +303,7 @@ interface SetSelectionContentArgs extends SetContentArgs {
 interface BlobInfoData {
     id?: string;
     name?: string;
-    filename?: string;
+    file_name?: string;
     blob: Blob;
     base64: string;
     blobUri?: string;
@@ -312,7 +312,7 @@ interface BlobInfoData {
 interface BlobInfo {
     id: () => string;
     name: () => string;
-    filename: () => string;
+    file_name: () => string;
     blob: () => Blob;
     base64: () => string;
     blobUri: () => string;
@@ -321,7 +321,7 @@ interface BlobInfo {
 interface BlobCache {
     create: {
         (o: BlobInfoData): BlobInfo;
-        (id: string, blob: Blob, base64: string, name?: string, filename?: string): BlobInfo;
+        (id: string, blob: Blob, base64: string, name?: string, file_name?: string): BlobInfo;
     };
     add: (blobInfo: BlobInfo) => void;
     get: (id: string) => BlobInfo | undefined;
@@ -1889,7 +1889,7 @@ interface BaseEditorOptions {
     iframe_attrs?: Record<string, string>;
     images_file_types?: string;
     images_replace_blob_uris?: boolean;
-    images_reuse_filename?: boolean;
+    images_reuse_file_name?: boolean;
     images_upload_base_path?: string;
     images_upload_credentials?: boolean;
     images_upload_handler?: UploadHandler;

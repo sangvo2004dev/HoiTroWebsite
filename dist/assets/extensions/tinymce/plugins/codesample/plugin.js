@@ -346,7 +346,7 @@
               return;
             }
             if (async && _self.Worker) {
-              var worker = new Worker(_.filename);
+              var worker = new Worker(_.file_name);
               worker.onmessage = function (evt) {
                 insertHighlightedCode(evt.data);
               };
@@ -623,7 +623,7 @@
         }
         var script = _.util.currentScript();
         if (script) {
-          _.filename = script.src;
+          _.file_name = script.src;
           if (script.hasAttribute('data-manual')) {
             _.manual = true;
           }

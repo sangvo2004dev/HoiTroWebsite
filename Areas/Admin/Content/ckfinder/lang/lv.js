@@ -67,15 +67,15 @@ CKFinder.lang['lv'] =
 	DateTime : 'dd/mm/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Mapes',
-	FolderLoading	: 'Ielādē...',
-	FolderNew		: 'Lūdzu ierakstiet mapes nosaukumu: ',
-	FolderRename	: 'Lūdzu ierakstiet jauno mapes nosaukumu: ',
-	FolderDelete	: 'Vai tiešām vēlaties neatgriezeniski dzēst mapi "%1"?',
-	FolderRenaming	: ' (Pārsauc...)',
-	FolderDeleting	: ' (Dzēš...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Mapes',
+	imagePathLoading	: 'Ielādē...',
+	imagePathNew		: 'Lūdzu ierakstiet mapes nosaukumu: ',
+	imagePathRename	: 'Lūdzu ierakstiet jauno mapes nosaukumu: ',
+	imagePathDelete	: 'Vai tiešām vēlaties neatgriezeniski dzēst mapi "%1"?',
+	imagePathRenaming	: ' (Pārsauc...)',
+	imagePathDeleting	: ' (Dzēš...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Lūdzu ierakstiet jauno faila nosaukumu: ',
@@ -84,15 +84,15 @@ CKFinder.lang['lv'] =
 	FileDelete		: 'Vai tiešām vēlaties neatgriezeniski dzēst failu "%1"?',
 	FilesDelete	: 'Are you sure you want to delete %1 files?', // MISSING
 	FilesLoading	: 'Ielādē...',
-	FilesEmpty		: 'The folder is empty.', // MISSING
+	FilesEmpty		: 'The imagePath is empty.', // MISSING
 	DestinationFile	: 'Destination File', // MISSING
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Basket', // MISSING
+	BasketimagePath		: 'Basket', // MISSING
 	BasketClear			: 'Clear Basket', // MISSING
 	BasketRemove		: 'Remove from Basket', // MISSING
-	BasketOpenFolder	: 'Open Parent Folder', // MISSING
+	BasketOpenimagePath	: 'Open Parent imagePath', // MISSING
 	BasketTruncateConfirm : 'Do you really want to remove all files from the basket?', // MISSING
 	BasketRemoveConfirm	: 'Do you really want to remove the file "%1" from the basket?', // MISSING
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['lv'] =
 	View			: 'Skatīt',
 	Download		: 'Lejupielādēt',
 
-	NewSubFolder	: 'Jauna apakšmape',
+	NewSubimagePath	: 'Jauna apakšmape',
 	Rename			: 'Pārsaukt',
 	Delete			: 'Dzēst',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,10 +156,10 @@ CKFinder.lang['lv'] =
 	UploadBtnCancel		: 'Atcelt',
 
 	UploadNoFileMsg		: 'Lūdzu izvēlaties failu no sava datora.',
-	UploadNoFolder		: 'Please select a folder before uploading.', // MISSING
+	UploadNoimagePath		: 'Please select a imagePath before uploading.', // MISSING
 	UploadNoPerms		: 'File upload not allowed.', // MISSING
 	UploadUnknError		: 'Error sending the file.', // MISSING
-	UploadExtIncorrect	: 'File extension not allowed in this folder.', // MISSING
+	UploadExtIncorrect	: 'File extension not allowed in this imagePath.', // MISSING
 
 	// Flash Uploads
 	UploadLabel			: 'Files to Upload', // MISSING
@@ -236,12 +236,12 @@ CKFinder.lang['lv'] =
 	{
 		FileEmpty		: 'Faila nosaukumā nevar būt tukšums.',
 		FileExists		: 'File %s already exists.', // MISSING
-		FolderEmpty		: 'Mapes nosaukumā nevar būt tukšums.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Mapes nosaukumā nevar būt tukšums.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Faila nosaukums nedrīkst saturēt nevienu no sekojošajām zīmēm: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Mapes nosaukums nedrīkst saturēt nevienu no sekojošajām zīmēm: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Mapes nosaukums nedrīkst saturēt nevienu no sekojošajām zīmēm: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Nav iespējams failu atvērt jaunā logā. Lūdzu veiciet izmaiņas uzstādījumos savai interneta pārlūkprogrammai un izslēdziet visus uznirstošo logu bloķētājus šai adresei.',
 		XmlError		: 'It was not possible to properly load the XML response from the web server.', // MISSING

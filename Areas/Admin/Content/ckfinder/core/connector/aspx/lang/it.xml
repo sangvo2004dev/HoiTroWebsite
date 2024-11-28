@@ -26,7 +26,7 @@ For licensing, see LICENSE.html or http://ckfinder.com/license
 		<error number="202">File invalido.</error>
 		<error number="203">File invalido. La dimensione del file eccede i limiti del sistema.</error>
 		<error number="204">Il file caricato è corrotto.</error>
-		<error number="205">Il folder temporario non è disponibile new server.</error>
+		<error number="205">Il imagePath temporario non è disponibile new server.</error>
 		<error number="206">Upload annullato per motivi di sicurezza. Il file contiene dati in formatto HTML.</error>
 		<error number="207">Il file caricato è stato rinominato a "%1".</error>
 		<error number="300">Non è stato possibile muovere i file.</error>

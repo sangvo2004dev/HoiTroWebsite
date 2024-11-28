@@ -49,7 +49,7 @@
 		PluginSettings.Add("ImageResize_smallThumb", "90x90" );
 		PluginSettings.Add("ImageResize_mediumThumb", "120x120" );
 		PluginSettings.Add("ImageResize_largeThumb", "180x180" );
-		// Name of the watermark image in plugins/watermark folder
+		// Name of the watermark image in plugins/watermark imagePath
 		PluginSettings.Add("Watermark_source", "logo.gif" );
 		PluginSettings.Add("Watermark_marginRight", "5" );
 		PluginSettings.Add("Watermark_marginBottom", "5" );
@@ -81,7 +81,7 @@
 		CheckSizeAfterScaling = true;
 
 		// Increases the security on an IIS web server.
-		// If enabled, CKFinder will disallow creating folders and uploading files whose names contain characters
+		// If enabled, CKFinder will disallow creating imagePaths and uploading files whose names contain characters
 		// that are not safe under an IIS 6.0 web server.
 		DisallowUnsafeCharacters = true;
 
@@ -99,11 +99,11 @@
 		// following extensions only.
 		HtmlExtensions = new string[] { "html", "htm", "xml", "js" };
 
-		// Folders to not display in CKFinder, no matter their location. No
-		// paths are accepted, only the folder name.
+		// imagePaths to not display in CKFinder, no matter their location. No
+		// paths are accepted, only the imagePath name.
 		// The * and ? wildcards are accepted.
-		// By default folders starting with a dot character are disallowed.
-		HideFolders = new string[] { ".*", "CVS" };
+		// By default imagePaths starting with a dot character are disallowed.
+		HideimagePaths = new string[] { ".*", "CVS" };
 
 		// Files to not display in CKFinder, no matter their location. No
 		// paths are accepted, only the file name, including extension.
@@ -119,11 +119,11 @@
 		RoleSessionVar = "CKFinder_UserRole";
 
 		// ACL (Access Control) settings. Used to restrict access or features
-		// to specific folders.
+		// to specific imagePaths.
 		// Several "AccessControl.Add()" calls can be made, which return a
 		// single ACL setting object to be configured. All properties settings
 		// are optional in that object.
-		// Subfolders inherit their default settings from their parents' definitions.
+		// SubimagePaths inherit their default settings from their parents' definitions.
 		//
 		//	- The "Role" property accepts the special "*" value, which means
 		//	  "everybody".
@@ -132,12 +132,12 @@
 		AccessControl acl = AccessControl.Add();
 		acl.Role = "*";
 		acl.ResourceType = "*";
-		acl.Folder = "/";
+		acl.imagePath = "/";
 
-		acl.FolderView = true;
-		acl.FolderCreate = true;
-		acl.FolderRename = true;
-		acl.FolderDelete = true;
+		acl.imagePathView = true;
+		acl.imagePathCreate = true;
+		acl.imagePathRename = true;
+		acl.imagePathDelete = true;
 
 		acl.FileView = true;
 		acl.FileUpload = true;

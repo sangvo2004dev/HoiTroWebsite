@@ -67,15 +67,15 @@ CKFinder.lang['hr'] =
 	DateTime : 'm/d/yyyy h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Direktoriji',
-	FolderLoading	: 'Učitavam...',
-	FolderNew		: 'Unesite novo ime direktorija: ',
-	FolderRename	: 'Unesite novo ime direktorija: ',
-	FolderDelete	: 'Sigurno želite obrisati direktorij "%1"?',
-	FolderRenaming	: ' (Mijenjam ime...)',
-	FolderDeleting	: ' (Brišem...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Direktoriji',
+	imagePathLoading	: 'Učitavam...',
+	imagePathNew		: 'Unesite novo ime direktorija: ',
+	imagePathRename	: 'Unesite novo ime direktorija: ',
+	imagePathDelete	: 'Sigurno želite obrisati direktorij "%1"?',
+	imagePathRenaming	: ' (Mijenjam ime...)',
+	imagePathDeleting	: ' (Brišem...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Unesite novo ime datoteke: ',
@@ -89,10 +89,10 @@ CKFinder.lang['hr'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Košara',
+	BasketimagePath		: 'Košara',
 	BasketClear			: 'Isprazni košaru',
 	BasketRemove		: 'Ukloni iz košare',
-	BasketOpenFolder	: 'Otvori nadređeni direktorij',
+	BasketOpenimagePath	: 'Otvori nadređeni direktorij',
 	BasketTruncateConfirm : 'Sigurno želite obrisati sve datoteke iz košare?',
 	BasketRemoveConfirm	: 'Sigurno želite obrisati datoteku "%1" iz košare?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['hr'] =
 	View			: 'Pogledaj',
 	Download		: 'Skini',
 
-	NewSubFolder	: 'Novi poddirektorij',
+	NewSubimagePath	: 'Novi poddirektorij',
 	Rename			: 'Promijeni naziv',
 	Delete			: 'Obriši',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['hr'] =
 	UploadBtnCancel		: 'Poništi',
 
 	UploadNoFileMsg		: 'Odaberite datoteku na Vašem računalu.',
-	UploadNoFolder		: 'Odaberite direktorije prije slanja.',
+	UploadNoimagePath		: 'Odaberite direktorije prije slanja.',
 	UploadNoPerms		: 'Slanje datoteka nije dozvoljeno.',
 	UploadUnknError		: 'Greška kod slanja datoteke.',
 	UploadExtIncorrect	: 'Vrsta datoteka nije dozvoljena.',
@@ -236,12 +236,12 @@ CKFinder.lang['hr'] =
 	{
 		FileEmpty		: 'Naziv datoteke ne može biti prazan.',
 		FileExists		: 'Datoteka %s već postoji.',
-		FolderEmpty		: 'Naziv direktorija ne može biti prazan.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Naziv direktorija ne može biti prazan.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Naziv datoteke ne smije sadržavati niti jedan od sljedećih znakova: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Naziv direktorija ne smije sadržavati niti jedan od sljedećih znakova: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Naziv direktorija ne smije sadržavati niti jedan od sljedećih znakova: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Nije moguće otvoriti datoteku u novom prozoru. Promijenite postavke svog Internet preglednika i isključite sve popup blokere za ove web stranice.',
 		XmlError		: 'Nije moguće učitati XML odgovor od web servera.',

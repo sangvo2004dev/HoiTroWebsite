@@ -6841,7 +6841,7 @@
         processor: 'boolean',
         default: true
       });
-      registerOption('images_reuse_filename', {
+      registerOption('images_reuse_file_name', {
         processor: 'boolean',
         default: false
       });
@@ -7455,7 +7455,7 @@
     const shouldKeepStyles = option('keep_styles');
     const shouldEndContainerOnEmptyBlock = option('end_container_on_empty_block');
     const isAutomaticUploadsEnabled = option('automatic_uploads');
-    const shouldReuseFileName = option('images_reuse_filename');
+    const shouldReusefile_name = option('images_reuse_file_name');
     const shouldReplaceBlobUris = option('images_replace_blob_uris');
     const getIconPackName = option('icons');
     const getIconsUrl = option('icons_url');
@@ -19713,13 +19713,13 @@
         };
         return mimes[mime.toLowerCase()] || 'dat';
       };
-      const create = (o, blob, base64, name, filename) => {
+      const create = (o, blob, base64, name, file_name) => {
         if (isString(o)) {
           const id = o;
           return toBlobInfo({
             id,
             name,
-            filename,
+            file_name,
             blob: blob,
             base64: base64
           });
@@ -19739,7 +19739,7 @@
         return {
           id: constant(id),
           name: constant(name),
-          filename: constant(o.filename || name + '.' + mimeToExt(blob.type)),
+          file_name: constant(o.file_name || name + '.' + mimeToExt(blob.type)),
           blob: constant(blob),
           base64: constant(o.base64),
           blobUri: constant(o.blobUri || URL.createObjectURL(blob)),
@@ -19813,7 +19813,7 @@
           success(pathJoin(settings.basePath, json.location));
         };
         const formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
+        formData.append('file', blobInfo.blob(), blobInfo.file_name());
         xhr.send(formData);
       });
       const uploadHandler = isFunction(settings.handler) ? settings.handler : defaultHandler;
@@ -19962,7 +19962,7 @@
         const src = editor.convertURL(resultUri, 'src');
         replaceUrlInUndoStack(image.src, resultUri);
         setAll$1(SugarElement.fromDom(image), {
-          'src': shouldReuseFileName(editor) ? cacheInvalidator(resultUri) : resultUri,
+          'src': shouldReusefile_name(editor) ? cacheInvalidator(resultUri) : resultUri,
           'data-mce-src': src
         });
       };
@@ -26044,16 +26044,16 @@
     };
     const hasContentType = (clipboardContent, mimeType) => mimeType in clipboardContent && clipboardContent[mimeType].length > 0;
     const hasHtmlOrText = content => hasContentType(content, 'text/html') || hasContentType(content, 'text/plain');
-    const extractFilename = (editor, str) => {
+    const extractfile_name = (editor, str) => {
       const m = str.match(/([\s\S]+?)(?:\.[a-z0-9.]+)$/i);
       return isNonNullable(m) ? editor.dom.encode(m[1]) : undefined;
     };
     const createBlobInfo = (editor, blobCache, file, base64) => {
       const id = uniqueId();
-      const useFileName = shouldReuseFileName(editor) && isNonNullable(file.name);
-      const name = useFileName ? extractFilename(editor, file.name) : id;
-      const filename = useFileName ? file.name : undefined;
-      const blobInfo = blobCache.create(id, file, base64, name, filename);
+      const usefile_name = shouldReusefile_name(editor) && isNonNullable(file.name);
+      const name = usefile_name ? extractfile_name(editor, file.name) : id;
+      const file_name = usefile_name ? file.name : undefined;
+      const blobInfo = blobCache.create(id, file, base64, name, file_name);
       blobCache.add(blobInfo);
       return blobInfo;
     };

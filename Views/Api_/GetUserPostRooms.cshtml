@@ -10,11 +10,11 @@
     string gia_tien = new NumberUnit(room.price).RoundWithLargestUnit();
     string ngay_gio = StringUI.Convert2DateTimeVietnamese(room.datebegin.ToString());
     (string, string) trang_thai = room.hide == true ? ("text-success", "Đã duyệt") : ("text-danger", "Chưa duyệt");
-    if (room.RoomImgs.Count != 0)
+    if (room.RoomImages.Count != 0)
     {
-        path = room.RoomImgs.ElementAt(0).folder + room.RoomImgs.ElementAt(0).fileName;
-        ten_anh = room.RoomImgs.ElementAt(0).fileName;
-        so_luong_anh = room.RoomImgs.Count;
+        path = room.RoomImages.ElementAt(0).imagePath + room.RoomImages.ElementAt(0).file_name;
+        ten_anh = room.RoomImages.ElementAt(0).file_name;
+        so_luong_anh = room.RoomImages.Count;
     }
 
     <div class="col-md-12">

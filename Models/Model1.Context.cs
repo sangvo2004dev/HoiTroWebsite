@@ -25,18 +25,17 @@ namespace HoiTroWebsite.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Footer> Footers { get; set; }
-        public virtual DbSet<Mentor> Mentors { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
-        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsType> NewsTypes { get; set; }
-        public virtual DbSet<RoomImage> RoomImages { get; set; }
-        public virtual DbSet<RoomImg> RoomImgs { get; set; }
-        public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<SubMenu> SubMenus { get; set; }
+        public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<Mentor> Mentors { get; set; }
+        public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<RoomImage> RoomImages { get; set; }
     }
 }

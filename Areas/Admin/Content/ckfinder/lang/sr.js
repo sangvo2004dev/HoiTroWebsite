@@ -68,15 +68,15 @@ CKFinder.lang['sr'] =
 	DateTime : 'd.m.yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Фасцикле',
-	FolderLoading	: 'Учитавам...',
-	FolderNew		: 'Унесите ново име фасцикле: ',
-	FolderRename	: 'Унесите ново име фасцикле: ',
-	FolderDelete	: 'Да ли сте сигурни да желите обрисати фасциклу "%1"?',
-	FolderRenaming	: ' (Промјена назива фасцикле...)',
-	FolderDeleting	: ' (Брисање...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Фасцикле',
+	imagePathLoading	: 'Учитавам...',
+	imagePathNew		: 'Унесите ново име фасцикле: ',
+	imagePathRename	: 'Унесите ново име фасцикле: ',
+	imagePathDelete	: 'Да ли сте сигурни да желите обрисати фасциклу "%1"?',
+	imagePathRenaming	: ' (Промјена назива фасцикле...)',
+	imagePathDeleting	: ' (Брисање...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Унесите нови назив датотеке: ',
@@ -90,10 +90,10 @@ CKFinder.lang['sr'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Канта',
+	BasketimagePath		: 'Канта',
 	BasketClear			: 'Испразни канту',
 	BasketRemove		: 'Уклони из канте',
-	BasketOpenFolder	: 'Отвори надређену фасциклу',
+	BasketOpenimagePath	: 'Отвори надређену фасциклу',
 	BasketTruncateConfirm : 'Да ли сте сигурни да желите обрисати све датотеке из канте?',
 	BasketRemoveConfirm	: 'Да ли сте сигурни да желите обрисати датотеку "%1" из канте?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -126,7 +126,7 @@ CKFinder.lang['sr'] =
 	View			: 'Погледај',
 	Download		: 'Преузми',
 
-	NewSubFolder	: 'Нова подфасцикла',
+	NewSubimagePath	: 'Нова подфасцикла',
 	Rename			: 'Промјени назив',
 	Delete			: 'Обриши',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -157,7 +157,7 @@ CKFinder.lang['sr'] =
 	UploadBtnCancel		: 'Поништи',
 
 	UploadNoFileMsg		: 'Одаберите датотеку на Вашем рачунару.',
-	UploadNoFolder		: 'Одаберите фасцикле прије отпремања.',
+	UploadNoimagePath		: 'Одаберите фасцикле прије отпремања.',
 	UploadNoPerms		: 'Отпремање датотеке није дозвољено.',
 	UploadUnknError		: 'Грешка приликом отпремања датотеке.',
 	UploadExtIncorrect	: 'Тип датотеке није дозвољен.',
@@ -237,12 +237,12 @@ CKFinder.lang['sr'] =
 	{
 		FileEmpty		: 'Назив датотеке не смије бити празан.',
 		FileExists		: 'Датотека %s већ постоји.',
-		FolderEmpty		: 'Назив фасцикле не смије бити празан.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Назив фасцикле не смије бити празан.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Назив датотеке не смије садржавати нити један од сљедећих знакова: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Назив фасцикле не смије садржавати нити један од сљедећих знакова: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Назив фасцикле не смије садржавати нити један од сљедећих знакова: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Није могуће одтворити датотеку у новом прозору. Промјените подешавања свог интернет претраживача и искључите све popup блокере за ове web странице.',
 		XmlError		: 'Није могуће учитати XML одговор од web сервера.',

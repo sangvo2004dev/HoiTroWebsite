@@ -67,15 +67,15 @@ CKFinder.lang['vi'] =
 	DateTime : 'd/m/yyyy h:MM aa',
 	DateAmPm : ['SA', 'CH'],
 
-	// Folders
-	FoldersTitle	: 'Thư mục',
-	FolderLoading	: 'Đang tải...',
-	FolderNew		: 'Xin chọn tên cho thư mục mới: ',
-	FolderRename	: 'Xin chọn tên mới cho thư mục: ',
-	FolderDelete	: 'Bạn có chắc muốn xóa thư mục "%1"?',
-	FolderRenaming	: ' (Đang đổi tên...)',
-	FolderDeleting	: ' (Đang xóa...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Thư mục',
+	imagePathLoading	: 'Đang tải...',
+	imagePathNew		: 'Xin chọn tên cho thư mục mới: ',
+	imagePathRename	: 'Xin chọn tên mới cho thư mục: ',
+	imagePathDelete	: 'Bạn có chắc muốn xóa thư mục "%1"?',
+	imagePathRenaming	: ' (Đang đổi tên...)',
+	imagePathDeleting	: ' (Đang xóa...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Xin nhập tên tập tin mới: ',
@@ -89,10 +89,10 @@ CKFinder.lang['vi'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Rổ',
+	BasketimagePath		: 'Rổ',
 	BasketClear			: 'Dọn rổ',
 	BasketRemove		: 'Xóa khỏi rổ',
-	BasketOpenFolder	: 'Mở thư mục cha',
+	BasketOpenimagePath	: 'Mở thư mục cha',
 	BasketTruncateConfirm : 'Bạn có chắc muốn bỏ tất cả tập tin trong rổ?',
 	BasketRemoveConfirm	: 'Bạn có chắc muốn bỏ tập tin "%1" khỏi rổ?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['vi'] =
 	View			: 'Xem',
 	Download		: 'Tải về',
 
-	NewSubFolder	: 'Tạo thư mục con',
+	NewSubimagePath	: 'Tạo thư mục con',
 	Rename			: 'Đổi tên',
 	Delete			: 'Xóa',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['vi'] =
 	UploadBtnCancel		: 'Hủy bỏ',
 
 	UploadNoFileMsg		: 'Xin chọn một tập tin trong máy tính.',
-	UploadNoFolder		: 'Xin chọn thư mục trước khi tải lên.',
+	UploadNoimagePath		: 'Xin chọn thư mục trước khi tải lên.',
 	UploadNoPerms		: 'Không được phép tải lên.',
 	UploadUnknError		: 'Lỗi khi tải tập tin.',
 	UploadExtIncorrect	: 'Kiểu tập tin không được chấp nhận trong thư mục này.',
@@ -236,12 +236,12 @@ CKFinder.lang['vi'] =
 	{
 		FileEmpty		: 'Không thể để trống tên tập tin.',
 		FileExists		: 'Tập tin %s đã tồn tại.',
-		FolderEmpty		: 'Không thể để trống tên thư mục.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Không thể để trống tên thư mục.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Tên tập tin không thể chưa các kí tự: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Tên thư mục không thể chứa các kí tự: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Tên thư mục không thể chứa các kí tự: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Không thể mở tập tin trong cửa sổ mới. Hãy kiểm tra trình duyệt và tắt chức năng chặn popup trên trang web này.',
 		XmlError		: 'Không thể nạp hồi đáp XML từ máy chủ web.',

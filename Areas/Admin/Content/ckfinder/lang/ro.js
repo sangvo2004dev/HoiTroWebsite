@@ -67,15 +67,15 @@ CKFinder.lang['ro'] =
 	DateTime : 'dd/mm/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Dosare',
-	FolderLoading	: 'Încărcare...',
-	FolderNew		: 'Te rugăm să introduci numele dosarului nou: ',
-	FolderRename	: 'Te rugăm să introduci numele nou al dosarului: ',
-	FolderDelete	: 'Ești sigur că vrei să ștergi dosarul "%1"?',
-	FolderRenaming	: ' (Redenumire...)',
-	FolderDeleting	: ' (Ștergere...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Dosare',
+	imagePathLoading	: 'Încărcare...',
+	imagePathNew		: 'Te rugăm să introduci numele dosarului nou: ',
+	imagePathRename	: 'Te rugăm să introduci numele nou al dosarului: ',
+	imagePathDelete	: 'Ești sigur că vrei să ștergi dosarul "%1"?',
+	imagePathRenaming	: ' (Redenumire...)',
+	imagePathDeleting	: ' (Ștergere...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Te rugăm să introduci numele nou al fișierului: ',
@@ -89,10 +89,10 @@ CKFinder.lang['ro'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Coș',
+	BasketimagePath		: 'Coș',
 	BasketClear			: 'Golește coș',
 	BasketRemove		: 'Elimină din coș',
-	BasketOpenFolder	: 'Deschide dosarul părinte',
+	BasketOpenimagePath	: 'Deschide dosarul părinte',
 	BasketTruncateConfirm : 'Sigur dorești să elimini toate fișierele din coș?',
 	BasketRemoveConfirm	: 'Sigur dorești să elimini fișierul "%1" din coș?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['ro'] =
 	View			: 'Vizualizează',
 	Download		: 'Descarcă',
 
-	NewSubFolder	: 'Subdosar nou',
+	NewSubimagePath	: 'Subdosar nou',
 	Rename			: 'Redenumește',
 	Delete			: 'Șterge',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['ro'] =
 	UploadBtnCancel		: 'Anulează',
 
 	UploadNoFileMsg		: 'Te rugăm să selectezi un fișier din computer.',
-	UploadNoFolder		: 'Te rugăm să selectezi un dosar înainte de a încărca.',
+	UploadNoimagePath		: 'Te rugăm să selectezi un dosar înainte de a încărca.',
 	UploadNoPerms		: 'Încărcare fișier nepermisă.',
 	UploadUnknError		: 'Eroare la trimiterea fișierului.',
 	UploadExtIncorrect	: 'Extensie fișier nepermisă în acest dosar.',
@@ -236,12 +236,12 @@ CKFinder.lang['ro'] =
 	{
 		FileEmpty		: 'Numele fișierului nu poate fi gol.',
 		FileExists		: 'Fișierul %s există deja.',
-		FolderEmpty		: 'Numele dosarului nu poate fi gol.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Numele dosarului nu poate fi gol.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Numele fișierului nu poate conține niciunul din următoarele caractere: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Numele dosarului nu poate conține niciunul din următoarele caractere: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Numele dosarului nu poate conține niciunul din următoarele caractere: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Nu a fost posibilă deschiderea fișierului într-o fereastră nouă. Te rugăm să configurezi browser-ul și să dezactivezi toate popup-urile blocate pentru acest site.',
 		XmlError		: 'Nu a fost posibilă încărcarea în mod corespunzător a răspunsului XML de pe serverul web.',

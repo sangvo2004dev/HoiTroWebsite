@@ -67,15 +67,15 @@ CKFinder.lang['de'] =
 	DateTime : 'd.m.yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Verzeichnisse',
-	FolderLoading	: 'Laden...',
-	FolderNew		: 'Bitte geben Sie den neuen Verzeichnisnamen an: ',
-	FolderRename	: 'Bitte geben Sie den neuen Verzeichnisnamen an: ',
-	FolderDelete	: 'Wollen Sie wirklich den Ordner "%1" löschen?',
-	FolderRenaming	: ' (Umbenennen...)',
-	FolderDeleting	: ' (Löschen...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Verzeichnisse',
+	imagePathLoading	: 'Laden...',
+	imagePathNew		: 'Bitte geben Sie den neuen Verzeichnisnamen an: ',
+	imagePathRename	: 'Bitte geben Sie den neuen Verzeichnisnamen an: ',
+	imagePathDelete	: 'Wollen Sie wirklich den Ordner "%1" löschen?',
+	imagePathRenaming	: ' (Umbenennen...)',
+	imagePathDeleting	: ' (Löschen...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Bitte geben Sie den neuen Dateinamen an: ',
@@ -89,10 +89,10 @@ CKFinder.lang['de'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Korb',
+	BasketimagePath		: 'Korb',
 	BasketClear			: 'Korb löschen',
 	BasketRemove		: 'Aus dem Korb entfernen',
-	BasketOpenFolder	: 'Übergeordneten Ordner öffnen',
+	BasketOpenimagePath	: 'Übergeordneten Ordner öffnen',
 	BasketTruncateConfirm : 'Wollen Sie wirklich alle Dateien aus dem Korb entfernen?',
 	BasketRemoveConfirm	: 'Wollen Sie wirklich die Datei "%1" aus dem Korb entfernen?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['de'] =
 	View			: 'Ansehen',
 	Download		: 'Herunterladen',
 
-	NewSubFolder	: 'Neues Unterverzeichnis',
+	NewSubimagePath	: 'Neues Unterverzeichnis',
 	Rename			: 'Umbenennen',
 	Delete			: 'Löschen',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['de'] =
 	UploadBtnCancel		: 'Abbrechen',
 
 	UploadNoFileMsg		: 'Bitte wählen Sie eine Datei auf Ihrem Computer aus.',
-	UploadNoFolder		: 'Bitte ein Verzeichnis vor dem Hochladen wählen.',
+	UploadNoimagePath		: 'Bitte ein Verzeichnis vor dem Hochladen wählen.',
 	UploadNoPerms		: 'Datei hochladen nicht erlaubt.',
 	UploadUnknError		: 'Fehler bei Dateitragung.',
 	UploadExtIncorrect	: 'Dateinamekürzel nicht in diesem Verzeichnis erlaubt.',
@@ -236,12 +236,12 @@ CKFinder.lang['de'] =
 	{
 		FileEmpty		: 'Der Dateinamen darf nicht leer sein.',
 		FileExists		: 'Datei %s existiert bereits.',
-		FolderEmpty		: 'Der Verzeichnisname darf nicht leer sein.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Der Verzeichnisname darf nicht leer sein.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Der Dateinamen darf nicht eines der folgenden Zeichen enthalten: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Der Verzeichnisname darf nicht eines der folgenden Zeichen enthalten: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Der Verzeichnisname darf nicht eines der folgenden Zeichen enthalten: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Die Datei konnte nicht in einem neuen Fenster geöffnet werden. Bitte deaktivieren Sie in Ihrem Browser alle Popup-Blocker für diese Seite.',
 		XmlError		: 'Es war nicht möglich die XML-Antwort von dem Server herunterzuladen.',

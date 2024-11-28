@@ -15,7 +15,7 @@
             @foreach (var i in Model)
             {
                 <div class="carousel-item @(j == 0 ? "active" : "")">
-                    <img class="d-block w-100" src="~/Content/images/@i.img" alt="Slide @j">
+                    <img class="d-block w-100" src="~/Content/images/@i.file_name" alt="Slide @j">
                 </div>
                 j++;
             }

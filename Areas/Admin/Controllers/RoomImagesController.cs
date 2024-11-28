@@ -34,7 +34,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               {
                                   Id = t.id,
                                   Reference = t.reference_id,
-                                  Img = t.imagePath,
+                                  Img = t.file_name,
                                   Meta = t.meta,
                                   Hide = t.hide,
                                   Order = t.order,
@@ -76,7 +76,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,reference_id,imagePath,meta,hide,order,datebegin")] RoomImage roomImage, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "id,reference_id,file_name,meta,hide,order,datebegin")] RoomImage roomImage, HttpPostedFileBase img)
         {
             try
             {
@@ -86,16 +86,16 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     if (img != null)
                     {
-                        filename = Path.GetFileName(img.FileName);
+                        filename = img.FileName;
                         path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                         img.SaveAs(path);
-                        roomImage.imagePath = filename;
+                        roomImage.file_name = filename;
                     }
                     else
                     {
-                        roomImage.imagePath = "logo.png";
+                        roomImage.file_name = "logo.png";
                     }
-                    roomImage.datebegin = DateTime.Now;
+                    roomImage.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                     db.RoomImages.Add(roomImage);
                     db.SaveChanges();
                     return Json(new { code = 200, msg = "Img created successfully" }, JsonRequestBehavior.AllowGet);
@@ -132,7 +132,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,reference_id,imagePath,meta,hide,order,datebegin")] RoomImage roomImage, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,reference_id,file_name,meta,hide,order,datebegin")] RoomImage roomImage, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
@@ -141,10 +141,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName; // Chỉ lấy phần tên file
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.imagePath = filename; // Cập nhật tên ảnh mới
+                    temp.file_name = filename; // Cập nhật tên ảnh mới
                 }
                 temp.reference_id = roomImage.reference_id ;
                 temp.meta = roomImage.meta;

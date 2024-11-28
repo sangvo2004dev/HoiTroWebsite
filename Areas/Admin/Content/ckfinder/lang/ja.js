@@ -67,15 +67,15 @@ CKFinder.lang['ja'] =
 	DateTime : 'm/d/yyyy h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'フォルダ',
-	FolderLoading	: '読み込み中...',
-	FolderNew		: '新しいフォルダ名を入力してください: ',
-	FolderRename	: '新しいフォルダ名を入力してください: ',
-	FolderDelete	: '本当にフォルダ「"%1"」を削除してもよろしいですか？',
-	FolderRenaming	: ' (リネーム中...)',
-	FolderDeleting	: ' (削除中...)',
-	DestinationFolder	: '適用するフォルダ',
+	// imagePaths
+	imagePathsTitle	: 'フォルダ',
+	imagePathLoading	: '読み込み中...',
+	imagePathNew		: '新しいフォルダ名を入力してください: ',
+	imagePathRename	: '新しいフォルダ名を入力してください: ',
+	imagePathDelete	: '本当にフォルダ「"%1"」を削除してもよろしいですか？',
+	imagePathRenaming	: ' (リネーム中...)',
+	imagePathDeleting	: ' (削除中...)',
+	DestinationimagePath	: '適用するフォルダ',
 
 	// Files
 	FileRename		: '新しいファイル名を入力してください: ',
@@ -89,10 +89,10 @@ CKFinder.lang['ja'] =
 	SkippedFiles	: 'スキップしたファイルのリスト:',
 
 	// Basket
-	BasketFolder		: 'Basket',
+	BasketimagePath		: 'Basket',
 	BasketClear			: 'バスケットを空にする',
 	BasketRemove		: 'バスケットから削除',
-	BasketOpenFolder	: '親フォルダを開く',
+	BasketOpenimagePath	: '親フォルダを開く',
 	BasketTruncateConfirm : '本当にバスケットの中身を空にしますか？',
 	BasketRemoveConfirm	: '本当に「"%1"」をバスケットから削除しますか？',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['ja'] =
 	View			: '画像だけを表示',
 	Download		: 'ダウンロード',
 
-	NewSubFolder	: '新しいフォルダに入れる',
+	NewSubimagePath	: '新しいフォルダに入れる',
 	Rename			: 'ファイル名の変更',
 	Delete			: '削除',
 	DeleteFiles		: 'ファイルを削除する',
@@ -156,7 +156,7 @@ CKFinder.lang['ja'] =
 	UploadBtnCancel		: 'キャンセル',
 
 	UploadNoFileMsg		: 'ファイルを選んでください。',
-	UploadNoFolder		: 'アップロードの前にフォルダを選択してください。',
+	UploadNoimagePath		: 'アップロードの前にフォルダを選択してください。',
 	UploadNoPerms		: 'ファイルのアップロード権限がありません。',
 	UploadUnknError		: 'ファイルの送信に失敗しました。',
 	UploadExtIncorrect	: '選択されたファイルの拡張子は許可されていません。',
@@ -236,12 +236,12 @@ CKFinder.lang['ja'] =
 	{
 		FileEmpty		: 'ファイル名を入力してください',
 		FileExists		: ' %s はすでに存在しています。別の名前を入力してください。',
-		FolderEmpty		: 'フォルダ名を入力してください。',
-		FolderExists	: 'フォルダ %s は既に存在しています。',
-		FolderNameExists	: 'フォルダは既に存在しています。',
+		imagePathEmpty		: 'フォルダ名を入力してください。',
+		imagePathExists	: 'フォルダ %s は既に存在しています。',
+		imagePathNameExists	: 'フォルダは既に存在しています。',
 
 		FileInvChar		: 'ファイルに以下の文字は使えません: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'フォルダに以下の文字は使えません: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'フォルダに以下の文字は使えません: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'ファイルを新しいウィンドウで開くことに失敗しました。 お使いのブラウザの設定でポップアップをブロックする設定を解除してください。',
 		XmlError		: 'It was not possible to properly load the XML response from the web server.', // MISSING

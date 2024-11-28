@@ -31,7 +31,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.avtImage,
+                                  Img = t.file_name,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -73,7 +73,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,name,avtImage,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
+        public ActionResult Create([Bind(Include = "id,name,file_name,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
 
                 try
@@ -84,18 +84,16 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     {
                         if (img != null)
                         {
-                            //file =  Guid = Guid.newGuid().toString() + img.FileName;
-                            filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
-
+                            filename = img.FileName;  // Chỉ lấy phần tên file
                             path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                             img.SaveAs(path);
-                            mentor.avtImage = filename; //Lưu ý
+                            mentor.file_name = filename; //Lưu ý
                         }
                         else
                         {
-                            mentor.avtImage = "default-user.jpg";
+                            mentor.file_name = "default-user.jpg";
                         }
-                        mentor.datebegin = DateTime.Now.Date;
+                        mentor.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                         db.Mentors.Add(mentor);
                         db.SaveChanges();
                         return Json(new { code = 200, msg = "Banner created successfully" }, JsonRequestBehavior.AllowGet);
@@ -129,7 +127,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,name,avtImage,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
+        public ActionResult Edit([Bind(Include = "id,name,file_name,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
             var path = "";
             var filename = "";
@@ -139,12 +137,10 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (img != null)
                 {
-                    // filename = Guid.NewGuid().ToString() + img.FileName;
-                    //filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
-                    filename = Path.GetFileName(img.FileName);  // Chỉ lấy phần tên file
+                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.avtImage = filename; // Lưu ý
+                    temp.file_name = filename; // Lưu ý
                 }
                 temp.name = mentor.name;
                 temp.email = mentor.email;

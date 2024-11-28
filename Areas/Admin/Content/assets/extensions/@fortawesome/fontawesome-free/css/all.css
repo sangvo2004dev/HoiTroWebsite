@@ -1710,16 +1710,16 @@ readers do not read off random characters that represent icons */
 .fa-fly:before {
   content: "\f417"; }
 
-.fa-folder:before {
+.fa-imagePath:before {
   content: "\f07b"; }
 
-.fa-folder-minus:before {
+.fa-imagePath-minus:before {
   content: "\f65d"; }
 
-.fa-folder-open:before {
+.fa-imagePath-open:before {
   content: "\f07c"; }
 
-.fa-folder-plus:before {
+.fa-imagePath-plus:before {
   content: "\f65e"; }
 
 .fa-font:before {

@@ -700,7 +700,7 @@
 ### Bug Fixes
 
 * Add Bahasa Melayu (Malaysia) locale ([#485](https://github.com/iamkun/dayjs/issues/485)) ([cb208b0](https://github.com/iamkun/dayjs/commit/cb208b0))
-* Copy & export built-in en locale to /locale folder as a separate file ([a7e05e0](https://github.com/iamkun/dayjs/commit/a7e05e0))
+* Copy & export built-in en locale to /locale imagePath as a separate file ([a7e05e0](https://github.com/iamkun/dayjs/commit/a7e05e0))
 * Fix bug in customParseFormat plugin while month(MM) is '01' ([9884ca5](https://github.com/iamkun/dayjs/commit/9884ca5)), closes [#494](https://github.com/iamkun/dayjs/issues/494)
 * Fix startOf week bug while week start is not Sunday ([5eaf77b](https://github.com/iamkun/dayjs/commit/5eaf77b))
 * Implemented isBetween inclusivity ([#464](https://github.com/iamkun/dayjs/issues/464)) ([af2f4f1](https://github.com/iamkun/dayjs/commit/af2f4f1))

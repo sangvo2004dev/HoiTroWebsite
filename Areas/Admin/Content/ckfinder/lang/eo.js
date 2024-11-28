@@ -67,15 +67,15 @@ CKFinder.lang['eo'] =
 	DateTime : 'dd/mm/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Dosierujoj',
-	FolderLoading	: 'Estas ŝargata...',
-	FolderNew		: 'Bonvolu entajpi la nomon de la nova dosierujo: ',
-	FolderRename	: 'Bonvolu entajpi la novan nomon de la dosierujo: ',
-	FolderDelete	: 'Ĉu vi certas, ke vi volas forigi la "%1"dosierujon?',
-	FolderRenaming	: ' (Estas renomata...)',
-	FolderDeleting	: ' (Estas forigata...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Dosierujoj',
+	imagePathLoading	: 'Estas ŝargata...',
+	imagePathNew		: 'Bonvolu entajpi la nomon de la nova dosierujo: ',
+	imagePathRename	: 'Bonvolu entajpi la novan nomon de la dosierujo: ',
+	imagePathDelete	: 'Ĉu vi certas, ke vi volas forigi la "%1"dosierujon?',
+	imagePathRenaming	: ' (Estas renomata...)',
+	imagePathDeleting	: ' (Estas forigata...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Entajpu la novan nomon de la dosiero: ',
@@ -89,10 +89,10 @@ CKFinder.lang['eo'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Rubujo',
+	BasketimagePath		: 'Rubujo',
 	BasketClear			: 'Malplenigi la rubujon',
 	BasketRemove		: 'Repreni el la rubujo',
-	BasketOpenFolder	: 'Malfermi la patran dosierujon',
+	BasketOpenimagePath	: 'Malfermi la patran dosierujon',
 	BasketTruncateConfirm : 'Ĉu vi certas, ke vi volas forigi ĉiujn dosierojn el la rubujo?',
 	BasketRemoveConfirm	: 'Ĉu vi certas, ke vi volas forigi la dosieron  "%1" el la rubujo?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['eo'] =
 	View			: 'Vidi',
 	Download		: 'Elŝuti',
 
-	NewSubFolder	: 'Nova subdosierujo',
+	NewSubimagePath	: 'Nova subdosierujo',
 	Rename			: 'Renomi',
 	Delete			: 'Forigi',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['eo'] =
 	UploadBtnCancel		: 'Rezigni',
 
 	UploadNoFileMsg		: 'Selekti dosieron el via komputilo.',
-	UploadNoFolder		: 'Bonvolu selekti dosierujon antaŭ la alŝuto.',
+	UploadNoimagePath		: 'Bonvolu selekti dosierujon antaŭ la alŝuto.',
 	UploadNoPerms		: 'La dosieralŝuto ne estas permesita.',
 	UploadUnknError		: 'Eraro dum la dosieralŝuto.',
 	UploadExtIncorrect	: 'La dosiernoma finaĵo ne estas permesita en tiu  dosierujo.',
@@ -236,12 +236,12 @@ CKFinder.lang['eo'] =
 	{
 		FileEmpty		: 'La dosiernomo ne povas esti malplena.',
 		FileExists		: 'La dosiero %s jam ekzistas.',
-		FolderEmpty		: 'La dosierujnomo ne povas esti malplena.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'La dosierujnomo ne povas esti malplena.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'La dosiernomo ne povas enhavi la sekvajn signojn : \n\\ / : * ? " < > |',
-		FolderInvChar	: 'La dosierujnomo ne povas enhavi la sekvajn signojn : \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'La dosierujnomo ne povas enhavi la sekvajn signojn : \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Ne eblis malfermi la dosieron en nova fenestro. Agordu vian retumilon kaj malŝaltu vian ŝprucfenestran blokilon por tiu retpaĝaro.',
 		XmlError		: 'Ne eblis kontentige elŝuti la XML respondon el la  servilo.',

@@ -5833,7 +5833,7 @@ var Editor = /*#__PURE__*/function () {
           param($image);
         } else {
           if (typeof param === 'string') {
-            $image.attr('data-filename', param);
+            $image.attr('data-file_name', param);
           }
 
           $image.css('width', Math.min(_this3.$editable.width(), $image.width()));
@@ -5861,13 +5861,13 @@ var Editor = /*#__PURE__*/function () {
       var _this4 = this;
 
       external_jQuery_default().each(files, function (idx, file) {
-        var filename = file.name;
+        var file_name = file.name;
 
         if (_this4.options.maximumImageFileSize && _this4.options.maximumImageFileSize < file.size) {
           _this4.context.triggerEvent('image.upload.error', _this4.lang.image.maximumFileSizeError);
         } else {
           readFileAsDataURL(file).then(function (dataURL) {
-            return _this4.insertImage(dataURL, filename);
+            return _this4.insertImage(dataURL, file_name);
           }).fail(function () {
             _this4.context.triggerEvent('image.upload.error');
           });

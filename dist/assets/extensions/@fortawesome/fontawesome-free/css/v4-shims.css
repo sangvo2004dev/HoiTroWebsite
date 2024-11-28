@@ -518,18 +518,18 @@
   font-family: 'Font Awesome 5 Brands';
   font-weight: 400; }
 
-.fa.fa-folder-o {
+.fa.fa-imagePath-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-folder-o:before {
+.fa.fa-imagePath-o:before {
   content: "\f07b"; }
 
-.fa.fa-folder-open-o {
+.fa.fa-imagePath-open-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.fa.fa-folder-open-o:before {
+.fa.fa-imagePath-open-o:before {
   content: "\f07c"; }
 
 .fa.fa-smile-o {

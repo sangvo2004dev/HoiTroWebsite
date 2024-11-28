@@ -67,15 +67,15 @@ CKFinder.lang['ru'] =
 	DateTime : 'dd.mm.yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Папки',
-	FolderLoading	: 'Загрузка...',
-	FolderNew		: 'Пожалуйста, введите новое имя папки: ',
-	FolderRename	: 'Пожалуйста, введите новое имя папки: ',
-	FolderDelete	: 'Вы уверены, что хотите удалить папку "%1"?',
-	FolderRenaming	: ' (Переименовываю...)',
-	FolderDeleting	: ' (Удаляю...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Папки',
+	imagePathLoading	: 'Загрузка...',
+	imagePathNew		: 'Пожалуйста, введите новое имя папки: ',
+	imagePathRename	: 'Пожалуйста, введите новое имя папки: ',
+	imagePathDelete	: 'Вы уверены, что хотите удалить папку "%1"?',
+	imagePathRenaming	: ' (Переименовываю...)',
+	imagePathDeleting	: ' (Удаляю...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Пожалуйста, введите новое имя файла: ',
@@ -89,10 +89,10 @@ CKFinder.lang['ru'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Корзина',
+	BasketimagePath		: 'Корзина',
 	BasketClear			: 'Очистить корзину',
 	BasketRemove		: 'Убрать из корзины',
-	BasketOpenFolder	: 'Перейти в папку этого файла',
+	BasketOpenimagePath	: 'Перейти в папку этого файла',
 	BasketTruncateConfirm : 'Вы точно хотите очистить корзину?',
 	BasketRemoveConfirm	: 'Вы точно хотите убрать файл "%1" из корзины?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['ru'] =
 	View			: 'Посмотреть',
 	Download		: 'Сохранить',
 
-	NewSubFolder	: 'Новая папка',
+	NewSubimagePath	: 'Новая папка',
 	Rename			: 'Переименовать',
 	Delete			: 'Удалить',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['ru'] =
 	UploadBtnCancel		: 'Отмена',
 
 	UploadNoFileMsg		: 'Пожалуйста, выберите файл на вашем компьютере.',
-	UploadNoFolder		: 'Пожалуйста, выберите папку, в которую вы хотите загрузить файл.',
+	UploadNoimagePath		: 'Пожалуйста, выберите папку, в которую вы хотите загрузить файл.',
 	UploadNoPerms		: 'Загрузка файлов запрещена.',
 	UploadUnknError		: 'Ошибка при передаче файла.',
 	UploadExtIncorrect	: 'В эту папку нельзя загружать файлы с таким расширением.',
@@ -236,12 +236,12 @@ CKFinder.lang['ru'] =
 	{
 		FileEmpty		: 'Имя файла не может быть пустым.',
 		FileExists		: 'Файл %s уже существует.',
-		FolderEmpty		: 'Имя папки не может быть пустым.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Имя папки не может быть пустым.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Имя файла не может содержать любой из перечисленных символов: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Имя папки не может содержать любой из перечисленных символов: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Имя папки не может содержать любой из перечисленных символов: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Невозможно открыть файл в новом окне. Пожалуйста, проверьте настройки браузера и отключите блокировку всплывающих окон для этого сайта.',
 		XmlError		: 'Ошибка при разборе XML-ответа сервера.',

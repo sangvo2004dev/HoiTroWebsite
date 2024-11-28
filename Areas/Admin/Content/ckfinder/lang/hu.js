@@ -67,15 +67,15 @@ CKFinder.lang['hu'] =
 	DateTime : 'yyyy.mm.dd. HH:MM',
 	DateAmPm : ['de.', 'du.'],
 
-	// Folders
-	FoldersTitle	: 'Mappák',
-	FolderLoading	: 'Betöltés...',
-	FolderNew		: 'Kérem adja meg a mappa nevét: ',
-	FolderRename	: 'Kérem adja meg a mappa új nevét: ',
-	FolderDelete	: 'Biztosan törölni szeretné a következő mappát: "%1"?',
-	FolderRenaming	: ' (átnevezés...)',
-	FolderDeleting	: ' (törlés...)',
-	DestinationFolder	: 'Cél mappa',
+	// imagePaths
+	imagePathsTitle	: 'Mappák',
+	imagePathLoading	: 'Betöltés...',
+	imagePathNew		: 'Kérem adja meg a mappa nevét: ',
+	imagePathRename	: 'Kérem adja meg a mappa új nevét: ',
+	imagePathDelete	: 'Biztosan törölni szeretné a következő mappát: "%1"?',
+	imagePathRenaming	: ' (átnevezés...)',
+	imagePathDeleting	: ' (törlés...)',
+	DestinationimagePath	: 'Cél mappa',
 
 	// Files
 	FileRename		: 'Kérem adja meg a fájl új nevét: ',
@@ -89,10 +89,10 @@ CKFinder.lang['hu'] =
 	SkippedFiles	: 'A kihagyott fájlok listája:',
 
 	// Basket
-	BasketFolder		: 'Kosár',
+	BasketimagePath		: 'Kosár',
 	BasketClear			: 'Kosár ürítése',
 	BasketRemove		: 'Törlés a kosárból',
-	BasketOpenFolder	: 'A fájlt tartalmazó mappa megnyitása',
+	BasketOpenimagePath	: 'A fájlt tartalmazó mappa megnyitása',
 	BasketTruncateConfirm : 'Biztosan szeretne minden fájlt törölni a kosárból?',
 	BasketRemoveConfirm	: 'Biztosan törölni szeretné a(z) "%1" nevű fájlt a kosárból?',
 	BasketRemoveConfirmMultiple	: 'Biztosan törölni szeretné a kijelült %1 fájlt a kosárból?',
@@ -125,7 +125,7 @@ CKFinder.lang['hu'] =
 	View			: 'Megtekintés',
 	Download		: 'Letöltés',
 
-	NewSubFolder	: 'Új almappa',
+	NewSubimagePath	: 'Új almappa',
 	Rename			: 'Átnevezés',
 	Delete			: 'Törlés',
 	DeleteFiles		: 'Fájlok törlése',
@@ -156,7 +156,7 @@ CKFinder.lang['hu'] =
 	UploadBtnCancel		: 'Mégsem',
 
 	UploadNoFileMsg		: 'Kérem válassza ki a fájlt a számítógépéről.',
-	UploadNoFolder		: 'A feltöltés előtt válasszon mappát.',
+	UploadNoimagePath		: 'A feltöltés előtt válasszon mappát.',
 	UploadNoPerms		: 'A fájlok feltöltése nem engedélyezett.',
 	UploadUnknError		: 'Hiba a fájl feltöltése közben.',
 	UploadExtIncorrect	: 'A fájl kiterjesztése nem engedélyezett ebben a mappában.',
@@ -236,12 +236,12 @@ CKFinder.lang['hu'] =
 	{
 		FileEmpty		: 'A fájl neve nem lehet üres.',
 		FileExists		: 'A(z) %s fájl már létezik.',
-		FolderEmpty		: 'A mappa neve nem lehet üres.',
-		FolderExists	: 'A(z) %s mappa már létezik.',
-		FolderNameExists	: 'A mappa létezik.',
+		imagePathEmpty		: 'A mappa neve nem lehet üres.',
+		imagePathExists	: 'A(z) %s mappa már létezik.',
+		imagePathNameExists	: 'A mappa létezik.',
 
 		FileInvChar		: 'A fájl neve nem tartalmazhatja a következő karaktereket: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'A mappa neve nem tartalmazhatja a következő karaktereket: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'A mappa neve nem tartalmazhatja a következő karaktereket: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'A felugró ablak megnyitása nem sikerült. Kérem ellenőrizze a böngészője beállításait és tiltsa le a felugró ablakokat blokkoló alkalmazásait erre a honlapra.',
 		XmlError		: 'A webszervertől érkező XML válasz nem dolgozható fel megfelelően.',

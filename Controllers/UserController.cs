@@ -107,10 +107,10 @@ namespace HoiTroWebsite.Controllers
             }
 
             RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
-            db.Entry(room).Collection(r => r.RoomImgs).Load();
+            db.Entry(room).Collection(r => r.RoomImages).Load();
 
-            // sắp xếp lại roomImgs theo order
-            room.RoomImgs = room.RoomImgs.OrderBy(i => i.order).ToList();
+            // sắp xếp lại RoomImages theo order
+            room.RoomImages = room.RoomImages.OrderBy(i => i.order).ToList();
 
             PostRoomVM postRoomVM = new PostRoomVM()
             {
@@ -119,14 +119,14 @@ namespace HoiTroWebsite.Controllers
                 tieu_de_meta = room.meta,
                 noi_dung = room.detail_description,
                 gia = room.price,
-                dien_tich = Convert.ToInt32(room.area),
+                dien_tich = Convert.ToInt32(room.acreage),
                 loai_chuyen_muc = room.roomTypeId,
                 doi_tuong = room.tenant,
             };
 
             ViewBag.loai_chuyen_muc = new SelectList(db.RoomTypes.OrderBy(r => r.order), "id", "title", postRoomVM.loai_chuyen_muc);
             TempData["id"] = room.id;
-            ViewBag.RoomImgs = room.RoomImgs;
+            ViewBag.RoomImages = room.RoomImages;
 
             return View(postRoomVM);
         }

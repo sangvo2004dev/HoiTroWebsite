@@ -67,15 +67,15 @@ CKFinder.lang['cy'] =
 	DateTime : 'mm/dd/yyyy HH:MM',
 	DateAmPm : ['YB', 'YH'],
 
-	// Folders
-	FoldersTitle	: 'Ffolderi',
-	FolderLoading	: 'Yn llwytho...',
-	FolderNew		: 'Rhowch enw newydd y ffolder: ',
-	FolderRename	: 'Rhowch enw newydd y ffolder: ',
-	FolderDelete	: 'Ydych chi wir am ddileu\'r ffolder "%1"?',
-	FolderRenaming	: ' (Yn ailenwi...)',
-	FolderDeleting	: ' (Yn dileu...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'FimagePathi',
+	imagePathLoading	: 'Yn llwytho...',
+	imagePathNew		: 'Rhowch enw newydd y fimagePath: ',
+	imagePathRename	: 'Rhowch enw newydd y fimagePath: ',
+	imagePathDelete	: 'Ydych chi wir am ddileu\'r fimagePath "%1"?',
+	imagePathRenaming	: ' (Yn ailenwi...)',
+	imagePathDeleting	: ' (Yn dileu...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Rhowch enw newydd y ffeil: ',
@@ -84,15 +84,15 @@ CKFinder.lang['cy'] =
 	FileDelete		: 'Ydych chi wir am ddileu\'r ffeil "%1"?',
 	FilesDelete	: 'Are you sure you want to delete %1 files?', // MISSING
 	FilesLoading	: 'Yn llwytho...',
-	FilesEmpty		: 'Mae\'r ffolder yn wag.',
+	FilesEmpty		: 'Mae\'r fimagePath yn wag.',
 	DestinationFile	: 'Destination File', // MISSING
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Basged',
+	BasketimagePath		: 'Basged',
 	BasketClear			: 'Clirio\'r Fasged',
 	BasketRemove		: 'Tynnu o\'r Fasged',
-	BasketOpenFolder	: 'Agor yr Uwch Ffolder',
+	BasketOpenimagePath	: 'Agor yr Uwch FimagePath',
 	BasketTruncateConfirm : 'Ydych chi wir am dynnu\'r holl ffeiliau o\'r fasged?',
 	BasketRemoveConfirm	: 'Ydych chi wir am dynnu\'r ffeil "%1" o\'r fasged?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['cy'] =
 	View			: 'Dangos',
 	Download		: 'Lawrlwytho',
 
-	NewSubFolder	: 'Is-ffolder Newydd',
+	NewSubimagePath	: 'Is-fimagePath Newydd',
 	Rename			: 'Ailenwi',
 	Delete			: 'Dileu',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,10 +156,10 @@ CKFinder.lang['cy'] =
 	UploadBtnCancel		: 'Diddymu',
 
 	UploadNoFileMsg		: 'Dewiswch ffeil ar eich cyfrifiadur.',
-	UploadNoFolder		: 'Dewiswch ffolder cyn lanlwytho.',
+	UploadNoimagePath		: 'Dewiswch fimagePath cyn lanlwytho.',
 	UploadNoPerms		: 'Does dim hawl lanlwytho ffeiliau.',
 	UploadUnknError		: 'Gwall wrth anfon y ffeil.',
-	UploadExtIncorrect	: 'Does dim hawl cadw\'r ffeiliau â\'r estyniad hwn yn y ffolder hwn.',
+	UploadExtIncorrect	: 'Does dim hawl cadw\'r ffeiliau â\'r estyniad hwn yn y fimagePath hwn.',
 
 	// Flash Uploads
 	UploadLabel			: 'Ffeiliau i\'w Lanlwytho',
@@ -190,7 +190,7 @@ CKFinder.lang['cy'] =
 	SetSortExtension		: 'gan Estyniad',
 
 	// Status Bar
-	FilesCountEmpty : '<Ffolder Gwag>',
+	FilesCountEmpty : '<FimagePath Gwag>',
 	FilesCountOne	: '1 ffeil',
 	FilesCountMany	: '%1 ffeil',
 
@@ -207,22 +207,22 @@ CKFinder.lang['cy'] =
 	 10 : 'Gorchymyn annilys.',
 	 11 : 'Doedd math yr adnodd heb ei benodi yn y cais.',
 	 12 : 'Dyw math yr adnodd ddim yn ddilys.',
-	102 : 'Enw ffeil neu ffolder annilys.',
+	102 : 'Enw ffeil neu fimagePath annilys.',
 	103 : 'Doedd dim modd cwblhau\'r cais oherwydd cyfyngiadau awdurdodi.',
 	104 : 'Doedd dim modd cwblhau\'r cais oherwydd cyfyngiadau i hawliau\'r system ffeilio.',
 	105 : 'Estyniad ffeil annilys.',
 	109 : 'Cais annilys.',
 	110 : 'Gwall anhysbys.',
 	111 : 'It was not possible to complete the request due to resulting file size.', // MISSING
-	115 : 'Mae ffeil neu ffolder gyda\'r un enw yn bodoli yn barod.',
-	116 : 'Methu â darganfod y ffolder. Adfywiwch a cheisio eto.',
+	115 : 'Mae ffeil neu fimagePath gyda\'r un enw yn bodoli yn barod.',
+	116 : 'Methu â darganfod y fimagePath. Adfywiwch a cheisio eto.',
 	117 : 'Methu â darganfod y ffeil. Adfywiwch y rhestr ffeiliau a cheisio eto.',
 	118 : 'Mae\'r llwybrau gwreiddiol a tharged yn unfath.',
 	201 : 'Mae ffeil â\'r enw hwnnw yn bodoli yn barod. Cafodd y ffeil a lanlwythwyd ei hailenwi i "%1".',
 	202 : 'Ffeil annilys.',
 	203 : 'Ffeil annilys. Mae maint y ffeil yn rhy fawr.',
 	204 : 'Mae\'r ffeil a lanwythwyd wedi chwalu.',
-	205 : 'Does dim ffolder dros dro ar gael er mwyn lanlwytho ffeiliau iddo ar y gweinydd hwn.',
+	205 : 'Does dim fimagePath dros dro ar gael er mwyn lanlwytho ffeiliau iddo ar y gweinydd hwn.',
 	206 : 'Cafodd y lanlwythiad ei ddiddymu oherwydd rhesymau diogelwch. Mae\'r ffeil yn cynnwys data yn debyg i HTML.',
 	207 : 'Cafodd y ffeil a lanlwythwyd ei hailenwi i "%1".',
 	300 : 'Methodd symud y ffeil(iau).',
@@ -236,12 +236,12 @@ CKFinder.lang['cy'] =
 	{
 		FileEmpty		: 'Does dim modd i enw\'r ffeil fod yn wag.',
 		FileExists		: 'Mae\'r ffeil %s yn bodoli yn barod.',
-		FolderEmpty		: 'Does dim modd i\'r ffolder fod yn wag.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Does dim modd i\'r fimagePath fod yn wag.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Does dim hawl defnyddio\'r nodau canlynol i enwi ffeil: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Does dim hawl defnyddio\'r nodau canlynol i enwi ffolder: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Does dim hawl defnyddio\'r nodau canlynol i enwi fimagePath: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Doedd dim modd agor y ffeil mewn ffenestr newydd. Bydd angen ffurfweddu\'r porwr i analluogi pob ataliwr \'popup\' ar gyfer y safle hwn.',
 		XmlError		: 'Doedd dim modd llwytho\'r ymateb XML yn gywir o\'r gweinydd.',

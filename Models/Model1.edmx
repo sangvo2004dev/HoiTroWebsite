@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HoiTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HoiTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -13,9 +13,10 @@
           <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="phoneNum" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="255" />
-          <Property Name="zaloNum" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="zaloNum" Type="nvarchar" MaxLength="10" />
           <Property Name="FBlink" Type="nvarchar" MaxLength="255" />
-          <Property Name="avtImage" Type="nvarchar" MaxLength="255" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="resetPass" Type="bit" Nullable="false" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
@@ -29,7 +30,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="255" />
-          <Property Name="img" Type="nvarchar" MaxLength="255" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
@@ -79,7 +81,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="255" />
-          <Property Name="avtImage" Type="nvarchar" MaxLength="255" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="email" Type="nvarchar" MaxLength="255" />
           <Property Name="phoneNum" Type="nvarchar" MaxLength="10" />
           <Property Name="FBlink" Type="nvarchar" MaxLength="255" />
@@ -109,6 +112,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="255" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
           <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="brief_description" Type="nvarchar(max)" />
           <Property Name="detail_description" Type="nvarchar(max)" />
@@ -136,22 +140,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="reference_id" Type="int" Nullable="false" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
           <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
-          <Property Name="hide" Type="bit" />
-          <Property Name="order" Type="int" />
-          <Property Name="datebegin" Type="smalldatetime" />
-        </EntityType>
-        <EntityType Name="RoomImgs">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="postRoomId" Type="int" Nullable="false" />
-          <Property Name="fileName" Type="varchar" MaxLength="100" />
-          <Property Name="folder" Type="varchar" MaxLength="100" />
-          <Property Name="serverFolder" Type="varchar" MaxLength="100" />
-          <Property Name="meta" Type="varchar" MaxLength="255" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
@@ -162,17 +153,15 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="brief_description" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="detail_description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="price" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="acreage" Type="float" />
-          <Property Name="area" Type="nvarchar" MaxLength="255" />
+          <Property Name="acreage" Type="varchar" MaxLength="30" />
           <Property Name="location" Type="nvarchar" MaxLength="255" />
           <Property Name="tenant" Type="nvarchar" MaxLength="255" />
           <Property Name="nameInfor" Type="nvarchar" MaxLength="100" />
           <Property Name="phoneInfor" Type="nvarchar" MaxLength="10" />
           <Property Name="zaloInfor" Type="nvarchar" MaxLength="10" />
-          <Property Name="isApproved" Type="bit" Nullable="false" />
+          <Property Name="isApproved" Type="bit" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
@@ -204,7 +193,7 @@
           <Property Name="datebegin" Type="smalldatetime" />
           <Property Name="menuId" Type="int" />
         </EntityType>
-        <Association Name="FK__News__newsTypeId__09746778">
+        <Association Name="FK__News__newsTypeId__4A58F394">
           <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -218,7 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImage__refer__10216507">
+        <Association Name="FK__RoomImage__refer__54D68207">
           <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -232,21 +221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomImgs__datebe__16CE6296">
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomImgs" Type="Self.RoomImgs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoomImgs">
-              <PropertyRef Name="postRoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RoomInfo__accoun__04AFB25B">
+        <Association Name="FK__RoomInfo__accoun__45943E77">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -260,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoomInfo__roomTy__03BB8E22">
+        <Association Name="FK__RoomInfo__roomTy__44A01A3E">
           <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -274,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SubMenu__menuId__7A3223E8">
+        <Association Name="FK__SubMenu__menuId__3C0AD43D">
           <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -298,71 +273,34 @@
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsType" EntityType="Self.NewsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomImages" EntityType="Self.RoomImages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RoomImgs" EntityType="Self.RoomImgs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomInfo" EntityType="Self.RoomInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__News__newsTypeId__09746778" Association="Self.FK__News__newsTypeId__09746778">
+          <AssociationSet Name="FK__News__newsTypeId__4A58F394" Association="Self.FK__News__newsTypeId__4A58F394">
             <End Role="NewsType" EntitySet="NewsType" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__10216507" Association="Self.FK__RoomImage__refer__10216507">
+          <AssociationSet Name="FK__RoomImage__refer__54D68207" Association="Self.FK__RoomImage__refer__54D68207">
             <End Role="RoomInfo" EntitySet="RoomInfo" />
             <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomImgs__datebe__16CE6296" Association="Self.FK__RoomImgs__datebe__16CE6296">
-            <End Role="RoomInfo" EntitySet="RoomInfo" />
-            <End Role="RoomImgs" EntitySet="RoomImgs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__accoun__04AFB25B" Association="Self.FK__RoomInfo__accoun__04AFB25B">
+          <AssociationSet Name="FK__RoomInfo__accoun__45943E77" Association="Self.FK__RoomInfo__accoun__45943E77">
             <End Role="Account" EntitySet="Account" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__03BB8E22" Association="Self.FK__RoomInfo__roomTy__03BB8E22">
+          <AssociationSet Name="FK__RoomInfo__roomTy__44A01A3E" Association="Self.FK__RoomInfo__roomTy__44A01A3E">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="RoomInfo" EntitySet="RoomInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK__SubMenu__menuId__7A3223E8" Association="Self.FK__SubMenu__menuId__7A3223E8">
+          <AssociationSet Name="FK__SubMenu__menuId__3C0AD43D" Association="Self.FK__SubMenu__menuId__3C0AD43D">
             <End Role="Menu" EntitySet="Menu" />
             <End Role="SubMenu" EntitySet="SubMenu" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HoiTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="phoneNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="zaloNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FBlink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="avtImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="resetPass" Type="Boolean" Nullable="false" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RoomInfoes" Relationship="Self.FK__RoomInfo__accoun__04AFB25B" FromRole="Account" ToRole="RoomInfo" />
-        </EntityType>
-        <EntityType Name="Banner">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="id" />
@@ -401,23 +339,6 @@
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="Mentor">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="avtImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phoneNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="FBlink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="zaloNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="supportTask" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="id" />
@@ -432,23 +353,6 @@
           <Property Name="datebegin" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SubMenus" Relationship="Self.FK__SubMenu__menuId__7A3223E8" FromRole="Menu" ToRole="SubMenu" />
         </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="brief_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="detail_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <Property Name="newsTypeId" Type="Int32" />
-          <NavigationProperty Name="NewsType" Relationship="Self.FK__News__newsTypeId__09746778" FromRole="News" ToRole="NewsType" />
-        </EntityType>
         <EntityType Name="NewsType">
           <Key>
             <PropertyRef Name="id" />
@@ -459,63 +363,7 @@
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="News" Relationship="Self.FK__News__newsTypeId__09746778" FromRole="NewsType" ToRole="News" />
-        </EntityType>
-        <EntityType Name="RoomImage">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="reference_id" Type="Int32" Nullable="false" />
-          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RoomInfo" Relationship="Self.FK__RoomImage__refer__10216507" FromRole="RoomImages" ToRole="RoomInfo" />
-        </EntityType>
-        <EntityType Name="RoomImg">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="postRoomId" Type="Int32" Nullable="false" />
-          <Property Name="fileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="folder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="serverFolder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="meta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RoomInfo" Relationship="Self.FK__RoomImgs__datebe__16CE6296" FromRole="RoomImgs" ToRole="RoomInfo" />
-        </EntityType>
-        <EntityType Name="RoomInfo">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="brief_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="detail_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="price" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="acreage" Type="Double" />
-          <Property Name="area" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="tenant" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="nameInfor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="phoneInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="zaloInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="isApproved" Type="Boolean" Nullable="false" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="hide" Type="Boolean" />
-          <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <Property Name="roomTypeId" Type="Int32" />
-          <Property Name="accountId" Type="Int32" />
-          <NavigationProperty Name="Account" Relationship="Self.FK__RoomInfo__accoun__04AFB25B" FromRole="RoomInfo" ToRole="Account" />
-          <NavigationProperty Name="RoomImages" Relationship="Self.FK__RoomImage__refer__10216507" FromRole="RoomInfo" ToRole="RoomImages" />
-          <NavigationProperty Name="RoomImgs" Relationship="Self.FK__RoomImgs__datebe__16CE6296" FromRole="RoomInfo" ToRole="RoomImgs" />
-          <NavigationProperty Name="RoomType" Relationship="Self.FK__RoomInfo__roomTy__03BB8E22" FromRole="RoomInfo" ToRole="RoomType" />
+          <NavigationProperty Name="News" Relationship="HoiTroModel.FK__News__newsTypeId__1F6E958F" FromRole="NewsType" ToRole="News" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -527,7 +375,7 @@
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
           <Property Name="datebegin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="RoomInfoes" Relationship="Self.FK__RoomInfo__roomTy__03BB8E22" FromRole="RoomType" ToRole="RoomInfo" />
+          <NavigationProperty Name="RoomInfoes" Relationship="HoiTroModel.FK__RoomInfo__roomTy__19B5BC39" FromRole="RoomType" ToRole="RoomInfo" />
         </EntityType>
         <EntityType Name="SubMenu">
           <Key>
@@ -543,20 +391,6 @@
           <Property Name="menuId" Type="Int32" />
           <NavigationProperty Name="Menu" Relationship="Self.FK__SubMenu__menuId__7A3223E8" FromRole="SubMenu" ToRole="Menu" />
         </EntityType>
-        <Association Name="FK__RoomInfo__accoun__04AFB25B">
-          <End Role="Account" Type="Self.Account" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoomInfo">
-              <PropertyRef Name="accountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SubMenu__menuId__7A3223E8">
           <End Role="Menu" Type="Self.Menu" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -571,53 +405,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__News__newsTypeId__09746778">
-          <End Role="NewsType" Type="Self.NewsType" Multiplicity="0..1">
+        <EntityContainer Name="HoiTroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Footers" EntityType="Self.Footer" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="NewsTypes" EntityType="Self.NewsType" />
+          <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
+          <EntitySet Name="SubMenus" EntityType="Self.SubMenu" />
+          <AssociationSet Name="FK__SubMenu__menuId__7A3223E8" Association="Self.FK__SubMenu__menuId__7A3223E8">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="SubMenu" EntitySet="SubMenus" />
+          </AssociationSet>
+          <EntitySet Name="RoomInfoes" EntityType="HoiTroModel.RoomInfo" />
+          <AssociationSet Name="FK__RoomInfo__roomTy__19B5BC39" Association="HoiTroModel.FK__RoomInfo__roomTy__19B5BC39">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="HoiTroModel.Account" />
+          <EntitySet Name="Banners" EntityType="HoiTroModel.Banner" />
+          <EntitySet Name="Mentors" EntityType="HoiTroModel.Mentor" />
+          <EntitySet Name="News" EntityType="HoiTroModel.News" />
+          <EntitySet Name="RoomImages" EntityType="HoiTroModel.RoomImage" />
+          <AssociationSet Name="FK__RoomInfo__accoun__1AA9E072" Association="HoiTroModel.FK__RoomInfo__accoun__1AA9E072">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__newsTypeId__1F6E958F" Association="HoiTroModel.FK__News__newsTypeId__1F6E958F">
+            <End Role="NewsType" EntitySet="NewsTypes" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoomImage__refer__29EC2402" Association="HoiTroModel.FK__RoomImage__refer__29EC2402">
+            <End Role="RoomInfo" EntitySet="RoomInfoes" />
+            <End Role="RoomImage" EntitySet="RoomImages" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="RoomInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="detail_description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="acreage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="tenant" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nameInfor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phoneInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="zaloInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="isApproved" Type="Boolean" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="roomTypeId" Type="Int32" />
+          <Property Name="accountId" Type="Int32" />
+          <NavigationProperty Name="RoomType" Relationship="HoiTroModel.FK__RoomInfo__roomTy__19B5BC39" FromRole="RoomInfo" ToRole="RoomType" />
+          <NavigationProperty Name="Account" Relationship="HoiTroModel.FK__RoomInfo__accoun__1AA9E072" FromRole="RoomInfo" ToRole="Account" />
+          <NavigationProperty Name="RoomImages" Relationship="HoiTroModel.FK__RoomImage__refer__29EC2402" FromRole="RoomInfo" ToRole="RoomImage" />
+        </EntityType>
+        <Association Name="FK__RoomInfo__roomTy__19B5BC39">
+          <End Type="HoiTroModel.RoomType" Role="RoomType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="News" Type="Self.News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NewsType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="newsTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RoomImage__refer__10216507">
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomImages" Type="Self.RoomImage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoomImages">
-              <PropertyRef Name="reference_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RoomImgs__datebe__16CE6296">
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomImgs" Type="Self.RoomImg" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="RoomImgs">
-              <PropertyRef Name="postRoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RoomInfo__roomTy__03BB8E22">
-          <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="*" />
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoomType">
               <PropertyRef Name="id" />
@@ -627,83 +478,137 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HoiTroEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
-          <EntitySet Name="Banners" EntityType="Self.Banner" />
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
-          <EntitySet Name="Footers" EntityType="Self.Footer" />
-          <EntitySet Name="Mentors" EntityType="Self.Mentor" />
-          <EntitySet Name="Menus" EntityType="Self.Menu" />
-          <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="NewsTypes" EntityType="Self.NewsType" />
-          <EntitySet Name="RoomImages" EntityType="Self.RoomImage" />
-          <EntitySet Name="RoomImgs" EntityType="Self.RoomImg" />
-          <EntitySet Name="RoomInfoes" EntityType="Self.RoomInfo" />
-          <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
-          <EntitySet Name="SubMenus" EntityType="Self.SubMenu" />
-          <AssociationSet Name="FK__RoomInfo__accoun__04AFB25B" Association="Self.FK__RoomInfo__accoun__04AFB25B">
-            <End Role="Account" EntitySet="Accounts" />
-            <End Role="RoomInfo" EntitySet="RoomInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubMenu__menuId__7A3223E8" Association="Self.FK__SubMenu__menuId__7A3223E8">
-            <End Role="Menu" EntitySet="Menus" />
-            <End Role="SubMenu" EntitySet="SubMenus" />
-          </AssociationSet>
-          <AssociationSet Name="FK__News__newsTypeId__09746778" Association="Self.FK__News__newsTypeId__09746778">
-            <End Role="NewsType" EntitySet="NewsTypes" />
-            <End Role="News" EntitySet="News" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RoomImage__refer__10216507" Association="Self.FK__RoomImage__refer__10216507">
-            <End Role="RoomInfo" EntitySet="RoomInfoes" />
-            <End Role="RoomImages" EntitySet="RoomImages" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RoomImgs__datebe__16CE6296" Association="Self.FK__RoomImgs__datebe__16CE6296">
-            <End Role="RoomInfo" EntitySet="RoomInfoes" />
-            <End Role="RoomImgs" EntitySet="RoomImgs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RoomInfo__roomTy__03BB8E22" Association="Self.FK__RoomInfo__roomTy__03BB8E22">
-            <End Role="RoomType" EntitySet="RoomTypes" />
-            <End Role="RoomInfo" EntitySet="RoomInfoes" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="zaloNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FBlink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="resetPass" Type="Boolean" Nullable="false" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RoomInfoes" Relationship="HoiTroModel.FK__RoomInfo__accoun__1AA9E072" FromRole="Account" ToRole="RoomInfo" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Mentor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FBlink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="zaloNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="supportTask" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="brief_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="detail_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="newsTypeId" Type="Int32" />
+          <NavigationProperty Name="NewsType" Relationship="HoiTroModel.FK__News__newsTypeId__1F6E958F" FromRole="News" ToRole="NewsType" />
+        </EntityType>
+        <EntityType Name="RoomImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reference_id" Type="Int32" Nullable="false" />
+          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RoomInfo" Relationship="HoiTroModel.FK__RoomImage__refer__29EC2402" FromRole="RoomImage" ToRole="RoomInfo" />
+        </EntityType>
+        <Association Name="FK__RoomInfo__accoun__1AA9E072">
+          <End Type="HoiTroModel.Account" Role="Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomInfo">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__newsTypeId__1F6E958F">
+          <End Type="HoiTroModel.NewsType" Role="NewsType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HoiTroModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="newsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoomImage__refer__29EC2402">
+          <End Type="HoiTroModel.RoomInfo" Role="RoomInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HoiTroModel.RoomImage" Role="RoomImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomInfo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoomImage">
+              <PropertyRef Name="reference_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HoiTroModelStoreContainer" CdmEntityContainer="HoiTroEntities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="HoiTroModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="zaloNum" ColumnName="zaloNum" />
-                <ScalarProperty Name="FBlink" ColumnName="FBlink" />
-                <ScalarProperty Name="avtImage" ColumnName="avtImage" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="resetPass" ColumnName="resetPass" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Banners">
-            <EntityTypeMapping TypeName="HoiTroModel.Banner">
-              <MappingFragment StoreEntitySet="Banner">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="img" ColumnName="img" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="HoiTroModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
@@ -744,24 +649,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Mentors">
-            <EntityTypeMapping TypeName="HoiTroModel.Mentor">
-              <MappingFragment StoreEntitySet="Mentor">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="avtImage" ColumnName="avtImage" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
-                <ScalarProperty Name="FBlink" ColumnName="FBlink" />
-                <ScalarProperty Name="zaloNum" ColumnName="zaloNum" />
-                <ScalarProperty Name="supportTask" ColumnName="supportTask" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="HoiTroModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
@@ -776,23 +663,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="HoiTroModel.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
-                <ScalarProperty Name="brief_description" ColumnName="brief_description" />
-                <ScalarProperty Name="detail_description" ColumnName="detail_description" />
-                <ScalarProperty Name="author" ColumnName="author" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-                <ScalarProperty Name="newsTypeId" ColumnName="newsTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NewsTypes">
             <EntityTypeMapping TypeName="HoiTroModel.NewsType">
               <MappingFragment StoreEntitySet="NewsType">
@@ -802,59 +672,6 @@
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoomImages">
-            <EntityTypeMapping TypeName="HoiTroModel.RoomImage">
-              <MappingFragment StoreEntitySet="RoomImages">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="reference_id" ColumnName="reference_id" />
-                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoomImgs">
-            <EntityTypeMapping TypeName="HoiTroModel.RoomImg">
-              <MappingFragment StoreEntitySet="RoomImgs">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="postRoomId" ColumnName="postRoomId" />
-                <ScalarProperty Name="fileName" ColumnName="fileName" />
-                <ScalarProperty Name="folder" ColumnName="folder" />
-                <ScalarProperty Name="serverFolder" ColumnName="serverFolder" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoomInfoes">
-            <EntityTypeMapping TypeName="HoiTroModel.RoomInfo">
-              <MappingFragment StoreEntitySet="RoomInfo">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="brief_description" ColumnName="brief_description" />
-                <ScalarProperty Name="detail_description" ColumnName="detail_description" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="acreage" ColumnName="acreage" />
-                <ScalarProperty Name="area" ColumnName="area" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="tenant" ColumnName="tenant" />
-                <ScalarProperty Name="nameInfor" ColumnName="nameInfor" />
-                <ScalarProperty Name="phoneInfor" ColumnName="phoneInfor" />
-                <ScalarProperty Name="zaloInfor" ColumnName="zaloInfor" />
-                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
-                <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="hide" ColumnName="hide" />
-                <ScalarProperty Name="order" ColumnName="order" />
-                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-                <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -881,6 +698,114 @@
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
                 <ScalarProperty Name="menuId" ColumnName="menuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomInfoes">
+            <EntityTypeMapping TypeName="HoiTroModel.RoomInfo">
+              <MappingFragment StoreEntitySet="RoomInfo">
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+                <ScalarProperty Name="zaloInfor" ColumnName="zaloInfor" />
+                <ScalarProperty Name="phoneInfor" ColumnName="phoneInfor" />
+                <ScalarProperty Name="nameInfor" ColumnName="nameInfor" />
+                <ScalarProperty Name="tenant" ColumnName="tenant" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="acreage" ColumnName="acreage" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="detail_description" ColumnName="detail_description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="HoiTroModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="resetPass" ColumnName="resetPass" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="FBlink" ColumnName="FBlink" />
+                <ScalarProperty Name="zaloNum" ColumnName="zaloNum" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="HoiTroModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mentors">
+            <EntityTypeMapping TypeName="HoiTroModel.Mentor">
+              <MappingFragment StoreEntitySet="Mentor">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="supportTask" ColumnName="supportTask" />
+                <ScalarProperty Name="zaloNum" ColumnName="zaloNum" />
+                <ScalarProperty Name="FBlink" ColumnName="FBlink" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="HoiTroModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="newsTypeId" ColumnName="newsTypeId" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="detail_description" ColumnName="detail_description" />
+                <ScalarProperty Name="brief_description" ColumnName="brief_description" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomImages">
+            <EntityTypeMapping TypeName="HoiTroModel.RoomImage">
+              <MappingFragment StoreEntitySet="RoomImages">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="reference_id" ColumnName="reference_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

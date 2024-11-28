@@ -437,17 +437,17 @@
   font-weight: 400;
 }
 
-.#{$fa-css-prefix}.#{$fa-css-prefix}-folder-o {
+.#{$fa-css-prefix}.#{$fa-css-prefix}-imagePath-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
-.#{$fa-css-prefix}.#{$fa-css-prefix}-folder-o:before { content: fa-content($fa-var-folder); }
+.#{$fa-css-prefix}.#{$fa-css-prefix}-imagePath-o:before { content: fa-content($fa-var-imagePath); }
 
-.#{$fa-css-prefix}.#{$fa-css-prefix}-folder-open-o {
+.#{$fa-css-prefix}.#{$fa-css-prefix}-imagePath-open-o {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400;
 }
-.#{$fa-css-prefix}.#{$fa-css-prefix}-folder-open-o:before { content: fa-content($fa-var-folder-open); }
+.#{$fa-css-prefix}.#{$fa-css-prefix}-imagePath-open-o:before { content: fa-content($fa-var-imagePath-open); }
 
 .#{$fa-css-prefix}.#{$fa-css-prefix}-smile-o {
   font-family: 'Font Awesome 5 Free';

@@ -30,7 +30,7 @@ namespace HoiTroWebsite.Controllers
                         ImagePath = (from i in _db.RoomImages
                                      where i.reference_id == n.id
                                      orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
+                                     select i.file_name).FirstOrDefault()
                     };
 
             return View(v.ToList());
@@ -42,8 +42,8 @@ namespace HoiTroWebsite.Controllers
             RoomInfo v = (from t in _db.RoomInfoes
                     where t.id == roomID
                     select t).FirstOrDefault();
-            _db.Entry(v).Collection(ri => ri.RoomImgs).Query().OrderBy(img => img.order).Load();
-            //v.RoomImgs = v.RoomImgs.OrderBy(ri => ri.order) as Collection<RoomImg>; 
+            _db.Entry(v).Collection(ri => ri.RoomImages).Query().OrderBy(img => img.order).Load();
+            //v.RoomImages = v.RoomImages.OrderBy(ri => ri.order) as Collection<RoomImg>; 
             return PartialView(v);
         }
 
@@ -74,7 +74,7 @@ namespace HoiTroWebsite.Controllers
                         ImagePath = (from i in _db.RoomImages
                                      where i.reference_id == n.id
                                      orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
+                                     select i.file_name).FirstOrDefault()
                     };
 
             return PartialView(v.ToList());

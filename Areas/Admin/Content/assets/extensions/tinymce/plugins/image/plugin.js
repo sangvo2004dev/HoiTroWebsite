@@ -1362,7 +1362,7 @@
         blob: file,
         blobUri,
         name: (_a = file.name) === null || _a === void 0 ? void 0 : _a.replace(/\.[^\.]+$/, ''),
-        filename: file.name,
+        file_name: file.name,
         base64: dataUrl.split(',')[1]
       });
     };

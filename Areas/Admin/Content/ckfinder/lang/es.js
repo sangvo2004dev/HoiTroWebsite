@@ -67,15 +67,15 @@ CKFinder.lang['es'] =
 	DateTime : 'dd/mm/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Carpetas',
-	FolderLoading	: 'Cargando...',
-	FolderNew		: 'Por favor, escriba el nombre para la nueva carpeta: ',
-	FolderRename	: 'Por favor, escriba el nuevo nombre para la carpeta: ',
-	FolderDelete	: '¿Está seguro de que quiere borrar la carpeta "%1"?',
-	FolderRenaming	: ' (Renombrando...)',
-	FolderDeleting	: ' (Borrando...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Carpetas',
+	imagePathLoading	: 'Cargando...',
+	imagePathNew		: 'Por favor, escriba el nombre para la nueva carpeta: ',
+	imagePathRename	: 'Por favor, escriba el nuevo nombre para la carpeta: ',
+	imagePathDelete	: '¿Está seguro de que quiere borrar la carpeta "%1"?',
+	imagePathRenaming	: ' (Renombrando...)',
+	imagePathDeleting	: ' (Borrando...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Por favor, escriba el nuevo nombre del fichero: ',
@@ -89,10 +89,10 @@ CKFinder.lang['es'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Cesta',
+	BasketimagePath		: 'Cesta',
 	BasketClear			: 'Vaciar cesta',
 	BasketRemove		: 'Quitar de la cesta',
-	BasketOpenFolder	: 'Abrir carpeta padre',
+	BasketOpenimagePath	: 'Abrir carpeta padre',
 	BasketTruncateConfirm : '¿Está seguro de querer quitar todos los ficheros de la cesta?',
 	BasketRemoveConfirm	: '¿Está seguro de querer quitar el fichero "%1" de la cesta?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['es'] =
 	View			: 'Ver',
 	Download		: 'Descargar',
 
-	NewSubFolder	: 'Nueva Subcarpeta',
+	NewSubimagePath	: 'Nueva Subcarpeta',
 	Rename			: 'Renombrar',
 	Delete			: 'Borrar',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['es'] =
 	UploadBtnCancel		: 'Cancelar',
 
 	UploadNoFileMsg		: 'Por favor, elija un fichero de su ordenador.',
-	UploadNoFolder		: 'Por favor, escoja la carpeta antes de iniciar la subida.',
+	UploadNoimagePath		: 'Por favor, escoja la carpeta antes de iniciar la subida.',
 	UploadNoPerms		: 'No puede subir ficheros.',
 	UploadUnknError		: 'Error enviando el fichero.',
 	UploadExtIncorrect	: 'La extensión del fichero no está permitida en esta carpeta.',
@@ -236,12 +236,12 @@ CKFinder.lang['es'] =
 	{
 		FileEmpty		: 'El nombre del fichero no puede estar vacío.',
 		FileExists		: 'El fichero %s ya existe.',
-		FolderEmpty		: 'El nombre de la carpeta no puede estar vacío.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'El nombre de la carpeta no puede estar vacío.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'El nombre del fichero no puede contener ninguno de los caracteres siguientes: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'El nombre de la carpeta no puede contener ninguno de los caracteres siguientes: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'El nombre de la carpeta no puede contener ninguno de los caracteres siguientes: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'No ha sido posible abrir el fichero en una nueva ventana. Por favor, configure su navegador y desactive todos los bloqueadores de ventanas para esta página.',
 		XmlError		: 'No ha sido posible cargar correctamente la respuesta XML del servidor.',

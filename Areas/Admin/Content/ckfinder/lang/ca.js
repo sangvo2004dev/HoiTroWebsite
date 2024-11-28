@@ -67,15 +67,15 @@ CKFinder.lang['ca'] =
 	DateTime : 'dd/mm/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Carpetes',
-	FolderLoading	: 'Carregant...',
-	FolderNew		: 'Si us plau, escriu el nom per la nova carpeta: ',
-	FolderRename	: 'Si us plau, escriu el nom per la carpeta: ',
-	FolderDelete	: 'Estàs segur que vols esborrar la carpeta "%1"?',
-	FolderRenaming	: ' (Canviant el nom...)',
-	FolderDeleting	: ' (Esborrant...)',
-	DestinationFolder	: 'Carpeta de destinació',
+	// imagePaths
+	imagePathsTitle	: 'Carpetes',
+	imagePathLoading	: 'Carregant...',
+	imagePathNew		: 'Si us plau, escriu el nom per la nova carpeta: ',
+	imagePathRename	: 'Si us plau, escriu el nom per la carpeta: ',
+	imagePathDelete	: 'Estàs segur que vols esborrar la carpeta "%1"?',
+	imagePathRenaming	: ' (Canviant el nom...)',
+	imagePathDeleting	: ' (Esborrant...)',
+	DestinationimagePath	: 'Carpeta de destinació',
 
 	// Files
 	FileRename		: 'Si us plau, escriu el nom del fitxer: ',
@@ -89,10 +89,10 @@ CKFinder.lang['ca'] =
 	SkippedFiles	: 'Llista dels fitxers omesos:',
 
 	// Basket
-	BasketFolder		: 'Cistella',
+	BasketimagePath		: 'Cistella',
 	BasketClear			: 'Buidar la cistella',
 	BasketRemove		: 'Treure de la cistella',
-	BasketOpenFolder	: 'Obrir carpeta pare',
+	BasketOpenimagePath	: 'Obrir carpeta pare',
 	BasketTruncateConfirm : 'Estàs segur de treure tots els fitxers de la cistella?',
 	BasketRemoveConfirm	: 'Estàs segur de treure el fitxer "%1" de la cistella?',
 	BasketRemoveConfirmMultiple	: 'Estàs segur de treure els %1 fitxers de la cistella?',
@@ -125,7 +125,7 @@ CKFinder.lang['ca'] =
 	View			: 'Veure',
 	Download		: 'Descarregar',
 
-	NewSubFolder	: 'Nova Subcarpeta',
+	NewSubimagePath	: 'Nova Subcarpeta',
 	Rename			: 'Canviar el nom',
 	Delete			: 'Esborrar',
 	DeleteFiles		: 'Esborrar Fitxers',
@@ -156,7 +156,7 @@ CKFinder.lang['ca'] =
 	UploadBtnCancel		: 'Cancel·lar',
 
 	UploadNoFileMsg		: 'Si us plau, escull un fitxer del teu ordinador.',
-	UploadNoFolder		: 'Si us plau, escull la carpeta abans d\'iniciar la pujada.',
+	UploadNoimagePath		: 'Si us plau, escull la carpeta abans d\'iniciar la pujada.',
 	UploadNoPerms		: 'No pot pujar fitxers.',
 	UploadUnknError		: 'Error enviant el fitxer.',
 	UploadExtIncorrect	: 'La extensió del fitxer no està permesa en aquesta carpeta.',
@@ -236,12 +236,12 @@ CKFinder.lang['ca'] =
 	{
 		FileEmpty		: 'El nom del fitxer no pot estar buit.',
 		FileExists		: 'El fitxer %s ja existeix.',
-		FolderEmpty		: 'El nom de la carpeta no pot estar buit.',
-		FolderExists	: 'La carpeta %s ja existeix.',
-		FolderNameExists	: 'La carpeta ja existeix.',
+		imagePathEmpty		: 'El nom de la carpeta no pot estar buit.',
+		imagePathExists	: 'La carpeta %s ja existeix.',
+		imagePathNameExists	: 'La carpeta ja existeix.',
 
 		FileInvChar		: 'El nom del fitxer no pot contenir cap dels caràcters següents: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'El nom de la carpeta no pot contenir cap dels caràcters següents: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'El nom de la carpeta no pot contenir cap dels caràcters següents: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'No ha estat possible obrir el fitxer en una nova finestra. Si us plau, configuri el seu navegador i desactivi tots els blocadors de finestres per a aquesta pàgina.',
 		XmlError		: 'No ha estat possible carregar correctament la resposta XML del servidor.',

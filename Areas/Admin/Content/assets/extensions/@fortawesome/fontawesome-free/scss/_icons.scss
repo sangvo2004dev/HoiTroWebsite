@@ -508,10 +508,10 @@ readers do not read off random characters that represent icons */
 .#{$fa-css-prefix}-flipboard:before { content: fa-content($fa-var-flipboard); }
 .#{$fa-css-prefix}-flushed:before { content: fa-content($fa-var-flushed); }
 .#{$fa-css-prefix}-fly:before { content: fa-content($fa-var-fly); }
-.#{$fa-css-prefix}-folder:before { content: fa-content($fa-var-folder); }
-.#{$fa-css-prefix}-folder-minus:before { content: fa-content($fa-var-folder-minus); }
-.#{$fa-css-prefix}-folder-open:before { content: fa-content($fa-var-folder-open); }
-.#{$fa-css-prefix}-folder-plus:before { content: fa-content($fa-var-folder-plus); }
+.#{$fa-css-prefix}-imagePath:before { content: fa-content($fa-var-imagePath); }
+.#{$fa-css-prefix}-imagePath-minus:before { content: fa-content($fa-var-imagePath-minus); }
+.#{$fa-css-prefix}-imagePath-open:before { content: fa-content($fa-var-imagePath-open); }
+.#{$fa-css-prefix}-imagePath-plus:before { content: fa-content($fa-var-imagePath-plus); }
 .#{$fa-css-prefix}-font:before { content: fa-content($fa-var-font); }
 .#{$fa-css-prefix}-font-awesome:before { content: fa-content($fa-var-font-awesome); }
 .#{$fa-css-prefix}-font-awesome-alt:before { content: fa-content($fa-var-font-awesome-alt); }

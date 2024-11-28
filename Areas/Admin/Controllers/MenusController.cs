@@ -84,8 +84,8 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
             if (ModelState.IsValid)
             {
-                    menu.datebegin = DateTime.Now.Date;
-                db.Menus.Add(menu);
+                    menu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                    db.Menus.Add(menu);
                 db.SaveChanges();
                     return Json(new { code = 200, msg = "Menu created successfully" }, JsonRequestBehavior.AllowGet);
             }

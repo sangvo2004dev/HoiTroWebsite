@@ -1381,7 +1381,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed an issue where forced root block attributes were not applied when removing a list. #TINY-4272
 - Fixed an issue where the element path isn't being cleared when there are no parents. #TINY-4412
 - Fixed an issue where width and height in svg icons containing `rect` elements were overridden by the CSS reset. #TINY-4408
-- Fixed an issue where uploading images with `images_reuse_filename` enabled and that included a query parameter would generate an invalid URL. #TINY-4638
+- Fixed an issue where uploading images with `images_reuse_file_name` enabled and that included a query parameter would generate an invalid URL. #TINY-4638
 - Fixed the `closeButton` property not working when opening notifications. #TINY-4674
 - Fixed keyboard flicker when opening a context menu on mobile. #TINY-4540
 - Fixed issue where plus icon svg contained strokes. #TINY-4681
@@ -1616,7 +1616,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed applying fonts not working when the name contained spaces and numbers. #TINY-3801
 - Fixed so that initial content is retained when initializing on list items. #TINY-3796
 - Fixed inefficient font name and font size current value lookup during rendering. #TINY-3813
-- Fixed mobile font copied into the wrong folder for the oxide-dark skin. #TINY-3816
+- Fixed mobile font copied into the wrong imagePath for the oxide-dark skin. #TINY-3816
 - Fixed an issue where resizing the width of tables would produce inaccurate results. #TINY-3827
 - Fixed a memory leak in the Silver theme. #TINY-3797
 - Fixed alert and confirm dialogs using incorrect markup causing inconsistent padding. #TINY-3835
@@ -2543,7 +2543,7 @@ Initial list of features and changes is available at https://www.tiny.cloud/docs
 - Fixed bug where the editor would scroll to the top of the editable area if a dialog was closed in inline mode.
 - Fixed bug where the link dialog would not display the right rel value if rel_list was configured.
 - Fixed bug where the context menu would select images on some platforms but not others.
-- Fixed bug where the filenames of images were not retained on dragged and drop into the editor from the desktop.
+- Fixed bug where the file_names of images were not retained on dragged and drop into the editor from the desktop.
 - Fixed bug where the paste plugin would misrepresent newlines when pasting plain text and having forced_root_block configured.
 - Fixed so that the error messages for the imagetools plugin is more human readable.
 - Fixed so the internal validate setting for the parser/serializer can't be set from editor initialization settings.
@@ -2717,7 +2717,7 @@ Initial list of features and changes is available at https://www.tiny.cloud/docs
 - Added new open link feature to ctrl+click, alt+enter and context menu.
 - Added new media_embed_handler option to allow the media plugin to be populated with custom embeds.
 - Added new support for editing transparent images using the image tools dialog.
-- Added new images_reuse_filename option to allow filenames of images to be retained for upload.
+- Added new images_reuse_file_name option to allow file_names of images to be retained for upload.
 - Added new security feature where links with target="_blank" will by default get rel="noopener noreferrer".
 - Added new allow_unsafe_link_target to allow you to opt-out of the target="_blank" security feature.
 - Added new style_formats_autohide option to automatically hide styles based on context.

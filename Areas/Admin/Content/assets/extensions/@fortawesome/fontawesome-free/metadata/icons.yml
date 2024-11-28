@@ -7748,13 +7748,13 @@ fly:
     - brands
   unicode: f417
   voted: false
-folder:
+imagePath:
   changes:
     - '1'
     - 5.0.0
     - 5.3.0
     - 5.10.1
-  label: Folder
+  label: imagePath
   search:
     terms:
       - archive
@@ -7766,10 +7766,10 @@ folder:
     - regular
   unicode: f07b
   voted: false
-folder-minus:
+imagePath-minus:
   changes:
     - 5.3.0
-  label: Folder Minus
+  label: imagePath Minus
   search:
     terms:
       - archive
@@ -7783,11 +7783,11 @@ folder-minus:
     - solid
   unicode: f65d
   voted: false
-folder-open:
+imagePath-open:
   changes:
     - '1'
     - 5.0.0
-  label: Folder Open
+  label: imagePath Open
   search:
     terms:
       - archive
@@ -7801,12 +7801,12 @@ folder-open:
     - regular
   unicode: f07c
   voted: false
-folder-plus:
+imagePath-plus:
   changes:
     - 5.3.0
     - 5.11.0
     - 5.12.1
-  label: Folder Plus
+  label: imagePath Plus
   search:
     terms:
       - add

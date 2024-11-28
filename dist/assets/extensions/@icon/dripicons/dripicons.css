@@ -293,10 +293,10 @@
 .dripicons-flashlight:before {
   content: "\5f";
 }
-.dripicons-folder:before {
+.dripicons-imagePath:before {
   content: "\60";
 }
-.dripicons-folder-open:before {
+.dripicons-imagePath-open:before {
   content: "\7b";
 }
 .dripicons-forward:before {

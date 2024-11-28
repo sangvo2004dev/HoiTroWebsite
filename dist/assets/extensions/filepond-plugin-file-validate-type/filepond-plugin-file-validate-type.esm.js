@@ -13,8 +13,8 @@ const plugin = ({ addFilter, utils }) => {
         isString,
         replaceInString,
         guesstimateMimeType,
-        getExtensionFromFilename,
-        getFilenameFromURL,
+        getExtensionFromfile_name,
+        getfile_nameFromURL,
     } = utils;
 
     const mimeTypeMatchesWildCard = (mimeType, wildcard) => {
@@ -38,8 +38,8 @@ const plugin = ({ addFilter, utils }) => {
         // if the item is a url we guess the mime type by the extension
         let type = '';
         if (isString(item)) {
-            const filename = getFilenameFromURL(item);
-            const extension = getExtensionFromFilename(filename);
+            const file_name = getfile_nameFromURL(item);
+            const extension = getExtensionFromfile_name(file_name);
             if (extension) {
                 type = guesstimateMimeType(extension);
             }
@@ -152,7 +152,7 @@ const plugin = ({ addFilter, utils }) => {
                     });
                 };
 
-                // has returned new filename immidiately
+                // has returned new file_name immidiately
                 if (typeof validationResult === 'boolean') {
                     if (!validationResult) {
                         return handleRejection();

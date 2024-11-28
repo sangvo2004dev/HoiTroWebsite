@@ -67,15 +67,15 @@ CKFinder.lang['bg'] =
 	DateTime : 'd/m/yyyy h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Папки',
-	FolderLoading	: 'Зареждане...',
-	FolderNew		: 'Моля въведете име на новата папка: ',
-	FolderRename	: 'Моля въведете име на новата папка: ',
-	FolderDelete	: 'Сигурни ли сте, че желаете да изтриете папката "%1"?',
-	FolderRenaming	: ' (Преименуване...)',
-	FolderDeleting	: ' (Изтриване...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Папки',
+	imagePathLoading	: 'Зареждане...',
+	imagePathNew		: 'Моля въведете име на новата папка: ',
+	imagePathRename	: 'Моля въведете име на новата папка: ',
+	imagePathDelete	: 'Сигурни ли сте, че желаете да изтриете папката "%1"?',
+	imagePathRenaming	: ' (Преименуване...)',
+	imagePathDeleting	: ' (Изтриване...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Моля въведете име на файл: ',
@@ -89,10 +89,10 @@ CKFinder.lang['bg'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Кошница',
+	BasketimagePath		: 'Кошница',
 	BasketClear			: 'Изчисти кошницата',
 	BasketRemove		: 'Премахни от кошницата',
-	BasketOpenFolder	: 'Отвори основната папка',
+	BasketOpenimagePath	: 'Отвори основната папка',
 	BasketTruncateConfirm : 'Наиситина ли желаете да премахнете всичко файлове от кошницата?',
 	BasketRemoveConfirm	: 'Наистина ли желаете да премахнете файла "%1" от кошницата?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['bg'] =
 	View			: 'Виж',
 	Download		: 'Изтегли',
 
-	NewSubFolder	: 'Нов подпапка',
+	NewSubimagePath	: 'Нов подпапка',
 	Rename			: 'Преименуване',
 	Delete			: 'Изтриване',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['bg'] =
 	UploadBtnCancel		: 'Отказ',
 
 	UploadNoFileMsg		: 'Моля изберете файл от Вашия компютър.',
-	UploadNoFolder		: 'Моля изберете файл за качване.',
+	UploadNoimagePath		: 'Моля изберете файл за качване.',
 	UploadNoPerms		: 'Качването на файлове не е позволено.',
 	UploadUnknError		: 'Проблем с изпращането на файла.',
 	UploadExtIncorrect	: 'Файловото разширение не е позволено за тази папка.',
@@ -236,12 +236,12 @@ CKFinder.lang['bg'] =
 	{
 		FileEmpty		: 'Името на файла не може да празно.',
 		FileExists		: 'Файлът %s вече е наличен.',
-		FolderEmpty		: 'Името на папката не може да празно.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Името на папката не може да празно.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Името на файла не може да съдържа следните знаци: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Името на папката не може да съдържа следните знаци: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Името на папката не може да съдържа следните знаци: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Не е възможно отварянето на файла в нов прозорец. Моля конфигурирайте браузъра си и изключете блокирането на изкачащи прозорци за този сайт.',
 		XmlError		: 'Не е възможно зареждането да данни чрез XML от уеб сървъра.',

@@ -67,15 +67,15 @@ CKFinder.lang['nl'] =
 	DateTime : 'd-m-yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Mappen',
-	FolderLoading	: 'Laden...',
-	FolderNew		: 'Vul de mapnaam in: ',
-	FolderRename	: 'Vul de nieuwe mapnaam in: ',
-	FolderDelete	: 'Weet je het zeker dat je de map "%1" wilt verwijderen?',
-	FolderRenaming	: ' (Aanpassen...)',
-	FolderDeleting	: ' (Verwijderen...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Mappen',
+	imagePathLoading	: 'Laden...',
+	imagePathNew		: 'Vul de mapnaam in: ',
+	imagePathRename	: 'Vul de nieuwe mapnaam in: ',
+	imagePathDelete	: 'Weet je het zeker dat je de map "%1" wilt verwijderen?',
+	imagePathRenaming	: ' (Aanpassen...)',
+	imagePathDeleting	: ' (Verwijderen...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Vul de nieuwe bestandsnaam in: ',
@@ -89,10 +89,10 @@ CKFinder.lang['nl'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Mandje',
+	BasketimagePath		: 'Mandje',
 	BasketClear			: 'Mandje legen',
 	BasketRemove		: 'Verwijder uit het mandje',
-	BasketOpenFolder	: 'Bovenliggende map openen',
+	BasketOpenimagePath	: 'Bovenliggende map openen',
 	BasketTruncateConfirm : 'Weet je zeker dat je alle bestand uit het mandje wilt verwijderen?',
 	BasketRemoveConfirm	: 'Weet je zeker dat je het bestand "%1" uit het mandje wilt verwijderen?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['nl'] =
 	View			: 'Bekijken',
 	Download		: 'Downloaden',
 
-	NewSubFolder	: 'Nieuwe onderliggende map',
+	NewSubimagePath	: 'Nieuwe onderliggende map',
 	Rename			: 'Naam wijzigen',
 	Delete			: 'Verwijderen',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['nl'] =
 	UploadBtnCancel		: 'Annuleren',
 
 	UploadNoFileMsg		: 'Kies een bestand van je computer.',
-	UploadNoFolder		: 'Selecteer a.u.b. een map voordat je gaat uploaden.',
+	UploadNoimagePath		: 'Selecteer a.u.b. een map voordat je gaat uploaden.',
 	UploadNoPerms		: 'Uploaden bestand niet toegestaan.',
 	UploadUnknError		: 'Fout bij het versturen van het bestand.',
 	UploadExtIncorrect	: 'Bestandsextensie is niet toegestaan in deze map.',
@@ -236,12 +236,12 @@ CKFinder.lang['nl'] =
 	{
 		FileEmpty		: 'De bestandsnaam mag niet leeg zijn.',
 		FileExists		: 'Bestand %s bestaat al.',
-		FolderEmpty		: 'De mapnaam mag niet leeg zijn.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'De mapnaam mag niet leeg zijn.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'De bestandsnaam mag de volgende tekens niet bevatten: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'De mapnaam mag de volgende tekens niet bevatten: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'De mapnaam mag de volgende tekens niet bevatten: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Het was niet mogelijk om dit bestand in een nieuw venster te openen. Configureer de browser zodat het de popups van deze website niet blokkeert.',
 		XmlError		: 'Het is niet gelukt om de XML van de webserver te laden.',

@@ -67,15 +67,15 @@ CKFinder.lang['hi'] =
 	DateTime : 'm/d/yyyy h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'फ़ोल्डर्स',
-	FolderLoading	: 'लोडिग...',
-	FolderNew		: 'फोल्डरका नया नाम टाईप करो: ',
-	FolderRename	: 'फोल्डरका नया नाम टाईप करो: ',
-	FolderDelete	: 'क्या आपको "%1" फोल्डर डीलिट करना है?',
-	FolderRenaming	: ' (नया नाम...)',
-	FolderDeleting	: ' (डिलिट...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'फ़ोल्डर्स',
+	imagePathLoading	: 'लोडिग...',
+	imagePathNew		: 'फोल्डरका नया नाम टाईप करो: ',
+	imagePathRename	: 'फोल्डरका नया नाम टाईप करो: ',
+	imagePathDelete	: 'क्या आपको "%1" फोल्डर डीलिट करना है?',
+	imagePathRenaming	: ' (नया नाम...)',
+	imagePathDeleting	: ' (डिलिट...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'फाएलका नया नाम टाईप करो: ',
@@ -89,10 +89,10 @@ CKFinder.lang['hi'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'बास्केट',
+	BasketimagePath		: 'बास्केट',
 	BasketClear			: 'बास्केट खाली करो',
 	BasketRemove		: 'बास्केटमें से रीमूव करो',
-	BasketOpenFolder	: 'पेरंट फोल्डर को खोलो',
+	BasketOpenimagePath	: 'पेरंट फोल्डर को खोलो',
 	BasketTruncateConfirm : 'क्या आपको बास्केट में से सब फाएल खाली करना हे?',
 	BasketRemoveConfirm	: 'क्या आपको फाएल "%1" बास्केट में से डिलिट करना है?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['hi'] =
 	View			: 'व्यू',
 	Download		: 'डाउनलोड',
 
-	NewSubFolder	: 'नया सबफोल्डर',
+	NewSubimagePath	: 'नया सबफोल्डर',
 	Rename			: 'रिनेम',
 	Delete			: 'डिलिट',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['hi'] =
 	UploadBtnCancel		: 'केन्सल',
 
 	UploadNoFileMsg		: 'आपके कोम्पुटर से फाएल चुनो.',
-	UploadNoFolder		: 'फोल्डर चुनके अपलोडिग करिये.',
+	UploadNoimagePath		: 'फोल्डर चुनके अपलोडिग करिये.',
 	UploadNoPerms		: 'फाएल उपलोड नही कर सकते.',
 	UploadUnknError		: 'फाएल भेजने में मुश्केली हो रही है.',
 	UploadExtIncorrect	: 'ये फोल्डरमें ये फाइल एक्सटेंसन अलाव नही है.',
@@ -236,12 +236,12 @@ CKFinder.lang['hi'] =
 	{
 		FileEmpty		: 'फाएलका नाम खाली नही हो सकता.',
 		FileExists		: 'फाएल %s मोजूद है.',
-		FolderEmpty		: 'फोल्डरका नाम खाली नही हो सकता.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'फोल्डरका नाम खाली नही हो सकता.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'फाएलके नाममें यह केरेक्टर नही हो सकते: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'फोल्डरके नाममें यह केरेक्टर नही हो सकते: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'फोल्डरके नाममें यह केरेक्टर नही हो सकते: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'यह फाएलको नई विंडोमें नही खोल सकते. आपके ब्राउसरको कोफिग करके सब पोप-अप ब्लोक्र्रको बंध करे.',
 		XmlError		: 'वेब सर्वरसे XML रिस्पोंस नही लोड कर सके.',

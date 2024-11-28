@@ -28,19 +28,14 @@
             <span class="post-price">@i.RoomInfo.price triệu/tháng</span><span class="post-acreage">@i.RoomInfo.acreage.ToString()m²</span>
             <span class="post-location">
                 <a href="Cho thuê">
-                    @i.RoomInfo.area
+                    @*@i.RoomInfo.area*@
                 </a>
             </span>
             <time class="post-time" title="@i.RoomInfo.datebegin">thời gian đến hiện t</time>
         </div>
         <div class="meta-row clearfix">
-            <p class="post-summary">
-                @Html.Raw(i.RoomInfo.brief_description.Length > 200 ? i.RoomInfo.brief_description.Substring(0, 200) + "..." : i.RoomInfo.brief_description)
-            </p>
-        </div>
-        <div class="meta-row clearfix">
             <div class="post-author">
-                <img src="@i.Account.avtImage" alt="@i.Account.name">
+                <img src="~/Content/images/@i.Account.file_name" alt="@i.Account.name">
                 <span class="author-name">@i.Account.name</span>
             </div>
             <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"

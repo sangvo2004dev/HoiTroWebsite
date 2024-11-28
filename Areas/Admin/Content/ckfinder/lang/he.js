@@ -67,15 +67,15 @@ CKFinder.lang['he'] =
 	DateTime : 'd/m/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'תיקיות',
-	FolderLoading	: 'טוען...',
-	FolderNew		: 'יש להקליד שם חדש לתיקיה: ',
-	FolderRename	: 'יש להקליד שם חדש לתיקיה: ',
-	FolderDelete	: 'האם למחוק את התיקיה "%1" ?',
-	FolderRenaming	: ' (משנה שם...)',
-	FolderDeleting	: ' (מוחק...)',
-	DestinationFolder	: 'תיקיית יעד',
+	// imagePaths
+	imagePathsTitle	: 'תיקיות',
+	imagePathLoading	: 'טוען...',
+	imagePathNew		: 'יש להקליד שם חדש לתיקיה: ',
+	imagePathRename	: 'יש להקליד שם חדש לתיקיה: ',
+	imagePathDelete	: 'האם למחוק את התיקיה "%1" ?',
+	imagePathRenaming	: ' (משנה שם...)',
+	imagePathDeleting	: ' (מוחק...)',
+	DestinationimagePath	: 'תיקיית יעד',
 
 	// Files
 	FileRename		: 'יש להקליד שם חדש לקובץ: ',
@@ -89,10 +89,10 @@ CKFinder.lang['he'] =
 	SkippedFiles	: 'רשימת קבצים שדולגו:',
 
 	// Basket
-	BasketFolder		: 'סל קבצים',
+	BasketimagePath		: 'סל קבצים',
 	BasketClear			: 'ניקוי סל הקבצים',
 	BasketRemove		: 'מחיקה מסל הקבצים',
-	BasketOpenFolder	: 'פתיחת תיקיית אב',
+	BasketOpenimagePath	: 'פתיחת תיקיית אב',
 	BasketTruncateConfirm : 'האם למחוק את כל הקבצים מסל הקבצים?',
 	BasketRemoveConfirm	: 'האם למחוק את הקובץ "%1" מסל הקבצים?',
 	BasketRemoveConfirmMultiple	: 'האם למחוק %1 קבצים מסל הקבצים?',
@@ -125,7 +125,7 @@ CKFinder.lang['he'] =
 	View			: 'צפיה',
 	Download		: 'הורדה',
 
-	NewSubFolder	: 'תת-תיקיה חדשה',
+	NewSubimagePath	: 'תת-תיקיה חדשה',
 	Rename			: 'שינוי שם',
 	Delete			: 'מחיקה',
 	DeleteFiles		: 'מחיקת קבצים',
@@ -156,7 +156,7 @@ CKFinder.lang['he'] =
 	UploadBtnCancel		: 'ביטול',
 
 	UploadNoFileMsg		: 'יש לבחור קובץ מהמחשב',
-	UploadNoFolder		: 'יש לבחור תיקיה לפני ההעלאה.',
+	UploadNoimagePath		: 'יש לבחור תיקיה לפני ההעלאה.',
 	UploadNoPerms		: 'העלאת קובץ אסורה.',
 	UploadUnknError		: 'שגיאה בשליחת הקובץ.',
 	UploadExtIncorrect	: 'סוג קובץ זה לא מאושר בתיקיה זאת.',
@@ -236,12 +236,12 @@ CKFinder.lang['he'] =
 	{
 		FileEmpty		: 'שם הקובץ לא יכול להיות ריק',
 		FileExists		: 'הקובץ %s כבר קיים',
-		FolderEmpty		: 'שם התיקיה לא יכול להיות ריק',
-		FolderExists	: 'התיקיה %s כבר קיימת.',
-		FolderNameExists	: 'התיקיה כבר קיימת.',
+		imagePathEmpty		: 'שם התיקיה לא יכול להיות ריק',
+		imagePathExists	: 'התיקיה %s כבר קיימת.',
+		imagePathNameExists	: 'התיקיה כבר קיימת.',
 
 		FileInvChar		: 'שם הקובץ לא יכול לכלול תווים הבאים: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'שם התיקיה לא יכול לכלול תווים הבאים: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'שם התיקיה לא יכול לכלול תווים הבאים: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'לא היה ניתן לפתוח קובץ בחלון חדש. נא לבדוק את הגדרות הדפדפן ולבטל את חוסמי החלונות הקובצים.',
 		XmlError		: 'לא היה ניתן לטעון מהשרת כהלכה את קובץ ה-XML.',

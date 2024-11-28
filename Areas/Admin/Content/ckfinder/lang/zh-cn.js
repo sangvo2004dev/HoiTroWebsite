@@ -67,15 +67,15 @@ CKFinder.lang['zh-cn'] =
 	DateTime : 'yyyy年m月d日 h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: '文件夹',
-	FolderLoading	: '正在加载文件夹...',
-	FolderNew		: '请输入新文件夹名称: ',
-	FolderRename	: '请输入新文件夹名称: ',
-	FolderDelete	: '您确定要删除文件夹 "%1" 吗?',
-	FolderRenaming	: ' (正在重命名...)',
-	FolderDeleting	: ' (正在删除...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: '文件夹',
+	imagePathLoading	: '正在加载文件夹...',
+	imagePathNew		: '请输入新文件夹名称: ',
+	imagePathRename	: '请输入新文件夹名称: ',
+	imagePathDelete	: '您确定要删除文件夹 "%1" 吗?',
+	imagePathRenaming	: ' (正在重命名...)',
+	imagePathDeleting	: ' (正在删除...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: '请输入新文件名: ',
@@ -89,10 +89,10 @@ CKFinder.lang['zh-cn'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: '临时文件夹',
+	BasketimagePath		: '临时文件夹',
 	BasketClear			: '清空临时文件夹',
 	BasketRemove		: '从临时文件夹移除',
-	BasketOpenFolder	: '打开临时文件夹',
+	BasketOpenimagePath	: '打开临时文件夹',
 	BasketTruncateConfirm : '确认清空临时文件夹?',
 	BasketRemoveConfirm	: '确认从临时文件夹中移除文件 "%1"？',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['zh-cn'] =
 	View			: '查看',
 	Download		: '下载',
 
-	NewSubFolder	: '创建子文件夹',
+	NewSubimagePath	: '创建子文件夹',
 	Rename			: '重命名',
 	Delete			: '删除',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['zh-cn'] =
 	UploadBtnCancel		: '取消',
 
 	UploadNoFileMsg		: '请选择一个要上传的文件',
-	UploadNoFolder		: '需先选择一个文件。',
+	UploadNoimagePath		: '需先选择一个文件。',
 	UploadNoPerms		: '无文件上传权限。',
 	UploadUnknError		: '上传文件出错。',
 	UploadExtIncorrect	: '此文件后缀在当前文件夹中不可用。',
@@ -236,12 +236,12 @@ CKFinder.lang['zh-cn'] =
 	{
 		FileEmpty		: '文件名不能为空。',
 		FileExists		: '文件 %s 已存在。',
-		FolderEmpty		: '文件夹名称不能为空。',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: '文件夹名称不能为空。',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: '文件名不能包含以下字符: \n\\ / : * ? " < > |',
-		FolderInvChar	: '文件夹名称不能包含以下字符: \n\\ / : * ? " < > |',
+		imagePathInvChar	: '文件夹名称不能包含以下字符: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: '未能在新窗口中打开文件. 请修改浏览器配置解除对本站点的锁定。',
 		XmlError		: '从服务器读取XML数据出错',

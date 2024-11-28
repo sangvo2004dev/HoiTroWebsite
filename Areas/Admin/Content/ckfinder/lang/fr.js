@@ -67,15 +67,15 @@ CKFinder.lang['fr'] =
 	DateTime : 'dd/mm/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Dossiers',
-	FolderLoading	: 'Chargement...',
-	FolderNew		: 'Entrez le nouveau nom du dossier: ',
-	FolderRename	: 'Entrez le nouveau nom du dossier: ',
-	FolderDelete	: 'Êtes-vous sûr de vouloir effacer le dossier "%1"?',
-	FolderRenaming	: ' (Renommage en cours...)',
-	FolderDeleting	: ' (Suppression en cours...)',
-	DestinationFolder	: 'Dossier de destination',
+	// imagePaths
+	imagePathsTitle	: 'Dossiers',
+	imagePathLoading	: 'Chargement...',
+	imagePathNew		: 'Entrez le nouveau nom du dossier: ',
+	imagePathRename	: 'Entrez le nouveau nom du dossier: ',
+	imagePathDelete	: 'Êtes-vous sûr de vouloir effacer le dossier "%1"?',
+	imagePathRenaming	: ' (Renommage en cours...)',
+	imagePathDeleting	: ' (Suppression en cours...)',
+	DestinationimagePath	: 'Dossier de destination',
 
 	// Files
 	FileRename		: 'Entrez le nouveau nom du fichier: ',
@@ -89,10 +89,10 @@ CKFinder.lang['fr'] =
 	SkippedFiles	: 'Liste des fichiers ignorés : ',
 
 	// Basket
-	BasketFolder		: 'Corbeille',
+	BasketimagePath		: 'Corbeille',
 	BasketClear			: 'Vider la corbeille',
 	BasketRemove		: 'Retirer de la corbeille',
-	BasketOpenFolder	: 'Ouvrir le répertiore parent',
+	BasketOpenimagePath	: 'Ouvrir le répertiore parent',
 	BasketTruncateConfirm : 'Êtes-vous sûr de vouloir supprimer tous les fichiers de la corbeille ?',
 	BasketRemoveConfirm	: 'Êtes-vous sûr de vouloir supprimer le fichier "%1" de la corbeille ?',
 	BasketRemoveConfirmMultiple	: 'Êtes-vous sûr de vouloir supprimer %1 fichiers de la corbeille ?',
@@ -125,7 +125,7 @@ CKFinder.lang['fr'] =
 	View			: 'Voir',
 	Download		: 'Télécharger',
 
-	NewSubFolder	: 'Nouveau sous-dossier',
+	NewSubimagePath	: 'Nouveau sous-dossier',
 	Rename			: 'Renommer',
 	Delete			: 'Effacer',
 	DeleteFiles		: 'Supprimer les fichiers',
@@ -156,7 +156,7 @@ CKFinder.lang['fr'] =
 	UploadBtnCancel		: 'Annuler',
 
 	UploadNoFileMsg		: 'Sélectionner un fichier sur votre ordinateur.',
-	UploadNoFolder		: 'Merci de sélectionner un répertoire avant l\'envoi.',
+	UploadNoimagePath		: 'Merci de sélectionner un répertoire avant l\'envoi.',
 	UploadNoPerms		: 'L\'envoi de fichier n\'est pas autorisé.',
 	UploadUnknError		: 'Erreur pendant l\'envoi du fichier.',
 	UploadExtIncorrect	: 'L\'extension du fichier n\'est pas autorisée dans ce dossier.',
@@ -236,12 +236,12 @@ CKFinder.lang['fr'] =
 	{
 		FileEmpty		: 'Le nom du fichier ne peut être vide.',
 		FileExists		: 'Le fichier %s existes déjà.',
-		FolderEmpty		: 'Le nom du dossier ne peut être vide.',
-		FolderExists	: 'Le dossier %s existe déjà.',
-		FolderNameExists	: 'Le dossier existe déjà.',
+		imagePathEmpty		: 'Le nom du dossier ne peut être vide.',
+		imagePathExists	: 'Le dossier %s existe déjà.',
+		imagePathNameExists	: 'Le dossier existe déjà.',
 
 		FileInvChar		: 'Le nom du fichier ne peut pas contenir les charactères suivants : \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Le nom du dossier ne peut pas contenir les charactères suivants : \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Le nom du dossier ne peut pas contenir les charactères suivants : \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Il n\'a pas été possible d\'ouvrir la nouvelle fenêtre. Désactiver votre bloqueur de fenêtres pour ce site.',
 		XmlError		: 'Impossible de charger correctement la réponse XML du serveur web.',

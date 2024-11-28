@@ -67,15 +67,15 @@ CKFinder.lang['nb'] =
 	DateTime : 'dd/mm/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Mapper',
-	FolderLoading	: 'Laster...',
-	FolderNew		: 'Skriv inn det nye mappenavnet: ',
-	FolderRename	: 'Skriv inn det nye mappenavnet: ',
-	FolderDelete	: 'Er du sikker på at du vil slette mappen "%1"?',
-	FolderRenaming	: ' (Endrer mappenavn...)',
-	FolderDeleting	: ' (Sletter...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Mapper',
+	imagePathLoading	: 'Laster...',
+	imagePathNew		: 'Skriv inn det nye mappenavnet: ',
+	imagePathRename	: 'Skriv inn det nye mappenavnet: ',
+	imagePathDelete	: 'Er du sikker på at du vil slette mappen "%1"?',
+	imagePathRenaming	: ' (Endrer mappenavn...)',
+	imagePathDeleting	: ' (Sletter...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Skriv inn det nye filnavnet: ',
@@ -89,10 +89,10 @@ CKFinder.lang['nb'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Kurv',
+	BasketimagePath		: 'Kurv',
 	BasketClear			: 'Tøm kurv',
 	BasketRemove		: 'Fjern fra kurv',
-	BasketOpenFolder	: 'Åpne foreldremappen',
+	BasketOpenimagePath	: 'Åpne foreldremappen',
 	BasketTruncateConfirm : 'Vil du virkelig fjerne alle filer fra kurven?',
 	BasketRemoveConfirm	: 'Vil du virkelig fjerne filen "%1" fra kurven?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['nb'] =
 	View			: 'Vis fullversjon',
 	Download		: 'Last ned',
 
-	NewSubFolder	: 'Ny undermappe',
+	NewSubimagePath	: 'Ny undermappe',
 	Rename			: 'Endre navn',
 	Delete			: 'Slett',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['nb'] =
 	UploadBtnCancel		: 'Avbryt',
 
 	UploadNoFileMsg		: 'Du må velge en fil fra din datamaskin',
-	UploadNoFolder		: 'Vennligst velg en mappe før du laster opp.',
+	UploadNoimagePath		: 'Vennligst velg en mappe før du laster opp.',
 	UploadNoPerms		: 'Filopplastning er ikke tillatt.',
 	UploadUnknError		: 'Feil ved sending av fil.',
 	UploadExtIncorrect	: 'Filtypen er ikke tillatt i denne mappen.',
@@ -236,12 +236,12 @@ CKFinder.lang['nb'] =
 	{
 		FileEmpty		: 'Filnavnet kan ikke være tomt.',
 		FileExists		: 'Filen %s finnes alt.',
-		FolderEmpty		: 'Mappenavnet kan ikke være tomt.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Mappenavnet kan ikke være tomt.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Filnavnet kan ikke inneholde følgende tegn: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Mappenavnet kan ikke inneholde følgende tegn: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Mappenavnet kan ikke inneholde følgende tegn: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Du må skru av popup-blockeren for å se bildet i nytt vindu.',
 		XmlError		: 'Det var ikke mulig å laste XML-dataene i svaret fra serveren.',

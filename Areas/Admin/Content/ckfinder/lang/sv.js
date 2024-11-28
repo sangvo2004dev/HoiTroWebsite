@@ -67,15 +67,15 @@ CKFinder.lang['sv'] =
 	DateTime : 'yyyy-mm-dd HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Mappar',
-	FolderLoading	: 'Laddar...',
-	FolderNew		: 'Skriv namnet på den nya mappen: ',
-	FolderRename	: 'Skriv det nya namnet på mappen: ',
-	FolderDelete	: 'Är du säker på att du vill radera mappen "%1"?',
-	FolderRenaming	: ' (Byter mappens namn...)',
-	FolderDeleting	: ' (Raderar...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Mappar',
+	imagePathLoading	: 'Laddar...',
+	imagePathNew		: 'Skriv namnet på den nya mappen: ',
+	imagePathRename	: 'Skriv det nya namnet på mappen: ',
+	imagePathDelete	: 'Är du säker på att du vill radera mappen "%1"?',
+	imagePathRenaming	: ' (Byter mappens namn...)',
+	imagePathDeleting	: ' (Raderar...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Skriv det nya filnamnet: ',
@@ -89,10 +89,10 @@ CKFinder.lang['sv'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Filkorg',
+	BasketimagePath		: 'Filkorg',
 	BasketClear			: 'Rensa filkorgen',
 	BasketRemove		: 'Ta bort från korgen',
-	BasketOpenFolder	: 'Öppna överliggande mapp',
+	BasketOpenimagePath	: 'Öppna överliggande mapp',
 	BasketTruncateConfirm : 'Vill du verkligen ta bort alla filer från korgen?',
 	BasketRemoveConfirm	: 'Vill du verkligen ta bort filen "%1" från korgen?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['sv'] =
 	View			: 'Visa',
 	Download		: 'Ladda ner',
 
-	NewSubFolder	: 'Ny Undermapp',
+	NewSubimagePath	: 'Ny Undermapp',
 	Rename			: 'Byt namn',
 	Delete			: 'Radera',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['sv'] =
 	UploadBtnCancel		: 'Avbryt',
 
 	UploadNoFileMsg		: 'Välj en fil från din dator.',
-	UploadNoFolder		: 'Välj en mapp före uppladdning.',
+	UploadNoimagePath		: 'Välj en mapp före uppladdning.',
 	UploadNoPerms		: 'Filuppladdning ej tillåten.',
 	UploadUnknError		: 'Fel vid filuppladdning.',
 	UploadExtIncorrect	: 'Filändelsen är inte tillåten i denna mapp.',
@@ -236,12 +236,12 @@ CKFinder.lang['sv'] =
 	{
 		FileEmpty		: 'Filnamnet får inte vara tomt.',
 		FileExists		: 'Filen %s finns redan.',
-		FolderEmpty		: 'Mappens namn får inte vara tomt.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Mappens namn får inte vara tomt.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Filnamnet får inte innehålla något av följande tecken: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Mappens namn får inte innehålla något av följande tecken: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Mappens namn får inte innehålla något av följande tecken: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Det gick inte att öppna filen i ett nytt fönster. Ändra inställningarna i din webbläsare så att den tillåter popup-fönster på den här webbplatsen.',
 		XmlError		: 'Det gick inte att ladda XML-svaret från webbservern ordentligt.',

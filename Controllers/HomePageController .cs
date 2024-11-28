@@ -71,7 +71,7 @@ namespace HoiTroWebsite.Controllers
                         ImagePath = (from i in _db.RoomImages
                                      where i.reference_id == n.id
                                      orderby i.datebegin descending
-                                     select i.imagePath).FirstOrDefault()
+                                     select i.file_name).FirstOrDefault()
                     };
             return PartialView(v.ToList());
         }

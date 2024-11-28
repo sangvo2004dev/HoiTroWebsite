@@ -67,15 +67,15 @@ CKFinder.lang['it'] =
 	DateTime : 'dd/mm/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Cartelle',
-	FolderLoading	: 'Caricando...',
-	FolderNew		: 'Nome della cartella: ',
-	FolderRename	: 'Nuovo nome della cartella: ',
-	FolderDelete	: 'Se sicuro di voler eliminare la cartella "%1"?',
-	FolderRenaming	: ' (Rinominando...)',
-	FolderDeleting	: ' (Eliminando...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Cartelle',
+	imagePathLoading	: 'Caricando...',
+	imagePathNew		: 'Nome della cartella: ',
+	imagePathRename	: 'Nuovo nome della cartella: ',
+	imagePathDelete	: 'Se sicuro di voler eliminare la cartella "%1"?',
+	imagePathRenaming	: ' (Rinominando...)',
+	imagePathDeleting	: ' (Eliminando...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Nuovo nome del file: ',
@@ -89,10 +89,10 @@ CKFinder.lang['it'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Cestino',
+	BasketimagePath		: 'Cestino',
 	BasketClear			: 'Svuota Cestino',
 	BasketRemove		: 'Rimuove dal Cestino',
-	BasketOpenFolder	: 'Apre Cartella Superiore',
+	BasketOpenimagePath	: 'Apre Cartella Superiore',
 	BasketTruncateConfirm : 'Sei sicuro di voler svuotare il cestino?',
 	BasketRemoveConfirm	: 'Sei sicuro di voler rimuovere il file "%1" dal cestino?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['it'] =
 	View			: 'Vedi',
 	Download		: 'Scarica',
 
-	NewSubFolder	: 'Nuova Sottocartella',
+	NewSubimagePath	: 'Nuova Sottocartella',
 	Rename			: 'Rinomina',
 	Delete			: 'Elimina',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['it'] =
 	UploadBtnCancel		: 'Annulla',
 
 	UploadNoFileMsg		: 'Seleziona il file da caricare',
-	UploadNoFolder		: 'Seleziona il file prima di caricare.',
+	UploadNoimagePath		: 'Seleziona il file prima di caricare.',
 	UploadNoPerms		: 'Non è permesso il caricamento di file.',
 	UploadUnknError		: 'Errore nel caricamento del file.',
 	UploadExtIncorrect	: 'In questa cartella non sono permessi file con questa estensione.',
@@ -222,7 +222,7 @@ CKFinder.lang['it'] =
 	202 : 'File invalido.',
 	203 : 'File invalido. La dimensione del file eccede i limiti del sistema.',
 	204 : 'Il file caricato è corrotto.',
-	205 : 'Il folder temporario non è disponibile new server.',
+	205 : 'Il imagePath temporario non è disponibile new server.',
 	206 : 'Upload annullato per motivi di sicurezza. Il file contiene dati in formatto HTML.',
 	207 : 'Il file caricato è stato rinominato a "%1".',
 	300 : 'Non è stato possibile muovere i file.',
@@ -236,12 +236,12 @@ CKFinder.lang['it'] =
 	{
 		FileEmpty		: 'Il nome del file non può essere vuoto.',
 		FileExists		: 'File %s già esiste.',
-		FolderEmpty		: 'Il nome della cartella non può essere vuoto.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Il nome della cartella non può essere vuoto.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'I seguenti caratteri non possono essere usati per comporre il nome del file: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'I seguenti caratteri non possono essere usati per comporre il nome della cartella: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'I seguenti caratteri non possono essere usati per comporre il nome della cartella: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Non è stato possile aprire il file in una nuova finestra. Prego configurare il browser e disabilitare i blocchi delle popup.',
 		XmlError		: 'Non è stato possibile caricare la risposta XML dal server.',

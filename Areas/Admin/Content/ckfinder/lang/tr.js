@@ -69,15 +69,15 @@ CKFinder.lang['tr'] =
 	DateTime : 'd/m/yyyy h:MM aa',
 	DateAmPm : ['GN', 'GC'],
 
-	// Folders
-	FoldersTitle	: 'Klasörler',
-	FolderLoading	: 'Yükleniyor...',
-	FolderNew		: 'Lütfen yeni klasör adını yazın: ',
-	FolderRename	: 'Lütfen yeni klasör adını yazın: ',
-	FolderDelete	: '"%1" klasörünü silmek istediğinizden emin misiniz?',
-	FolderRenaming	: ' (Yeniden adlandırılıyor...)',
-	FolderDeleting	: ' (Siliniyor...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Klasörler',
+	imagePathLoading	: 'Yükleniyor...',
+	imagePathNew		: 'Lütfen yeni klasör adını yazın: ',
+	imagePathRename	: 'Lütfen yeni klasör adını yazın: ',
+	imagePathDelete	: '"%1" klasörünü silmek istediğinizden emin misiniz?',
+	imagePathRenaming	: ' (Yeniden adlandırılıyor...)',
+	imagePathDeleting	: ' (Siliniyor...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Lütfen yeni dosyanın adını yazın: ',
@@ -91,10 +91,10 @@ CKFinder.lang['tr'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Sepet',
+	BasketimagePath		: 'Sepet',
 	BasketClear			: 'Sepeti temizle',
 	BasketRemove		: 'Sepetten sil',
-	BasketOpenFolder	: 'Üst klasörü aç',
+	BasketOpenimagePath	: 'Üst klasörü aç',
 	BasketTruncateConfirm : 'Sepetteki tüm dosyaları silmek istediğinizden emin misiniz?',
 	BasketRemoveConfirm	: 'Sepetteki %1% dosyasını silmek istediğinizden emin misiniz?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -127,7 +127,7 @@ CKFinder.lang['tr'] =
 	View			: 'Görüntüle',
 	Download		: 'İndir',
 
-	NewSubFolder	: 'Yeni Altklasör',
+	NewSubimagePath	: 'Yeni Altklasör',
 	Rename			: 'Yeniden Adlandır',
 	Delete			: 'Sil',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -158,7 +158,7 @@ CKFinder.lang['tr'] =
 	UploadBtnCancel		: 'Vazgeç',
 
 	UploadNoFileMsg		: 'Lütfen bilgisayarınızdan dosya seçin',
-	UploadNoFolder		: 'Lütfen yüklemeden önce klasör seçin.',
+	UploadNoimagePath		: 'Lütfen yüklemeden önce klasör seçin.',
 	UploadNoPerms		: 'Dosya yüklemeye izin verilmiyor.',
 	UploadUnknError		: 'Dosya gönderme hatası.',
 	UploadExtIncorrect	: 'Bu dosya uzantısına, bu klasörde izin verilmiyor.',
@@ -238,12 +238,12 @@ CKFinder.lang['tr'] =
 	{
 		FileEmpty		: 'Dosya adı boş olamaz',
 		FileExists		: '%s dosyası zaten var',
-		FolderEmpty		: 'Klasör adı boş olamaz',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Klasör adı boş olamaz',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Dosya adının içermesi mümkün olmayan karakterler: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Klasör adının içermesi mümkün olmayan karakterler: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Klasör adının içermesi mümkün olmayan karakterler: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Dosyayı yeni pencerede açmak için, tarayıcı ayarlarından bu sitenin açılır pencerelerine izin vermeniz gerekiyor.',
 		XmlError		: 'Web sunucusundan XML yanıtı düzgün bir şekilde yüklenemedi.',

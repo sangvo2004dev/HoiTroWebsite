@@ -68,15 +68,15 @@ CKFinder.lang['fi'] =
 	DateTime : 'yyyy-mm-dd HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Kansiot',
-	FolderLoading	: 'Lataan...',
-	FolderNew		: 'Kirjoita uuden kansion nimi: ',
-	FolderRename	: 'Kirjoita uusi nimi kansiolle ',
-	FolderDelete	: 'Haluatko varmasti poistaa kansion "%1"?',
-	FolderRenaming	: ' (Uudelleennimeää...)',
-	FolderDeleting	: ' (Poistaa...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Kansiot',
+	imagePathLoading	: 'Lataan...',
+	imagePathNew		: 'Kirjoita uuden kansion nimi: ',
+	imagePathRename	: 'Kirjoita uusi nimi kansiolle ',
+	imagePathDelete	: 'Haluatko varmasti poistaa kansion "%1"?',
+	imagePathRenaming	: ' (Uudelleennimeää...)',
+	imagePathDeleting	: ' (Poistaa...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Kirjoita uusi tiedostonimi: ',
@@ -90,10 +90,10 @@ CKFinder.lang['fi'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Kori',
+	BasketimagePath		: 'Kori',
 	BasketClear			: 'Tyhjennä kori',
 	BasketRemove		: 'Poista korista',
-	BasketOpenFolder	: 'Avaa ylemmän tason kansio',
+	BasketOpenimagePath	: 'Avaa ylemmän tason kansio',
 	BasketTruncateConfirm : 'Haluatko todella poistaa kaikki tiedostot korista?',
 	BasketRemoveConfirm	: 'Haluatko todella poistaa tiedoston "%1" korista?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -126,7 +126,7 @@ CKFinder.lang['fi'] =
 	View			: 'Näytä',
 	Download		: 'Lataa palvelimelta',
 
-	NewSubFolder	: 'Uusi alikansio',
+	NewSubimagePath	: 'Uusi alikansio',
 	Rename			: 'Uudelleennimeä ',
 	Delete			: 'Poista',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -157,7 +157,7 @@ CKFinder.lang['fi'] =
 	UploadBtnCancel		: 'Peru',
 
 	UploadNoFileMsg		: 'Valitse tiedosto tietokoneeltasi.',
-	UploadNoFolder		: 'Valitse kansio ennen palvelimelle lataamista.',
+	UploadNoimagePath		: 'Valitse kansio ennen palvelimelle lataamista.',
 	UploadNoPerms		: 'Tiedoston lataaminen palvelimelle evätty.',
 	UploadUnknError		: 'Tiedoston siirrossa tapahtui virhe.',
 	UploadExtIncorrect	: 'Tiedostotarkenne ei ole sallittu valitussa kansiossa.',
@@ -237,12 +237,12 @@ CKFinder.lang['fi'] =
 	{
 		FileEmpty		: 'Tiedosto on nimettävä!',
 		FileExists		: 'Tiedosto %s on jo olemassa.',
-		FolderEmpty		: 'Kansio on nimettävä!',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Kansio on nimettävä!',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Tiedostonimi ei voi sisältää seuraavia merkkejä: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Kansionimi ei voi sisältää seuraavia merkkejä: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Kansionimi ei voi sisältää seuraavia merkkejä: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Tiedostoa ei voitu avata uuteen ikkunaan. Salli selaimesi asetuksissa ponnahdusikkunat tälle sivulle.',
 		XmlError		: 'Web-palvelimen XML-vastausta ei pystytty kunnolla lataamaan.',

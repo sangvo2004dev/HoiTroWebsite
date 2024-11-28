@@ -67,15 +67,15 @@ CKFinder.lang['fa'] =
 	DateTime : 'yyyy/mm/dd h:MM aa',
 	DateAmPm : ['ق.ظ', 'ب.ظ'],
 
-	// Folders
-	FoldersTitle	: 'پوشه ها',
-	FolderLoading	: 'بارگذاری...',
-	FolderNew		: 'لطفا نام پوشه جدید را وارد کنید: ',
-	FolderRename	: 'لطفا نام پوشه جدید را وارد کنید: ',
-	FolderDelete	: 'آیا اطمینان دارید که قصد حذف کردن پوشه "%1" را دارید؟',
-	FolderRenaming	: ' (در حال تغییر نام...)',
-	FolderDeleting	: ' (در حال حذف...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'پوشه ها',
+	imagePathLoading	: 'بارگذاری...',
+	imagePathNew		: 'لطفا نام پوشه جدید را وارد کنید: ',
+	imagePathRename	: 'لطفا نام پوشه جدید را وارد کنید: ',
+	imagePathDelete	: 'آیا اطمینان دارید که قصد حذف کردن پوشه "%1" را دارید؟',
+	imagePathRenaming	: ' (در حال تغییر نام...)',
+	imagePathDeleting	: ' (در حال حذف...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'لطفا نام جدید فایل را درج کنید: ',
@@ -89,10 +89,10 @@ CKFinder.lang['fa'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'سبد',
+	BasketimagePath		: 'سبد',
 	BasketClear			: 'پاک کردن سبد',
 	BasketRemove		: 'حذف از سبد',
-	BasketOpenFolder	: 'باز نمودن پوشه والد',
+	BasketOpenimagePath	: 'باز نمودن پوشه والد',
 	BasketTruncateConfirm : 'تمام فایل های موجود در سبد حذف شود؟',
 	BasketRemoveConfirm	: 'فایل "%1" از سبد حذف شود؟',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['fa'] =
 	View			: 'نمایش',
 	Download		: 'دانلود',
 
-	NewSubFolder	: 'زیرپوشه جدید',
+	NewSubimagePath	: 'زیرپوشه جدید',
 	Rename			: 'تغییر نام',
 	Delete			: 'حذف',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['fa'] =
 	UploadBtnCancel		: 'لغو',
 
 	UploadNoFileMsg		: 'لطفا یک فایل جهت ارسال انتخاب کنید',
-	UploadNoFolder		: 'لطفا پیش از آپلود، یک پوشه انتخاب کنید.',
+	UploadNoimagePath		: 'لطفا پیش از آپلود، یک پوشه انتخاب کنید.',
 	UploadNoPerms		: 'اجازه ارسال فایل نداده شنده است',
 	UploadUnknError		: 'خطا در ارسال',
 	UploadExtIncorrect	: 'پسوند فایل برای این پوشه مجاز نیست.',
@@ -236,12 +236,12 @@ CKFinder.lang['fa'] =
 	{
 		FileEmpty		: 'نام فایل نمیتواند خالی باشد',
 		FileExists		: 'فایل %s از قبل وجود دارد',
-		FolderEmpty		: 'نام پوشه نمیتواند خالی باشد',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'نام پوشه نمیتواند خالی باشد',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'نام فایل نباید شامل این کاراکترها باشد: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'نام پوشه نباید شامل این کاراکترها باشد: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'نام پوشه نباید شامل این کاراکترها باشد: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'امکان بازگشایی فایل در پنجره جدید نیست. لطفا به بخش تنظیمات مرورگر خود مراجعه کنید و امکان بازگشایی پنجرههای بازشور را برای این سایت فعال کنید.',
 		XmlError		: 'امکان بارگیری صحیح پاسخ XML از سرور مقدور نیست.',

@@ -108,7 +108,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    subMenu.datebegin = DateTime.Now.Date;
+                    subMenu.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                     subMenu.order = getMaxOrder((long)subMenu.menuId);
                     db.SubMenus.Add(subMenu);
                     db.SaveChanges();

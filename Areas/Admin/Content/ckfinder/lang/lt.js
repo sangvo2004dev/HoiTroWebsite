@@ -67,15 +67,15 @@ CKFinder.lang['lt'] =
 	DateTime : 'yyyy.mm.dd H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Segtuvai',
-	FolderLoading	: 'Prašau palaukite...',
-	FolderNew		: 'Prašau įrašykite naujo segtuvo pavadinimą: ',
-	FolderRename	: 'Prašau įrašykite naujo segtuvo pavadinimą: ',
-	FolderDelete	: 'Ar tikrai norite ištrinti "%1" segtuvą?',
-	FolderRenaming	: ' (Pervadinama...)',
-	FolderDeleting	: ' (Trinama...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Segtuvai',
+	imagePathLoading	: 'Prašau palaukite...',
+	imagePathNew		: 'Prašau įrašykite naujo segtuvo pavadinimą: ',
+	imagePathRename	: 'Prašau įrašykite naujo segtuvo pavadinimą: ',
+	imagePathDelete	: 'Ar tikrai norite ištrinti "%1" segtuvą?',
+	imagePathRenaming	: ' (Pervadinama...)',
+	imagePathDeleting	: ' (Trinama...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Prašau įrašykite naujo failo pavadinimą: ',
@@ -89,10 +89,10 @@ CKFinder.lang['lt'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Krepšelis',
+	BasketimagePath		: 'Krepšelis',
 	BasketClear			: 'Ištuštinti krepšelį',
 	BasketRemove		: 'Ištrinti krepšelį',
-	BasketOpenFolder	: 'Atidaryti failo segtuvą',
+	BasketOpenimagePath	: 'Atidaryti failo segtuvą',
 	BasketTruncateConfirm : 'Ar tikrai norite ištrinti visus failus iš krepšelio?',
 	BasketRemoveConfirm	: 'Ar tikrai norite ištrinti failą "%1" iš krepšelio?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['lt'] =
 	View			: 'Peržiūrėti',
 	Download		: 'Atsisiųsti',
 
-	NewSubFolder	: 'Naujas segtuvas',
+	NewSubimagePath	: 'Naujas segtuvas',
 	Rename			: 'Pervadinti',
 	Delete			: 'Ištrinti',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['lt'] =
 	UploadBtnCancel		: 'Atšaukti',
 
 	UploadNoFileMsg		: 'Pasirinkite failą iš savo kompiuterio',
-	UploadNoFolder		: 'Pasirinkite segtuvą prieš įkeliant.',
+	UploadNoimagePath		: 'Pasirinkite segtuvą prieš įkeliant.',
 	UploadNoPerms		: 'Failų įkėlimas uždraustas.',
 	UploadUnknError		: 'Įvyko klaida siunčiant failą.',
 	UploadExtIncorrect	: 'Šiame segtuve toks failų plėtinys yra uždraustas.',
@@ -236,12 +236,12 @@ CKFinder.lang['lt'] =
 	{
 		FileEmpty		: 'Failo pavadinimas negali būti tuščias',
 		FileExists		: 'Failas %s jau egzistuoja',
-		FolderEmpty		: 'Segtuvo pavadinimas negali būti tuščias',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Segtuvo pavadinimas negali būti tuščias',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Failo pavadinimas negali turėti bent vieno iš šių simbolių: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Segtuvo pavadinimas negali turėti bent vieno iš šių simbolių: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Segtuvo pavadinimas negali turėti bent vieno iš šių simbolių: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Nepavyko atidaryti failo naujame lange. Prašau pakeiskite savo naršyklės nustatymus, kad būtų leidžiami iškylantys langai šiame tinklapyje.',
 		XmlError		: 'Nepavyko įkrauti XML atsako iš web serverio.',

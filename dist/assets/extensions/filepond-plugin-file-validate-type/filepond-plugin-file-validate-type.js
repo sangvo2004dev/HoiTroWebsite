@@ -23,8 +23,8 @@
             isString = utils.isString,
             replaceInString = utils.replaceInString,
             guesstimateMimeType = utils.guesstimateMimeType,
-            getExtensionFromFilename = utils.getExtensionFromFilename,
-            getFilenameFromURL = utils.getFilenameFromURL;
+            getExtensionFromfile_name = utils.getExtensionFromfile_name,
+            getfile_nameFromURL = utils.getfile_nameFromURL;
 
         var mimeTypeMatchesWildCard = function mimeTypeMatchesWildCard(mimeType, wildcard) {
             var mimeTypeGroup = (/^[^/]+/.exec(mimeType) || []).pop(); // image/png -> image
@@ -48,8 +48,8 @@
             // if the item is a url we guess the mime type by the extension
             var type = '';
             if (isString(item)) {
-                var filename = getFilenameFromURL(item);
-                var extension = getExtensionFromFilename(filename);
+                var file_name = getfile_nameFromURL(item);
+                var extension = getExtensionFromfile_name(file_name);
                 if (extension) {
                     type = guesstimateMimeType(extension);
                 }
@@ -172,7 +172,7 @@
                     });
                 };
 
-                // has returned new filename immidiately
+                // has returned new file_name immidiately
                 if (typeof validationResult === 'boolean') {
                     if (!validationResult) {
                         return handleRejection();

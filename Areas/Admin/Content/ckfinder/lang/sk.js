@@ -67,15 +67,15 @@ CKFinder.lang['sk'] =
 	DateTime : 'mm/dd/yyyy HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Adresáre',
-	FolderLoading	: 'Nahrávam...',
-	FolderNew		: 'Zadajte prosím meno nového adresára: ',
-	FolderRename	: 'Zadajte prosím meno nového adresára: ',
-	FolderDelete	: 'Skutočne zmazať adresár "%1"?',
-	FolderRenaming	: ' (Prebieha premenovanie adresára...)',
-	FolderDeleting	: ' (Prebieha zmazanie adresára...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Adresáre',
+	imagePathLoading	: 'Nahrávam...',
+	imagePathNew		: 'Zadajte prosím meno nového adresára: ',
+	imagePathRename	: 'Zadajte prosím meno nového adresára: ',
+	imagePathDelete	: 'Skutočne zmazať adresár "%1"?',
+	imagePathRenaming	: ' (Prebieha premenovanie adresára...)',
+	imagePathDeleting	: ' (Prebieha zmazanie adresára...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Zadajte prosím meno nového súboru: ',
@@ -89,10 +89,10 @@ CKFinder.lang['sk'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Košík',
+	BasketimagePath		: 'Košík',
 	BasketClear			: 'Vyprázdniť košík',
 	BasketRemove		: 'Odstrániť z košíka',
-	BasketOpenFolder	: 'Otvoriť nadradený adresár',
+	BasketOpenimagePath	: 'Otvoriť nadradený adresár',
 	BasketTruncateConfirm : 'Naozaj chcete odstrániť všetky súbory z košíka?',
 	BasketRemoveConfirm	: 'Naozaj chcete odstrániť súbor "%1" z košíka?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['sk'] =
 	View			: 'Náhľad',
 	Download		: 'Stiahnuť',
 
-	NewSubFolder	: 'Nový podadresár',
+	NewSubimagePath	: 'Nový podadresár',
 	Rename			: 'Premenovať',
 	Delete			: 'Zmazať',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['sk'] =
 	UploadBtnCancel		: 'Zrušiť',
 
 	UploadNoFileMsg		: 'Vyberte prosím súbor na Vašom počítači!',
-	UploadNoFolder		: 'Pred náhrávaním zvoľte adresár, prosím',
+	UploadNoimagePath		: 'Pred náhrávaním zvoľte adresár, prosím',
 	UploadNoPerms		: 'Nahratie súboru nie je povolené.',
 	UploadUnknError		: 'V priebehu posielania súboru sa vyskytla chyba.',
 	UploadExtIncorrect	: 'V tomto adresári nie je povolený tento formát súboru.',
@@ -236,12 +236,12 @@ CKFinder.lang['sk'] =
 	{
 		FileEmpty		: 'Názov súboru nesmie byť prázdne.',
 		FileExists		: 'Súbor %s už existuje.',
-		FolderEmpty		: 'Názov adresára nesmie byť prázdny.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Názov adresára nesmie byť prázdny.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Súbor nesmie obsahovať žiadny z nasledujúcich znakov: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Adresár nesmie obsahovať žiadny z nasledujúcich znakov: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Adresár nesmie obsahovať žiadny z nasledujúcich znakov: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Nebolo možné otvoriť súbor v novom okne. Overte nastavenia Vášho prehliadača a zakážte všetky blokovače popup okien pre túto webstránku.',
 		XmlError		: 'Nebolo možné korektne načítať XML odozvu z web serveu.',

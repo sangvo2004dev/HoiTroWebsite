@@ -83,7 +83,7 @@ manage_post = {
             $.ajax({
                 url: '/api/delete',
                 type: 'POST',
-                data: { fileName: file_name },
+                data: { file_name: file_name },
                 //success: function (response, status) {
                 //    console.log(status, response);
                 //    if (typeof fnAccepted === 'function') {

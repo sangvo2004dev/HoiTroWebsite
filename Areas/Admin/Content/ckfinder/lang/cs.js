@@ -67,15 +67,15 @@ CKFinder.lang['cs'] =
 	DateTime : 'd/m/yyyy H:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Složky',
-	FolderLoading	: 'Načítání...',
-	FolderNew		: 'Zadejte název nové složky: ',
-	FolderRename	: 'Zadejte nový název složky: ',
-	FolderDelete	: 'Opravdu chcete složku "%1" smazat?',
-	FolderRenaming	: ' (Přejmenovávání...)',
-	FolderDeleting	: ' (Mazání...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Složky',
+	imagePathLoading	: 'Načítání...',
+	imagePathNew		: 'Zadejte název nové složky: ',
+	imagePathRename	: 'Zadejte nový název složky: ',
+	imagePathDelete	: 'Opravdu chcete složku "%1" smazat?',
+	imagePathRenaming	: ' (Přejmenovávání...)',
+	imagePathDeleting	: ' (Mazání...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Zadejte nový název souboru: ',
@@ -89,10 +89,10 @@ CKFinder.lang['cs'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Košík',
+	BasketimagePath		: 'Košík',
 	BasketClear			: 'Vyčistit Košík',
 	BasketRemove		: 'Odstranit z Košíku',
-	BasketOpenFolder	: 'Otevřít nadřazenou složku',
+	BasketOpenimagePath	: 'Otevřít nadřazenou složku',
 	BasketTruncateConfirm : 'Opravdu chcete z Košíku odstranit všechny soubory?',
 	BasketRemoveConfirm	: 'Opravdu chcete odstranit soubor "%1" z Košíku?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['cs'] =
 	View			: 'Zobrazit',
 	Download		: 'Uložit jako',
 
-	NewSubFolder	: 'Nová podsložka',
+	NewSubimagePath	: 'Nová podsložka',
 	Rename			: 'Přejmenovat',
 	Delete			: 'Smazat',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['cs'] =
 	UploadBtnCancel		: 'Zrušit',
 
 	UploadNoFileMsg		: 'Vyberte prosím soubor z Vašeho počítače.',
-	UploadNoFolder		: 'Před nahráváním vyberte složku prosím.',
+	UploadNoimagePath		: 'Před nahráváním vyberte složku prosím.',
 	UploadNoPerms		: 'Nahrávání souborů není povoleno.',
 	UploadUnknError		: 'Chyba při posílání souboru.',
 	UploadExtIncorrect	: 'Přípona souboru není v této složce povolena.',
@@ -236,12 +236,12 @@ CKFinder.lang['cs'] =
 	{
 		FileEmpty		: 'Název souboru nemůže být prázdný.',
 		FileExists		: 'Soubor %s již existuje.',
-		FolderEmpty		: 'Název složky nemůže být prázdný.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Název složky nemůže být prázdný.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Název souboru nesmí obsahovat následující znaky: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Název složky nesmí obsahovat následující znaky: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Název složky nesmí obsahovat následující znaky: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Soubor nebylo možné otevřít do nového okna. Prosím nastavte si Váš prohlížeč a zakažte veškeré blokování vyskakovacích oken.',
 		XmlError		: 'Nebylo možné správně načíst XML odpověď z internetového serveru.',

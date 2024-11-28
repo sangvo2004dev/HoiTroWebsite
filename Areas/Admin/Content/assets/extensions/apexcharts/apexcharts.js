@@ -4436,7 +4436,7 @@
               },
               export: {
                 csv: {
-                  filename: undefined,
+                  file_name: undefined,
                   columnDelimiter: ',',
                   headerCategory: 'category',
                   headerValue: 'value',
@@ -4445,10 +4445,10 @@
                   }
                 },
                 png: {
-                  filename: undefined
+                  file_name: undefined
                 },
                 svg: {
-                  filename: undefined
+                  file_name: undefined
                 }
               },
               autoSelected: 'zoom' // accepts -> zoom, pan, selection
@@ -9657,7 +9657,7 @@
     }, {
       key: "exportToSVG",
       value: function exportToSVG() {
-        this.triggerDownload(this.svgUrl(), this.w.config.chart.toolbar.export.svg.filename, '.svg');
+        this.triggerDownload(this.svgUrl(), this.w.config.chart.toolbar.export.svg.file_name, '.svg');
       }
     }, {
       key: "exportToPng",
@@ -9671,7 +9671,7 @@
           if (blob) {
             navigator.msSaveOrOpenBlob(blob, _this2.w.globals.chartID + '.png');
           } else {
-            _this2.triggerDownload(imgURI, _this2.w.config.chart.toolbar.export.png.filename, '.png');
+            _this2.triggerDownload(imgURI, _this2.w.config.chart.toolbar.export.png.file_name, '.png');
           }
         });
       }
@@ -9681,7 +9681,7 @@
         var _this3 = this;
 
         var series = _ref2.series,
-            fileName = _ref2.fileName,
+            file_name = _ref2.file_name,
             _ref2$columnDelimiter = _ref2.columnDelimiter,
             columnDelimiter = _ref2$columnDelimiter === void 0 ? ',' : _ref2$columnDelimiter,
             _ref2$lineDelimiter = _ref2.lineDelimiter,
@@ -9903,14 +9903,14 @@
         }
 
         result += rows.join(lineDelimiter);
-        this.triggerDownload('data:text/csv; charset=utf-8,' + encodeURIComponent(universalBOM + result), fileName ? fileName : w.config.chart.toolbar.export.csv.filename, '.csv');
+        this.triggerDownload('data:text/csv; charset=utf-8,' + encodeURIComponent(universalBOM + result), file_name ? file_name : w.config.chart.toolbar.export.csv.file_name, '.csv');
       }
     }, {
       key: "triggerDownload",
-      value: function triggerDownload(href, filename, ext) {
+      value: function triggerDownload(href, file_name, ext) {
         var downloadLink = document.createElement('a');
         downloadLink.href = href;
-        downloadLink.download = (filename ? filename : this.w.globals.chartID) + ext;
+        downloadLink.download = (file_name ? file_name : this.w.globals.chartID) + ext;
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);

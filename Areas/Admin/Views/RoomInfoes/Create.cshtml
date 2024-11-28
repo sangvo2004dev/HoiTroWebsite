@@ -19,14 +19,6 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label " })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.brief_description, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.brief_description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.Label("Chi tiết", htmlAttributes: new { @class = "control-label " })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.detail_description)
@@ -47,14 +39,6 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.acreage, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.acreage, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Khu vực", htmlAttributes: new { @class = "control-label " })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.area, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -117,24 +101,6 @@
             @Html.EditorFor(model => model.accountId, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.accountId, "", new { @class = "text-danger" })
         </div>
-    </div>
-    
-    <div id="images-container">
-        <h4>Thêm ảnh cho bài đăng</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Hình ảnh</th>
-                    <th>Mô tả (meta)</th>
-                    <th>Hiển thị</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody id="image-list">
-                <!-- Danh sách ảnh tạm thời sẽ được thêm tại đây -->
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-success" onclick="addImageRow()">Thêm ảnh</button>
     </div>
 
     <div class="form-group">

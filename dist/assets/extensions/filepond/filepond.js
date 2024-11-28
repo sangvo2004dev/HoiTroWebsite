@@ -4045,7 +4045,7 @@
 
             GET_ITEM_NAME: function GET_ITEM_NAME(query) {
                 var item = getItemByQuery(state.items, query);
-                return item ? item.filename : null;
+                return item ? item.file_name : null;
             },
 
             GET_ITEM_SIZE: function GET_ITEM_SIZE(query) {
@@ -4165,7 +4165,7 @@
         );
     };
 
-    var getFilenameFromURL = function getFilenameFromURL(url) {
+    var getfile_nameFromURL = function getfile_nameFromURL(url) {
         return ('' + url)
             .split('/')
             .pop()
@@ -4173,7 +4173,7 @@
             .shift();
     };
 
-    var getExtensionFromFilename = function getExtensionFromFilename(name) {
+    var getExtensionFromfile_name = function getExtensionFromfile_name(name) {
         return name.split('.').pop();
     };
 
@@ -4239,7 +4239,7 @@
         );
     };
 
-    var getFileFromBlob = function getFileFromBlob(blob, filename) {
+    var getFileFromBlob = function getFileFromBlob(blob, file_name) {
         var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
         var extension = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
         var file =
@@ -4251,17 +4251,17 @@
         // copy relative path
         if (blob._relativePath) file._relativePath = blob._relativePath;
 
-        // if blob has name property, use as filename if no filename supplied
-        if (!isString(filename)) {
-            filename = getDateString();
+        // if blob has name property, use as file_name if no file_name supplied
+        if (!isString(file_name)) {
+            file_name = getDateString();
         }
 
-        // if filename supplied but no extension and filename has extension
-        if (filename && extension === null && getExtensionFromFilename(filename)) {
-            file.name = filename;
+        // if file_name supplied but no extension and file_name has extension
+        if (file_name && extension === null && getExtensionFromfile_name(file_name)) {
+            file.name = file_name;
         } else {
             extension = extension || guesstimateExtension(file.type);
-            file.name = filename + (extension ? '.' + extension : '');
+            file.name = file_name + (extension ? '.' + extension : '');
         }
 
         return file;
@@ -4326,17 +4326,17 @@
         return getBlobFromByteStringWithMimeType(byteString, mimeType);
     };
 
-    var getFileFromBase64DataURI = function getFileFromBase64DataURI(dataURI, filename, extension) {
-        return getFileFromBlob(getBlobFromBase64DataURI(dataURI), filename, null, extension);
+    var getFileFromBase64DataURI = function getFileFromBase64DataURI(dataURI, file_name, extension) {
+        return getFileFromBlob(getBlobFromBase64DataURI(dataURI), file_name, null, extension);
     };
 
-    var getFileNameFromHeader = function getFileNameFromHeader(header) {
+    var getfile_nameFromHeader = function getfile_nameFromHeader(header) {
         // test if is content disposition header, if not exit
         if (!/^content-disposition:/i.test(header)) return null;
 
-        // get filename parts
+        // get file_name parts
         var matches = header
-            .split(/filename=|filename\*=.+''/)
+            .split(/file_name=|file_name\*=.+''/)
             .splice(1)
             .map(function(name) {
                 return name.trim().replace(/^["']|[;"']{0,2}$/g, '');
@@ -4383,7 +4383,7 @@
             ) {
                 var header = _step.value;
 
-                var name = getFileNameFromHeader(header);
+                var name = getfile_nameFromHeader(header);
                 if (name) {
                     info.name = name;
                     continue;
@@ -4491,7 +4491,7 @@
                     if (response instanceof Blob) {
                         response = getFileFromBlob(
                             response,
-                            response.name || getFilenameFromURL(url)
+                            response.name || getfile_nameFromURL(url)
                         );
                     }
 
@@ -4543,7 +4543,7 @@
                     );
                     api.fire('meta', {
                         size: state.size || fileinfo.size,
-                        filename: fileinfo.name,
+                        file_name: fileinfo.name,
                         source: fileinfo.source,
                     });
                 }
@@ -4767,8 +4767,8 @@
                 // get headers
                 var headers = xhr.getAllResponseHeaders();
 
-                // get filename
-                var filename = getFileInfoFromHeaders(headers).name || getFilenameFromURL(url);
+                // get file_name
+                var file_name = getFileInfoFromHeaders(headers).name || getfile_nameFromURL(url);
 
                 // create response
                 load(
@@ -4777,7 +4777,7 @@
                         xhr.status,
                         action.method === 'HEAD'
                             ? null
-                            : getFileFromBlob(onload(xhr.response), filename),
+                            : getFileFromBlob(onload(xhr.response), file_name),
                         headers
                     )
                 );
@@ -5623,7 +5623,7 @@
         return api;
     };
 
-    var getFilenameWithoutExtension = function getFilenameWithoutExtension(name) {
+    var getfile_nameWithoutExtension = function getfile_nameWithoutExtension(name) {
         return name.substring(0, name.lastIndexOf('.')) || name;
     };
 
@@ -5639,7 +5639,7 @@
             data[2] = getMimeTypeFromBase64DataURI(source);
         } else if (isString(source)) {
             // url
-            data[0] = getFilenameFromURL(source);
+            data[0] = getfile_nameFromURL(source);
             data[1] = 0;
             data[2] = 'application/octet-stream';
         }
@@ -5738,7 +5738,7 @@
 
         // file data
         var getFileExtension = function getFileExtension() {
-            return getExtensionFromFilename(state.file.name);
+            return getExtensionFromfile_name(state.file.name);
         };
         var getFileType = function getFileType() {
             return state.file.type;
@@ -5780,7 +5780,7 @@
                 state.file.size = meta.size;
 
                 // set name of file stub
-                state.file.filename = meta.filename;
+                state.file.file_name = meta.file_name;
 
                 // if has received source, we done
                 if (meta.source) {
@@ -6105,14 +6105,14 @@
                         return state.status;
                     },
                 },
-                filename: {
+                file_name: {
                     get: function get() {
                         return state.file.name;
                     },
                 },
-                filenameWithoutExtension: {
+                file_nameWithoutExtension: {
                     get: function get() {
-                        return getFilenameWithoutExtension(state.file.name);
+                        return getfile_nameWithoutExtension(state.file.name);
                     },
                 },
                 fileExtension: { get: getFileExtension },
@@ -6225,12 +6225,12 @@
             // get headers
             var headers = xhr.getAllResponseHeaders();
 
-            // get filename
-            var filename = getFileInfoFromHeaders(headers).name || getFilenameFromURL(url);
+            // get file_name
+            var file_name = getFileInfoFromHeaders(headers).name || getfile_nameFromURL(url);
 
             // create response
             load(
-                createResponse('load', xhr.status, getFileFromBlob(xhr.response, filename), headers)
+                createResponse('load', xhr.status, getFileFromBlob(xhr.response, file_name), headers)
             );
         };
 
@@ -7425,7 +7425,7 @@
 
     var PrioritizedOptions = ['server'];
 
-    var formatFilename = function formatFilename(name) {
+    var formatfile_name = function formatfile_name(name) {
         return name;
     };
 
@@ -7662,15 +7662,15 @@
     var create$2 = function create(_ref) {
         var root = _ref.root,
             props = _ref.props;
-        // filename
-        var fileName = createElement$1('span');
-        fileName.className = 'filepond--file-info-main';
+        // file_name
+        var file_name = createElement$1('span');
+        file_name.className = 'filepond--file-info-main';
         // hide for screenreaders
-        // the file is contained in a fieldset with legend that contains the filename
+        // the file is contained in a fieldset with legend that contains the file_name
         // no need to read it twice
-        attr(fileName, 'aria-hidden', 'true');
-        root.appendChild(fileName);
-        root.ref.fileName = fileName;
+        attr(file_name, 'aria-hidden', 'true');
+        root.appendChild(file_name);
+        root.ref.file_name = file_name;
 
         // filesize
         var fileSize = createElement$1('span');
@@ -7680,7 +7680,7 @@
 
         // set initial values
         text(fileSize, root.query('GET_LABEL_FILE_WAITING_FOR_SIZE'));
-        text(fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+        text(file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
     };
 
     var updateFile = function updateFile(_ref2) {
@@ -7696,7 +7696,7 @@
             )
         );
 
-        text(root.ref.fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+        text(root.ref.file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
     };
 
     var updateFileSizeOnError = function updateFileSizeOnError(_ref3) {
@@ -8346,9 +8346,9 @@
         var root = _ref.root,
             props = _ref.props;
 
-        // filename
-        root.ref.fileName = createElement$1('legend');
-        root.appendChild(root.ref.fileName);
+        // file_name
+        root.ref.file_name = createElement$1('legend');
+        root.appendChild(root.ref.file_name);
 
         // file appended
         root.ref.file = root.appendChildView(root.createChildView(file, { id: props.id }));
@@ -8364,7 +8364,7 @@
         var root = _ref2.root,
             props = _ref2.props;
         // updates the legend of the fieldset so screenreaders can better group buttons
-        text(root.ref.fileName, formatFilename(root.query('GET_ITEM_NAME', props.id)));
+        text(root.ref.file_name, formatfile_name(root.query('GET_ITEM_NAME', props.id)));
     };
 
     var fileWrapper = createView({
@@ -10089,7 +10089,7 @@
         if (file.type.length) return file;
         var date = file.lastModifiedDate;
         var name = file.name;
-        var type = guesstimateMimeType(getExtensionFromFilename(file.name));
+        var type = guesstimateMimeType(getExtensionFromfile_name(file.name));
         if (!type.length) return file;
         file = file.slice(0, file.size, type);
         file.name = name;
@@ -10579,7 +10579,7 @@
     var addFilesNotificationTimeout = null;
     var notificationClearTimeout = null;
 
-    var filenames = [];
+    var file_names = [];
 
     var assist = function assist(root, message) {
         root.element.textContent = message;
@@ -10589,13 +10589,13 @@
         root.element.textContent = '';
     };
 
-    var listModified = function listModified(root, filename, label) {
+    var listModified = function listModified(root, file_name, label) {
         var total = root.query('GET_TOTAL_ITEMS');
         assist(
             root,
             label +
                 ' ' +
-                filename +
+                file_name +
                 ', ' +
                 total +
                 ' ' +
@@ -10624,13 +10624,13 @@
 
         root.element.textContent = '';
         var item = root.query('GET_ITEM', action.id);
-        filenames.push(item.filename);
+        file_names.push(item.file_name);
 
         clearTimeout(addFilesNotificationTimeout);
         addFilesNotificationTimeout = setTimeout(function() {
-            listModified(root, filenames.join(', '), root.query('GET_LABEL_FILE_ADDED'));
+            listModified(root, file_names.join(', '), root.query('GET_LABEL_FILE_ADDED'));
 
-            filenames.length = 0;
+            file_names.length = 0;
         }, 750);
     };
 
@@ -10642,7 +10642,7 @@
         }
 
         var item = action.item;
-        listModified(root, item.filename, root.query('GET_LABEL_FILE_REMOVED'));
+        listModified(root, item.file_name, root.query('GET_LABEL_FILE_REMOVED'));
     };
 
     var itemProcessed = function itemProcessed(_ref4) {
@@ -10651,31 +10651,31 @@
         // will also notify the user when FilePond is not being used, as the user might be occupied with other activities while uploading a file
 
         var item = root.query('GET_ITEM', action.id);
-        var filename = item.filename;
+        var file_name = item.file_name;
         var label = root.query('GET_LABEL_FILE_PROCESSING_COMPLETE');
 
-        assist(root, filename + ' ' + label);
+        assist(root, file_name + ' ' + label);
     };
 
     var itemProcessedUndo = function itemProcessedUndo(_ref5) {
         var root = _ref5.root,
             action = _ref5.action;
         var item = root.query('GET_ITEM', action.id);
-        var filename = item.filename;
+        var file_name = item.file_name;
         var label = root.query('GET_LABEL_FILE_PROCESSING_ABORTED');
 
-        assist(root, filename + ' ' + label);
+        assist(root, file_name + ' ' + label);
     };
 
     var itemError = function itemError(_ref6) {
         var root = _ref6.root,
             action = _ref6.action;
         var item = root.query('GET_ITEM', action.id);
-        var filename = item.filename;
+        var file_name = item.file_name;
 
         // will also notify the user when FilePond is not being used, as the user might be occupied with other activities while uploading a file
 
-        assist(root, action.status.main + ' ' + filename + ' ' + action.status.sub);
+        assist(root, action.status.main + ' ' + file_name + ' ' + action.status.sub);
     };
 
     var assistant = createView({
@@ -12467,11 +12467,11 @@
                 isFile: isFile,
                 toNaturalFileSize: toNaturalFileSize,
                 replaceInString: replaceInString,
-                getExtensionFromFilename: getExtensionFromFilename,
-                getFilenameWithoutExtension: getFilenameWithoutExtension,
+                getExtensionFromfile_name: getExtensionFromfile_name,
+                getfile_nameWithoutExtension: getfile_nameWithoutExtension,
                 guesstimateMimeType: guesstimateMimeType,
                 getFileFromBlob: getFileFromBlob,
-                getFilenameFromURL: getFilenameFromURL,
+                getfile_nameFromURL: getfile_nameFromURL,
                 createRoute: createRoute,
                 createWorker: createWorker,
                 createView: createView,

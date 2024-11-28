@@ -18,7 +18,7 @@ There are many ways/formats of how to use dripicons. The fastest and recommended
 
 ### SVG icons -- when you need just a few icons in your project
 
-1 . If you want to use just a few icons. Find the icons you need in "icons" folder. Then use them as regular images:
+1 . If you want to use just a few icons. Find the icons you need in "icons" imagePath. Then use them as regular images:
 
 ```
 <img height="32" width="32" src="@icon/dripicons/icons/alarm.svg" />

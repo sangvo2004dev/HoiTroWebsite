@@ -67,15 +67,15 @@ CKFinder.lang['gu'] =
 	DateTime : 'm/d/yyyy h:MM aa',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'ફોલ્ડર્સ',
-	FolderLoading	: 'લોડીંગ...',
-	FolderNew		: 'નવું ફોલ્ડર નું નામ આપો: ',
-	FolderRename	: 'નવું ફોલ્ડર નું નામ આપો: ',
-	FolderDelete	: 'શું તમારે "%1" ફોલ્ડર ડિલીટ કરવું છે?',
-	FolderRenaming	: ' (નવું નામ...)',
-	FolderDeleting	: ' (ડિલીટ...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'ફોલ્ડર્સ',
+	imagePathLoading	: 'લોડીંગ...',
+	imagePathNew		: 'નવું ફોલ્ડર નું નામ આપો: ',
+	imagePathRename	: 'નવું ફોલ્ડર નું નામ આપો: ',
+	imagePathDelete	: 'શું તમારે "%1" ફોલ્ડર ડિલીટ કરવું છે?',
+	imagePathRenaming	: ' (નવું નામ...)',
+	imagePathDeleting	: ' (ડિલીટ...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'નવી ફાઈલ નું નામ આપો: ',
@@ -89,10 +89,10 @@ CKFinder.lang['gu'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'બાસ્કેટ',
+	BasketimagePath		: 'બાસ્કેટ',
 	BasketClear			: 'બાસ્કેટ ખાલી કરવી',
 	BasketRemove		: 'બાસ્કેટ માં થી કાઢી નાખવું',
-	BasketOpenFolder	: 'પેરન્ટ ફોલ્ડર ખોલવું',
+	BasketOpenimagePath	: 'પેરન્ટ ફોલ્ડર ખોલવું',
 	BasketTruncateConfirm : 'શું તમારે બાસ્કેટ માંથી બધી ફાઈલ કાઢી નાખવી છે?',
 	BasketRemoveConfirm	: 'તમારે "%1" ફાઈલ બાસ્કેટ માંથી કાઢી નાખવી છે?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['gu'] =
 	View			: 'વ્યુ',
 	Download		: 'ડાઊનલોડ',
 
-	NewSubFolder	: 'નવું સ્બફોલડર',
+	NewSubimagePath	: 'નવું સ્બફોલડર',
 	Rename			: 'નવું નામ',
 	Delete			: 'કાઢી નાખવું',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['gu'] =
 	UploadBtnCancel		: 'રદ કરો',
 
 	UploadNoFileMsg		: 'તમારા કોમ્પુટર પરથી ફાઈલ પસંદ કરો.',
-	UploadNoFolder		: 'અપલોડ કરતા પેહલાં ફોલ્ડર પસંદ કરો.',
+	UploadNoimagePath		: 'અપલોડ કરતા પેહલાં ફોલ્ડર પસંદ કરો.',
 	UploadNoPerms		: 'ફાઈલ અપલોડ શક્ય નથી.',
 	UploadUnknError		: 'ફાઈલ મોકલવામાં એરર છે.',
 	UploadExtIncorrect	: 'આ ફોલ્ડરમાં આ એક્ષટેનસન શક્ય નથી.',
@@ -236,12 +236,12 @@ CKFinder.lang['gu'] =
 	{
 		FileEmpty		: 'ફાઈલનું નામ ખાલીના હોવું જોઈએ',
 		FileExists		: 'ફાઈલ %s હાજર છે.',
-		FolderEmpty		: 'ફોલ્ડરનું નામ ખાલીના હોવું જોઈએ.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'ફોલ્ડરનું નામ ખાલીના હોવું જોઈએ.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'ફાઈલના નામમાં એમના કોઈ પણ કેરેક્ટર ન ચાલે: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'ફોલ્ડરના નામમાં એમના કોઈ પણ કેરેક્ટર ન ચાલે: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'ફોલ્ડરના નામમાં એમના કોઈ પણ કેરેક્ટર ન ચાલે: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'નવી વિન્ડોમાં ફાઈલ ખોલવી શક્ય નથી. તમારું બ્રાઉઝર કોન્ફીગ કરી અને આ સાઈટ માટેના બથા પોપઅપ બ્લોકર બંધ કરો.',
 		XmlError		: 'વેબ સર્વેરમાંથી XML રીર્સ્પોન્સ લેવો શક્ય નથી.',

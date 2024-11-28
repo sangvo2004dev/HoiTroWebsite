@@ -67,15 +67,15 @@ CKFinder.lang['pl'] =
 	DateTime : 'yyyy-mm-dd HH:MM',
 	DateAmPm : ['AM', 'PM'],
 
-	// Folders
-	FoldersTitle	: 'Foldery',
-	FolderLoading	: 'Ładowanie...',
-	FolderNew		: 'Podaj nazwę nowego folderu: ',
-	FolderRename	: 'Podaj nową nazwę folderu: ',
-	FolderDelete	: 'Czy na pewno chcesz usunąć folder "%1"?',
-	FolderRenaming	: ' (Zmieniam nazwę...)',
-	FolderDeleting	: ' (Kasowanie...)',
-	DestinationFolder	: 'Folder docelowy',
+	// imagePaths
+	imagePathsTitle	: 'imagePathy',
+	imagePathLoading	: 'Ładowanie...',
+	imagePathNew		: 'Podaj nazwę nowego imagePathu: ',
+	imagePathRename	: 'Podaj nową nazwę imagePathu: ',
+	imagePathDelete	: 'Czy na pewno chcesz usunąć imagePath "%1"?',
+	imagePathRenaming	: ' (Zmieniam nazwę...)',
+	imagePathDeleting	: ' (Kasowanie...)',
+	DestinationimagePath	: 'imagePath docelowy',
 
 	// Files
 	FileRename		: 'Podaj nową nazwę pliku: ',
@@ -84,15 +84,15 @@ CKFinder.lang['pl'] =
 	FileDelete		: 'Czy na pewno chcesz usunąć plik "%1"?',
 	FilesDelete	: 'Czy na pewno chcesz usunąć pliki (razem: %1)?',
 	FilesLoading	: 'Ładowanie...',
-	FilesEmpty		: 'Folder jest pusty',
+	FilesEmpty		: 'imagePath jest pusty',
 	DestinationFile	: 'Plik docelowy',
 	SkippedFiles	: 'Lista pominiętych plików:',
 
 	// Basket
-	BasketFolder		: 'Koszyk',
+	BasketimagePath		: 'Koszyk',
 	BasketClear			: 'Wyczyść koszyk',
 	BasketRemove		: 'Usuń z koszyka',
-	BasketOpenFolder	: 'Otwórz folder z plikiem',
+	BasketOpenimagePath	: 'Otwórz imagePath z plikiem',
 	BasketTruncateConfirm : 'Czy naprawdę chcesz usunąć wszystkie pliki z koszyka?',
 	BasketRemoveConfirm	: 'Czy naprawdę chcesz usunąć plik "%1" z koszyka?',
 	BasketRemoveConfirmMultiple	: 'Czy naprawdę chcesz usunąć pliki (razem: %1) z koszyka?',
@@ -125,7 +125,7 @@ CKFinder.lang['pl'] =
 	View			: 'Zobacz',
 	Download		: 'Pobierz',
 
-	NewSubFolder	: 'Nowy podfolder',
+	NewSubimagePath	: 'Nowy podimagePath',
 	Rename			: 'Zmień nazwę',
 	Delete			: 'Usuń',
 	DeleteFiles		: 'Usuń pliki',
@@ -156,10 +156,10 @@ CKFinder.lang['pl'] =
 	UploadBtnCancel		: 'Anuluj',
 
 	UploadNoFileMsg		: 'Wybierz plik ze swojego komputera.',
-	UploadNoFolder		: 'Wybierz folder przed wysłaniem pliku.',
+	UploadNoimagePath		: 'Wybierz imagePath przed wysłaniem pliku.',
 	UploadNoPerms		: 'Wysyłanie plików nie jest dozwolone.',
 	UploadUnknError		: 'Błąd podczas wysyłania pliku.',
-	UploadExtIncorrect	: 'Rozszerzenie pliku nie jest dozwolone w tym folderze.',
+	UploadExtIncorrect	: 'Rozszerzenie pliku nie jest dozwolone w tym imagePathze.',
 
 	// Flash Uploads
 	UploadLabel			: 'Pliki do wysłania',
@@ -190,7 +190,7 @@ CKFinder.lang['pl'] =
 	SetSortExtension		: 'wg rozszerzenia',
 
 	// Status Bar
-	FilesCountEmpty : '<Pusty folder>',
+	FilesCountEmpty : '<Pusty imagePath>',
 	FilesCountOne	: '1 plik',
 	FilesCountMany	: 'Ilość plików: %1',
 
@@ -207,22 +207,22 @@ CKFinder.lang['pl'] =
 	 10 : 'Nieprawidłowe polecenie (command).',
 	 11 : 'Brak wymaganego parametru: typ danych (resource type).',
 	 12 : 'Nieprawidłowy typ danych (resource type).',
-	102 : 'Nieprawidłowa nazwa pliku lub folderu.',
+	102 : 'Nieprawidłowa nazwa pliku lub imagePathu.',
 	103 : 'Wykonanie operacji nie jest możliwe: brak uprawnień.',
 	104 : 'Wykonanie operacji nie powiodło się z powodu niewystarczających uprawnień do systemu plików.',
 	105 : 'Nieprawidłowe rozszerzenie.',
 	109 : 'Nieprawiłowe żądanie.',
 	110 : 'Niezidentyfikowany błąd.',
 	111 : 'Wykonanie operacji nie powiodło się z powodu zbyt dużego rozmiaru pliku wynikowego.',
-	115 : 'Plik lub folder o podanej nazwie już istnieje.',
-	116 : 'Nie znaleziono folderu. Odśwież panel i spróbuj ponownie.',
+	115 : 'Plik lub imagePath o podanej nazwie już istnieje.',
+	116 : 'Nie znaleziono imagePathu. Odśwież panel i spróbuj ponownie.',
 	117 : 'Nie znaleziono pliku. Odśwież listę plików i spróbuj ponownie.',
 	118 : 'Ścieżki źródłowa i docelowa są jednakowe.',
 	201 : 'Plik o podanej nazwie już istnieje. Nazwa przesłanego pliku została zmieniona na "%1".',
 	202 : 'Nieprawidłowy plik.',
 	203 : 'Nieprawidłowy plik. Plik przekracza dozwolony rozmiar.',
 	204 : 'Przesłany plik jest uszkodzony.',
-	205 : 'Brak folderu tymczasowego na serwerze do przesyłania plików.',
+	205 : 'Brak imagePathu tymczasowego na serwerze do przesyłania plików.',
 	206 : 'Przesyłanie pliku zakończyło się niepowodzeniem z powodów bezpieczeństwa. Plik zawiera dane przypominające HTML.',
 	207 : 'Nazwa przesłanego pliku została zmieniona na "%1".',
 	300 : 'Przenoszenie nie powiodło się.',
@@ -236,12 +236,12 @@ CKFinder.lang['pl'] =
 	{
 		FileEmpty		: 'Nazwa pliku nie może być pusta.',
 		FileExists		: 'Plik %s już istnieje.',
-		FolderEmpty		: 'Nazwa folderu nie może być pusta.',
-		FolderExists	: 'Folder %s już istnieje.',
-		FolderNameExists	: 'Folder już istnieje.',
+		imagePathEmpty		: 'Nazwa imagePathu nie może być pusta.',
+		imagePathExists	: 'imagePath %s już istnieje.',
+		imagePathNameExists	: 'imagePath już istnieje.',
 
 		FileInvChar		: 'Nazwa pliku nie może zawierać żadnego z podanych znaków: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Nazwa folderu nie może zawierać żadnego z podanych znaków: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Nazwa imagePathu nie może zawierać żadnego z podanych znaków: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Otwarcie pliku w nowym oknie nie powiodło się. Należy zmienić konfigurację przeglądarki i wyłączyć wszelkie blokady okienek popup dla tej strony.',
 		XmlError		: 'Nie można poprawnie załadować odpowiedzi XML z serwera WWW.',

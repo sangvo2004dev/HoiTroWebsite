@@ -40,11 +40,11 @@ namespace HoiTroWebsite.Controllers
 
                 long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                 //Console.WriteLine("Unix Timestamp (seconds): " + unixTimestamp);
-                string fileName = string.Join("_", Path.GetFileNameWithoutExtension(imgFile.FileName), unixTimestamp) + Path.GetExtension(imgFile.FileName);
-                string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
+                string file_name = string.Join("_", Path.GetFileNameWithoutExtension(imgFile.FileName), unixTimestamp) + Path.GetExtension(imgFile.FileName);
+                string path = Path.Combine(Server.MapPath("/Data/user/"), file_name);
                 imgFile.SaveAs(path);
 
-                var responseData = new { success = true, file_name = fileName };
+                var responseData = new { success = true, file_name = file_name };
 
                 Response.StatusCode = 200; // Mã trạng thái HTTP
                 return Json(responseData, JsonRequestBehavior.AllowGet);
@@ -58,17 +58,17 @@ namespace HoiTroWebsite.Controllers
         // POST:
         [Route("api/delete")]
         [HttpPost]
-        public ActionResult DeleteImgFile(string fileName)
+        public ActionResult DeleteImgFile(string file_name)
         {
             try
             {
-                string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
+                string path = Path.Combine(Server.MapPath("/Data/user/"), file_name);
                 var f = new FileInfo(path);
                 if (f.Exists)
                 {
                     f.Delete();
                 }
-                var responseData = new { success = true, file_name = fileName };
+                var responseData = new { success = true, file_name = file_name };
 
                 Response.StatusCode = 200; // Mã trạng thái HTTP
                 return Json(responseData);
@@ -100,12 +100,12 @@ namespace HoiTroWebsite.Controllers
                 JObject jsonObject = JObject.Parse(jsonString);
 
                 // Get the array from the "list_file_delete" key
-                string[] fileNames = jsonObject.Properties().First().Value.ToObject<string[]>();
-                if (fileNames != null && fileNames.Length > 0)
+                string[] file_names = jsonObject.Properties().First().Value.ToObject<string[]>();
+                if (file_names != null && file_names.Length > 0)
                 {
-                    fileNames.ForEach(fileName =>
+                    file_names.ForEach(file_name =>
                     {
-                        string path = Path.Combine(Server.MapPath("/Data/user/"), fileName);
+                        string path = Path.Combine(Server.MapPath("/Data/user/"), file_name);
                         var f = new FileInfo(path);
                         if (f.Exists)
                         {
@@ -135,9 +135,8 @@ namespace HoiTroWebsite.Controllers
                 {
                     title = postRoomVM.tieu_de,
                     roomTypeId = postRoomVM.loai_chuyen_muc,
-                    brief_description = "khong can",
                     price = postRoomVM.gia,
-                    area = postRoomVM.dien_tich.ToString(),
+                    acreage = postRoomVM.dien_tich.ToString(),
                     location = postRoomVM.dia_chi,
                     detail_description = postRoomVM.noi_dung,
                     datebegin = DateTime.Now,
@@ -174,9 +173,8 @@ namespace HoiTroWebsite.Controllers
                 {
                     room.title = postRoomVM.tieu_de;
                     room.meta = postRoomVM.tieu_de_meta;
-                    room.brief_description = "khong can";
                     room.price = postRoomVM.gia;
-                    room.area = postRoomVM.dien_tich.ToString();
+                    room.acreage = postRoomVM.dien_tich.ToString();
                     room.location = postRoomVM.dia_chi;
                     room.detail_description = postRoomVM.noi_dung;
                     room.datebegin = DateTime.Now;
@@ -206,15 +204,15 @@ namespace HoiTroWebsite.Controllers
             int count = 0;
             foreach (var file_name in file_name_list)
             {
-                var f = db.RoomImgs.SingleOrDefault(ri => ri.fileName == file_name);
+                var f = db.RoomImages.SingleOrDefault(ri => ri.file_name == file_name);
                 if (f == null)
                 {
                     // thêm đường dẫn file vào database
-                    db.RoomImgs.Add(new RoomImg
+                    db.RoomImages.Add(new RoomImage
                     {
-                        postRoomId = roomInfoId,
-                        folder = "/Data/user/",
-                        fileName = file_name,
+                        reference_id = roomInfoId,
+                        imagePath = "/Data/user/",
+                        file_name = file_name,
                         hide = true,
                         order = count,
                         datebegin = DateTime.Now,
@@ -236,10 +234,10 @@ namespace HoiTroWebsite.Controllers
 
             file_delete_list.ForEach(f =>
             {
-                var roomImg = db.RoomImgs.SingleOrDefault(ri => ri.postRoomId == roomInfoId && ri.fileName == f);
+                var roomImg = db.RoomImages.SingleOrDefault(ri => ri.reference_id == roomInfoId && ri.file_name == f);
                 if (roomImg != null)
                 {
-                    db.RoomImgs.Remove(roomImg);
+                    db.RoomImages.Remove(roomImg);
                 }
             });
             db.SaveChanges();
@@ -282,7 +280,7 @@ namespace HoiTroWebsite.Controllers
                     rooms2.ForEach(room =>
                     {
                         db.Entry(room).Reference(r => r.RoomType).Load();
-                        db.Entry(room).Collection(r => r.RoomImgs).Query().OrderBy(rm => rm.order).Load();
+                        db.Entry(room).Collection(r => r.RoomImages).Query().OrderBy(rm => rm.order).Load();
                     });
                 }
 

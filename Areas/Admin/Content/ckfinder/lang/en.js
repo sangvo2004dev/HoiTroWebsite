@@ -67,15 +67,15 @@ CKFinder.lang['en'] =
 	DateTime : 'm/d/yyyy h:MM aa',
 	DateAmPm : ['AM','PM'],
 
-	// Folders
-	FoldersTitle	: 'Folders',
-	FolderLoading	: 'Loading...',
-	FolderNew		: 'Please type the new folder name: ',
-	FolderRename	: 'Please type the new folder name: ',
-	FolderDelete	: 'Are you sure you want to delete the "%1" folder?',
-	FolderRenaming	: ' (Renaming...)',
-	FolderDeleting	: ' (Deleting...)',
-	DestinationFolder	: 'Destination Folder',
+	// imagePaths
+	imagePathsTitle	: 'imagePaths',
+	imagePathLoading	: 'Loading...',
+	imagePathNew		: 'Please type the new imagePath name: ',
+	imagePathRename	: 'Please type the new imagePath name: ',
+	imagePathDelete	: 'Are you sure you want to delete the "%1" imagePath?',
+	imagePathRenaming	: ' (Renaming...)',
+	imagePathDeleting	: ' (Deleting...)',
+	DestinationimagePath	: 'Destination imagePath',
 
 	// Files
 	FileRename		: 'Please type the new file name: ',
@@ -84,15 +84,15 @@ CKFinder.lang['en'] =
 	FileDelete		: 'Are you sure you want to delete the file "%1"?',
 	FilesDelete	: 'Are you sure you want to delete %1 files?',
 	FilesLoading	: 'Loading...',
-	FilesEmpty		: 'The folder is empty.',
+	FilesEmpty		: 'The imagePath is empty.',
 	DestinationFile	: 'Destination File',
 	SkippedFiles	: 'List of skipped files:',
 
 	// Basket
-	BasketFolder		: 'Basket',
+	BasketimagePath		: 'Basket',
 	BasketClear			: 'Clear Basket',
 	BasketRemove		: 'Remove from Basket',
-	BasketOpenFolder	: 'Open Parent Folder',
+	BasketOpenimagePath	: 'Open Parent imagePath',
 	BasketTruncateConfirm : 'Do you really want to remove all files from the basket?',
 	BasketRemoveConfirm	: 'Do you really want to remove the file "%1" from the basket?',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?',
@@ -125,7 +125,7 @@ CKFinder.lang['en'] =
 	View			: 'View',
 	Download		: 'Download',
 
-	NewSubFolder	: 'New Subfolder',
+	NewSubimagePath	: 'New SubimagePath',
 	Rename			: 'Rename',
 	Delete			: 'Delete',
 	DeleteFiles		: 'Delete Files',
@@ -156,10 +156,10 @@ CKFinder.lang['en'] =
 	UploadBtnCancel		: 'Cancel',
 
 	UploadNoFileMsg		: 'Please select a file from your computer.',
-	UploadNoFolder		: 'Please select a folder before uploading.',
+	UploadNoimagePath		: 'Please select a imagePath before uploading.',
 	UploadNoPerms		: 'File upload not allowed.',
 	UploadUnknError		: 'Error sending the file.',
-	UploadExtIncorrect	: 'File extension not allowed in this folder.',
+	UploadExtIncorrect	: 'File extension not allowed in this imagePath.',
 
 	// Flash Uploads
 	UploadLabel			: 'Files to Upload',
@@ -190,7 +190,7 @@ CKFinder.lang['en'] =
 	SetSortExtension		: 'by Extension',
 
 	// Status Bar
-	FilesCountEmpty : '<Empty Folder>',
+	FilesCountEmpty : '<Empty imagePath>',
 	FilesCountOne	: '1 file',
 	FilesCountMany	: '%1 files',
 
@@ -207,22 +207,22 @@ CKFinder.lang['en'] =
 	 10 : 'Invalid command.',
 	 11 : 'The resource type was not specified in the request.',
 	 12 : 'The requested resource type is not valid.',
-	102 : 'Invalid file or folder name.',
+	102 : 'Invalid file or imagePath name.',
 	103 : 'It was not possible to complete the request due to authorization restrictions.',
 	104 : 'It was not possible to complete the request due to file system permission restrictions.',
 	105 : 'Invalid file extension.',
 	109 : 'Invalid request.',
 	110 : 'Unknown error.',
 	111 : 'It was not possible to complete the request due to resulting file size.',
-	115 : 'A file or folder with the same name already exists.',
-	116 : 'Folder not found. Please refresh and try again.',
+	115 : 'A file or imagePath with the same name already exists.',
+	116 : 'imagePath not found. Please refresh and try again.',
 	117 : 'File not found. Please refresh the files list and try again.',
 	118 : 'Source and target paths are equal.',
 	201 : 'A file with the same name is already available. The uploaded file was renamed to "%1".',
 	202 : 'Invalid file.',
 	203 : 'Invalid file. The file size is too big.',
 	204 : 'The uploaded file is corrupt.',
-	205 : 'No temporary folder is available for upload in the server.',
+	205 : 'No temporary imagePath is available for upload in the server.',
 	206 : 'Upload cancelled due to security reasons. The file contains HTML-like data.',
 	207 : 'The uploaded file was renamed to "%1".',
 	300 : 'Moving file(s) failed.',
@@ -236,12 +236,12 @@ CKFinder.lang['en'] =
 	{
 		FileEmpty		: 'The file name cannot be empty.',
 		FileExists		: 'File %s already exists.',
-		FolderEmpty		: 'The folder name cannot be empty.',
-		FolderExists	: 'Folder %s already exists.',
-		FolderNameExists	: 'Folder already exists.',
+		imagePathEmpty		: 'The imagePath name cannot be empty.',
+		imagePathExists	: 'imagePath %s already exists.',
+		imagePathNameExists	: 'imagePath already exists.',
 
 		FileInvChar		: 'The file name cannot contain any of the following characters: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'The folder name cannot contain any of the following characters: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'The imagePath name cannot contain any of the following characters: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'It was not possible to open the file in a new window. Please configure your browser and disable all popup blockers for this site.',
 		XmlError		: 'It was not possible to properly load the XML response from the web server.',

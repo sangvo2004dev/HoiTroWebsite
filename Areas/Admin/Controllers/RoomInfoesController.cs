@@ -51,11 +51,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             return Json(new { code = 200, count = count }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult notication()
-        {
-            return View();
-        }
-
         public string getTitleRoomType(int? id)
         {
             if (!id.HasValue)
@@ -216,7 +211,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo, List<RoomImageViewModel> Images)
+        public ActionResult Create([Bind(Include = "id,title,detail_description,price,acreage,location,tenant,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
         {
             try
             {
@@ -236,13 +231,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 // chọn loại Email gửi đến người dùng
                 // thêm thông tin phù hợp
                 content = content.Replace("{{Title}}", roomInfo.title);
-                content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
                 content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
                 content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
                 content = content.Replace("{{Tenant}}", roomInfo.tenant);
                 content = content.Replace("{{Price}}", roomInfo.price);
                 content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                content = content.Replace("{{Area}}", roomInfo.area);
                 content = content.Replace("{{Location}}", roomInfo.location);
                 content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
 
@@ -250,29 +243,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
 
 
-                // Xử lý danh sách ảnh nếu có
-                if (Images != null)
-                {
-                    foreach (var image in Images)
-                    {
-                        if (image.File != null && image.File.ContentLength > 0)
-                        {
-                            var fileName = Path.GetFileName(image.File.FileName);
-                            var path = Path.Combine(Server.MapPath("~/Content/images"), fileName);
-                            image.File.SaveAs(path);
-
-                            var roomImage = new RoomImage
-                            {
-                                reference_id = roomInfo.id,
-                                imagePath = fileName,
-                                meta = image.Meta,
-                                hide = image.Hide
-                            };
-                            db.RoomImages.Add(roomImage);
-                        }
-                    }
-                    db.SaveChanges();
-                }
                 
                 return Json(new { code = 200, msg = "Room created successfully" }, JsonRequestBehavior.AllowGet);
             }
@@ -308,7 +278,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "id,title,brief_description,detail_description,price,acreage,area,location,tenant,isApproved,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
+        public ActionResult Edit([Bind(Include = "id,title,detail_description,price,acreage,location,tenant,isApproved,meta,hide,order,datebegin,roomTypeId,accountId")] RoomInfo roomInfo)
         {
             RoomInfo temp = getById(roomInfo.id); // Tìm phòng theo ID
             if (ModelState.IsValid)
@@ -319,11 +289,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                 // Cập nhật các thuộc tính của phòng từ form
                 temp.title = roomInfo.title;
-                temp.brief_description = roomInfo.brief_description;
                 temp.detail_description = roomInfo.detail_description;
                 temp.price = roomInfo.price;
                 temp.acreage = roomInfo.acreage;
-                temp.area = roomInfo.area;
                 temp.location = roomInfo.location;
                 temp.tenant = roomInfo.tenant;
                 temp.meta = roomInfo.meta;
@@ -359,24 +327,20 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     // chọn loại Email gửi đến người dùng
 
                     content = content.Replace("{{Title}}", roomInfo.title);
-                    content = content.Replace("{{BriefDescription}}", roomInfo.brief_description);
                     content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
                     content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
                     content = content.Replace("{{Tenant}}", roomInfo.tenant);
                     content = content.Replace("{{Price}}", roomInfo.price);
                     content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
-                    content = content.Replace("{{Area}}", roomInfo.area);
                     content = content.Replace("{{Location}}", roomInfo.location);
                     content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
                                                                     // thêm thông tin sau khi Edit
                     content = content.Replace("{{NewTitle}}", temp.title);
-                    content = content.Replace("{{NewBriefDescription}}", temp.brief_description);
                     content = content.Replace("{{NewDetailDescription}}", temp.detail_description);
                     content = content.Replace("{{NewRoomType}}", getTitleRoomType(temp.roomTypeId));
                     content = content.Replace("{{NewTenant}}", temp.tenant);
                     content = content.Replace("{{NewPrice}}", temp.price);
                     content = content.Replace("{{NewAcreage}}", (temp.acreage).ToString());
-                    content = content.Replace("{{NewArea}}", temp.area);
                     content = content.Replace("{{NewLocation}}", temp.location);
                     content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
                                                                        //Editor

@@ -1165,8 +1165,8 @@ a.ui-button:active,
 .ui-icon-shuffle { background-position: -80px -80px; }
 .ui-icon-transfer-e-w { background-position: -96px -80px; }
 .ui-icon-transferthick-e-w { background-position: -112px -80px; }
-.ui-icon-folder-collapsed { background-position: 0 -96px; }
-.ui-icon-folder-open { background-position: -16px -96px; }
+.ui-icon-imagePath-collapsed { background-position: 0 -96px; }
+.ui-icon-imagePath-open { background-position: -16px -96px; }
 .ui-icon-document { background-position: -32px -96px; }
 .ui-icon-document-b { background-position: -48px -96px; }
 .ui-icon-note { background-position: -64px -96px; }

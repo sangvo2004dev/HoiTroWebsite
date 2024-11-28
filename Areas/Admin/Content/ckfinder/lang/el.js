@@ -67,15 +67,15 @@ CKFinder.lang['el'] =
 	DateTime : 'dd/mm/yyyy HH:MM',
 	DateAmPm : ['ΜΜ', 'ΠΜ'],
 
-	// Folders
-	FoldersTitle	: 'Φάκελοι',
-	FolderLoading	: 'Φόρτωση...',
-	FolderNew		: 'Παρακαλούμε πληκτρολογήστε την ονομασία του νέου φακέλου: ',
-	FolderRename	: 'Παρακαλούμε πληκτρολογήστε την νέα ονομασία του φακέλου: ',
-	FolderDelete	: 'Είστε σίγουροι ότι θέλετε να διαγράψετε το φάκελο "%1";',
-	FolderRenaming	: ' (Μετονομασία...)',
-	FolderDeleting	: ' (Διαγραφή...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: 'Φάκελοι',
+	imagePathLoading	: 'Φόρτωση...',
+	imagePathNew		: 'Παρακαλούμε πληκτρολογήστε την ονομασία του νέου φακέλου: ',
+	imagePathRename	: 'Παρακαλούμε πληκτρολογήστε την νέα ονομασία του φακέλου: ',
+	imagePathDelete	: 'Είστε σίγουροι ότι θέλετε να διαγράψετε το φάκελο "%1";',
+	imagePathRenaming	: ' (Μετονομασία...)',
+	imagePathDeleting	: ' (Διαγραφή...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: 'Παρακαλούμε πληκτρολογήστε την νέα ονομασία του αρχείου: ',
@@ -89,10 +89,10 @@ CKFinder.lang['el'] =
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Καλάθι',
+	BasketimagePath		: 'Καλάθι',
 	BasketClear			: 'Καθαρισμός καλαθιού',
 	BasketRemove		: 'Αφαίρεση από το καλάθι',
-	BasketOpenFolder	: 'Άνοιγμα γονικού φακέλου',
+	BasketOpenimagePath	: 'Άνοιγμα γονικού φακέλου',
 	BasketTruncateConfirm : 'Θέλετε σίγουρα να αφαιρέσετε όλα τα αρχεία από το καλάθι;',
 	BasketRemoveConfirm	: 'Θέλετε σίγουρα να αφαιρέσετε το αρχείο "%1" από το καλάθι;',
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['el'] =
 	View			: 'Προβολή',
 	Download		: 'Λήψη αρχείου',
 
-	NewSubFolder	: 'Νέος υποφάκελος',
+	NewSubimagePath	: 'Νέος υποφάκελος',
 	Rename			: 'Μετονομασία',
 	Delete			: 'Διαγραφή',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,7 +156,7 @@ CKFinder.lang['el'] =
 	UploadBtnCancel		: 'Ακύρωση',
 
 	UploadNoFileMsg		: 'Παρακαλούμε επιλέξτε ένα αρχείο από τον υπολογιστή σας.',
-	UploadNoFolder		: 'Παρακαλούμε επιλέξτε ένα φάκελο πριν εκκινήσετε την διαδικασία της μεταφόρτωσης.',
+	UploadNoimagePath		: 'Παρακαλούμε επιλέξτε ένα φάκελο πριν εκκινήσετε την διαδικασία της μεταφόρτωσης.',
 	UploadNoPerms		: 'Η μεταφόρτωση των αρχείων δεν επιτρέπεται.',
 	UploadUnknError		: 'Παρουσιάστηκε σφάλμα κατά την αποστολή του αρχείου.',
 	UploadExtIncorrect	: 'Η επέκταση του αρχείου δεν επιτρέπεται σε αυτόν τον φάκελο.',
@@ -236,12 +236,12 @@ CKFinder.lang['el'] =
 	{
 		FileEmpty		: 'Η ονομασία του αρχείου δεν μπορεί να είναι κενή.',
 		FileExists		: 'Το αρχείο %s υπάρχει ήδη.',
-		FolderEmpty		: 'Η ονομασία του φακέλου δεν μπορεί να είναι κενή.',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: 'Η ονομασία του φακέλου δεν μπορεί να είναι κενή.',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: 'Η ονομασία του αρχείου δεν μπορεί να περιέχει τους ακόλουθους χαρακτήρες: \n\\ / : * ? " < > |',
-		FolderInvChar	: 'Η ονομασία του φακέλου δεν μπορεί να περιέχει τους ακόλουθους χαρακτήρες: \n\\ / : * ? " < > |',
+		imagePathInvChar	: 'Η ονομασία του φακέλου δεν μπορεί να περιέχει τους ακόλουθους χαρακτήρες: \n\\ / : * ? " < > |',
 
 		PopupBlockView	: 'Δεν ήταν εφικτό να ανοίξει το αρχείο σε νέο παράθυρο. Παρακαλώ, ελέγξτε τις ρυθμίσεις τους πλοηγού σας και απενεργοποιήστε όλους τους popup blockers για αυτή την ιστοσελίδα.',
 		XmlError		: 'Δεν ήταν εφικτή η σωστή ανάγνωση του XML response από τον διακομιστή.',

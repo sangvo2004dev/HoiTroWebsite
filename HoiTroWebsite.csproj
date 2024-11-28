@@ -231,9 +231,6 @@
     <Compile Include="Models\RoomImage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoomImg.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RoomInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -67,15 +67,15 @@ CKFinder.lang['zh-tw'] =
 	DateTime : 'mm/dd/yyyy HH:MM',
 	DateAmPm : ['上午', '下午'],
 
-	// Folders
-	FoldersTitle	: '目錄',
-	FolderLoading	: '載入中...',
-	FolderNew		: '請輸入新目錄名稱: ',
-	FolderRename	: '請輸入新目錄名稱: ',
-	FolderDelete	: '確定刪除 "%1" 這個目錄嗎?',
-	FolderRenaming	: ' (修改目錄...)',
-	FolderDeleting	: ' (刪除目錄...)',
-	DestinationFolder	: 'Destination Folder', // MISSING
+	// imagePaths
+	imagePathsTitle	: '目錄',
+	imagePathLoading	: '載入中...',
+	imagePathNew		: '請輸入新目錄名稱: ',
+	imagePathRename	: '請輸入新目錄名稱: ',
+	imagePathDelete	: '確定刪除 "%1" 這個目錄嗎?',
+	imagePathRenaming	: ' (修改目錄...)',
+	imagePathDeleting	: ' (刪除目錄...)',
+	DestinationimagePath	: 'Destination imagePath', // MISSING
 
 	// Files
 	FileRename		: '請輸入新檔案名稱: ',
@@ -84,15 +84,15 @@ CKFinder.lang['zh-tw'] =
 	FileDelete		: '確定要刪除這個檔案 "%1"?',
 	FilesDelete	: 'Are you sure you want to delete %1 files?', // MISSING
 	FilesLoading	: '載入中...',
-	FilesEmpty		: 'The folder is empty.', // MISSING
+	FilesEmpty		: 'The imagePath is empty.', // MISSING
 	DestinationFile	: 'Destination File', // MISSING
 	SkippedFiles	: 'List of skipped files:', // MISSING
 
 	// Basket
-	BasketFolder		: 'Basket', // MISSING
+	BasketimagePath		: 'Basket', // MISSING
 	BasketClear			: 'Clear Basket', // MISSING
 	BasketRemove		: 'Remove from Basket', // MISSING
-	BasketOpenFolder	: 'Open Parent Folder', // MISSING
+	BasketOpenimagePath	: 'Open Parent imagePath', // MISSING
 	BasketTruncateConfirm : 'Do you really want to remove all files from the basket?', // MISSING
 	BasketRemoveConfirm	: 'Do you really want to remove the file "%1" from the basket?', // MISSING
 	BasketRemoveConfirmMultiple	: 'Do you really want to remove %1 files from the basket?', // MISSING
@@ -125,7 +125,7 @@ CKFinder.lang['zh-tw'] =
 	View			: '瀏覽',
 	Download		: '下載',
 
-	NewSubFolder	: '建立新子目錄',
+	NewSubimagePath	: '建立新子目錄',
 	Rename			: '重新命名',
 	Delete			: '刪除',
 	DeleteFiles		: 'Delete Files', // MISSING
@@ -156,10 +156,10 @@ CKFinder.lang['zh-tw'] =
 	UploadBtnCancel		: '取消',
 
 	UploadNoFileMsg		: '請從你的電腦選擇一個檔案.',
-	UploadNoFolder		: 'Please select a folder before uploading.', // MISSING
+	UploadNoimagePath		: 'Please select a imagePath before uploading.', // MISSING
 	UploadNoPerms		: 'File upload not allowed.', // MISSING
 	UploadUnknError		: 'Error sending the file.', // MISSING
-	UploadExtIncorrect	: 'File extension not allowed in this folder.', // MISSING
+	UploadExtIncorrect	: 'File extension not allowed in this imagePath.', // MISSING
 
 	// Flash Uploads
 	UploadLabel			: 'Files to Upload', // MISSING
@@ -236,12 +236,12 @@ CKFinder.lang['zh-tw'] =
 	{
 		FileEmpty		: '檔案名稱不能空白 !',
 		FileExists		: 'File %s already exists.', // MISSING
-		FolderEmpty		: '目錄名稱不能空白 !',
-		FolderExists	: 'Folder %s already exists.', // MISSING
-		FolderNameExists	: 'Folder already exists.', // MISSING
+		imagePathEmpty		: '目錄名稱不能空白 !',
+		imagePathExists	: 'imagePath %s already exists.', // MISSING
+		imagePathNameExists	: 'imagePath already exists.', // MISSING
 
 		FileInvChar		: '檔案名稱不能包含以下字元： \n\\ / : * ? " < > |',
-		FolderInvChar	: '目錄名稱不能包含以下字元： \n\\ / : * ? " < > |',
+		imagePathInvChar	: '目錄名稱不能包含以下字元： \n\\ / : * ? " < > |',
 
 		PopupBlockView	: '無法在新視窗開啟檔案 ! 請檢查瀏覽器的設定並且針對這個網站 關閉 <封鎖彈跳視窗> 這個功能 !',
 		XmlError		: 'It was not possible to properly load the XML response from the web server.', // MISSING
