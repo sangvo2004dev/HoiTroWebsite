@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div class="modal" id="modalRoom" tabindex="-1">
+    <div class="modal js-modal" id="modalRoom" tabindex="-1">
         <div class="modal-dialog modal-lg modal-fullscreen-lg-down" style="height: 90%;">
             <div class="modal-content h-100">
                 <div class="modal-header">
@@ -91,7 +91,7 @@
 
 @section script
 {
-
+    <script src="~/Areas/Admin/Script/hoitro.modal.js"></script>
     <script>
         $(document).ready(function () {
             LoadRoom();
@@ -500,6 +500,7 @@
         manage_post_admin = {
             base_url: '',
             btn_edit: '.js-btn-edit',
+            modal: '.js-modal',
 
             clickEditBtn: function () {
                 const self = this;
@@ -517,6 +518,7 @@
                     });
 
                     $('#modalRoom').find('.modal-body').html(iframe);
+                    $(self.modal).find('.modal-title').text('Sửa bài đăng');
 
                 });
             },

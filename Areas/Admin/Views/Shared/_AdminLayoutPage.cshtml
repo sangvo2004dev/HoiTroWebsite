@@ -79,11 +79,21 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item @RenderSection("ql_room_active", false)">
-                            <a href="@Url.Action("Index", "RoomInfoes" )" class="sidebar-link">
+                        <li class="sidebar-item @RenderSection("ql_room_active", false) has-sub">
+                            <a href="" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Quản lý tin đăng</span>
                             </a>
+                            <ul class="submenu submenu-closed" style="--submenu-height: 43px;">
+
+                                <li class="submenu-item @RenderSection("ql_room_all_active", false)">
+                                    <a href="@Url.Action("Index", "RoomInfoes" )" class="submenu-link">Tất cả</a>
+
+                                </li>
+                                <li class="submenu-item">
+                                    <a href="/@Url.Action("Index", "HomePage")" class="submenu-link">Duyệt bài</a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="sidebar-item @RenderSection("ql_RoomImage_active", false)">

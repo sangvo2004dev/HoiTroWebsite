@@ -7299,6 +7299,7 @@
     <Content Include="Areas\Admin\Content\ckfinder\skins\v1\skin.js" />
     <Content Include="Areas\Admin\Content\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Areas\Admin\Content\ckfinder\translations.txt" />
+    <Content Include="Areas\Admin\Script\hoitro.modal.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />

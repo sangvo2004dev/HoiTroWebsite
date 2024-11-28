@@ -514,6 +514,9 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 return Json(new { code = 500, msg = "Có lỗi xảy ra khi xóa Room: " + ex.Message });
             }
         }
+
+        [HttpGet]
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
