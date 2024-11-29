@@ -271,7 +271,26 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 {
                     db.RoomInfoes.Add(roomInfo);
                     db.SaveChanges();
-                    HandleUrlFile.SaveFileUrl(file_name_list, roomInfo.id);
+
+                    string email = GetEmail(roomInfo.accountId);
+                    if (email != null)
+                    {
+                        //Gửi mail đến người dùng
+                        string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/CreatePost.html"));
+                        // chọn loại Email gửi đến người dùng
+                        // thêm thông tin phù hợp
+                        content = content.Replace("{{Title}}", roomInfo.title);
+                        content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
+                        content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
+                        content = content.Replace("{{Tenant}}", roomInfo.tenant);
+                        content = content.Replace("{{Price}}", roomInfo.price);
+                        content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
+                        content = content.Replace("{{Location}}", roomInfo.location);
+                        content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
+                        new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
+                    }
+
+                     HandleUrlFile.SaveFileUrl(file_name_list, roomInfo.id);
                     Response.StatusCode = 200;
                     return Json(new { statusCode = Response.StatusCode, message = "Đăng tin đăng thành công" });
                 }
@@ -420,24 +439,64 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         {
             try
             {
-                var room = db.RoomInfoes.SingleOrDefault(r => r.id == postRoomVM.id);
-
-                if (room != null)
+                var temp = db.RoomInfoes.SingleOrDefault(r => r.id == postRoomVM.id);
+                var roomInfo = new RoomInfo
                 {
-                    room.title = postRoomVM.tieu_de;
-                    room.meta = postRoomVM.tieu_de_meta;
-                    room.roomTypeId = postRoomVM.loai_chuyen_muc;
-                    room.price = postRoomVM.gia;
-                    room.acreage = postRoomVM.dien_tich.ToString();
-                    room.location = postRoomVM.dia_chi;
-                    room.detail_description = postRoomVM.noi_dung;
-                    room.datebegin = DateTime.Now;
-                    room.tenant = postRoomVM.doi_tuong.Replace("-", "").Trim();
+                    title = temp.title,
+                    detail_description = temp.detail_description,
+                    roomTypeId = temp.roomTypeId,
+                    tenant = temp.tenant,
+                    price = temp.price,
+                    acreage = temp.acreage,
+                    location = temp.location,
+                };
+
+
+                if (temp != null)
+                {
+                    temp.title = postRoomVM.tieu_de;
+                    temp.meta = postRoomVM.tieu_de_meta;
+                    temp.roomTypeId = postRoomVM.loai_chuyen_muc;
+                    temp.price = postRoomVM.gia;
+                    temp.acreage = postRoomVM.dien_tich.ToString();
+                    temp.location = postRoomVM.dia_chi;
+                    temp.detail_description = postRoomVM.noi_dung;
+                    temp.datebegin = DateTime.Now;
+                    temp.tenant = postRoomVM.doi_tuong.Replace("-", "").Trim();
                     db.SaveChanges();
                 }
 
                 HandleUrlFile.SaveFileUrl(file_name_list, postRoomVM.id);
                 HandleUrlFile.DeleteFileUrl(file_delete_list, postRoomVM.id);
+
+                string email = GetEmail(temp.accountId);
+                if (email != null)
+                {
+                    //Gửi mail đến người dùng thông báo chỉnh sửa
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/EditPost.html"));
+                    // chọn loại Email gửi đến người dùng
+
+                    content = content.Replace("{{Title}}", roomInfo.title);
+                    content = content.Replace("{{DetailDescription}}", roomInfo.detail_description);
+                    content = content.Replace("{{RoomType}}", getTitleRoomType(roomInfo.roomTypeId));
+                    content = content.Replace("{{Tenant}}", roomInfo.tenant);
+                    content = content.Replace("{{Price}}", roomInfo.price);
+                    content = content.Replace("{{Acreage}}", (roomInfo.acreage).ToString());
+                    content = content.Replace("{{Location}}", roomInfo.location);
+                    content = content.Replace("{{Author}}", "....");// thêm Admin: Session.name or User: Account.name
+                                                                    // thêm thông tin sau khi Edit
+                    content = content.Replace("{{NewTitle}}", temp.title);
+                    content = content.Replace("{{NewDetailDescription}}", temp.detail_description);
+                    content = content.Replace("{{NewRoomType}}", getTitleRoomType(temp.roomTypeId));
+                    content = content.Replace("{{NewTenant}}", temp.tenant);
+                    content = content.Replace("{{NewPrice}}", temp.price);
+                    content = content.Replace("{{NewAcreage}}", (temp.acreage).ToString());
+                    content = content.Replace("{{NewLocation}}", temp.location);
+                    content = content.Replace("{{NewAuthor}}", "....");// thêm Admin: Session.name or User: Account.name
+                                                                       //Editor
+                    content = content.Replace("{{Editor}}", "....");// thêm Admin: Session.name or User: Account.name
+                    new MailHelper().SendMail(email, "Hỏi Trọ Website thông báo đến người dùng", content);
+                }
 
                 Response.StatusCode = 200;
                 return Json(new { statusCode = Response.StatusCode, message = "Cập nhật tin đăng thành công" });
