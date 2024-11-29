@@ -16,6 +16,11 @@
         ten_anh = i.RoomImages.FirstOrDefault().file_name;
         path_1 = i.RoomImages.FirstOrDefault().imagePath;
     }
+    else
+    {
+        ten_anh = "default-room-img.jpg";
+        path_1 = "/Data/default-room-img.jpg";
+    }
     href = "/" + ViewBag.meta + "/" + i.meta + "/" + i.id.ToString();
     gia_tien = new NumberUnit(i.price).RoundWithLargestUnit();
     ngay_dang_tin = StringUI.Convert2DateTimeVietnamese(dateTime: i.datebegin);
@@ -29,12 +34,12 @@
                      src="@path_1"
                      alt="@ten_anh">
             </a>
-            <span class="images-number">14 ảnh</span>
+            <span class="images-number">@i.RoomImages.Count ảnh</span>
             <span class="has-video"></span>
             <span class="chothuenhanh-label"></span>
             <span class="post-save js-btn-save" data-post-id="649687"><i></i></span>
         </figure>
-        <div class="post-meta">
+        <div class="post-meta d-flex flex-column">
             <h3 class="post-title">
                 <a style="color: #e13427"
                    href="@href">
@@ -55,13 +60,13 @@
                     @Html.Raw(i.detail_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
                 </p>
             </div>
-            <div class="meta-row clearfix">
-                <div class="post-author">
+            <div class="meta-row clearfix d-flex mt-auto">
+                <div class="post-author me-auto">
                     <img src="@i.Account.imagePath" alt="@i.Account.name">
                     <span class="author-name">@i.Account.name</span>
                 </div>
                 <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"
-                   class="btn-quick-zalo">Nhắn Zalo</a>
+                   class="btn-quick-zalo me-2">Nhắn Zalo</a>
                 <a rel="nofollow" target="_blank" href="tel:@i.Account.phoneNum" class="btn-quick-call">
                     Gọi @i.Account.phoneNum
                 </a>

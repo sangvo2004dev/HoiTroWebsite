@@ -31,7 +31,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
         public ActionResult CheckPendingPosts()
         {
-            var pendingPosts = db.RoomInfoes.Where(r => r.isApproved == false).ToList(); // Ví dụ: Lọc bài chưa duyệt
+            var pendingPosts = db.RoomInfoes.Where(r => r.isApproved == false || r.isApproved == null).ToList(); // Ví dụ: Lọc bài chưa duyệt
             int count = pendingPosts.Count;
 
             if (count > 0)

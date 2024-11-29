@@ -218,6 +218,8 @@ namespace HoiTroWebsite.Controllers
             }
         }
 
+        [HttpDelete]
+
         [HttpPost]
         [Route("api/post/get-all", Name = "post/get-all")]
         public ActionResult GetUserPostRooms(int pg = 0, bool chonDaDuyet = false, bool chonDaAn = false)

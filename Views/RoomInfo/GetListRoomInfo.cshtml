@@ -39,7 +39,7 @@
             <span class="chothuenhanh-label"></span>
             <span class="post-save js-btn-save" data-post-id="649687"><i></i></span>
         </figure>
-        <div class="post-meta">
+        <div class="post-meta d-flex flex-column">
             <h3 class="post-title">
                 <a style="color: #e13427"
                    href="@href">
@@ -60,7 +60,7 @@
                     @Html.Raw(i.detail_description.Length > 200 ? i.detail_description.Substring(0, 200) + "..." : i.detail_description)
                 </p>
             </div>
-            <div class="meta-row clearfix d-flex">
+            <div class="meta-row clearfix d-flex mt-auto">
                 <div class="post-author me-auto">
                     <img src="@i.Account.imagePath" alt="@i.Account.name">
                     <span class="author-name">@i.Account.name</span>

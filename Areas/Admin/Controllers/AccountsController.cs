@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
@@ -162,6 +160,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     path = Path.Combine(Server.MapPath("~/Content/images"), filename);
                     img.SaveAs(path);
                     temp.file_name = filename;
+                    temp.imagePath = "/Content/images/" + filename;
                 }
                 
                 temp.name = account.name;
