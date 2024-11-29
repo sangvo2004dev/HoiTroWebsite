@@ -156,7 +156,7 @@ public void WriteFunctionParameter(string name, string isNotNull, string notNull
 <#+
 }
 
-public const string TemplateId = "CSharp_DbContext_Context_EF6";
+public const string TemplateId = "CSharpdbContext_Context_EF6";
 
 public class CodeStringGenerator
 {

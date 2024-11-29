@@ -10,7 +10,7 @@ namespace HoiTroWebsite.Controllers
     public class NavigationController : Controller
     {
         // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
+        HoiTroEntities db = new HoiTroEntities();
 
         // GET: Navigation
         public ActionResult Index()
@@ -20,7 +20,7 @@ namespace HoiTroWebsite.Controllers
 
         public ActionResult getMenu()
         {
-            var v = from t in _db.Menus
+            var v = from t in db.Menus
                     where t.hide == true
                     orderby t.order ascending
                     select t;

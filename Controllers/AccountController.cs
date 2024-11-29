@@ -11,7 +11,7 @@ namespace HoiTroWebsite.Controllers
 {
     public class AccountController : Controller
     {
-        HoiTroEntities _db = new HoiTroEntities();
+        HoiTroEntities db = new HoiTroEntities();
 
         [HttpGet]
         public ActionResult Login()
@@ -23,7 +23,7 @@ namespace HoiTroWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _db.Accounts.SingleOrDefault(a => a.phoneNum == model.PhoneNum && a.password == model.Password);
+                var user = db.Accounts.SingleOrDefault(a => a.phoneNum == model.PhoneNum && a.password == model.Password);
                 if (user != null)
                 {
                     Session.Add("User", user);

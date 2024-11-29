@@ -6195,6 +6195,7 @@
     <Content Include="Areas\Admin\Content\assets\template\EditPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\ExpiringSoonPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\InvalidPost.html" />
+    <Content Include="Areas\Admin\Content\assets\template\ValidPost.html" />
     <Content Include="Areas\Admin\Content\ckeditor\adapters\jquery.js" />
     <Content Include="Areas\Admin\Content\ckeditor\build-config.js" />
     <Content Include="Areas\Admin\Content\ckeditor\ckeditor.js" />

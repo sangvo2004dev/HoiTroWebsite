@@ -10,7 +10,7 @@ namespace HoiTroWebsite.Controllers
     public class ContactController : Controller
     {
         // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
+        HoiTroEntities db = new HoiTroEntities();
 
         // GET: Default
         public ActionResult Index()
