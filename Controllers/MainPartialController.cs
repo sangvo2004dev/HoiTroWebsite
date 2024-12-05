@@ -11,7 +11,7 @@ namespace HoiTroWebsite.Controllers
     public class MainPartialController : Controller
     {
         // khai báo
-        private readonly HoiTroEntities _db = new HoiTroEntities();
+        private readonly HoiTroEntities db = new HoiTroEntities();
 
         // GET: MainPartial
         public ActionResult Index()
@@ -21,12 +21,12 @@ namespace HoiTroWebsite.Controllers
 
         public ActionResult GetMenuBar()
         {
-            var v = from t in _db.Menus
+            var v = from t in db.Menus
                     where t.hide == true
                     orderby t.order ascending
                     select t;
-            //List<Menu> menus = _db.Menus.ToList();
-            //menus.ForEach(m => _db.Entry(m).Collection(p => p.SubMenus).Load());
+            //List<Menu> menus = db.Menus.ToList();
+            //menus.ForEach(m => db.Entry(m).Collection(p => p.SubMenus).Load());
 
             return PartialView(v.ToList());
         }
@@ -34,7 +34,7 @@ namespace HoiTroWebsite.Controllers
         public ActionResult GetSubMenu(int mainMenuID, string mainMenuMeta)
         {
             ViewBag.mainMenuMeta = mainMenuMeta;
-            var v = from t in _db.SubMenus
+            var v = from t in db.SubMenus
                     where (t.hide == true) && (t.menuId == mainMenuID)
                     orderby t.order ascending
                     select t;
@@ -62,7 +62,7 @@ namespace HoiTroWebsite.Controllers
         // hỗ trợ người dùng
         public ActionResult GetSupport()
         {
-            var v = from t in _db.Mentors
+            var v = from t in db.Mentors
                     where t.hide == true
                     orderby t.order ascending
                     select t;

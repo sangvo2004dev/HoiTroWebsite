@@ -10,7 +10,7 @@ namespace HoiTroWebsite.Controllers
     public class FooterController : Controller
     {
         // Khai báo db
-        HoiTroEntities _db = new HoiTroEntities();
+        HoiTroEntities db = new HoiTroEntities();
         // GET: Footer
         public ActionResult Index()
         {
@@ -19,7 +19,7 @@ namespace HoiTroWebsite.Controllers
         // footer
         public ActionResult getFooter()
         {
-            var v = from i in _db.Footers
+            var v = from i in db.Footers
                     where i.hide == true
                     orderby i.order ascending
                     select i;
@@ -27,7 +27,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getCompanyInfo()
         {
-            var v = _db.Footers.FirstOrDefault();
+            var v = db.Footers.FirstOrDefault();
 
             if (v == null)
             {
@@ -37,7 +37,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getPrivacyPolicyLink()
         {
-            var v = _db.Footers.FirstOrDefault();
+            var v = db.Footers.FirstOrDefault();
 
             if (v == null)
             {
@@ -47,7 +47,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getTermsOfServiceLink()
         {
-            var v = _db.Footers.FirstOrDefault();
+            var v = db.Footers.FirstOrDefault();
 
             if (v == null)
             {
@@ -57,7 +57,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getTermsOfUseLink()
         {
-            var v = _db.Footers.FirstOrDefault();
+            var v = db.Footers.FirstOrDefault();
 
             if (v == null)
             {
@@ -67,7 +67,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult getTermsOfPostingLink()
         {
-            var v = _db.Footers.FirstOrDefault();
+            var v = db.Footers.FirstOrDefault();
 
             if (v == null)
             {

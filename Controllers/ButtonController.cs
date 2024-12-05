@@ -10,7 +10,7 @@ namespace HoiTroWebsite.Controllers
     public class ButtonController : Controller
     {
         // Khai báo
-        HoiTroEntities _db = new HoiTroEntities();
+        HoiTroEntities db = new HoiTroEntities();
 
         // GET: Default
         public ActionResult Index()
@@ -34,7 +34,7 @@ namespace HoiTroWebsite.Controllers
 
         public ActionResult editInfor(long id)
         {
-            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+            var account = db.Accounts.FirstOrDefault(a => a.id == id);
 
             if (account == null)
             {
@@ -45,7 +45,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult managePosted(long id)
         {
-            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+            var account = db.Accounts.FirstOrDefault(a => a.id == id);
 
             if (account == null)
             {
@@ -56,8 +56,8 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult listPosted(long id)
         {
-            var v = from n in _db.RoomInfoes
-                    join r in _db.Accounts on n.accountId equals r.id
+            var v = from n in db.RoomInfoes
+                    join r in db.Accounts on n.accountId equals r.id
                     where n.hide == true && r.id == id
                     orderby n.datebegin descending
                     select n;
@@ -65,7 +65,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult altPhoneNum(long id)
         {
-            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+            var account = db.Accounts.FirstOrDefault(a => a.id == id);
 
             if (account == null)
             {
@@ -76,7 +76,7 @@ namespace HoiTroWebsite.Controllers
         }
         public ActionResult altPassword(long id)
         {
-            var account = _db.Accounts.FirstOrDefault(a => a.id == id);
+            var account = db.Accounts.FirstOrDefault(a => a.id == id);
 
             if (account == null)
             {

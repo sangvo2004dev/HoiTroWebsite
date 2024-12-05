@@ -262,7 +262,7 @@ public void EndNamespace(CodeGenerationTools code)
     }
 }
 
-public const string TemplateId = "CSharp_DbContext_Types_EF6";
+public const string TemplateId = "CSharpdbContext_Types_EF6";
 
 public class CodeStringGenerator
 {
