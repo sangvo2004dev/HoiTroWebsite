@@ -77,41 +77,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                          select t.email).FirstOrDefault();
             return email; // Trả về email
         }
-        public ActionResult CheckConfig()
-        {
-            Console.WriteLine("One");
-            try
-            {
-                Console.WriteLine(getTitleRoomType(1))                ;
-            }
-            catch (Exception ex)
-            {
-                // Log lỗi hoặc hiển thị thông báo lỗi
-                Console.WriteLine($"Lỗi: {ex.Message}");
-            }
-            return View();
-        }
-        public void TestMail(int? id)
-        {
-            string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/CreatePost.html"));
-            content = content.Replace("{{Title}}", "Cho Thuê trọ Q10");
-            content = content.Replace("{{BriefDescription}}", "Trọ rẻ");
-            content = content.Replace("{{DetailDescription}}", "   szvdscsgvbdbdzbdfzvzd");
-            content = content.Replace("{{RoomType}}", "Phòng trọ cho thuê");
-            content = content.Replace("{{Tenant}}", "Tất cả");
-            content = content.Replace("{{Price}}", "4");
-            content = content.Replace("{{Acreage}}", "9.9");
-            content = content.Replace("{{Area}}", "Q10, tpHCM");
-            content = content.Replace("{{Location}}", "Hẻm 458/20 đg 3/2 phường 12 quận 10");
-            content = content.Replace("{{Author}}", "Admin:Phước Phùng");// thêm Admin: Session.name
-
-            Console.WriteLine(content);
-
-            string email = GetEmail(id);
-            new MailHelper().SendMail(email, "Thông báo đến người dùng", content);
-
-
-        }
+        
         public void getRoomType(long? selectedId = null)
         {
             ViewBag.RoomType = new SelectList(db.RoomTypes.Where(x => x.hide == true).OrderBy(x => x.order), "id", "title", selectedId);

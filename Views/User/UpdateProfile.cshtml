@@ -15,7 +15,7 @@
 
 @section ql_tai_khoan_active {active}
 
-@{ 
+@{
     string avatarPath = ViewBag.Account.imagePath ?? "/Data/default-user-avata.svg";
 }
 
@@ -37,89 +37,79 @@
     <div class="tab-pane fade show active" id="thong-tin-ca-nhan" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal">
+                <form class="form form-horizontal" method="post" action="/quan-ly/cap-nhat-thong-tin" enctype="multipart/form-data">
                     <div class="form-body">
-                        <div class="row mb-3 bg-white rounded p-3">
-                            <div class="d-flex mb-3 align-items-center">
-                                <div class="avatar avatar-xl me-3">
-                                    <img src="@avatarPath" alt="" style="object-fit: cover;">
-                                </div>
-                                <div class="me-3">
-                                    <h5 class="mb-0">@Model.Ten_lien_he</h5>
-                                    <h6 class="mb-0" style="font-weight: 100;">@Model.So_dien_thoai</h6>
-                                </div>
+                        <!-- Các trường nhập thông tin khác -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <span class="fa-fw select-all fas"></span>
+                                Đổi hình đại diện
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <span class="fa-fw select-all fas"></span>
-                                    Đổi hình đại diện
-                                </div>
-                                <input class="d-none" type="file" name="avatar" accept="image/png, image/jpeg, image/jpg" />
-                            </div>
-                            <div class="col-md-4">
-                                @*@Html.LabelFor(model => model.Ten_lien_he, "Tiên liên hệ")*@
-                                <label for="Ten_lien_he">Tên liên hệ</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="Ten_lien_he" value="@Model.Ten_lien_he">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+                            <input class="d-none" type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/jpg" />
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('avatar').click();">Chọn ảnh</button>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Ten_lien_he">Tên liên hệ</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="Ten_lien_he" name="Ten_lien_he" value="@Model.Ten_lien_he">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-person"></i>
                                     </div>
-                                    @Html.ValidationMessageFor(model => model.Ten_lien_he)
                                 </div>
+                                @Html.ValidationMessageFor(model => model.Ten_lien_he)
                             </div>
-                            <div class="col-md-4">
-                                <label for="So_dien_thoai">Số điện thoại</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="number" class="form-control fs-5-5" id="So_dien_thoai" readonly value="@Model.So_dien_thoai">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-phone"></i>
-                                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="So_dien_thoai">Số điện thoại</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="number" class="form-control fs-5-5" id="So_dien_thoai" readonly value="@Model.So_dien_thoai">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-phone"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label for="Facebook_link">Link facebook</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="Facebook_link" value="@Model.Facebook_link">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-facebook"></i>
-                                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Facebook_link">Link facebook</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="Facebook_link" name="Facebook_link" value="@Model.Facebook_link">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-facebook"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label for="Email">Email</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="email" class="form-control fs-5-5" placeholder="Email" id="Email" value="@Model.Email">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-envelope"></i>
-                                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Email">Email</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="email" class="form-control fs-5-5" placeholder="Email" id="Email" name="Email" value="@Model.Email">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-envelope"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label for="matKhau">Mật khẩu</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="password" class="form-control fs-5-5" placeholder="Password" id="matKhau" readonly value="********">
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-lock"></i>
-                                        </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="matKhau">Mật khẩu</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="password" class="form-control fs-5-5" placeholder="Password" id="matKhau" readonly value="********">
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-lock"></i>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +125,7 @@
     <div class="tab-pane fade" id="doi-so-dien-thoai" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal">
+                <form class="form form-horizontal" method="post" action="/quan-ly/thay-doi-so-dien-thoai">
                     <div class="form-body">
                         <div class="row bg-white rounded mb-3">
                             <div class="col-12">
@@ -154,7 +144,7 @@
                                 <input type="text" id="newNumberPhone" class="form-control fs-5-5" name="newNumberPhone">
                             </div>
                             <div class="form-group">
-                                <button type="button" class="w-100 btn btn-danger">Lấy mã xác thực</button>
+                                <button type="button" class="w-100 btn btn-danger" id="getVerificationCodeBtn">Lấy mã xác thực</button>
                             </div>
                             <div class="col-md-4">
                                 <label for="maXacThuc">Mã xác thực</label>
@@ -174,7 +164,7 @@
     <div class="tab-pane fade" id="doi-mat-khau" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal">
+                <form class="form form-horizontal" method="post" action="/quan-ly/thay-doi-mat-khau">
                     <div class="form-body">
                         <div class="row bg-white rounded mb-3">
                             <div class="col-12">
@@ -187,10 +177,10 @@
                                 <input type="password" id="oldPassword" class="form-control fs-5-5" name="oldPassword">
                             </div>
                             <div class="offset-md-4">
-                                <a class="d-inline-block mt-2 mb-3 text-decoration-underline text-primary fs-7" href="">Bạn quên mật khẩu?</a>
+                                <a class="d-inline-block mt-2 mb-3 text-decoration-underline text-primary fs-7" id="forgotPassword" href="javascript:void(0)">Bạn quên mật khẩu?</a>
                             </div>
                             <div class="col-md-4">
-                                <label for="newPassword">Mật khẩu cũ</label>
+                                <label for="newPassword">Mật khẩu mới</label>
                             </div>
                             <div class="col-md-8 form-group">
                                 <input type="password" id="newPassword" class="form-control fs-5-5" name="newPassword">
@@ -214,5 +204,93 @@
         $('#matKhau').click(() => {
             $('li a[href="#doi-mat-khau"]').tab('show');
         });
-    </script>    
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Lắng nghe sự kiện click vào nút "Lấy mã xác thực"
+            $('#getVerificationCodeBtn').click(function () {
+                // Lấy giá trị của số điện thoại cũ và mới từ các trường input
+                var oldNumberPhone = $('#oldNumberPhone').val();
+                var newNumberPhone = $('#newNumberPhone').val();
+
+                // Gửi yêu cầu AJAX đến server để lấy mã xác thực
+                $.ajax({
+                    url: '/quan-ly/thay-doi-so-dien-thoai/laysodemaxacthuc',
+                    type: 'POST',
+                    data: {
+                        oldNumberPhone: oldNumberPhone,
+                        newNumberPhone: newNumberPhone
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);  // Hiển thị thông báo nếu thành công
+                        } else {
+                            alert(response.message);  // Hiển thị thông báo nếu có lỗi
+                        }
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $('#submitButton').click(function () {
+            var formData = new FormData();
+
+            // Thêm các dữ liệu khác vào formData
+            formData.append("Ten_lien_he", $('#Ten_lien_he').val());
+            formData.append("Facebook_link", $('#Facebook_link').val());
+            formData.append("Email", $('#Email').val());
+
+            // Thêm ảnh vào formData (nếu có)
+            var avatarFile = $('#avatar')[0].files[0]; // Giả sử #avatar là input file
+            if (avatarFile) {
+                formData.append("avatar", avatarFile);
+            }
+
+            // Gửi AJAX
+            $.ajax({
+                url: '/quan-ly/cap-nhat-thong-tin',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert('Có lỗi xảy ra: ' + response.message);
+                    }
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra trong quá trình gửi dữ liệu.');
+                }
+            });
+        });
+
+    </script>
+    <script>
+        $('#forgotPassword').click(function () {
+            $.ajax({
+                url: '/quan-ly/quen-mat-khau/gui-lai-mat-khau', // API gửi mã OTP
+                type: 'POST',
+                data: { email: 'email người dùng' }, // Lấy email từ session hoặc input
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message); // Hiển thị thông báo mã OTP đã được gửi
+                        // Nếu cần, mở modal nhập OTP
+                        $('#otpModal').modal('show');
+                    } else {
+                        alert(response.message); // Thông báo lỗi
+                    }
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra trong quá trình gửi mã xác thực.');
+                }
+            });
+        });
+
+    </script>
 }

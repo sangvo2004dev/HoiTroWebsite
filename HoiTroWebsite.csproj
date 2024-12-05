@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\FootersController.cs" />
@@ -193,6 +194,10 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminAccount.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminLogin.cs" />
     <Compile Include="Models\Banner.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -237,7 +242,6 @@
     <Compile Include="Models\RoomInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoomInfoViewModel.cs" />
     <Compile Include="Models\RoomType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -263,6 +267,7 @@
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth-forgot-password.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth.rtl.css" />
+    <Content Include="Areas\Admin\Content\assets\compiled\css\bootstrap.min.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error-403.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error-403.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error.css" />
@@ -6190,11 +6195,13 @@
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-apexchart.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-chartjs.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-todolist.js" />
+    <Content Include="Areas\Admin\Content\assets\template\Authenticate.html" />
     <Content Include="Areas\Admin\Content\assets\template\CreatePost.html" />
     <Content Include="Areas\Admin\Content\assets\template\DeletePost.html" />
     <Content Include="Areas\Admin\Content\assets\template\EditPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\ExpiringSoonPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\InvalidPost.html" />
+    <Content Include="Areas\Admin\Content\assets\template\SendPass.html" />
     <Content Include="Areas\Admin\Content\ckeditor\adapters\jquery.js" />
     <Content Include="Areas\Admin\Content\ckeditor\build-config.js" />
     <Content Include="Areas\Admin\Content\ckeditor\ckeditor.js" />
@@ -13807,6 +13814,7 @@
     <Content Include="Areas\Admin\Views\RoomInfoes\DuyetBai.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\GetRoomInfoes.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\SangCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

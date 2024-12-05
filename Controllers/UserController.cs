@@ -2,10 +2,15 @@
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
 using HoiTroWebsite.Models2;
 using Microsoft.Ajax.Utilities;
+//dùng MailHelper
+using Common;
+using System.Web;
+using System.IO;
 
 namespace HoiTroWebsite.Controllers
 {
@@ -179,6 +184,173 @@ namespace HoiTroWebsite.Controllers
             ViewBag.Account = account;
             return View(profileVM);
         }
+
+        [CustomAuthenticationFilter]
+        [Route("quan-ly/cap-nhat-thong-tin")]
+        [HttpPost]
+        public ActionResult UpdatePersonalInfo(ProfileVM model, HttpPostedFileBase avatar)
+        {
+            var account = Session["User"] as Account;
+            string filename = "";
+            string path = "";
+
+            var acc = (from t in db.Accounts where t.id == account.id select t).FirstOrDefault();
+            acc.name = model.Ten_lien_he;
+            acc.FBlink = model.Facebook_link;
+            acc.email = model.Email;
+            if (avatar != null)
+            {
+                filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + avatar.FileName;
+                path = Path.Combine(Server.MapPath("~/Content/images"), filename);
+                avatar.SaveAs(path);
+                acc.file_name = filename;
+            }
+            try
+            {
+                db.SaveChanges(); // Gọi SaveChanges để lưu thay đổi
+                                  // Cập nhật lại thông tin session
+                                  // Cập nhật thông tin tài khoản
+                account.name = model.Ten_lien_he;
+                account.FBlink = model.Facebook_link;
+                account.email = model.Email;
+
+                return Json(new { success = true, message = "Cập nhật thông tin thành công!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi khi lưu vào cơ sở dữ liệu: " + ex.Message });
+            }
+        }
+
+        [CustomAuthenticationFilter]
+        [Route("quan-ly/thay-doi-so-dien-thoai")]
+        [HttpPost]
+        public ActionResult UpdatePhoneNumber(string oldNumberPhone, string newNumberPhone, string maXacThuc)
+        {
+            var account = Session["User"] as Account;
+
+            if (account.phoneNum != oldNumberPhone)
+            {
+                return Json(new { success = false, message = "Số điện thoại cũ không đúng!", oldNumberPhone, account.phoneNum });
+            }
+
+            // Kiểm tra mã xác thực
+            string sessionVerificationCode = Session["VerificationCode"] as string;
+            if (string.IsNullOrEmpty(sessionVerificationCode) || maXacThuc != sessionVerificationCode)
+            {
+                return Json(new { success = false, message = "Mã xác thực không đúng!" });
+            }
+            // Cập nhật số điện thoại
+
+            var acc = (from t in db.Accounts where t.id == account.id select t).FirstOrDefault();
+            acc.phoneNum = newNumberPhone;
+            try
+            {
+                db.SaveChanges(); // Gọi SaveChanges để lưu thay đổi
+                                  // Cập nhật lại thông tin session
+                account.phoneNum = newNumberPhone;
+                Session["User"] = account;
+
+                return Json(new { success = true, message = "Cập nhật số điện thoại thành công!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi khi lưu vào cơ sở dữ liệu: " + ex.Message });
+            }
+        }
+        [CustomAuthenticationFilter]
+        [Route("quan-ly/thay-doi-so-dien-thoai/laysodemaxacthuc")]
+        [HttpPost]
+        public ActionResult GetVerificationCode(string oldNumberPhone, string newNumberPhone)
+        {
+            var account = Session["User"] as Account;
+
+            // Kiểm tra nếu số điện thoại cũ đúng
+            if (account.phoneNum != oldNumberPhone)
+            {
+                return Json(new { success = false, message = "Số điện thoại cũ không đúng!", oldNumberPhone, account.phoneNum });
+            }
+
+            // Tạo mã xác thực ngẫu nhiên 6 chữ số
+            string verificationCode = GenerateVerificationCode();
+            Session["VerificationCode"] = verificationCode;
+
+            // Gửi mã xác thực qua email 
+
+            if (account.email != null)
+            {
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/Authenticate.html"));
+                content = content.Replace("{{maxacthuc}}", verificationCode);
+                new MailHelper().SendMail(account.email, "Hỏi Trọ Website thông báo đến người dùng", content);
+            }
+
+            return Json(new { success = true, message = "Mã xác thực đã được gửi!" });
+        }
+
+        public string GenerateVerificationCode()
+        {
+            Random random = new Random();
+            int verificationCode = random.Next(100000, 999999); // Tạo số ngẫu nhiên 6 chữ số
+            return verificationCode.ToString();
+        }
+
+        [CustomAuthenticationFilter]
+        [Route("quan-ly/thay-doi-mat-khau")]
+        [HttpPost]
+        public ActionResult ChangePassword(string oldPassword, string newPassword)
+        {
+            var account = Session["User"] as Account;
+
+            // Kiểm tra mật khẩu cũ
+            if (account.password != oldPassword) 
+            {
+                return Json(new { success = false, message = "Mật khẩu cũ không đúng!" });
+            }
+
+            // Lưu thông tin vào database
+            var acc = (from t in db.Accounts where t.id == account.id select t).FirstOrDefault();
+            acc.password = newPassword;
+            try
+            {
+                db.SaveChanges(); // Gọi SaveChanges để lưu thay đổi
+                                  // Cập nhật lại thông tin session
+                account.password = newPassword;
+                Session["User"] = account;
+
+                return Json(new { success = true, message = "Đổi mật khẩu thành công!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi khi lưu vào cơ sở dữ liệu: " + ex.Message });
+            }
+        }
+        [CustomAuthenticationFilter]
+        [Route("quan-ly/quen-mat-khau/gui-lai-mat-khau")]
+        [HttpPost]
+        public ActionResult SendPassword()
+        {
+            var account = Session["User"] as Account;
+
+            // Gửi mã OTP qua email
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Areas/Admin/Content/assets/template/SendPass.html"));
+            content = content.Replace("{{password}}", account.password);
+            try
+            {
+                new MailHelper().SendMail(account.email, "Khôi Phục Mật Khẩu", content);
+                return Json(new { success = true, message = "Mật khẩu đã được gửi đến email của bạn." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi khi gửi email: " + ex.Message });
+            }
+        }
+
+
+
+
+
+
+
 
         [CustomAuthenticationFilter]
         [Route("quan-ly/tin-dang")]
