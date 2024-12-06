@@ -157,7 +157,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\FootersController.cs" />
@@ -267,7 +266,6 @@
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth-forgot-password.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\auth.rtl.css" />
-    <Content Include="Areas\Admin\Content\assets\compiled\css\bootstrap.min.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error-403.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error-403.rtl.css" />
     <Content Include="Areas\Admin\Content\assets\compiled\css\error.css" />
@@ -7379,6 +7377,7 @@
     <Content Include="Content\images\logo-web.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\menu_icon.png" />
+    <Content Include="Content\images\photo-1566888596782-c7f41cc184c5.jpg" />
     <Content Include="Content\images\price-icon.svg" />
     <Content Include="Content\images\room1.jpg" />
     <Content Include="Content\images\room2.jpg" />
@@ -13814,7 +13813,7 @@
     <Content Include="Areas\Admin\Views\RoomInfoes\DuyetBai.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\GetRoomInfoes.cshtml" />
     <Content Include="Areas\Admin\Views\RoomInfoes\SangCreate.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Login.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
