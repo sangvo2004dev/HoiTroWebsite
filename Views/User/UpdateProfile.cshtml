@@ -37,7 +37,7 @@
     <div class="tab-pane fade show active" id="thong-tin-ca-nhan" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal" method="post" action="/quan-ly/cap-nhat-thong-tin" enctype="multipart/form-data">
+                <form id="change-infor-form" class="form form-horizontal" method="post" action="/quan-ly/cap-nhat-thong-tin" enctype="multipart/form-data">
                     <div class="form-body">
                         <!-- Các trường nhập thông tin khác -->
                         <div class="col-12">
@@ -125,7 +125,7 @@
     <div class="tab-pane fade" id="doi-so-dien-thoai" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal" method="post" action="/quan-ly/thay-doi-so-dien-thoai">
+                <form id="change-phone-form" class="form form-horizontal" method="post" action="/quan-ly/thay-doi-so-dien-thoai">
                     <div class="form-body">
                         <div class="row bg-white rounded mb-3">
                             <div class="col-12">
@@ -164,7 +164,7 @@
     <div class="tab-pane fade" id="doi-mat-khau" role="tabpanel">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <form class="form form-horizontal" method="post" action="/quan-ly/thay-doi-mat-khau">
+                <form id="change-password-form" class="form form-horizontal" method="post" action="/quan-ly/thay-doi-mat-khau">
                     <div class="form-body">
                         <div class="row bg-white rounded mb-3">
                             <div class="col-12">
@@ -293,4 +293,88 @@
         });
 
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#change-infor-form").on("submit", function (e) {
+                e.preventDefault(); // Ngăn trang reload
+
+                // Tạo đối tượng FormData để gửi dữ liệu, hỗ trợ file upload
+                let formData = new FormData(this);
+
+                $.ajax({
+                    url: $(this).attr("action"), // Lấy URL từ thuộc tính action của form
+                    type: "POST",
+                    data: formData,
+                    processData: false, // Không xử lý dữ liệu
+                    contentType: false, // Không đặt content-type mặc định
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);  // Hiển thị thông báo nếu thành công
+                        } else {
+                            alert(response.message);  // Hiển thị thông báo nếu có lỗi
+                        }
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#change-password-form").submit(function (e) {
+                e.preventDefault(); // Ngăn trình duyệt reload
+
+                // Lấy dữ liệu từ form
+                let oldPassword = $("#oldPassword").val();
+                let newPassword = $("#newPassword").val();
+
+                // Gửi yêu cầu AJAX
+                $.ajax({
+                    url: "/quan-ly/thay-doi-mat-khau",
+                    type: "POST",
+                    data: { oldPassword, newPassword },
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);  // Hiển thị thông báo nếu thành công
+                        } else {
+                            alert(response.message);  // Hiển thị thông báo nếu có lỗi
+                        }
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#change-phone-form").submit(function (e) {
+                e.preventDefault(); // Ngăn trình duyệt reload
+
+                // Lấy dữ liệu từ form
+                let oldNumberPhone = $("#oldNumberPhone").val();
+                let newNumberPhone = $("#newNumberPhone").val();
+                let maXacThuc = $("#maXacThuc").val();
+
+                // Gửi yêu cầu AJAX
+                $.ajax({
+                    url: "/quan-ly/thay-doi-so-dien-thoai",
+                    type: "POST",
+                    data: { oldNumberPhone, newNumberPhone, maXacThuc },
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);  // Hiển thị thông báo nếu thành công
+                        } else {
+                            alert(response.message);  // Hiển thị thông báo nếu có lỗi
+                        }
+                    },
+                    error: function () {
+                        alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+    </script>
+
 }

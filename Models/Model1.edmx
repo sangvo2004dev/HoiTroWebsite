@@ -151,11 +151,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="reference_id" Type="int" Nullable="false" />
-          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
-          <Property Name="meta" Type="nvarchar" MaxLength="500" />
+          <Property Name="id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="reference_id" Nullable="false" Type="int" />
+          <Property Name="file_name" MaxLength="255" Type="nvarchar" />
+          <Property Name="imagePath" MaxLength="255" Type="nvarchar" />
+          <Property Name="meta" MaxLength="500" Type="nvarchar" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
@@ -221,10 +221,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RoomImage__refer__54D68207">
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
+          <End Type="Self.RoomInfo" Multiplicity="1" Role="RoomInfo">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="RoomImages" Type="Self.RoomImages" Multiplicity="*" />
+          <End Type="Self.RoomImages" Multiplicity="*" Role="RoomImages" />
           <ReferentialConstraint>
             <Principal Role="RoomInfo">
               <PropertyRef Name="id" />
@@ -295,8 +295,8 @@
             <End Role="News" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomImage__refer__54D68207" Association="Self.FK__RoomImage__refer__54D68207">
-            <End Role="RoomInfo" EntitySet="RoomInfo" />
-            <End Role="RoomImages" EntitySet="RoomImages" />
+            <End EntitySet="RoomInfo" Role="RoomInfo" />
+            <End EntitySet="RoomImages" Role="RoomImages" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomInfo__accoun__45943E77" Association="Self.FK__RoomInfo__accoun__45943E77">
             <End Role="Account" EntitySet="Account" />
@@ -452,14 +452,14 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="reference_id" Type="Int32" Nullable="false" />
-          <Property Name="file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="imagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="reference_id" Nullable="false" Type="Int32" />
+          <Property Name="file_name" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="imagePath" MaxLength="255" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="meta" MaxLength="500" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
-          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="datebegin" Precision="0" Type="DateTime" />
           <NavigationProperty Name="RoomInfo" Relationship="Self.FK__RoomImage__refer__57A801BA" FromRole="RoomImages" ToRole="RoomInfo" />
         </EntityType>
         <EntityType Name="RoomInfo">
@@ -556,10 +556,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RoomImage__refer__57A801BA">
-          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
+          <End Type="Self.RoomInfo" Multiplicity="1" Role="RoomInfo">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="RoomImages" Type="Self.RoomImage" Multiplicity="*" />
+          <End Type="Self.RoomImage" Multiplicity="*" Role="RoomImages" />
           <ReferentialConstraint>
             <Principal Role="RoomInfo">
               <PropertyRef Name="id" />
@@ -609,8 +609,8 @@
             <End Role="News" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomImage__refer__57A801BA" Association="Self.FK__RoomImage__refer__57A801BA">
-            <End Role="RoomInfo" EntitySet="RoomInfoes" />
-            <End Role="RoomImages" EntitySet="RoomImages" />
+            <End EntitySet="RoomInfoes" Role="RoomInfo" />
+            <End EntitySet="RoomImages" Role="RoomImages" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomInfo__roomTy__477199F1" Association="Self.FK__RoomInfo__roomTy__477199F1">
             <End Role="RoomType" EntitySet="RoomTypes" />

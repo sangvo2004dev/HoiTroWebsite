@@ -31,7 +31,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                 var user = db.AdminAccounts.SingleOrDefault(a => a.email == Email && a.password == Password);
                 if (user != null)
                 {
-                    Session["User"] = user; // Lưu thông tin user vào Session
+                    Session["Admin"] = user; // Lưu thông tin admin vào Session
                     return Json(new {statusCode = 200,message = "Đăng nhập thành công!",redirectUrl = Url.Action("AdminIndex", "Default")});
                 }
                 else
@@ -43,6 +43,12 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             {
                 return Json(new {statusCode = 500,message = "Đã xảy ra lỗi, vui lòng thử lại sau!"});
             }
+        }
+        [Route("dang-xuat-admin")]
+        public ActionResult Logout()
+        {
+            Session["Admin"] = null;
+            return Redirect("/Admin/Default/Login");
         }
 
     }

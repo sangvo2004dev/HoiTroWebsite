@@ -11,6 +11,7 @@ using Microsoft.Ajax.Utilities;
 using Common;
 using System.Web;
 using System.IO;
+using HoiTroWebsite.HTLibraries;
 
 namespace HoiTroWebsite.Controllers
 {
@@ -114,6 +115,7 @@ namespace HoiTroWebsite.Controllers
             return RedirectToAction("Index", "HomePage");
         }
 
+
         [CustomAuthenticationFilter]
         [HttpGet]
         [Route("quan-ly/dang-tin-moi")]
@@ -133,7 +135,6 @@ namespace HoiTroWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
 
             RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
             db.Entry(room).Collection(r => r.RoomImages).Load();
@@ -200,19 +201,19 @@ namespace HoiTroWebsite.Controllers
             acc.email = model.Email;
             if (avatar != null)
             {
-                filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + avatar.FileName;
-                path = Path.Combine(Server.MapPath("~/Content/images"), filename);
-                avatar.SaveAs(path);
-                acc.file_name = filename;
+
+                HandleUrlFile.SaveFile(avatar, "/Data/avatar/", acc);
             }
             try
             {
-                db.SaveChanges(); // Gọi SaveChanges để lưu thay đổi
                                   // Cập nhật lại thông tin session
                                   // Cập nhật thông tin tài khoản
-                account.name = model.Ten_lien_he;
-                account.FBlink = model.Facebook_link;
-                account.email = model.Email;
+                //account.name = model.Ten_lien_he;
+                //account.FBlink = model.Facebook_link;
+                //account.email = model.Email;
+                db.SaveChanges(); // Gọi SaveChanges để lưu thay đổi
+                Session["User"] = acc;
+
 
                 return Json(new { success = true, message = "Cập nhật thông tin thành công!" });
             }
