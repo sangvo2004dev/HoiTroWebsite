@@ -151,11 +151,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="reference_id" Nullable="false" Type="int" />
-          <Property Name="file_name" MaxLength="255" Type="nvarchar" />
-          <Property Name="imagePath" MaxLength="255" Type="nvarchar" />
-          <Property Name="meta" MaxLength="500" Type="nvarchar" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reference_id" Type="int" Nullable="false" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="imagePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
           <Property Name="datebegin" Type="smalldatetime" />
@@ -171,9 +171,6 @@
           <Property Name="acreage" Type="varchar" MaxLength="30" />
           <Property Name="location" Type="nvarchar" MaxLength="255" />
           <Property Name="tenant" Type="nvarchar" MaxLength="255" />
-          <Property Name="nameInfor" Type="nvarchar" MaxLength="100" />
-          <Property Name="phoneInfor" Type="nvarchar" MaxLength="10" />
-          <Property Name="zaloInfor" Type="nvarchar" MaxLength="10" />
           <Property Name="isApproved" Type="bit" />
           <Property Name="meta" Type="nvarchar" MaxLength="500" />
           <Property Name="hide" Type="bit" />
@@ -221,10 +218,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__RoomImage__refer__54D68207">
-          <End Type="Self.RoomInfo" Multiplicity="1" Role="RoomInfo">
+          <End Role="RoomInfo" Type="Self.RoomInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Self.RoomImages" Multiplicity="*" Role="RoomImages" />
+          <End Role="RoomImages" Type="Self.RoomImages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoomInfo">
               <PropertyRef Name="id" />
@@ -295,8 +292,8 @@
             <End Role="News" EntitySet="News" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomImage__refer__54D68207" Association="Self.FK__RoomImage__refer__54D68207">
-            <End EntitySet="RoomInfo" Role="RoomInfo" />
-            <End EntitySet="RoomImages" Role="RoomImages" />
+            <End Role="RoomInfo" EntitySet="RoomInfo" />
+            <End Role="RoomImages" EntitySet="RoomImages" />
           </AssociationSet>
           <AssociationSet Name="FK__RoomInfo__accoun__45943E77" Association="Self.FK__RoomInfo__accoun__45943E77">
             <End Role="Account" EntitySet="Account" />
@@ -473,9 +470,6 @@
           <Property Name="acreage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="tenant" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="nameInfor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="phoneInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="zaloInfor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="isApproved" Type="Boolean" />
           <Property Name="meta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="hide" Type="Boolean" />
@@ -798,9 +792,6 @@
                 <ScalarProperty Name="acreage" ColumnName="acreage" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="tenant" ColumnName="tenant" />
-                <ScalarProperty Name="nameInfor" ColumnName="nameInfor" />
-                <ScalarProperty Name="phoneInfor" ColumnName="phoneInfor" />
-                <ScalarProperty Name="zaloInfor" ColumnName="zaloInfor" />
                 <ScalarProperty Name="isApproved" ColumnName="isApproved" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
