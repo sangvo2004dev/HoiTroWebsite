@@ -93,12 +93,17 @@
 
             $.ajax({
                 url: '/Admin/Banners/Details/' + id,
-                type: 'get',
+                type: 'GET',
+                dataType: 'html', // Đảm bảo server trả về HTML
                 success: function (data) {
-                    $('#modalBanner').find('.modal-body').html(data);
+                    // Hiển thị nội dung chi tiết trong modal
+                    const modal = $('#modalBanner');
+                    modal.find('.modal-body').html(data);
+                    modal.modal('show'); // Hiển thị modal
                 },
                 error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
+                    alert('Không thể tải chi tiết room. Vui lòng thử lại.');
+                    console.error('Chi tiết lỗi:', xhr.responseText || error);
                 }
             });
         });

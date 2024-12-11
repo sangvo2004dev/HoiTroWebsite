@@ -226,7 +226,7 @@
                     v.RoomType,
                     `<button class="btn btn-xs btn-info btnDetail s" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>
                                 <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa-fw select-all fas"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>
-                                                             <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>`
+                                                             <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></button>`
                 ]);
             });
 
@@ -266,7 +266,7 @@
 
                             tr += '<button class="btn btn-xs btn-warning js-btn-edit" data-id="' + v.Id + '" action-param="quan-ly/sua-bai-dang?id=' + v.Id + '"><i class="fa-fw select-all fas"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>';
 
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbroom').append(tr);

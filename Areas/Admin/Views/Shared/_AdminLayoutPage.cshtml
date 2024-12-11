@@ -134,7 +134,15 @@
                                 <span>Quản lý Footer</span>
                             </a>
                         </li>
-
+                        @if (Session["Admin"] == null)
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Login", "Default" )" class="sidebar-link">
+                                    <i class="fa-fw select-all fas"></i>
+                                    <span>Đăng nhập</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
                             <a href="/dang-xuat-admin" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
