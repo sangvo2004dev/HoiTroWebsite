@@ -191,7 +191,6 @@
     <Compile Include="Areas\Admin\Controllers\MentorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenusController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RoomImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoomInfoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubMenusController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -223,6 +222,11 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminAccount.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminAuthenticationFilter.cs" />
+    <Compile Include="Models\AdminLogin.cs" />
     <Compile Include="Models\Banner.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -267,7 +271,6 @@
     <Compile Include="Models\RoomInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoomInfoViewModel.cs" />
     <Compile Include="Models\RoomType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -6174,12 +6177,13 @@
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-apexchart.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-chartjs.js" />
     <Content Include="Areas\Admin\Content\assets\static\js\pages\ui-todolist.js" />
+    <Content Include="Areas\Admin\Content\assets\template\Authenticate.html" />
     <Content Include="Areas\Admin\Content\assets\template\CreatePost.html" />
     <Content Include="Areas\Admin\Content\assets\template\DeletePost.html" />
     <Content Include="Areas\Admin\Content\assets\template\EditPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\ExpiringSoonPost.html" />
     <Content Include="Areas\Admin\Content\assets\template\InvalidPost.html" />
-    <Content Include="Areas\Admin\Content\assets\template\ValidPost.html" />
+    <Content Include="Areas\Admin\Content\assets\template\SendPass.html" />
     <Content Include="Areas\Admin\Content\ckeditor\adapters\jquery.js" />
     <Content Include="Areas\Admin\Content\ckeditor\build-config.js" />
     <Content Include="Areas\Admin\Content\ckeditor\ckeditor.js" />
@@ -7357,6 +7361,7 @@
     <Content Include="Content\images\logo-web.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\menu_icon.png" />
+    <Content Include="Content\images\photo-1566888596782-c7f41cc184c5.jpg" />
     <Content Include="Content\images\price-icon.svg" />
     <Content Include="Content\images\room1.jpg" />
     <Content Include="Content\images\room2.jpg" />

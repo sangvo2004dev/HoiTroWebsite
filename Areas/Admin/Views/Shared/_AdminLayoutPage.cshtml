@@ -100,13 +100,6 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item @RenderSection("ql_RoomImage_active", false)">
-                            <a href="@Url.Action("Index", "RoomImages" )" class="sidebar-link">
-                                <i class="fa-fw select-all fas"></i>
-                                <span>Quản lý ảnh slide tin đăng</span>
-                            </a>
-                        </li>
-
                         <li class="sidebar-item @RenderSection("ql_news_active", false)">
                             <a href="@Url.Action("Index", "News" )" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
@@ -141,9 +134,17 @@
                                 <span>Quản lý Footer</span>
                             </a>
                         </li>
-
+                        @if (Session["Admin"] == null)
+                        {
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Login", "Default" )" class="sidebar-link">
+                                    <i class="fa-fw select-all fas"></i>
+                                    <span>Đăng nhập</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">
+                            <a href="/dang-xuat-admin" class="sidebar-link">
                                 <i class="fa-fw select-all fas"></i>
                                 <span>Đăng xuất</span>
                             </a>
@@ -180,7 +181,7 @@
                                             </div>
                                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                                 <h6 class="text-muted font-semibold">Profile Views</h6>
-                                                <h6 id="notification" class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0">0</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -237,7 +238,6 @@
                                     </div>
                                 </div>
                             </div>
-
                 </section>
             </div>
             @RenderBody()

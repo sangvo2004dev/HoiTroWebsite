@@ -11,6 +11,7 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
+    [AdminAuthenticationFilter]
     public class MenusController : Controller
     {
         private readonly HoiTroEntities db = new HoiTroEntities();

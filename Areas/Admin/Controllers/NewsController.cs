@@ -12,6 +12,7 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
+    [AdminAuthenticationFilter]
     public class NewsController : Controller
     {
         private readonly HoiTroEntities db = new HoiTroEntities();
@@ -122,7 +123,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
                     path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
-                    news.file_name = "/Content/images" + "/" + filename; //Lưu ý
+                    news.file_name = filename; //Lưu ý
                     news.imagePath = "/Content/images" + "/" + filename;
                 }
                 else
@@ -175,7 +176,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
                     path = Path.Combine(Server.MapPath("/Content/images"), filename);
                     img.SaveAs(path);
-                    temp.file_name = "/Content/images" + "/" + filename; // Lưu ý
+                    temp.file_name = filename; // Lưu ý
                     temp.imagePath = "/Content/images" + "/" + filename;
                 }
                 temp.title = news.title;

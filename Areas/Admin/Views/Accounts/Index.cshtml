@@ -99,12 +99,17 @@
 
             $.ajax({
                 url: '/Admin/Accounts/Details/' + id,
-                type: 'get',
+                type: 'GET',
+                dataType: 'html', // Đảm bảo server trả về HTML
                 success: function (data) {
-                    $('#modalAccount').find('.modal-body').html(data);
+                    // Hiển thị nội dung chi tiết trong modal
+                    const modal = $('#modalAccount');
+                    modal.find('.modal-body').html(data);
+                    modal.modal('show'); // Hiển thị modal
                 },
                 error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
+                    alert('Không thể tải chi tiết room. Vui lòng thử lại.');
+                    console.error('Chi tiết lỗi:', xhr.responseText || error);
                 }
             });
         });
@@ -154,16 +159,16 @@
                             tr += '<td>' + (k + 1) + '</td>';
                             tr += '<td>' + v.Name + '</td>';
                             tr += '<td>' + v.Id + '</td>';
-                            tr += '<td><img src="/Content/images/' + v.Img + '"width ="50px" alt="' + v.Img + '"/></td>';
+                            tr += '<td><img src="'+v.Img+'" width ="50px" alt="' + v.Img + '"/></td>';
                             tr += '<td>' + v.PhoneNum + '</td>';
                             tr += '<td>' + v.Meta + '</td>';
                             tr += '<td>' + v.Hide + '</td>';
                             tr += '<td>' + v.Order + '</td>';
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"></button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa-fw select-all fas"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"></button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalAccount"></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbaccount').append(tr); // Add the row

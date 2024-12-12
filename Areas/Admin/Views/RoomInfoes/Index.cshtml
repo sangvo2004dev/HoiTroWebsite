@@ -195,12 +195,17 @@
 
             $.ajax({
                 url: '/Admin/RoomInfoes/Delete/' + id,
-                type: 'get',
+                type: 'GET',
+                dataType: 'html', // Đảm bảo server trả về HTML
                 success: function (data) {
-                    $('#modalRoom').find('.modal-body').html(data);
+                    // Hiển thị nội dung chi tiết trong modal
+                    const modal = $('#modalRoom');
+                    modal.find('.modal-body').html(data);
+                    modal.modal('show'); // Hiển thị modal
                 },
                 error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
+                    alert('Không thể tải chi tiết room. Vui lòng thử lại.');
+                    console.error('Chi tiết lỗi:', xhr.responseText || error);
                 }
             });
         });
@@ -224,9 +229,9 @@
                     v.Order,
                     dateBegin,
                     v.RoomType,
-                    `<button class="btn btn-xs btn-info btnDetail s" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>
-                            <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>
-                                                         <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>`
+                    `<button class="btn btn-xs btn-info btnDetail s" data-id="${v.Id}"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>
+                                <button class="btn btn-xs btn-warning js-btn-edit" data-id="${v.Id}" action-param="/Admin/RoomInfoes/SangEdit/${v.Id}"><i class="fa-fw select-all fas" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>
+                                                             <button class="btn btn-xs btn-danger btnDelete" data-id="${v.Id}"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></button>`
                 ]);
             });
 
@@ -262,12 +267,11 @@
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td>' + v.RoomType + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chi tiết </a></button>';
-                            //tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Chỉnh sửa </a></button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>';
 
-                            tr += '<button class="btn btn-xs btn-warning js-btn-edit" data-id="' + v.Id + '" action-param="quan-ly/sua-bai-dang?id=' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom">Chỉnh sửa</a></button>';
+                            tr += '<button class="btn btn-xs btn-warning js-btn-edit" data-id="' + v.Id + '" action-param="quan-ly/sua-bai-dang?id=' + v.Id + '"><i class="fa-fw select-all fas"></i><a href="" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></a></button>';
 
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"> Xóa </a></button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalRoom"></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbroom').append(tr);
@@ -448,21 +452,21 @@
 
         function addImageRow() {
             const row = `
-                                    <tr id="image-row-${imageIndex}">
-                                        <td>
-                                            <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
-                                            <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
-                                        </td>
-                                        <td>
-                                            <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
-                                        </td>
-                                    </tr>`;
+                                        <tr id="image-row-${imageIndex}">
+                                            <td>
+                                                <input type="file" name="Images[${imageIndex}].File" accept=".jpg, .png, .jpeg" onchange="previewImage(this, ${imageIndex})" />
+                                                <img id="preview-${imageIndex}" src="" style="width: 100px; margin-top: 5px;" />
+                                            </td>
+                                            <td>
+                                                <input type="text" name="Images[${imageIndex}].Meta" class="form-control" placeholder="Mô tả ảnh" />
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="Images[${imageIndex}].Hide" value="false" />
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" onclick="removeImageRow(${imageIndex})">Xóa</button>
+                                            </td>
+                                        </tr>`;
             document.getElementById("image-list").insertAdjacentHTML("beforeend", row);
             imageIndex++;
         }

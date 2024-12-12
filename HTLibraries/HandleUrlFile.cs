@@ -1,11 +1,15 @@
 ﻿using HoiTroWebsite.Models;
 using Microsoft.Ajax.Utilities;
 using System;
+using System.IO;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace HoiTroWebsite.HTLibraries
 {
-    public class HandleUrlFile
+    public class HandleUrlFile : IController
     {
         private static readonly HoiTroEntities db = new HoiTroEntities();
 
@@ -53,6 +57,34 @@ namespace HoiTroWebsite.HTLibraries
                 }
             });
             db.SaveChanges();
+        }
+
+        public static void SaveFile(HttpPostedFileBase file, string serverFolderPath, Account account)
+        {
+            if (file != null)
+            {
+                long unixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                string fileName = string.Join("_", Path.GetFileNameWithoutExtension(file.FileName), unixTimestamp) + Path.GetExtension(file.FileName);
+                string path = Path.Combine(HttpContext.Current.Server.MapPath(serverFolderPath), fileName);
+                file.SaveAs(path);
+                SaveFileUrl(serverFolderPath + fileName, fileName, account);
+            }
+        }
+
+        // Luu duong dan len database
+        public static void SaveFileUrl(string imgPath, string fileName, Account a)
+        {
+            if (a != null)
+            {
+                a.imagePath = imgPath;
+                a.file_name = fileName;
+                db.SaveChanges();
+            }
+        }
+
+        public void Execute(RequestContext requestContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,131 +1,85 @@
 ﻿@model HoiTroWebsite.Models.RoomInfo
 
-<h2>Chỉnh sửa</h2>
+<h2>Chi tiết</h2>
 
 <div>
     <h4>Bài đăng cho thuê</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Tiêu đề")
-        </dt>
+    <article class="the-post">
+        <header class="page-header">
+            <h1 class="page-h1">
+                <a style="font-size:large; color: #E13427;" href="" title="1,8tr phòng khép kín full đồ gần Học Viện Tài Chính">@Model.title</a>
+            </h1>
+            <div class="clearfix"></div>
+            <address class="post-address">@Model.location</address>
+            <div class="post-attributes">
+                <div class="item price"><i></i><span style="color: #16c784; font-weight: bold; font-size: 1.5rem">@Model.price/tháng</span></div>
+                <div class="item acreage"><i></i><span> @Model.acreage m<sup>2</sup></span></div>
+            </div>
+        </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+        @*thông tin mô tả*@
+        <section class="section post-main-content">
+            <div class="section-header"><h2 class="section-title">Thông tin mô tả</h2></div>
+            <div class="section-content">
+                <p>@Html.Raw(Model.detail_description)</p>
+            </div>
+        </section>
+        @*đặc điểm đăng tin*@
+        <section class="section post-overview">
+            <div class="section-header">
+                <h3 class="section-title">Đặc điểm tin đăng</h3>
+            </div>
+            <div class="section-content">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="name">Mã tin:</td>
+                            <td>@Model.id</td>
+                        </tr>
+                        <tr>
+                            <td class="name">Đối tượng thuê:</td>
+                            <td>@Model.tenant</td>
+                        </tr>
+                        <tr>
+                            <td class="name">Ngày đăng:</td>
+                            <td><time title="@Model.datebegin">@Model.datebegin</time></td>
+                        </tr>
 
-        <dt>
-            @Html.DisplayName("Mô tả")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.detail_description)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Chi tiết")
-
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.detail_description)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Giá phòng")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Diện tích")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.acreage)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Khu vực")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.acreage)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Địa chỉ")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.location)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Đối tượng cho thuê")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tenant)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Được duyệt")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isApproved)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.meta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.meta)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Hiển thị")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.hide)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Sắp xếp")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.order)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Ngày đăng")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.datebegin)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Loại phòng")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RoomType.title)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Người đăng")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Account.name)
-        </dd>
-
-    </dl>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        @*thông tin liên hệ*@
+        <section class="section post-contact">
+            <div class="section-header">
+                <h3 class="section-title">Thông tin liên hệ</h3>
+            </div>
+            <div class="section-content">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="name">Liên hệ:</td>
+                            <td> @Model.Account.name </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Điện thoại:</td>
+                            <td> @Model.Account.phoneNum </td>
+                        </tr>
+                        <tr>
+                            <td class="name">Zalo</td>
+                            <td> @Model.Account.zaloNum </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        @*bản đồ*@
+        <section class="section post-map">
+            <div class="section-header">
+                <h3 class="section-title">Bản đồ</h3>
+                <address class="section-description">Địa chỉ: @Model.location</address>
+            </div>
+        </section>
+    </article>
 </div>

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khôi Phục Mật Khẩu Tài Khoản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+            .header h2 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #34495e;
+            line-height: 1.8;
+        }
+
+            .content p {
+                margin-bottom: 15px;
+            }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #2980b9;
+            }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Xin chào,</h2>
+        </div>
+        <div class="content">
+            <p>Chúng tôi rất tiếc khi biết bạn gặp khó khăn trong việc đăng nhập vào tài khoản trên <strong>Website Tìm Trọ</strong>.</p>
+            <p>Đừng lo lắng! Dưới đây là thông tin mật khẩu hiện tại của bạn:</p>
+            <p class="highlight">Mật khẩu: {{password}}</p>
+            <p>Hãy đảm bảo rằng bạn giữ thông tin này an toàn và không chia sẻ với bất kỳ ai.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Website Tìm Trọ. Mọi quyền lợi được bảo lưu.</p>
+            <p>Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.</p>
+        </div>
+    </div>
+</body>
+</html>

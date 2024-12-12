@@ -92,12 +92,17 @@
 
             $.ajax({
                 url: '/Admin/Mentors/Details/' + id,
-                type: 'get',
+                type: 'GET',
+                dataType: 'html', // Đảm bảo server trả về HTML
                 success: function (data) {
-                    $('#modalMentor').find('.modal-body').html(data);
+                    // Hiển thị nội dung chi tiết trong modal
+                    const modal = $('#modalMentor');
+                    modal.find('.modal-body').html(data);
+                    modal.modal('show'); // Hiển thị modal
                 },
                 error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
+                    alert('Không thể tải chi tiết room. Vui lòng thử lại.');
+                    console.error('Chi tiết lỗi:', xhr.responseText || error);
                 }
             });
         });
@@ -151,9 +156,9 @@
                             tr += '<td>' + v.Order + '</td>';
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"></button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa-fw select-all fas"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"></button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalMentor"></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbmentor').append(tr);

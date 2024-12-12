@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Báo Cập Nhật Thông Tin Tài Khoản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            color: #333;
+        }
+
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+            .content p {
+                line-height: 1.6;
+            }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Chào bạn,</h2>
+        </div>
+        <div class="content">
+            <p>Chúng tôi đã nhận được yêu cầu cập nhật thông tin tài khoản của bạn trên website tìm trọ.</p>
+            <p><strong>Mã xác thực của bạn là: {{maxacthuc}}</strong></p>
+            <p>Vui lòng nhập mã xác thực này để hoàn tất quá trình cập nhật thông tin tài khoản của bạn.</p>
+            <p>Nếu bạn không yêu cầu thay đổi, vui lòng bỏ qua email này.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Website tìm trọ. Mọi quyền lợi được bảo lưu.</p>
+        </div>
+    </div>
+</body>
+</html>
