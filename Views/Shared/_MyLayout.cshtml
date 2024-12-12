@@ -48,7 +48,7 @@
             <div class="full">
                 <div class="center-desk">
                     <div class="logo">
-                        <a href="index.html"><img src="~/Content/images/logo-web.jpg" alt="Logo" style="width: 135px; height: 54px; object-fit: contain;" /></a>
+                        <a href="/trang-chu"><img src="~/Content/images/logo-web.jpg" alt="Logo" style="width: 135px; height: 54px; object-fit: contain;" /></a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,8 @@
                     @if (Session["User"] != null)
                     {
                         Account user = (Account)Session["User"];
-                        string avatar_path = user.imagePath ?? "/Data/default-user-avata.svg";
+                        string avatar_path = user.imagePath ?? "/Data/default-user-avata.svg" ?? user.file_name;
+                        @*@user.file_name @user.imagePath*@
                         <button class="btn border-0 text-body d-flex align-items-center dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="avatar-trang-chu border-black size-33 me-2" src="@avatar_path" alt="Ảnh đại diện tài khoản">
                             @user.name

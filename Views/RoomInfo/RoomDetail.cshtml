@@ -12,8 +12,6 @@
     string anh_nguoi_dang = Model.Account.imagePath ?? "/Data/default-user-avata.svg";
 }
 
-@*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/Scripts/js")*@
 @section header
 {
     <style>
@@ -279,28 +277,29 @@
 
 @section footer {
 
-    <script>
-function generateMapIframe(address) {
-        const baseUrl = "https://www.google.com/maps?q=";
-        const url = baseUrl + encodeURIComponent(address) + "&output=embed";
-        return `
-                <iframe
-                    src="${url}"
-                    width="600"
-                    height="400"
-                    frameborder="0"
-                    style="border:0; width: 100%;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            `;
-    }
+<script>
+    function generateMapIframe(address) {
+            const baseUrl = "https://www.google.com/maps?q=";
+            const url = baseUrl + encodeURIComponent(address) + "&output=embed";
+            return `
+                    <iframe
+                        src="${url}"
+                        width="600"
+                        height="400"
+                        frameborder="0"
+                        style="border:0; width: 100%;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                `;
+        }
 
-    // Tự động hiển thị bản đồ khi trang được tải
-    window.onload = function () {
-        const address = "@Model.location"; // Địa chỉ mặc định
-        const mapIframe = generateMapIframe(address); // Tạo iframe bản đồ
-        document.getElementById("map-container").innerHTML = mapIframe; // Hiển thị bản đồ
-    };</script>
+        // Tự động hiển thị bản đồ khi trang được tải
+        window.onload = function () {
+            const address = "@Model.location"; // Địa chỉ mặc định
+            const mapIframe = generateMapIframe(address); // Tạo iframe bản đồ
+            document.getElementById("map-container").innerHTML = mapIframe; // Hiển thị bản đồ
+    };
+    </script>
 }

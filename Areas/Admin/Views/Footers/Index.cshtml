@@ -55,7 +55,7 @@
     </div>
     <!-- Modal -->
     <div class="modal" id="modalFooter" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Hỏi Trọ Website</h5>
@@ -114,12 +114,17 @@
 
             $.ajax({
                 url: '/Admin/Footers/Details/' + id,
-                type: 'get',
+                type: 'GET',
+                dataType: 'html', // Đảm bảo server trả về HTML
                 success: function (data) {
-                    $('#modalFooter').find('.modal-body').html(data);
+                    // Hiển thị nội dung chi tiết trong modal
+                    const modal = $('#modalFooter');
+                    modal.find('.modal-body').html(data);
+                    modal.modal('show'); // Hiển thị modal
                 },
                 error: function (xhr, status, error) {
-                    console.error('Lỗi:', error);
+                    alert('Không thể tải chi tiết room. Vui lòng thử lại.');
+                    console.error('Chi tiết lỗi:', xhr.responseText || error);
                 }
             });
         });
@@ -192,9 +197,9 @@
                             tr += '<td>' + v.Order + '</td>';
                             tr += '<td>' + dateBegin + '</td>';
                             tr += '<td class="text-right">';
-                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Chi tiết </button>';
-                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Chỉnh sửa </button>';
-                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"> Xóa </button>';
+                            tr += '<button class="btn btn-xs btn-info btnDetail" data-id="' + v.Id + '"><i class="fa fa-info-circle" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"></button>';
+                            tr += '<button class="btn btn-xs btn-warning btnEdit" data-id="' + v.Id + '"><i class="fa-fw select-all fas"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"></button>';
+                            tr += '<button class="btn btn-xs btn-danger btnDelete" data-id="' + v.Id + '"><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="" data-bs-toggle="modal" data-bs-target="#modalFooter"></button>';
                             tr += '</td>';
                             tr += '</tr>';
                             $('#tbfooter').append(tr);

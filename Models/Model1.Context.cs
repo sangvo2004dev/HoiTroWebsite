@@ -37,5 +37,6 @@ namespace HoiTroWebsite.Models
         public virtual DbSet<RoomInfo> RoomInfoes { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<SubMenu> SubMenus { get; set; }
+        public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
     }
 }

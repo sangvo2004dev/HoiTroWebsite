@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using HoiTroWebsite.HTLibraries;
 using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
+    [AdminAuthenticationFilter]
     public class AccountsController : Controller
     {
         private HoiTroEntities db = new HoiTroEntities();
@@ -30,7 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               {
                                   Id = t.id,
                                   Name = t.name,
-                                  Img = t.file_name,
+                                  Img = t.imagePath ?? "/Content/images/default-user.jpg",
                                   PhoneNum = t.phoneNum,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -80,23 +82,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                     Response.StatusCode = 400;
                     return View(); // Trả lại View cùng với lỗi xác thực
                 }
-
-                var path = "";
-                var filename = "";
-                if (img != null)
-                {
-                    filename = img.FileName;
-                    path = Path.Combine(Server.MapPath("~/Content/images"), filename);
-                    img.SaveAs(path);
-                    account.file_name = filename;
-                }
-                else
-                {
-                    account.file_name = "default-user.jpg";
-                }
-
+                
                 account.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
                 db.Accounts.Add(account);
+                if (img != null)
+                {
+                    HandleUrlFile.SaveFile(img, "/Data/avatar/", account);
+                }
+
                 db.SaveChanges();
                 return Json(new { code = 200, msg = "Account created successfully" }, JsonRequestBehavior.AllowGet);
             }
@@ -154,15 +147,11 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
             Account temp = getById(account.id);
             if (ModelState.IsValid)
             {
-                if(img != null)
+                if (img != null)
                 {
-                    filename = DateTime.Now.ToString("dd-MM-yy-hh-mm-ss-") + img.FileName;
-                    path = Path.Combine(Server.MapPath("~/Content/images"), filename);
-                    img.SaveAs(path);
-                    temp.file_name = filename;
-                    temp.imagePath = "/Content/images/" + filename;
+                    HandleUrlFile.SaveFile(img, "/Data/avatar/", account);
                 }
-                
+
                 temp.name = account.name;
                 temp.phoneNum = account.phoneNum;
                 temp.email = account.email;

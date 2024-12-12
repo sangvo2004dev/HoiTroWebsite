@@ -11,6 +11,7 @@ using HoiTroWebsite.Models;
 
 namespace HoiTroWebsite.Areas.Admin.Controllers
 {
+    [AdminAuthenticationFilter]
     public class BannersController : Controller
     {
         private HoiTroEntities db = new HoiTroEntities();
