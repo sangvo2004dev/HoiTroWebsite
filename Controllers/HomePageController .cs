@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
 
@@ -60,6 +57,7 @@ namespace HoiTroWebsite.Controllers
             var listRoomInfo = db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
                 .Include(ri => ri.Account)
                 .Include(ri => ri.RoomImages)
+                .Take(5)
                 .ToList();
             return PartialView(listRoomInfo);
         }

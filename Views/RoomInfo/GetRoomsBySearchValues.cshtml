@@ -1,0 +1,51 @@
+﻿@using HoiTroWebsite.Models2;
+@model List<HoiTroWebsite.Models.RoomInfo>
+
+@{
+//ViewBag.Title = "GetRoomsBySearchValues";
+}
+@ViewBag.tinhthanhpho
+@ViewBag.quanhuyen
+@ViewBag.phuongxa
+<div class="container mb-4">
+    <div class="row">
+
+        <!-- danh sách phòng -->
+        <div class="col-8 pr-2">
+            <div class="left-content">
+                <section class="category-section">
+                    <div class="category-title h4">
+                        <a href="javascript:void(0);">Tổng @ViewBag.recsCount kết quả</a>
+                    </div>
+                    <ul class="post-list">
+                        @{
+                            ViewBag.meta = ViewBag.room_type_meta;
+                            Html.RenderPartial("GetListRoomInfo", Model);
+                        }
+                    </ul>
+                </section>
+            </div>
+
+            <div class="js-paging mt-3">
+                @{
+                    int pg = ViewBag.page;
+                    int recsCount = ViewBag.recsCount;
+                    string href = ViewBag.url;
+                    var pager = new Paginate(recsCount, pg, ViewBag.pagesize, href);
+                    Html.RenderPartial("~/Views/Shared/_Paging.cshtml", pager);
+                }
+            </div>
+        </div>
+
+        <!-- phần bên phải -->
+        <div class="col-4 pl-2">
+            <div class="right-content">
+
+                @{ Html.RenderAction("GetMiniNews", "MainPartial"); }
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

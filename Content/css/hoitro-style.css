@@ -22,7 +22,6 @@
 /* đăng nhập, đăng ký, đăng tin */
 .user-welcome {
     float: right;
-    margin-top: 12px;
     display: inline-block;
     align-items: center;
 }
@@ -992,7 +991,7 @@ figure img {
 
 .breadcrumb-item + .breadcrumb-item::before {
     position: relative;
-    top: -2px;
+    top: 2px;
     content: "\25b6";
     font-size: 0.7rem;
     color: #c3073f;

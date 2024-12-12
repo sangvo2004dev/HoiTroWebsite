@@ -12,6 +12,7 @@ using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 
 namespace HoiTroWebsite.Controllers
 {
@@ -218,8 +219,6 @@ namespace HoiTroWebsite.Controllers
             }
         }
 
-        [HttpDelete]
-
         [HttpPost]
         [Route("api/post/get-all", Name = "post/get-all")]
         public ActionResult GetUserPostRooms(int pg = 0, bool chonDaDuyet = false, bool chonDaAn = false)
@@ -299,6 +298,54 @@ namespace HoiTroWebsite.Controllers
                 return Json(new { statusCode = Response.StatusCode, message = "Vui lòng thử lại sau" , error = ex.ToString() }, JsonRequestBehavior.AllowGet);
             }
 
+        }
+
+        [Route("api/hanhchinhvn-1")]
+        public async void GetHanhChinhVn(string tinhthanhpho_id, string quanhuyen_id, string phuongxa_id)
+        {
+            string tinhthanhpho_slug = "";
+            string quanhuyen_slug = "";
+            string phuongxa_slug = "";
+            if (!tinhthanhpho_id.IsEmpty())
+            {
+                JToken tinh_tpJson = HanhChinhVn.GetTinh_TpJsonByKey(tinhthanhpho_id);
+                tinhthanhpho_slug = tinh_tpJson?["slug"].ToString();
+                Session[tinhthanhpho_slug] = tinh_tpJson;
+            }
+            if (!tinhthanhpho_slug.IsEmpty() && !quanhuyen_id.IsEmpty())
+            {
+                JToken quanhuyenJson = HanhChinhVn.GetQuanHuyenJsonByKey((Session[tinhthanhpho_slug] as JToken)["code"].ToString(), quanhuyen_id);
+                quanhuyen_slug = quanhuyenJson?["slug"].ToString();
+                Session[quanhuyen_slug] = quanhuyenJson;
+            }
+            if (!quanhuyen_slug.IsEmpty() && !phuongxa_id.IsEmpty())
+            {
+                JToken phuongxaJson = HanhChinhVn.GetPhuongXaJsonByKey((Session[quanhuyen_slug] as JToken)["code"].ToString(), phuongxa_id);
+                phuongxa_slug = phuongxaJson?["slug"].ToString();
+                Session[phuongxa_slug] = phuongxaJson;
+            }
+
+            //return RedirectToAction("GetRoomsBySearchValues", "RoomInfo");
+        }
+
+        [Route("api/hanhchinhvn-2")]
+        public void GetHanhChinhVnBySlug(string tinhthanhpho_slug, string quanhuyen_slug, string phuongxa_slug)
+        {
+            if (!tinhthanhpho_slug.IsEmpty())
+            {
+                JToken tinh_tpJson = HanhChinhVn.GetTinh_TpJsonBySlug(tinhthanhpho_slug);
+                Session[tinhthanhpho_slug] = tinh_tpJson;
+            }
+            if (!quanhuyen_slug.IsEmpty() && Session[tinhthanhpho_slug] != null)
+            {
+                JToken quanhuyenJson = HanhChinhVn.GetQuanHuyenJsonBySlug((Session[tinhthanhpho_slug] as JToken)?["code"].ToString(), quanhuyen_slug);
+                Session[quanhuyen_slug] = quanhuyenJson;
+            }
+            if (!phuongxa_slug.IsEmpty() && Session[quanhuyen_slug] != null)
+            {
+                JToken phuongxaJson = HanhChinhVn.GetPhuongXaJsonBySlug((Session[quanhuyen_slug] as JToken)?["code"].ToString(), phuongxa_slug);
+                Session[phuongxa_slug] = phuongxaJson;
+            }
         }
 
         private string RenderPartialViewToString(string viewName, object model)

@@ -124,7 +124,7 @@ input[type=radio].radio-custom {
 }
 
 .slider-range-custom {
-    background-color: #fe0000;
+    background-color: #fe0000 !important;
 }
 
 .slider-handle-active {

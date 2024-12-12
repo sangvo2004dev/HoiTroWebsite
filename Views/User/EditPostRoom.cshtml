@@ -13,10 +13,10 @@
 @section css
 {
     @*jquery UI*@
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link href="~/Extensions/jquery-ui-1.14.1/jquery-ui.min.css" rel="stylesheet" />
 
     @*jquery slect2*@
-    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />*@
+    <link href="~/Extensions/select2-4.0.13/select2.min.css" rel="stylesheet" />
 
     <!-- CSS của Dropzone -->
     @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />*@
@@ -58,7 +58,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label mb-1" for="province_id">Tỉnh/Thành phố</label>
-                                    <select id="province_id" name="province_id" class="form-control fs-5-5" tabindex="-1">
+                                    <select id="province_id" name="province_id" class="js-select-province form-control fs-5-5" tabindex="-1">
                                         <option value="">-- Chưa chọn tỉnh/thành phố --</option>
                                     </select>
                                 </div>
@@ -66,7 +66,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label mb-1" for="district_id">Quận/Huyện</label>
-                                    <select name="district_id" id="district_id" class="form-control fs-5-5" tabindex="-1" aria-hidden="true">
+                                    <select name="district_id" id="district_id" class="js-select-district form-control fs-5-5" tabindex="-1" aria-hidden="true">
                                         <option value="">Chọn quận huyện</option>
                                     </select>
                                 </div>
@@ -74,7 +74,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="form-label mb-1" for="phuongxa">Phường/Xã</label>
-                                    <select class="form-control fs-5-5" name="phuongxa" id="phuongxa" tabindex="-1">
+                                    <select class="js-select-ward form-control fs-5-5" name="phuongxa" id="phuongxa" tabindex="-1">
                                         <option value="">Chọn phường xã</option>
                                     </select>
                                 </div>
@@ -82,14 +82,14 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="sonha_duong" class="form-label mb-1">Số nhà, Đường</label>
-                                    <input type="text" class="form-control fs-5-5" name="sonha_duong" id="sonha_duong" value="">
+                                    <input type="text" class="js-sonha-duong form-control fs-5-5" name="sonha_duong" id="sonha_duong" value="">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.dia_chi, "Địa chỉ chính xác", new { @class = "form-lable mb-1" })
                                     @*<input type="text" readonly="" class="form-control" name="dia_chi" id="diachi" required="">*@
-                                    @Html.TextBoxFor(model => model.dia_chi, new { @class = "form-control bg-body-secondary fs-5-5" })
+                                    @Html.TextBoxFor(model => model.dia_chi, new { @class = "js-dia-chi-ket-hop form-control bg-body-secondary fs-5-5" })
                                 </div>
                             </div>
                         </div>
@@ -258,4 +258,45 @@
     <script>$('#doi_tuong').val($('#doi_tuong').attr('value'));</script>
 
     <script src="~/Scripts/my-js/convert.2.meta.js"></script>
+
+    <script src="~/Extensions/jquery-ui-1.14.1/jquery-ui.min.js"></script>
+
+    <script src="~/Extensions/select2-4.0.13/select2.min.js"></script>
+    <script src="~/Scripts/my-js/tinhthanh.js"></script>
+
+    <script>
+        const $dia_chi = $('.js-sonha-duong');
+        const $dia_chi_ket_hop = $('.js-dia-chi-ket-hop');
+
+        $('.js-select-province').on('change', (e) => {
+            $dia_chi_ket_hop.val(addressString());
+        });
+
+        $('.js-select-district').on('change', (e) => {
+            $dia_chi_ket_hop.val(addressString());
+        });
+
+        $('.js-select-ward').on('change', (e) => {
+            $dia_chi_ket_hop.val(addressString());
+        });
+
+        $dia_chi.on('keyup', (e) => {
+            $dia_chi_ket_hop.val(addressString());
+        });
+
+        // tạo thành địa chỉ hoàn chình
+        const addressString = () => {
+            const getTextOfValue = (e) => e.val() === '' ? '' : e.find(`option[value="${e.val()}"]`).text();
+            const provinceName = getTextOfValue($('.js-select-province'));
+            const districtName = getTextOfValue($('.js-select-district'));
+            const wardName = getTextOfValue($('.js-select-ward'));
+            const address = $dia_chi.val();
+
+            if (provinceName === '') return;
+            if (districtName === '') return [provinceName].join(', ');
+            if (wardName === '') return [districtName, provinceName].join(', ');
+            if (address === '') return [wardName, districtName, provinceName].join(', ');
+            return [address, wardName, districtName, provinceName].join(', ');
+        };
+    </script>
 }

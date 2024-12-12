@@ -11,11 +11,12 @@ namespace HoiTroWebsite.Models2
         public int TotalPages { get; private set; } //tổng trang
         public int StartPage { get; private set; } //trang bắt đầu
         public int EndPage { get; private set; } //trang kết thúc
+        public string Href { get; private set; }
         public Paginate()
         {
 
         }
-        public Paginate(int totalItems, int page, int pageSize = 10) //10 items/trang
+        public Paginate(int totalItems, int page, int pageSize = 10, string href = "javascript:void(0)") //10 items/trang
         {
             //làm tròn tổng items/10 items trên 1 trang VD:16 items/10 = tròn 3 trang
             int totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize); //33/10 = 3.3 4 trang
@@ -24,6 +25,7 @@ namespace HoiTroWebsite.Models2
 
             int startPage = currentPage - 5; //trang bắt đầu trừ 5 button / 10-5 = 5
             int endPage = currentPage + 4; //trang cuối sẽ cộng thêm 4 button 5 + 4
+
 
             if (startPage <= 0)
             {
@@ -47,6 +49,8 @@ namespace HoiTroWebsite.Models2
             TotalPages = totalPages;
             StartPage = startPage;
             EndPage = endPage;
+            href = href.Contains("?") ? href : href + "?";
+            Href = href != "javascript:void(0)" ?  !href.Contains("page=") ? href + "&page=1" : href : "javascript:void(0)";
         }
     }
 }

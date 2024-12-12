@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Web.Mvc;
 using HoiTroWebsite.Models;
 using HoiTroWebsite.Models2;
-using Microsoft.Ajax.Utilities;
 
 namespace HoiTroWebsite.Controllers
 {
@@ -128,7 +126,6 @@ namespace HoiTroWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
 
             RoomInfo room = db.RoomInfoes.SingleOrDefault(r => r.id == id);
             db.Entry(room).Collection(r => r.RoomImages).Load();

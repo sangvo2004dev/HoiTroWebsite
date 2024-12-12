@@ -1,4 +1,5 @@
-﻿@model HoiTroWebsite.Models2.Paginate
+﻿@using System.Text.RegularExpressions;
+@model HoiTroWebsite.Models2.Paginate
 
 @if (Model.TotalPages > 0) //2 trang
 {
@@ -15,29 +16,37 @@
                        asp-route-pg="@(Model.CurrentPage - 1)"><< Trang trước</a>
                 </li>
             }*@
-        <li class="page-item @(Model.CurrentPage > 1 ? "" : "disabled bg-secondary-subtle")">
+        <li class="page-item d-none d-sm-block @(Model.CurrentPage > 1 ? "" : "disabled bg-secondary-subtle")">
             <a class="page-link" asp-action="Index"
-               asp-route-pg="1">Trang đầu</a>
+               asp-route-pg="1" 
+               href="@Regex.Replace(Model.Href, @"page=\d+", $"page={1}")">
+            Trang đầu</a>
         </li>
         <li class="page-item">
             <a class="page-link @(Model.CurrentPage > 1 ? "" : "disabled bg-secondary-subtle")" asp-action="Index"
-               asp-route-pg="@(Model.CurrentPage - 1)"><< Trang trước</a>
+               asp-route-pg="@(Model.CurrentPage - 1)" 
+               href="@Regex.Replace(Model.Href, @"page=\d+", $"page={Model.CurrentPage - 1}")">
+               <<</a>
         </li>
         @for (var pge = Model.StartPage; pge <= Model.EndPage; pge++) //1 = 1 <= 2
         {
-            <li class="page-item @(pge==Model.CurrentPage ? "active" : "")">
-                <a class="page-link @(pge==Model.CurrentPage ? " disabled text-white" : "")" asp-action="Index" asp-route-pg="@pge">@pge</a>
+            <li class="page-item @(pge==Model.CurrentPage ? "active" : "d-none d-sm-block")">
+                <a class="page-link @(pge==Model.CurrentPage ? " disabled text-bg-danger" : "")" asp-action="Index" asp-route-pg="@pge" 
+                   href="@Regex.Replace(Model.Href, @"page=\d+", $"page={pge}")">
+                @pge</a>
             </li>
-
-
         }
         <li class="page-item">
             <a class="page-link @(Model.CurrentPage < Model.TotalPages ? "" : "disabled bg-secondary-subtle")" asp-action="Index"
-               asp-route-pg="@(Model.CurrentPage+1)">Trang sau >></a>
+               asp-route-pg="@(Model.CurrentPage+1)" 
+               href="@Regex.Replace(Model.Href, @"page=\d+", $"page={Model.CurrentPage + 1}")">
+            >></a>
         </li>
-        <li class="page-item">
+        <li class="page-item d-none d-sm-block">
             <a class="page-link @(Model.CurrentPage < Model.TotalPages ? "" : "disabled bg-secondary-subtle")" asp-action="Index"
-               asp-route-pg="@(Model.TotalPages)">Trang cuối</a>
+               asp-route-pg="@(Model.TotalPages)"
+               href="@Regex.Replace(Model.Href, @"page=\d+", $"page={Model.TotalPages}")">
+            Trang cuối</a>
         </li>
         @*@if (Model.CurrentPage < Model.TotalPages)
             {

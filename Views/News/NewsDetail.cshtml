@@ -16,17 +16,18 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-md-8 mb-3">
+            <nav aria-label="breadcrumb mb-3">
+                <ol class="breadcrumb pb-0">
+                    <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/@ViewBag.metaNewsType" style="color: inherit;">@ViewBag.titleNewsType</a></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-8 pe-2">            
 
-        <div class="col-8 pr-2">
             <div class="left-content">
-
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb pb-0">
-                        <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/@ViewBag.metaNewsType" style="color: inherit;">@ViewBag.titleNewsType</a></li>
-                    </ol>
-                </nav>
 
                 <article class="the-article">
                     <header class="page-header">
@@ -52,7 +53,7 @@
             </div>
         </div>
 
-        <div class="col-4 pl-2">
+        <div class="col-md-4 ps-2 mt-2 mt-md-0">
             <div class="right-content">
 
                 @{

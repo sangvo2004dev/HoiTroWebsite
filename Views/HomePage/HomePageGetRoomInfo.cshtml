@@ -11,6 +11,7 @@
 
 @foreach (var i in Model)
 {
+    string anh_dai_dien = i.Account.imagePath ?? "/Data/default-user-avata.svg";
     if (i.RoomImages.Count > 0)
     {
         ten_anh = i.RoomImages.FirstOrDefault().file_name;
@@ -62,7 +63,7 @@
             </div>
             <div class="meta-row clearfix d-flex mt-auto">
                 <div class="post-author me-auto">
-                    <img src="@i.Account.imagePath" alt="@i.Account.name">
+                    <img src="@anh_dai_dien" alt="@i.Account.name">
                     <span class="author-name">@i.Account.name</span>
                 </div>
                 <a rel="nofollow" target="_blank" href="https://zalo.me/@i.Account.zaloNum"

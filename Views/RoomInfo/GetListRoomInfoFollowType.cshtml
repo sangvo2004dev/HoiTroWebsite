@@ -1,11 +1,12 @@
-﻿@model HoiTroWebsite.Models.RoomType
+﻿@using HoiTroWebsite.Models2;
+@model List<HoiTroWebsite.Models.RoomInfo>
 
 @{
-    ViewBag.Title = Model.title;
+    ViewBag.Title = ViewBag.title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<div class="container">
+<div class="container mb-4">
     <div class="row">
 
         <!-- danh sách phòng -->
@@ -13,12 +14,26 @@
             <div class="left-content">
                 <section class="category-section">
                     <div class="category-title h4">
-                        <a href="javascript:void(0);">@Model.title</a>
+                        <a href="javascript:void(0);">@ViewBag.title</a>
                     </div>
                     <ul class="post-list">
-                        @{ Html.RenderAction("GetListRoomInfo", "RoomInfo", new { roomTypeID = Model.id, metaTitle = Model.meta }); }
+                        @{ 
+                            //ViewBag.meta;
+                            Html.RenderPartial("GetListRoomInfo", Model);
+                            }
+                        @*@{ Html.RenderAction("GetListRoomInfo", "RoomInfo", new { roomTypeID = Model.id, metaTitle = Model.meta }); }*@
                     </ul>
                 </section>
+            </div>
+
+            <div class="js-paging mt-3">
+                @{
+                    int pg = ViewBag.page;
+                    int recsCount = ViewBag.recsCount;
+                    string href = ViewBag.url;
+                    var pager = new Paginate(recsCount, pg, ViewBag.pagesize ?? 10, href);
+                    Html.RenderPartial("~/Views/Shared/_Paging.cshtml", pager);
+                }
             </div>
         </div>
 
