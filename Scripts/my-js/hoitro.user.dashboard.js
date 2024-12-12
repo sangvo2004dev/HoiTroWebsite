@@ -2,12 +2,14 @@
 manage_post = manage_post || {};
 manage_post = {
     form: (function () { return $('form'); })(),
+    base_url: '',
     url_upload_image: '/api/upload',
     chon_anh: '.chon-anh',
     list_post: '.js-list-post',
     paging: '.js-paging',
     baseurl: '',
     tab_all_an_duyet: '#my_tab_post',
+    btn_xoa_post: '.js-delete-post',
     truong_data: {
         chonDaAn: false,
         chonDaDuyet: false,
@@ -240,6 +242,41 @@ manage_post = {
         });
     },
 
+    xoaBaiDang: function () {
+        const self = this;
+        $(document).on('click', this.btn_xoa_post, function () {
+            const idPost = $(this).attr('data-id');
+            const _self = this;
+            Swal.fire({
+                title: 'Bạn có chắc!',
+                text: `Xóa bài đăng có Mã tin: ${idPost}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: 'Thoát',
+                confirmButtonText: "Có, xóa!"
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: self.base_url + '/api/post/xoa-tin',
+                        type: 'GET',
+                        data: { id: idPost },
+                        success: function () {
+                            Swal.fire('Đã xóa', '', 'success').then(function () {
+                                $(_self).closest('li').remove();
+                            });
+                        },
+                        success: function (xhr, status, error) {
+                            const response = xhr.responseJSON;
+                            Swal.fire('Lỗi!', response.message, 'error');
+                        }
+                    });
+                }
+            });
+        });
+    },
+
     init: function () {
         this.uploadImage();
         this.deleteTempImages();
@@ -248,9 +285,11 @@ manage_post = {
         this.togglePage();
         this.clickTab();
         this.actionLoad();
+        this.xoaBaiDang();
     }
 }
 
 $(document).ready(() => {
     manage_post.init();
+    manage_post.base_url = window.location.origin;
 })

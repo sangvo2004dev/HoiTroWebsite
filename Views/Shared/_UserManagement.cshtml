@@ -15,6 +15,8 @@
     <link href="~/Content/hoitro.main.css" rel="stylesheet" />
     @Html.Raw("<link rel=\"stylesheet\" href=\"/dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css\">\n")
 
+<link href="~/dist/assets/extensions/sweetalert2/sweetalert2.css" rel="stylesheet" />
+
     @RenderSection(name: "css", required: false)
 </head>
 
@@ -86,6 +88,8 @@
     <script src="~/dist/assets/extensions/jquery/jquery.min.js"></script>
 
     <script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>
+
+    <script src="~/dist/assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
 
     @RenderSection(name: "script", required: false)
 </body>
