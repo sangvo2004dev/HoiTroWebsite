@@ -32,7 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.imagePath,
+                                  Img = t.file_name,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
