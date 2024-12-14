@@ -216,6 +216,7 @@
     <Compile Include="HTLibraries\StringUI.cs" />
     <Compile Include="Models2\CombineVMLoginAndRegister.cs" />
     <Compile Include="Models2\FilterPopupVM.cs" />
+    <Compile Include="Models2\LatestRoomsModel.cs" />
     <Compile Include="Models2\Paginate.cs" />
     <Compile Include="Help\Funtions.cs" />
     <Compile Include="Models2\PostRoomAdvandceVM.cs" />
@@ -14602,6 +14603,7 @@
     <Content Include="Scripts\libs\vn-num2words\src\index.js" />
     <Content Include="Scripts\libs\vn-num2words\src\index.mjs" />
     <Content Include="Scripts\js\modernizer.js" />
+    <Content Include="Scripts\my-js\hoitro.manage_post.js" />
     <Content Include="Scripts\my-js\hoitro.search.js" />
     <Content Include="Scripts\my-js\hoitro.user.dashboard.js" />
     <Content Include="Scripts\my-js\login.logout.effect.js" />

@@ -72,12 +72,12 @@ namespace HoiTroWebsite.HTLibraries
         }
 
         // Luu duong dan len database
-        public static void SaveFileUrl(string imgPath, string fileName, Account a)
+        public static void SaveFileUrl(string imgPath, string fileName, Account account)
         {
-            if (a != null)
+            if (account != null)
             {
-                a.imagePath = imgPath;
-                a.file_name = fileName;
+                account.imagePath = imgPath;
+                account.file_name = fileName;
                 db.SaveChanges();
             }
         }

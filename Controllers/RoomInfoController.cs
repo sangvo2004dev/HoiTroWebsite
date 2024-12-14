@@ -48,7 +48,7 @@ namespace HoiTroWebsite.Controllers
         public ActionResult GetListRoomInfoFollowType(string roomTypeMeta, int page = 1, int pagesize = 10)
         {
             var v = db.RoomTypes.Where(rt => rt.meta == roomTypeMeta).FirstOrDefault();
-            var rooms = db.RoomInfoes.Where(ri => ri.roomTypeId == v.id && ri.isApproved == true).OrderBy(r => r.order).AsQueryable();
+            var rooms = db.RoomInfoes.Where(ri => ri.roomTypeId == v.id && ri.isApproved == true && ri.hide == true).OrderBy(r => r.order).AsQueryable();
 
             ViewBag.meta = v.meta;
             ViewBag.pagesize = pagesize;

@@ -32,7 +32,7 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
                               select new
                               {
                                   Id = t.id,
-                                  Img = t.file_name,
+                                  Img = t.imagePath,
                                   Name = t.name,
                                   Meta = t.meta,
                                   Hide = t.hide,
@@ -76,7 +76,6 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id,name,file_name,email,phoneNum,FBlink,zaloNum,supportTask,meta,hide,order,datebegin")] Mentor mentor, HttpPostedFileBase img)
         {
-
                 try
                 {
                     var path = "";

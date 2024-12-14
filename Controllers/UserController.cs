@@ -191,8 +191,8 @@ namespace HoiTroWebsite.Controllers
         public ActionResult UpdatePersonalInfo(ProfileVM model, HttpPostedFileBase avatar)
         {
             var account = Session["User"] as Account;
-            string filename = "";
-            string path = "";
+            //string filename = "";
+            //string path = "";
 
             var acc = (from t in db.Accounts where t.id == account.id select t).FirstOrDefault();
             acc.name = model.Ten_lien_he;

@@ -13,10 +13,9 @@
 @section css
 {
     @*jquery UI*@
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-
+    <link href="~/Extensions/jquery-ui-1.14.1/jquery-ui.min.css" rel="stylesheet" />
     @*jquery slect2*@
-    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />*@
+    <link href="~/Extensions/select2-4.0.13/select2.min.css" rel="stylesheet" />
 
     <!-- CSS của Dropzone -->
     @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.css" />*@
@@ -243,14 +242,13 @@
 
 @section script
 {
-    @*<script src="~/Scripts/js/manage-main.js"></script>*@
-    @*<script src="~/Scripts/js/tinh-thanh.js"></script>*@
-    @*<script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>*@
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="~/Scripts/my-js/hoitro.user.dashboard.js"></script>
+    <script src="~/Extensions/jquery-ui-1.14.1/jquery-ui.min.js"></script>
+    <script src="~/Extensions/select2-4.0.13/select2.min.js"></script>
     <!-- JavaScript của Dropzone -->
     @*<script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/min/dropzone.min.js"></script>*@
     <script src="~/Scripts/libs/dropzone.min.js"></script>
+
     <!-- Thêm CDN cho SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

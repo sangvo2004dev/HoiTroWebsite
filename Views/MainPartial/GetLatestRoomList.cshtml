@@ -1,7 +1,42 @@
-﻿<section class="section section-aside-tinmoidang">
+﻿@using HoiTroWebsite.HTLibraries;
+@model List<HoiTroWebsite.Models2.LatestRoomsModel>
+
+@{
+    string gia = "";
+    string pathAnh = "";
+    string tieu_de_hien_thi = "";
+    DateTime bayGio = DateTime.Now;
+}
+
+<section class="section section-aside-tinmoidang">
     <div class="section-header"><span class="section-title">Tin mới đăng</span></div>
     <ul class="post-list aside clearfix">
-        <li class="post-item clearfix normal" post-id="668181">
+        @foreach (var room in Model)
+        {
+            tieu_de_hien_thi = (room.title as string).Length >= 40 ? (room.title as string).Substring(0, 40) + "..." : room.title;
+            gia = new NumberUnit(room.price).RoundWithLargestUnit();
+            pathAnh = room.pathImg ?? "/Data/default-room-img.jpg";
+            <li class="post-item clearfix normal" post-id="668181">
+                <a href="/phong-khep-kin-du-do-ban-cong-sieu-rong-pr668181.html">
+                    <figure style="overflow: hidden;">
+                        <img class="lazy_done"
+                             src="@pathAnh"
+                             alt="@room.title" height="100" width="100" layout="responsive"
+                             data-loaded="true">
+                    </figure>
+                    <div class="post-meta position-relative">
+                        <span class="post-title" style="color: #055699;">
+                            @tieu_de_hien_thi
+                        </span>
+                        <div class="w-100 position-absolute" style="bottom: 0px;">
+                            <span class="post-price">@gia/tháng</span>
+                            <time class="post-time float-end" title="">@(((DateTime)room.dateTime).TimeAgo(bayGio)) </time>
+                        </div>                      
+                    </div>
+                </a>
+            </li>
+        }
+        @*<li class="post-item clearfix normal" post-id="668181">
             <a href="/phong-khep-kin-du-do-ban-cong-sieu-rong-pr668181.html">
                 <figure>
                     <img class="lazy_done"
@@ -176,6 +211,6 @@
                     <time class="post-time" title="Thứ 6, 15:44 25/10/2024">3 giờ trước</time>
                 </div>
             </a>
-        </li>
+        </li>*@
     </ul>
 </section>

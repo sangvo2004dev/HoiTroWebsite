@@ -1,7 +1,9 @@
 ﻿using HoiTroWebsite.Models;
+using HoiTroWebsite.Models2;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -56,7 +58,19 @@ namespace HoiTroWebsite.Controllers
         // lấy các bài viết phòng mới đăng
         public ActionResult GetLatestRoomList()
         {
-            return PartialView();
+            var rooms = db.RoomInfoes.Where(r => r.hide == true && r.isApproved == true)
+                .Include(r => r.RoomImages)
+                .OrderByDescending(r => r.datebegin)
+                .Select(r => new LatestRoomsModel
+                {
+                    title = r.title,
+                    area = r.acreage,
+                    price = r.price,
+                    dateTime = r.datebegin,
+                    pathImg = r.RoomImages.OrderBy(ri => ri.order).FirstOrDefault().imagePath,
+                }).Take(10);
+
+            return PartialView(rooms.ToList());
         }
         
         // hỗ trợ người dùng

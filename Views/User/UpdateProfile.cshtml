@@ -7,7 +7,7 @@
 
 @section css {
     <style>
-        #matKhau, #soDienThoai {
+        #matKhau, #So_dien_thoai, #doiAnhDaiDien {
             cursor: pointer;
         }
     </style>
@@ -39,77 +39,87 @@
             <div class="col-lg-6 col-md-8">
                 <form id="change-infor-form" class="form form-horizontal" method="post" action="/quan-ly/cap-nhat-thong-tin" enctype="multipart/form-data">
                     <div class="form-body">
-                        <!-- Các trường nhập thông tin khác -->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <span class="fa-fw select-all fas"></span>
-                                Đổi hình đại diện
-                            </div>
-                            <input class="d-none" type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/jpg" />
-                            <button type="button" class="btn btn-primary" onclick="document.getElementById('avatar').click();">Chọn ảnh</button>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="Ten_lien_he">Tên liên hệ</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="Ten_lien_he" name="Ten_lien_he" value="@Model.Ten_lien_he">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person"></i>
-                                    </div>
+                        <div class="row mb-3 bg-white rounded p-3">
+                            <div class="d-flex mb-3 align-items-center">
+                                <div class="avatar avatar-xl me-3">
+                                    <img src="@avatarPath" alt="" style="object-fit: cover;" id="previewAvatar">
                                 </div>
-                                @Html.ValidationMessageFor(model => model.Ten_lien_he)
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="So_dien_thoai">Số điện thoại</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="number" class="form-control fs-5-5" id="So_dien_thoai" readonly value="@Model.So_dien_thoai">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-phone"></i>
-                                    </div>
+                                <div class="me-3">
+                                    <h5 class="mb-0">@Model.Ten_lien_he</h5>
+                                    <h6 class="mb-0" style="font-weight: 100;">@Model.So_dien_thoai</h6>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="Facebook_link">Link facebook</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="email" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="Facebook_link" name="Facebook_link" value="@Model.Facebook_link">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-facebook"></i>
+                            <div class="col-12">
+                                <div class="form-group" onclick="document.getElementById('avatar').click();" id="doiAnhDaiDien">
+                                    <span class="fa-fw select-all fas"></span>
+                                    Đổi hình đại diện
+                                </div>
+                                <input class="d-none" type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/jpg" />
+                                @*<button type="button" class="btn btn-primary" onclick="document.getElementById('avatar').click();">Chọn ảnh</button>*@
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Ten_lien_he">Tên liên hệ</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control fs-5-5" placeholder="Tên của bạn" id="Ten_lien_he" name="Ten_lien_he" value="@Model.Ten_lien_he">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Ten_lien_he)
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="So_dien_thoai">Số điện thoại</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="number" class="form-control fs-5-5" id="So_dien_thoai" readonly value="@Model.So_dien_thoai">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="Email">Email</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="email" class="form-control fs-5-5" placeholder="Email" id="Email" name="Email" value="@Model.Email">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-envelope"></i>
+                            <div class="col-md-4">
+                                <label for="Facebook_link">Link facebook</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control fs-5-5" placeholder="Đường dẫn facebook của bạn" id="Facebook_link" name="Facebook_link" value="@Model.Facebook_link">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-facebook"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="matKhau">Mật khẩu</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="password" class="form-control fs-5-5" placeholder="Password" id="matKhau" readonly value="********">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-lock"></i>
+                            <div class="col-md-4">
+                                <label for="Email">Email</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="email" class="form-control fs-5-5" placeholder="Email" id="Email" name="Email" value="@Model.Email">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="matKhau">Mật khẩu</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="password" class="form-control fs-5-5" placeholder="Password" id="matKhau" readonly value="********">
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-lock"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -203,6 +213,14 @@
         });
         $('#matKhau').click(() => {
             $('li a[href="#doi-mat-khau"]').tab('show');
+        });
+
+        const $avatar = $('#previewAvatar')
+
+        $('#avatar').on('change', function (e) {
+            const $this = $(this);
+            const avatarFile = $this.prop('files')[0];
+            $avatar.prop('src', URL.createObjectURL(avatarFile));
         });
     </script>
     <script>

@@ -13,6 +13,10 @@ namespace HoiTroWebsite.Controllers
         // GET: Default
         public ActionResult Index()
         {
+            // Temp
+            //var user = db.Accounts.Where(a => a.phoneNum == "0369566322").SingleOrDefault();
+            //Session["User"] = user;
+
             // lấy list loại phòng
             ViewBag.ListRoomType = db.RoomTypes.Where(rt => rt.hide == true).OrderBy(rt => rt.order).ToList();
             return View();
@@ -23,9 +27,9 @@ namespace HoiTroWebsite.Controllers
             if ((id == null) && (metatitle == null))
             {
                 ViewBag.meta = "tin-tuc";
-                var _7TinTuc = db.News.Where(n => n.hide == true).OrderBy(n => n.order).Take(7).ToList();
+                var _7TinTuc = db.News.Where(n => n.hide == true).OrderBy(n => n.order).Take(7);
 
-                return PartialView(_7TinTuc);
+                return PartialView(_7TinTuc.ToList());
             }
             else
             {
@@ -55,6 +59,7 @@ namespace HoiTroWebsite.Controllers
         {
             ViewBag.meta = metatitle;
             var listRoomInfo = db.RoomInfoes.Where(ri => ri.roomTypeId == roomTypeID && ri.isApproved == true)
+                .OrderBy(r => r.order)
                 .Include(ri => ri.Account)
                 .Include(ri => ri.RoomImages)
                 .Take(5)

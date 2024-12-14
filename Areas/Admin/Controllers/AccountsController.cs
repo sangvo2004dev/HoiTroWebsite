@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -142,14 +141,14 @@ namespace HoiTroWebsite.Areas.Admin.Controllers
 
         public ActionResult Edit([Bind(Include = "id,name,phoneNum,email,zaloNum,FBlink,file_name,password,resetPass,meta,hide,order,datebegin")] Account account, HttpPostedFileBase img)
         {
-            var path = "";
-            var filename = "";
+            //var path = "";
+            //var filename = "";
             Account temp = getById(account.id);
             if (ModelState.IsValid)
             {
                 if (img != null)
                 {
-                    HandleUrlFile.SaveFile(img, "/Data/avatar/", account);
+                    HandleUrlFile.SaveFile(img, "/Data/avatar/", temp);
                 }
 
                 temp.name = account.name;

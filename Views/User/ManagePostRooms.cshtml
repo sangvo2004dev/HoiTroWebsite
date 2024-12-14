@@ -97,7 +97,7 @@
 </div>
 
 <div class="js-paging">
-    @{ 
+    @{
         int pg = 1;
         int recsCount = Model.Count(); //33 items;
         var pager = new Paginate(recsCount, pg, 5);
@@ -122,6 +122,7 @@
     </ul>*@
 
 @section script {
+    <script src="~/Scripts/my-js/hoitro.manage_post.js"></script>
     <script src="~/dist/assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="~/dist/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="~/dist/assets/static/js/pages/datatables.js"></script>

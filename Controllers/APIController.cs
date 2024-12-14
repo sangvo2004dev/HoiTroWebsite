@@ -12,6 +12,7 @@ using System.Net;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using System.Web.WebPages;
 
 namespace HoiTroWebsite.Controllers
@@ -166,20 +167,43 @@ namespace HoiTroWebsite.Controllers
             return View();
         }
 
-        [HttpGet]
         [Route("api/post/an-hien")]
-        public ActionResult SwitchStatusPost(string action, int id)
+        public ActionResult SwitchStatusPost(string hanhDong, int? id)
         {
-            
-            if (action == "an-tin")
+            try
             {
-                
-            }
-            else
-            {
+                var room = db.RoomInfoes.Where(r => r.id == id).SingleOrDefault();
+                string button = "";
+                string span = "";
+                if (hanhDong == "an-tin")
+                {
+                    room.IfNotNull(r => { r.hide = false; db.SaveChanges();
+                        button = $"<button class=\"js-show-tin btn btn-outline-success btn-sm mt-2\" data-id=\"{room.id}\" type=\"button\">\r\n" +
+                            $"Hiện tin\r\n" +
+                        $"</button>";
+                    });
+                    span = $"<span user-hide=\"true\" class=\"small text-bg-danger rounded p-1\">Tin đang ẩn</span>";
+                    Response.StatusCode = 200;
+                    return Json(new { message = "Ẩn thành công", button, span }, JsonRequestBehavior.AllowGet);
+                }
+                else if (hanhDong == "hien-tin")
+                {
+                    room.IfNotNull(r => { r.hide = true; db.SaveChanges();
 
+                        button = $"<button class=\"js-hide-tin btn btn-outline-light btn-sm mt-2\" data-id=\"{room.id}\" type=\"button\">\r\n" +
+                                $"Ẩn tin\r\n" +
+                            $"</button>";
+                    });
+                    span = $"<span user-hide=\"true\" class=\"small text-bg-success rounded p-1\">Tin đang hiện</span>";
+                    Response.StatusCode = 200;
+                    return Json(new { message = "Hiện thành công", button, span }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new {}, JsonRequestBehavior.AllowGet);
+            } catch (Exception ex)
+            {
+                return Json(new { message = ex.ToString() }, JsonRequestBehavior.AllowGet);
             }
-            return RedirectToAction("ManagePostRooms", "User");
+            
         }
 
         [HttpPost]
@@ -211,11 +235,32 @@ namespace HoiTroWebsite.Controllers
 
                 return RedirectToAction("ManagePostRooms", "User");
             }
-            catch (Exception ex)
+            catch
             {
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 Thread.Sleep(2000);
                 return RedirectToAction("ManagePostRooms", "User");
+            }
+        }
+
+        [Route("api/post/xoa-tin")]
+        public ActionResult DeletePost(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            try
+            {
+                var room = db.RoomInfoes.Where(r => r.id == id).SingleOrDefault();
+                room.IfNotNull(r => { db.RoomInfoes.Remove(r); db.SaveChanges(); });
+                Response.StatusCode = 200;
+                return Json(new {message = "Xóa thành công"}, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return Json(new { error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

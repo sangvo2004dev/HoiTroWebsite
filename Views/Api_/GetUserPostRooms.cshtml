@@ -11,7 +11,7 @@
     string ngay_gio = StringUI.Convert2DateTimeVietnamese(dateTime: room.datebegin);
     (string, string) trang_thai = room.isApproved == true ? ("text-success", "Đã duyệt") : ("text-danger", "Chưa duyệt");
     (string, string) trang_thai_an_tin = room.hide == true ? ("text-bg-success", "Tin đang hiện") : ("text-bg-danger", "Tin đang ẩn");
-    (string, string) nut_an_hien = room.hide == true ? ("btn-outline-light", "Ẩn tin") : ("btn-outline-succes", "Hiện tin");
+    (string, string) nut_an_hien = room.hide == true ? ("btn-outline-light js-hide-tin", "Ẩn tin") : ("btn-outline-success js-show-tin", "Hiện tin");
     if (room.RoomImages.Count != 0)
     {
         ten_anh = room.RoomImages.Where(ri => ri.order == 0).FirstOrDefault().file_name;
@@ -19,7 +19,7 @@
         so_luong_anh = room.RoomImages.Count;
     }
 
-    <div class="col-md-12">
+    <content class="col-md-12">
         <div class="card shadow-sm rounded-3 mb-3">
             <div class="card-body">
                 <div class="row">
@@ -56,7 +56,9 @@
                                 <span class="@trang_thai.Item1 bg-light rounded p-1" admin-hide="true">@trang_thai.Item2</span>
                             </div>
                         </div>
-                        <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1 d-lg-none">@trang_thai_an_tin.Item2</span>
+                        <span class=" d-lg-none">
+                            <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1">@trang_thai_an_tin.Item2</span>
+                        </span>
                     </div>
                     <div class="border-start col-lg-2 col-xl-2 d-none d-lg-flex d-xl-flex justify-content-center align-items-center">
                         <span user-hide="true" class="small @trang_thai_an_tin.Item1 rounded p-1">@trang_thai_an_tin.Item2</span>
@@ -68,9 +70,9 @@
                         @*<button data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-outline-primary btn-sm mt-2" type="button" data-mdb-button-initialized="true">
                             Xem tin đăng
                             </button>*@
-                        <a class="btn @nut_an_hien.Item1 btn-sm mt-2" href="" type="button">
+                        <button class="btn @nut_an_hien.Item1 btn-sm mt-2" data-id="@room.id" type="button">
                             @nut_an_hien.Item2
-                        </a>
+                        </button>
                         <button class="js-delete-post btn btn-outline-danger btn-sm mt-2" type="button" data-id="@room.id">
                             Xóa tin
                         </button>
@@ -78,7 +80,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </content>
 }
 
 

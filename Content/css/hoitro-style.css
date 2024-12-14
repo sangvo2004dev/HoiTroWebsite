@@ -1576,7 +1576,7 @@ body.show-filter-popup .black_overlay,
         z-index: 1;
         width: 110px;
         height: 3px;
-        background-color: #3f43fd;
+        background-color: #000;
         content: "";
         top: 0px;
         right: 15px;
